@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grid — India's Power System, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e14;
+    --bg-card:#11161f;
+    --bg-elev:#1a212c;
+    --line:#2a3340;
+    --line-soft:#1f2733;
+    --text:#e8eaed;
+    --text-dim:#9aa3ad;
+    --text-faint:#5a6470;
+    --amber:#f5b942;
+    --amber-bright:#ffd166;
+    --amber-deep:#c08416;
+    --red:#e85d4a;
+    --green:#5fc88f;
+    --blue:#5b8ee5;
+    --grid:rgba(245,185,66,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'IBM Plex Sans',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    font-size:15.5px;
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:40px 40px;
+    background-position:-1px -1px;
+  }
+  .container{max-width:1200px;margin:0 auto;padding:0 32px}
+
+  /* ===== MASTHEAD ===== */
+  .masthead{
+    border-bottom:1px solid var(--line);
+    padding:40px 0 56px;
+    position:relative;
+  }
+  .top-bar{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.1em;
+    color:var(--text-faint);
+    padding-bottom:24px;
+    border-bottom:1px solid var(--line-soft);
+    margin-bottom:48px;
+  }
+  .top-bar .meta{display:flex;gap:24px;align-items:center}
+  .pulse{
+    width:8px;height:8px;border-radius:50%;background:var(--amber);
+    display:inline-block;box-shadow:0 0 0 0 var(--amber);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(245,185,66,0.6)}
+    70%{box-shadow:0 0 0 14px rgba(245,185,66,0)}
+    100%{box-shadow:0 0 0 0 rgba(245,185,66,0)}
+  }
+  h1.title{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(72px,12vw,180px);
+    line-height:0.85;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+    color:var(--text);
+    margin-bottom:24px;
+  }
+  h1.title .line2{display:block;color:var(--amber)}
+  .deck{
+    font-size:clamp(18px,2vw,24px);
+    color:var(--text-dim);
+    max-width:780px;
+    line-height:1.4;
+    font-weight:300;
+    margin-bottom:48px;
+  }
+  .deck strong{color:var(--text);font-weight:500}
+
+  .ticker{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  .tick{
+    padding:20px 24px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--bg-card);
+  }
+  .tick-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    margin-bottom:8px;
+  }
+  .tick-val{
+    font-family:'Anton',sans-serif;
+    font-size:44px;line-height:1;
+    color:var(--text);
+    letter-spacing:0;
+  }
+  .tick-val .unit{font-size:18px;color:var(--text-dim);margin-left:4px;font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:500}
+  .tick-sub{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--amber);
+    margin-top:6px;
+  }
+  @media(max-width:780px){.ticker{grid-template-columns:repeat(2,1fr)}}
+
+  /* ===== SECTIONS ===== */
+  section{padding:80px 0;border-bottom:1px solid var(--line)}
+  .sec-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.18em;
+    color:var(--amber);
+    margin-bottom:12px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .sec-num::before{
+    content:"";display:inline-block;width:24px;height:1px;background:var(--amber);
+  }
+  h2{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(40px,6vw,84px);
+    line-height:0.9;
+    letter-spacing:-0.005em;
+    text-transform:uppercase;
+    margin-bottom:28px;
+    color:var(--text);
+  }
+  h2 .accent{color:var(--amber)}
+  .lede{
+    font-size:19px;
+    line-height:1.5;
+    color:var(--text-dim);
+    max-width:820px;
+    margin-bottom:40px;
+    font-weight:300;
+  }
+  .lede strong{color:var(--text);font-weight:500}
+  p{margin-bottom:14px;color:var(--text-dim)}
+  p strong{color:var(--text);font-weight:500}
+
+  /* ===== THE DUCK CURVE VISUAL ===== */
+  .duck-wrap{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    padding:40px;
+    margin:32px 0;
+    position:relative;
+  }
+  .duck-title{
+    font-family:'IBM Plex Sans Condensed',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--text-faint);
+    margin-bottom:24px;
+    display:flex;justify-content:space-between;
+  }
+  .duck-title span:last-child{color:var(--amber)}
+  svg.duck-svg{width:100%;height:auto;display:block}
+  .duck-legend{
+    display:flex;gap:32px;margin-top:24px;flex-wrap:wrap;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    color:var(--text-dim);
+  }
+  .leg-dot{display:inline-block;width:12px;height:3px;margin-right:8px;vertical-align:middle}
+
+  /* ===== PROBLEM CARDS ===== */
+  .problems{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:0;
+    margin:32px 0;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  .prob{
+    padding:28px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--bg-card);
+    position:relative;
+  }
+  .prob-tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--red);
+    border:1px solid var(--red);
+    padding:3px 8px;
+    margin-bottom:16px;
+  }
+  .prob-tag.warn{color:var(--amber);border-color:var(--amber)}
+  .prob-tag.ok{color:var(--green);border-color:var(--green)}
+  .prob h4{
+    font-family:'IBM Plex Sans Condensed',sans-serif;
+    font-weight:600;
+    font-size:19px;
+    line-height:1.2;
+    color:var(--text);
+    margin-bottom:12px;
+  }
+  .prob p{font-size:14px;line-height:1.55;color:var(--text-dim);margin-bottom:0}
+
+  /* ===== DATA BLOCKS ===== */
+  .data-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:0;
+    margin:24px 0;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  .data{
+    padding:20px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--bg-card);
+  }
+  .data-num{
+    font-family:'Anton',sans-serif;
+    font-size:36px;line-height:1;color:var(--amber);letter-spacing:0;
+    margin-bottom:6px;
+  }
+  .data-num .small{font-size:18px;color:var(--text-dim);font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:500}
+  .data-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;color:var(--text-dim);
+    letter-spacing:0.08em;
+    line-height:1.4;
+  }
+
+  /* ===== QUOTE / CALLOUT ===== */
+  .callout{
+    background:linear-gradient(135deg,rgba(245,185,66,0.08) 0%,rgba(245,185,66,0.02) 100%);
+    border-left:3px solid var(--amber);
+    padding:28px 32px;
+    margin:32px 0;
+  }
+  .callout p{color:var(--text);font-size:17px;line-height:1.5;margin-bottom:8px}
+  .callout .src{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--text-faint);
+    letter-spacing:0.05em;
+  }
+
+  /* ===== TWO-COL ===== */
+  .twocol{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:48px;
+    align-items:start;
+    margin:32px 0;
+  }
+  @media(max-width:780px){.twocol{grid-template-columns:1fr}}
+
+  /* ===== TABLE ===== */
+  .table{
+    width:100%;border-collapse:collapse;margin:24px 0;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+  }
+  .table th{
+    text-align:left;
+    padding:14px 16px;
+    border-bottom:2px solid var(--amber);
+    font-size:10.5px;letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--amber);
+    font-weight:500;
+  }
+  .table td{
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
+    color:var(--text-dim);
+  }
+  .table td:first-child{color:var(--text);font-weight:500}
+  .table tr:hover td{background:var(--bg-card)}
+
+  /* ===== TIMELINE ===== */
+  .timeline{
+    border-left:2px solid var(--line);
+    margin:24px 0 24px 8px;
+    padding-left:32px;
+  }
+  .tl-item{
+    margin-bottom:32px;position:relative;
+  }
+  .tl-item::before{
+    content:"";position:absolute;left:-41px;top:8px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--amber);
+  }
+  .tl-item.current::before{background:var(--amber)}
+  .tl-when{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.1em;
+    color:var(--amber);
+    margin-bottom:4px;
+  }
+  .tl-what{
+    font-family:'IBM Plex Sans Condensed',sans-serif;
+    font-weight:600;font-size:18px;color:var(--text);
+    margin-bottom:6px;
+  }
+  .tl-detail{font-size:14px;color:var(--text-dim);line-height:1.5}
+
+  /* ===== SOURCES ===== */
+  .sources-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:0;
+    margin-top:32px;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  .src-card{
+    padding:24px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--bg-card);
+    transition:background 0.2s;
+  }
+  .src-card:hover{background:var(--bg-elev)}
+  .src-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;color:var(--amber);
+    letter-spacing:0.12em;margin-bottom:12px;
+  }
+  .src-name{
+    font-family:'IBM Plex Sans Condensed',sans-serif;
+    font-weight:600;font-size:18px;color:var(--text);
+    margin-bottom:8px;line-height:1.2;
+  }
+  .src-what{font-size:13px;color:var(--text-dim);line-height:1.5;margin-bottom:14px}
+  .src-url{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    color:var(--blue);word-break:break-all;
+    border-top:1px dashed var(--line);padding-top:10px;
+  }
+  .src-url a{color:inherit;text-decoration:none}
+  .src-url a:hover{color:var(--amber)}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--bg);
+    border-top:2px solid var(--amber);
+    padding:48px 0 32px;
+  }
+  footer .container{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:48px;
+  }
+  @media(max-width:780px){footer .container{grid-template-columns:1fr}}
+  footer h5{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--amber);margin-bottom:14px;
+  }
+  footer p,footer li{font-size:13px;color:var(--text-dim);line-height:1.55}
+  footer ul{list-style:none}
+  footer li{padding:3px 0}
+  .colophon{
+    grid-column:1/-1;
+    border-top:1px solid var(--line-soft);
+    margin-top:32px;padding-top:20px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--text-faint);
+    letter-spacing:0.08em;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    text-transform:uppercase;
+  }
+
+  /* ===== HIGHLIGHTS BOX ===== */
+  .key{
+    background:var(--bg-card);
+    border:1px solid var(--amber);
+    padding:24px 28px;
+    margin:24px 0;
+  }
+  .key-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;letter-spacing:0.18em;
+    color:var(--amber);
+    margin-bottom:12px;
+    text-transform:uppercase;
+  }
+  .key p{color:var(--text);font-size:15.5px;line-height:1.55;margin-bottom:8px}
+  .key p:last-child{margin-bottom:0}
+
+  @media(max-width:680px){
+    .container{padding:0 18px}
+    .duck-wrap{padding:20px}
+    section{padding:60px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="container">
+    <div class="top-bar">
+      <div class="meta">
+        <span class="pulse"></span>
+        <span>LIVE STATUS · GRID UNDER MANAGED STRESS</span>
+      </div>
+      <span>VOL. I · MAY 2026</span>
+    </div>
+    <h1 class="title">The Grid<span class="line2">India 2026.</span></h1>
+    <p class="deck">A technical reader on what India's electricity system actually looks like in 2026 — record-breaking peak demand, a solar boom that is creating its own duck curve, distribution companies still bleeding rupees, and a battery build-out that is racing to catch up. <strong>The hard numbers, the real complaints, and what is being built next.</strong></p>
+
+    <div class="ticker">
+      <div class="tick">
+        <div class="tick-label">Installed Capacity</div>
+        <div class="tick-val">505<span class="unit">GW</span></div>
+        <div class="tick-sub">↑ Oct 2025 · all sources</div>
+      </div>
+      <div class="tick">
+        <div class="tick-label">Non-Fossil Share</div>
+        <div class="tick-val">50.07<span class="unit">%</span></div>
+        <div class="tick-sub">↑ Paris target hit 5 yrs early</div>
+      </div>
+      <div class="tick">
+        <div class="tick-label">Peak Demand (24 Apr 26)</div>
+        <div class="tick-val">252<span class="unit">GW</span></div>
+        <div class="tick-sub">↑ All-time record</div>
+      </div>
+      <div class="tick">
+        <div class="tick-label">Demand per Degree °C</div>
+        <div class="tick-val">+7<span class="unit">GW</span></div>
+        <div class="tick-sub">↑ 2x the 2019 sensitivity (IEA)</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 01 THE PICTURE ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">01 / OVERVIEW</div>
+    <h2>The picture, <span class="accent">straight.</span></h2>
+    <p class="lede">India built its first 100 GW of installed capacity in 60 years. It built the most recent 100 GW in roughly seven. The grid now serves 100% of villages and roughly 1.4 billion people. It also faces the hardest operational challenges in its history: <strong>record peak demand, a heatwave-sensitive load profile, a duck curve from too much midday solar, and distribution companies still leaking money.</strong> Every problem in this report is a problem of scale and speed.</p>
+
+    <div class="data-grid">
+      <div class="data"><div class="data-num">505<span class="small">GW</span></div><div class="data-label">Total installed capacity (Oct 2025)</div></div>
+      <div class="data"><div class="data-num">~234<span class="small">GW</span></div><div class="data-label">Renewable energy installed</div></div>
+      <div class="data"><div class="data-num">150<span class="small">GW</span></div><div class="data-label">Solar installed (Mar 2026)</div></div>
+      <div class="data"><div class="data-num">50<span class="small">GW</span></div><div class="data-label">Wind installed</div></div>
+      <div class="data"><div class="data-num">252<span class="small">GW</span></div><div class="data-label">All-time peak demand (Apr 2026)</div></div>
+      <div class="data"><div class="data-num">277<span class="small">GW</span></div><div class="data-label">FY26 peak demand projection</div></div>
+      <div class="data"><div class="data-num">+68<span class="small">%</span></div><div class="data-label">Peak demand growth 2014→2024 (IEA)</div></div>
+      <div class="data"><div class="data-num">500<span class="small">GW</span></div><div class="data-label">Non-fossil target by 2030</div></div>
+    </div>
+
+    <div class="callout">
+      <p>"India's power system is experiencing unprecedented ramping and flexibility requirements, with grid demand swings reaching up to 90 GW. Large-scale energy storage is no longer optional; it is essential for a resilient and reliable grid."</p>
+      <p class="src">— S.C. Saxena, CMD, GRID India · Stationary Energy Storage India 2026 Conference</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 THE DUCK CURVE ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">02 / THE PARADOX</div>
+    <h2>Too much sun at noon. <span class="accent">Not enough at night.</span></h2>
+    <p class="lede">The single most discussed operational problem on the Indian grid right now is the <strong>duck curve</strong> — and yes, your intuition about it is correct. Solar generates abundantly between 10 AM and 4 PM. Demand peaks between 6 PM and 10 PM, just as solar collapses to zero. The gap has to be filled by something dispatchable — coal, gas, hydro, or batteries — that can ramp up fast. As more solar is added, the "belly" of the duck gets deeper and the evening "neck" gets steeper.</p>
+
+    <div class="duck-wrap">
+      <div class="duck-title">
+        <span>STYLISED DUCK CURVE · INDIA GRID</span>
+        <span>NET LOAD = TOTAL DEMAND − SOLAR</span>
+      </div>
+      <svg class="duck-svg" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+        <!-- grid -->
+        <g stroke="#2a3340" stroke-width="0.5">
+          <line x1="60" y1="50" x2="60" y2="300"/>
+          <line x1="60" y1="300" x2="860" y2="300"/>
+          <line x1="60" y1="100" x2="860" y2="100" stroke-dasharray="2 4"/>
+          <line x1="60" y1="150" x2="860" y2="150" stroke-dasharray="2 4"/>
+          <line x1="60" y1="200" x2="860" y2="200" stroke-dasharray="2 4"/>
+          <line x1="60" y1="250" x2="860" y2="250" stroke-dasharray="2 4"/>
+        </g>
+        <!-- X-axis labels (hours) -->
+        <g font-family="IBM Plex Mono" font-size="10" fill="#5a6470" text-anchor="middle">
+          <text x="100" y="320">00</text>
+          <text x="200" y="320">04</text>
+          <text x="300" y="320">08</text>
+          <text x="400" y="320">12</text>
+          <text x="500" y="320">16</text>
+          <text x="600" y="320">20</text>
+          <text x="700" y="320">24</text>
+        </g>
+        <g font-family="IBM Plex Mono" font-size="10" fill="#5a6470" text-anchor="end">
+          <text x="50" y="305">100</text>
+          <text x="50" y="255">150</text>
+          <text x="50" y="205">200</text>
+          <text x="50" y="155">240</text>
+          <text x="50" y="105">270</text>
+          <text x="50" y="55">GW</text>
+        </g>
+        <!-- Total demand curve (without solar) -->
+        <path d="M 100 250 Q 150 240 200 220 T 300 180 Q 350 160 400 145 T 500 130 Q 550 120 600 95 T 700 110 T 800 165 L 860 200" 
+              stroke="#9aa3ad" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+        <text x="630" y="80" font-family="IBM Plex Mono" font-size="11" fill="#9aa3ad">TOTAL DEMAND</text>
+        <text x="650" y="92" font-family="IBM Plex Mono" font-size="10" fill="#5a6470">(incl. evening AC peak)</text>
+        <!-- Solar generation curve -->
+        <path d="M 100 300 L 250 295 Q 300 290 350 240 T 450 160 Q 500 140 550 170 T 650 280 L 800 298 L 860 300" 
+              stroke="#f5b942" stroke-width="2.5" fill="none"/>
+        <text x="370" y="200" font-family="IBM Plex Mono" font-size="11" fill="#f5b942">SOLAR GENERATION</text>
+        <!-- Net load (duck) -->
+        <path d="M 100 250 Q 150 240 200 220 T 300 200 Q 380 220 450 250 Q 500 265 550 250 Q 590 230 600 210 Q 620 160 660 110 Q 700 95 750 115 Q 800 150 860 200" 
+              stroke="#e85d4a" stroke-width="3" fill="none"/>
+        <text x="450" y="285" font-family="IBM Plex Mono" font-size="11" fill="#e85d4a">NET LOAD (the duck)</text>
+        <!-- Belly highlight -->
+        <ellipse cx="475" cy="252" rx="120" ry="12" fill="rgba(232,93,74,0.1)" stroke="rgba(232,93,74,0.4)" stroke-dasharray="3 3"/>
+        <text x="475" y="278" font-family="IBM Plex Mono" font-size="10" fill="#e85d4a" text-anchor="middle">midday "belly" → curtailment</text>
+        <!-- Ramp arrow -->
+        <line x1="600" y1="215" x2="680" y2="115" stroke="#f5b942" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="0"/>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f5b942"/>
+          </marker>
+        </defs>
+        <text x="680" y="170" font-family="IBM Plex Mono" font-size="10" fill="#f5b942">evening ramp</text>
+        <text x="680" y="184" font-family="IBM Plex Mono" font-size="10" fill="#f5b942">~10-15 GW / 2 hrs</text>
+        <!-- Markers -->
+        <circle cx="400" cy="145" r="3" fill="#f5b942"/>
+        <text x="408" y="140" font-family="IBM Plex Mono" font-size="9" fill="#f5b942">Solar peak ≈ 12-1 PM</text>
+        <circle cx="660" cy="95" r="3" fill="#e85d4a"/>
+        <text x="668" y="90" font-family="IBM Plex Mono" font-size="9" fill="#e85d4a">Evening peak ≈ 8-9 PM</text>
+      </svg>
+      <div class="duck-legend">
+        <span><span class="leg-dot" style="background:#9aa3ad"></span>Total demand (gross)</span>
+        <span><span class="leg-dot" style="background:#f5b942"></span>Solar generation</span>
+        <span><span class="leg-dot" style="background:#e85d4a"></span>Net load served by non-solar (the duck)</span>
+      </div>
+    </div>
+
+    <p>The visible cost is <strong>solar curtailment</strong> — wasted clean electricity that the grid cannot absorb. India saw over <strong>2 TWh of solar curtailment in 2025</strong>, with high-producing states like Rajasthan and Tamil Nadu forced to physically halt generation during midday surpluses because the grid had nowhere to put the power. The invisible cost is harder: coal and gas plants are forced to cycle up and down sharply (the "evening ramp"), which accelerates wear, raises maintenance costs, and makes those plants more expensive even as they run fewer hours.</p>
+    <p>On record-demand day <strong>April 25, 2026</strong>, when load hit 256 GW, solar supplied about 58 GW at midday (~24% of peak). But solar's contribution after sunset was effectively zero. The coal fleet did the evening work. This is the structural reason why even hitting 500 GW of non-fossil capacity by 2030 does not, by itself, solve India's electricity problem.</p>
+  </div>
+</section>
+
+<!-- ===== 03 THE AC ECONOMY ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">03 / THE COOLING SURGE</div>
+    <h2>India is buying <span class="accent">air conditioners.</span></h2>
+    <p class="lede">The chart above ends in the evening peak. The reason that peak keeps rising — and is increasingly the binding constraint on the whole system — is one appliance: <strong>the air conditioner</strong>. The IEA's 2025 analysis is blunt about it: each additional degree of daily average temperature now adds <strong>more than 7 GW of peak demand</strong>, twice the sensitivity in 2019. By 2027, that figure could exceed 11 GW per degree.</p>
+
+    <div class="data-grid">
+      <div class="data"><div class="data-num">148<span class="small">GW</span></div><div class="data-label">Peak demand in 2014</div></div>
+      <div class="data"><div class="data-num">250<span class="small">GW</span></div><div class="data-label">Peak demand in 2024</div></div>
+      <div class="data"><div class="data-num">252<span class="small">GW</span></div><div class="data-label">All-time peak (Apr 24, 2026)</div></div>
+      <div class="data"><div class="data-num">+7<span class="small">GW</span></div><div class="data-label">Demand added per degree °C (2024)</div></div>
+      <div class="data"><div class="data-num">+11<span class="small">GW</span></div><div class="data-label">Per degree °C projected by 2027</div></div>
+      <div class="data"><div class="data-num">6.3<span class="small">%</span></div><div class="data-label">Annual demand growth 2025-27 (IEA)</div></div>
+      <div class="data"><div class="data-num">60<span class="small">GW</span></div><div class="data-label">Peak demand savings possible with tighter AC standards by 2035</div></div>
+      <div class="data"><div class="data-num">~₹7.5<span class="small">L Cr</span></div><div class="data-label">Capex avoided if cooling efficiency tightened ($87bn, UC Berkeley study)</div></div>
+    </div>
+
+    <p>The Berkeley study is the policy reason why you are increasingly hearing about <strong>mandatory minimum AC temperature settings</strong>. The government is actively considering capping AC settings between 20°C and 28°C — a measure that, according to the study, could shave up to 60 GW off peak demand by 2035 and avoid roughly ₹7.5 lakh crore of new generation and grid investment. Whether or not the proposal is mandated, every degree higher on every thermostat in India is the single cheapest "power plant" the country can build.</p>
+
+    <div class="callout">
+      <p>Even in winter, peak load now <strong>crosses 245 GW</strong> — January 2026's peak rivalled summer highs. Cold-wave days in northern India in December 2025 set new winter records. India's load curve is no longer a summer-only story.</p>
+      <p class="src">— CRISIL Intelligence + CEA data, February 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 ROOFTOP REALITY ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">04 / ROOFTOP REALITY CHECK</div>
+    <h2>PM Surya Ghar: <span class="accent">the gap between sign-up and sunlight.</span></h2>
+    <p class="lede">In February 2024 the government launched PM Surya Ghar Muft Bijli Yojana — a ₹75,021 crore scheme to put rooftop solar on 1 crore households by March 2027, with subsidies up to ₹78,000 per home. Adoption has been strong on paper. <strong>Implementation has been bumpy on the ground</strong>, and three specific problems keep surfacing.</p>
+
+    <div class="data-grid">
+      <div class="data"><div class="data-num">47.3<span class="small">L</span></div><div class="data-label">Applications received (since Feb 2024)</div></div>
+      <div class="data"><div class="data-num">~20.8<span class="small">L</span></div><div class="data-label">Installations completed (Dec 2025)</div></div>
+      <div class="data"><div class="data-num">22.7<span class="small">%</span></div><div class="data-label">Application-to-installation rate (IEEFA)</div></div>
+      <div class="data"><div class="data-num">45-120<span class="small">d</span></div><div class="data-label">Real-world wait vs 30-day mandate</div></div>
+    </div>
+
+    <div class="problems">
+      <div class="prob">
+        <span class="prob-tag">PROBLEM 01</span>
+        <h4>DISCOM bottleneck</h4>
+        <p>The scheme mandates a 30-day approval and commissioning window. The reality, per IEEFA, is 45-120 days. The hold-up is consistently at the DISCOM: technical feasibility checks, transformer capacity validation, net-meter installation, and the commissioning report that triggers subsidy disbursement. Most consumers think installation = done. It isn't.</p>
+      </div>
+      <div class="prob">
+        <span class="prob-tag">PROBLEM 02</span>
+        <h4>Net meter shortages</h4>
+        <p>The bidirectional meters that make rooftop solar work are not always available when the household is ready. Smart-meter procurement and installation have lagged sanctions across most states — only ~32 million of 224 million sanctioned smart meters were installed by mid-2025. Without the meter, the system cannot be commissioned and the subsidy cannot be released.</p>
+      </div>
+      <div class="prob">
+        <span class="prob-tag">PROBLEM 03</span>
+        <h4>Net metering rules being rewritten</h4>
+        <p>Maharashtra and Karnataka have already capped net-metering credits and introduced time-of-day tariffs. The reason: as more affluent households install rooftop solar and reduce their grid draw, the DISCOM's cross-subsidy pool — which lets it charge commercial and industrial users to subsidise residential — shrinks. Industry calls this risk the "utility death spiral".</p>
+      </div>
+    </div>
+
+    <div class="key">
+      <div class="key-label">The equity question</div>
+      <p>PM Surya Ghar subsidises the rooftop. It does not subsidise the rented apartment, the informal settlement, or the household without an Aadhaar-linked bank account. As affluent solar households reduce their grid draw but stay connected for evening backup, <strong>non-adopters — usually low-income families — face rising fixed charges</strong> to keep the wires running. A Down To Earth analysis published in April 2026 warned that without cross-subsidy modelling, regulators may face politically toxic tariff shocks. The scheme is real and works; the equity audit isn't being done yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 DISCOMS ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">05 / DISTRIBUTION</div>
+    <h2>The wires <span class="accent">still bleed.</span></h2>
+    <p class="lede">Distribution companies (DISCOMs) are the part of the system most consumers actually interact with — the entity that sends the bill, runs the substation, handles outages. They are also the system's weakest link financially. <strong>Total DISCOM debt was approximately ₹7.26 lakh crore in late 2025.</strong> AT&C (Aggregate Technical & Commercial) losses — power that is generated and delivered but never paid for — have improved meaningfully but remain far above world averages.</p>
+
+    <table class="table">
+      <thead><tr><th>Metric</th><th>FY21</th><th>FY25</th><th>Target</th><th>World avg</th></tr></thead>
+      <tbody>
+        <tr><td>AT&amp;C losses (national)</td><td>21.91%</td><td>16.16%</td><td>12-15% by FY28 (RDSS)</td><td>~6%</td></tr>
+        <tr><td>Billing efficiency</td><td>~84%</td><td>86.91%</td><td>—</td><td>—</td></tr>
+        <tr><td>Collection efficiency</td><td>—</td><td>96.51%</td><td>—</td><td>—</td></tr>
+        <tr><td>Smart meters installed</td><td>—</td><td>~32 million</td><td>224 million sanctioned</td><td>—</td></tr>
+        <tr><td>Outstanding DISCOM debt</td><td>—</td><td>~₹7.26 L Cr</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <p>The state-by-state picture is sharply uneven. Per the Power Finance Corporation's FY24 report, <strong>Karnataka, Uttar Pradesh, and Telangana</strong> together account for the bulk of DISCOM losses. <strong>Gujarat and Delhi</strong> are the standouts that actually post profits. Several states still record AT&C losses above 25%, and some exceed 35%. Where losses are high, two things almost always follow: load-shedding (planned power cuts during peak hours because the DISCOM cannot afford expensive power), and political pressure to under-tariff agricultural and residential users.</p>
+
+    <div class="twocol">
+      <div>
+        <h3 style="font-family:'IBM Plex Sans Condensed';font-weight:600;font-size:22px;color:var(--text);margin-bottom:14px">What you experience as a consumer</h3>
+        <p style="font-size:14.5px">The visible failures of distribution are predictable and consistent across the country: <strong>local transformer overloads in summer evenings</strong>, especially in dense urban colonies where AC penetration outran the substation; <strong>billing disputes</strong> from the mismatch between consumer records and DISCOM databases when applying for solar or new connections; <strong>delayed subsidy disbursement</strong> for everything from PM-KUSUM pumps to rooftop solar; and <strong>localised load-shedding</strong> that varies by feeder rather than by district, because some feeders carry more agricultural pumping load than the system can fund.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'IBM Plex Sans Condensed';font-weight:600;font-size:22px;color:var(--text);margin-bottom:14px">Why the cycle persists</h3>
+        <p style="font-size:14.5px">Political tariffs (free or near-free electricity for farmers in several states) starve DISCOMs of revenue. State subsidy reimbursements are often late, sometimes by years. DISCOMs then defer capex on transformers, conductors, and meters. Old infrastructure produces higher technical losses. Higher losses force regulators to allow higher tariffs for paying customers, which in turn increases the political pressure to subsidise. <strong>The Economic Survey 2025-26 flagged this directly</strong> — calling rising state-level revenue deficits and untargeted cash transfers a drag on power-sector capex.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 STORAGE ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">06 / THE FIX</div>
+    <h2>Batteries, <span class="accent">finally.</span></h2>
+    <p class="lede">The clearest answer to the duck curve is to <strong>move midday solar to evening demand</strong>. That means storage. India's installed grid-scale battery storage was under 1 GWh entering 2026. <strong>It is on track for ~5 GWh by year-end — a ten-fold jump in twelve months</strong> — and 346 GWh by 2033 under the base case (544 GWh if policy momentum holds). The Central Electricity Authority estimates the actual need by 2031-32 at 411 GWh, split between batteries and pumped hydro.</p>
+
+    <div class="data-grid">
+      <div class="data"><div class="data-num">&lt;1<span class="small">GWh</span></div><div class="data-label">Installed BESS (start of 2026)</div></div>
+      <div class="data"><div class="data-num">~5<span class="small">GWh</span></div><div class="data-label">Expected installed BESS end-2026</div></div>
+      <div class="data"><div class="data-num">92<span class="small">GWh</span></div><div class="data-label">BESS in tender pipeline (2025)</div></div>
+      <div class="data"><div class="data-num">411<span class="small">GWh</span></div><div class="data-label">Required by 2031-32 (CEA)</div></div>
+      <div class="data"><div class="data-num">43.2<span class="small">GWh</span></div><div class="data-label">VGF-supported BESS capacity</div></div>
+      <div class="data"><div class="data-num">7<span class="small">GW</span></div><div class="data-label">Pumped hydro installed (2025)</div></div>
+      <div class="data"><div class="data-num">107<span class="small">GW</span></div><div class="data-label">Pumped hydro projected by 2033</div></div>
+      <div class="data"><div class="data-num">−40<span class="small">%</span></div><div class="data-label">BESS turnkey cost decline 2023→24</div></div>
+    </div>
+
+    <p>The economics finally work because two things happened in 2024-25. <strong>Global battery cell costs collapsed</strong> — China overbuilt manufacturing capacity, oversupplying the world by roughly 4x; turnkey BESS prices dropped about 40% in a single year. And the Indian government layered <strong>three policy pillars on top of falling costs</strong>: ₹91 billion of Viability Gap Funding covering up to 40% of capital costs on 43.2 GWh of standalone BESS; an Inter-State Transmission System (ISTS) charge waiver for storage co-located with renewables; and a Production-Linked Incentive scheme for 50 GWh of advanced chemistry cell manufacturing inside India.</p>
+
+    <div class="callout">
+      <p>"Solar peaks between 10 AM and 3 PM. Wind blows hardest at night and in specific corridors. Demand peaks in the evening, between 6 PM and 10 PM, precisely when the sun has set and the grid is leaning on coal plants cycling inefficiently to compensate. <strong>2026 is the year the BESS sector in India crossed the line from emerging technology to mainstream grid asset.</strong>"</p>
+      <p class="src">— India Energy Storage Alliance · IESA-CES whitepaper, March 2026</p>
+    </div>
+
+    <p>Pumped hydro — older, less glamorous, but cheaper for longer duration — is being built in parallel. The 1 GW Tehri facility commissioned its first variable-speed unit in June 2025. Karnataka's 2 GW Sharavathy project is under development. India's total pumped-storage technical potential is roughly 176 GW; the CEA has mapped 51 GW to be developed by 2032.</p>
+  </div>
+</section>
+
+<!-- ===== 07 WHAT'S COMING ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">07 / WHAT'S NEXT</div>
+    <h2>The next <span class="accent">three years.</span></h2>
+    <p class="lede">The schemes and rules below are either operational, sanctioned, or in advanced consultation. They are the levers the government is pulling — in roughly chronological order of when their effects will land on the grid and on consumer bills.</p>
+
+    <div class="timeline">
+      <div class="tl-item current">
+        <div class="tl-when">FY 2026-27 · CURRENT</div>
+        <div class="tl-what">RDSS smart meter push</div>
+        <div class="tl-detail">The Revamped Distribution Sector Scheme (₹3 lakh crore, extended to March 2028) is the central plank for fixing the DISCOM side. Of 224 million smart meters sanctioned, roughly 32 million are installed; the remaining ~190 million land over the next two years. Smart meters end estimation-based billing, cut theft, and enable time-of-day tariffs.</div>
+      </div>
+      <div class="tl-item current">
+        <div class="tl-when">FY 2026-27 · CURRENT</div>
+        <div class="tl-what">PM Surya Ghar — 1 crore homes target</div>
+        <div class="tl-detail">₹22,000 crore allocated in Budget 2026-27 (up ~10% on FY26). Utility-led aggregation model expected to add another 10 lakh installations by March 2026. National Portal grievance redressal still weak; states are independently capping net-metering credits.</div>
+      </div>
+      <div class="tl-item current">
+        <div class="tl-when">FY 2026-27 · CURRENT</div>
+        <div class="tl-what">Storage Obligations rise</div>
+        <div class="tl-detail">DISCOMs must source a rising share of supply from storage-backed contracts: 1% (FY24) → 3% (FY27) → 4% (FY30). MNRE has mandated co-located 2-hour storage with new solar tenders. Energy Storage Obligation is the policy that puts batteries into the procurement pipeline by force, not just by preference.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2026-2028</div>
+        <div class="tl-what">National Electricity Policy 2026 ratified</div>
+        <div class="tl-detail">Draft NEP 2026 explicitly aims for "24×7 supply" reliability — recognising that "hours matter, not just kilowatt-hours." Time-based procurement (round-the-clock and peak-hour tenders) replaces simple capacity tenders. Expect the language of the grid to shift from "capacity added" to "energy delivered when needed".</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2026-2028</div>
+        <div class="tl-what">Time-of-Day tariffs nationwide</div>
+        <div class="tl-detail">Following smart-meter deployment, time-of-day pricing — cheaper midday, more expensive evening — will be progressively rolled out for residential and small-commercial users in most states. This is the demand-side answer to the duck curve: nudge EV charging, washing machines, and water heaters to run between 11 AM and 4 PM.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2026-2030</div>
+        <div class="tl-what">AC minimum-temperature standards</div>
+        <div class="tl-detail">Under active consideration: capping AC thermostat settings between 20°C and 28°C, mandatory inverter-class AC sales, tighter star-rating norms. Could deliver up to 60 GW of peak-demand savings by 2035 — the cheapest infrastructure India can build is the kilowatt-hour it doesn't have to generate.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2027-2030</div>
+        <div class="tl-what">500 GW non-fossil capacity</div>
+        <div class="tl-detail">Officially the headline target — and India crossed 50% non-fossil installed capacity in 2025, five years ahead of the Paris pledge. But the relevant question is no longer capacity; it is dispatchable capacity. Expect the policy conversation to keep migrating from "how many gigawatts" to "how many gigawatt-hours, and at what time of day".</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2030-2032</div>
+        <div class="tl-what">Storage build-out at scale</div>
+        <div class="tl-detail">CEA target: 74 GW / 411 GWh of storage by FY32 (47 GW batteries, 27 GW pumped hydro). IESA base-case projection: 346 GWh of installed BESS by 2033. Bullish case: 544 GWh. This is the single most important number to watch — it determines whether the duck curve becomes a footnote or a permanent feature of Indian electricity.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2030-2070</div>
+        <div class="tl-what">Nuclear opens to private players</div>
+        <div class="tl-detail">Budget 2026-27 confirmed nuclear power generation is being opened to private capital for the first time. Small Modular Reactors (SMRs) are the focus. Nuclear is the only dispatchable, firm, clean power source that scales — the bet is that 5-10 GW of SMR capacity by the mid-2030s will provide the "always on" baseload that pure renewables-plus-storage struggle to match in the longest evening peaks of summer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08 SOURCES ===== -->
+<section>
+  <div class="container">
+    <div class="sec-num">08 / WATCH IT YOURSELF</div>
+    <h2>Where to see <span class="accent">the live grid.</span></h2>
+    <p class="lede">Most of the numbers in this report came from public, official dashboards. India's power sector is unusually well-instrumented — almost every metric you might want is somewhere on a government or public-institution site. Bookmark these.</p>
+
+    <div class="sources-grid">
+      <div class="src-card">
+        <div class="src-num">01 / REAL-TIME GRID</div>
+        <div class="src-name">National Power Portal</div>
+        <div class="src-what">Live national and state-level demand, generation, frequency, and forecasts. Run by the Central Electricity Authority and Ministry of Power.</div>
+        <div class="src-url"><a href="https://npp.gov.in/" target="_blank">npp.gov.in</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">02 / SYSTEM OPERATOR</div>
+        <div class="src-name">Grid-India (POSOCO)</div>
+        <div class="src-what">India's national grid operator. Daily and weekly reports on demand-supply, frequency, and grid events.</div>
+        <div class="src-url"><a href="https://posoco.in/" target="_blank">posoco.in</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">03 / CENTRAL REGULATOR</div>
+        <div class="src-name">Central Electricity Authority</div>
+        <div class="src-what">Monthly generation reports, installed capacity, demand forecasts, transmission stats. The authoritative source for capacity numbers.</div>
+        <div class="src-url"><a href="https://cea.nic.in/" target="_blank">cea.nic.in</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">04 / DISCOM PERFORMANCE</div>
+        <div class="src-name">Power Finance Corporation Reports</div>
+        <div class="src-what">Annual "Performance of Power Utilities" report — every DISCOM's AT&C losses, profitability, debt, billing efficiency. The single most useful document on distribution.</div>
+        <div class="src-url"><a href="https://www.pfcindia.com/" target="_blank">pfcindia.com</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">05 / RENEWABLE ENERGY</div>
+        <div class="src-name">Ministry of New & Renewable Energy</div>
+        <div class="src-what">Physical progress dashboard — solar, wind, biomass, hydrogen — by state and by scheme.</div>
+        <div class="src-url"><a href="https://mnre.gov.in/" target="_blank">mnre.gov.in</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">06 / ROOFTOP SOLAR</div>
+        <div class="src-name">PM Surya Ghar Portal</div>
+        <div class="src-what">Apply for the residential rooftop subsidy, check application status, find empanelled vendors. Track district-level installation numbers.</div>
+        <div class="src-url"><a href="https://pmsuryaghar.gov.in/" target="_blank">pmsuryaghar.gov.in</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">07 / SMART METERS</div>
+        <div class="src-name">National Smart Grid Mission</div>
+        <div class="src-what">Live dashboard of smart meter installations by state and DISCOM. Useful for seeing where your distribution company actually is on the roll-out.</div>
+        <div class="src-url"><a href="https://www.nsgm.gov.in/" target="_blank">nsgm.gov.in</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">08 / ENERGY & CLIMATE</div>
+        <div class="src-name">India Climate & Energy Dashboard</div>
+        <div class="src-what">NITI Aayog's one-stop dashboard: energy mix, EV registrations, sectoral consumption, DISCOM accumulated losses, more.</div>
+        <div class="src-url"><a href="https://iced.niti.gov.in/" target="_blank">iced.niti.gov.in</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">09 / WHOLESALE MARKETS</div>
+        <div class="src-name">Indian Energy Exchange (IEX)</div>
+        <div class="src-what">Day-ahead and real-time wholesale power prices, hour-by-hour. The clearest way to actually see the duck curve in money: midday prices vs evening prices.</div>
+        <div class="src-url"><a href="https://www.iexindia.com/" target="_blank">iexindia.com</a></div>
+      </div>
+      <div class="src-card">
+        <div class="src-num">10 / CONSUMER FORUMS</div>
+        <div class="src-name">State Electricity Regulatory Commissions</div>
+        <div class="src-what">Each state has its own SERC. Where tariffs are set, net-metering rules are written, and consumer complaints are formally heard. Check your state's SERC site for tariff petitions.</div>
+        <div class="src-url"><a href="https://forumofregulators.gov.in/" target="_blank">forumofregulators.gov.in</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div>
+      <h5>About this brief</h5>
+      <p>The Grid is a technical reader on the operational reality of India's electricity system in 2026 — synthesised from CEA, CERC, IEA, MNRE, PFC, NITI Aayog, IEEFA, CEEW, IESA, and the Economic Survey 2025-26. It is not an official publication. Numbers are accurate as of the cited month; the system moves fast, so verify against the live dashboards before acting on any figure.</p>
+    </div>
+    <div>
+      <h5>Primary data sources</h5>
+      <ul>
+        <li>Central Electricity Authority</li>
+        <li>Power Finance Corporation</li>
+        <li>NITI Aayog · ICED</li>
+        <li>IEA Electricity 2025</li>
+        <li>IESA-CES Whitepaper 2026</li>
+        <li>Economic Survey 2025-26 · Ch 10</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Further reading</h5>
+      <ul>
+        <li>Citi · India Power Grid Nighttime Strain</li>
+        <li>IEEFA · PM Surya Ghar Gaps</li>
+        <li>CEEW · Feeder Distribution Losses</li>
+        <li>CSEP · DISCOM Billing Losses</li>
+        <li>UC Berkeley · India AC Efficiency Study</li>
+      </ul>
+    </div>
+    <div class="colophon">
+      <span>The Grid · Vol. I · India's Power System, 2026</span>
+      <span>Set in Anton, IBM Plex Sans, IBM Plex Mono</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
