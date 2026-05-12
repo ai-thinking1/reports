@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work after AI — historical patterns and the full technology stack</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --surface-soft: #f4f3ee;
+    --border: rgba(0,0,0,0.12);
+    --border-soft: rgba(0,0,0,0.06);
+    --text: #1a1a1a;
+    --text-soft: #555;
+    --text-faint: #888;
+    --accent: #185FA5;
+    --c-green: #639922;
+    --c-amber: #BA7517;
+    --c-blue: #185FA5;
+    --c-gray: #5F5E5A;
+    --c-red: #A32D2D;
+    --c-teal: #0F6E56;
+    --c-purple: #534AB7;
+    --c-pink: #993556;
+    --c-coral: #993C1D;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--text-soft);
+    margin: 0 0 4px;
+  }
+  .meta {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin: 0 0 32px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 56px 0 12px;
+    letter-spacing: -0.005em;
+    padding-top: 16px;
+    border-top: 0.5px solid var(--border-soft);
+  }
+  h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 32px 0 8px;
+  }
+  p { margin: 0 0 14px; }
+  p + p { margin-top: 14px; }
+  em { font-style: italic; }
+  strong { font-weight: 500; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(24,95,165,0.3); }
+  a:hover { border-bottom-color: var(--accent); }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    background: var(--surface-soft);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  ul, ol { padding-left: 22px; margin: 8px 0 16px; }
+  li { margin: 4px 0; }
+  .lead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0 0 20px;
+  }
+  .callout {
+    background: var(--surface-soft);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout-warn {
+    background: #fbf2ec;
+    border-left-color: #BA7517;
+  }
+  .callout-note {
+    background: #f0f3e6;
+    border-left-color: #639922;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .chart-block {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px 18px;
+    margin: 24px 0 32px;
+  }
+  .chart-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+  .chart-subtitle {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin: 0 0 14px;
+  }
+  .chart-source {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin: 12px 0 0;
+    line-height: 1.5;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 12px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .legend-line {
+    width: 18px;
+    height: 2px;
+    display: inline-block;
+  }
+  .legend-line-dash {
+    width: 18px;
+    height: 0;
+    display: inline-block;
+    border-top: 2px dashed currentColor;
+  }
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 0.5px solid var(--border-soft);
+  }
+  th {
+    font-weight: 500;
+    color: var(--text-soft);
+    background: var(--surface-soft);
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .stat {
+    background: var(--surface-soft);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-soft);
+    margin: 0 0 4px;
+    text-transform: none;
+  }
+  .stat-value {
+    font-size: 19px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .stat-note {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 4px;
+  }
+  .toc {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 24px 0 40px;
+    font-size: 14px;
+  }
+  .toc h3 { margin: 0 0 8px; font-size: 14px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.05em; }
+  .toc ol { margin: 0; padding-left: 22px; }
+  .toc li { margin: 2px 0; }
+  .toc a { border-bottom: none; }
+  .toc a:hover { text-decoration: underline; }
+  .frame {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    margin: 20px 0 32px;
+  }
+  .frame h3 { margin-top: 0; }
+  .axis-label {
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+  hr { border: none; border-top: 0.5px solid var(--border-soft); margin: 40px 0; }
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 64px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 19px; }
+    .chart-block { padding: 14px 14px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Work after AI — historical patterns and the full technology stack</h1>
+<p class="subtitle">Global and India workforce analysis: where work has been, where it sits today, and what every transformative technology — not just AI — is doing to it.</p>
+<p class="meta">Compiled May 2026 · Sources cited per chart · ~9000 words · 15 charts</p>
+
+<div class="toc">
+  <h3>What's in this report</h3>
+  <ol>
+    <li><a href="#frame">Framing — Sanyal's thesis, market theory, and the honest baseline</a></li>
+    <li><a href="#shifts">Long-run structural shifts (US, India, six-country manufacturing race)</a></li>
+    <li><a href="#waves">The hot profession through history — engineering succession</a></li>
+    <li><a href="#churn">Where jobs are growing and dying, 2025–2030 (WEF data)</a></li>
+    <li><a href="#ai-risk">AI exposure by occupation, today's models</a></li>
+    <li><a href="#matrix">AI × robotics risk matrix</a></li>
+    <li><a href="#textile">The historical analogy — India's textile collapse</a></li>
+    <li><a href="#today">India's workforce composition, 2024</a></li>
+    <li><a href="#stack">The convergent technology stack — beyond AI</a></li>
+    <li><a href="#market">Efficient-market theory and what capital is already pricing in</a></li>
+    <li><a href="#newjobs">Realistic new job categories — clean energy, batteries, biotech</a></li>
+    <li><a href="#india-scenario">India scenario: combined effects through 2050</a></li>
+    <li><a href="#bottom">Bottom line</a></li>
+  </ol>
+</div>
+
+<h2 id="frame">1. Framing — Sanyal's thesis, market theory, and the honest baseline</h2>
+
+<p class="lead">This report sits on top of three frames the user explicitly asked for. Each cuts the data differently, and you need all three to read what's actually happening.</p>
+
+<h3>Frame 1: Sanyal's "democratization of expertise" thesis</h3>
+<p>Sanjeev Sanyal, in a thread carried by Swarajya on 12 May 2026, argued that AI — like firearms before archers and English mills before Indian weaver guilds — will <em>democratize</em> expensive expertise rather than concentrate it. A citizen drafts a tenancy contract without a lawyer. An amateur scriptwriter competes with a famous director. A junior engineer prints a part that once needed advanced forging. Policy implication: young people should enter the workforce sooner; education should be lifelong, iterative, in short bursts across several careers.</p>
+<p>The thesis is half-right: the technology pattern is real. But the historical analogies skip what happened to the people displaced. The English peasant-turned-musketeer became cannon fodder for centralized state armies. The Indian weaver got de-industrialization, not new factories — those came 80 years later. Democratization of <em>production</em> has historically not democratized <em>prosperity</em> for the workers displaced. Whether AI breaks this pattern is an empirically open question that depends on capital accumulation pace, redistribution policy, and whether new tasks emerge faster than old ones are automated.</p>
+
+<h3>Frame 2: Efficient market theory</h3>
+<p>Markets aggregate information and price assets accordingly. Applied to labor and tech:</p>
+<ul>
+  <li><strong>Wages signal future demand.</strong> The CS salary boom of 2010-2022 told young people to study CS. The flattening of new-grad CS wages in 2024-25 is now sending a different signal.</li>
+  <li><strong>Capital flows are forward-looking.</strong> Magnificent-7 valuations imply huge expected productivity gains from AI; if those don't materialize, you'd expect a correction. Capex of $300B in 2025 and projected $500B+ in 2026 from hyperscalers is the market betting heavily on the productivity case.</li>
+  <li><strong>EMH violations matter here.</strong> Workers cannot price 10-year automation risk well (information asymmetry). Retraining has slow adjustment lags. Career choice has coordination failures — everyone goes into CS at once, creating oversupply. Behavioral biases (recency, overconfidence) push young people into whatever was hot 5 years ago. So while markets price assets efficiently in seconds, <em>labor markets</em> adjust over a generation. This gap is where Sanyal's "earlier entry, lifelong learning" advice has practical bite.</li>
+  <li><strong>Don't confuse markets with prophecies.</strong> Markets price what allocators believe today. The dotcom bubble priced "everyone will buy pet food online by 2002." That belief was wrong. Current AI capex may be similarly mispriced — or correctly priced. We won't know until we know.</li>
+</ul>
+
+<h3>Frame 3: An honest baseline on what current AI actually is</h3>
+<p>The user's framing here is correct and important to state plainly:</p>
+<div class="callout">
+<p>Current AI (Claude, GPT, Gemini, etc.) is a <strong>productivity tool</strong>, not autonomous labor. It excels at white-collar tasks involving language, code, image manipulation, and structured reasoning. It cannot independently run a business, perform surgery, install plumbing, drive a truck, or build a chair. Even its white-collar productivity gains depend on a human reviewing, prompting, and correcting.</p>
+<p>The job risk is therefore not "AI replaces you." It's <strong>"AI lets one person do three people's work, so the firm needs one-third as many people."</strong> Same end result, different mechanism. Frames in the rest of this report stick to this realism — there is no "prompt engineer" career path treated as a real profession.</p>
+</div>
+
+<h3>Frame 4: The whole tech stack is moving at once</h3>
+<p>AI is the loudest wave but not the only one. Solar costs have fallen 99.6% since 1977. Battery costs fell 93% since 2010. DNA sequencing costs fell 5+ orders of magnitude in 20 years. LEDs, electric motors, additive manufacturing, mRNA platforms, drones, satellite communication, and (more speculatively) fusion and quantum are all moving down learning curves simultaneously. Several of these create <em>real new job categories</em> — solar installers, battery technicians, EV mechanics, grid engineers — that are not "AI-related" and are not exposed to AI automation in the near term. Section 9 of this report covers the full stack.</p>
+
+<h2 id="shifts">2. Long-run structural shifts</h2>
+
+<p>The first thing to understand about the AI moment is that we've been here before. Three times. The agricultural workforce shrank from ~70% to ~2% in advanced economies between 1850 and 2000. The manufacturing workforce rose, peaked, and is now falling. Services dominate. The question for AI is whether it accelerates the next phase or breaks the pattern.</p>
+
+<div class="chart-block">
+  <p class="chart-title">US employment share by sector, 1840–2020</p>
+  <p class="chart-subtitle">The canonical structural-transformation template. Agriculture collapsed, manufacturing rose and fell, services took over.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-line" style="background: #639922;"></span>Agriculture</span>
+    <span class="legend-item"><span class="legend-line-dash" style="color: #BA7517;"></span>Manufacturing</span>
+    <span class="legend-item"><span class="legend-line" style="background: #185FA5;"></span>Services &amp; trade</span>
+    <span class="legend-item"><span class="legend-line" style="background: #5F5E5A;"></span>Construction &amp; other industry</span>
+  </div>
+  <div class="chart-wrap" style="height: 340px;">
+    <canvas id="chart1"></canvas>
+  </div>
+  <p class="chart-source">Sources: US Census long-run series (Weiss; Lebergott); BLS; IPUMS OCC1950. Pre-1900 figures are estimates; post-1950 from CPS/CES.</p>
+</div>
+
+<p>Agriculture's share fell from 65% (1840) to 1.4% (2020) — about <strong>six generations of farming families finding other work</strong>. The transition wasn't smooth: every decade, several percent of the population had to switch industries. The mechanism wasn't "agriculture disappeared" — output rose dramatically — it was that productivity gains let fewer people produce more.</p>
+
+<p>Manufacturing followed the same arc with a lag: it rose from 14% (1840) to peak ~32% in 1953 and has been falling for 70 years. Services absorbed the displaced. <strong>The wave you're seeing today with AI hitting services is the third movement of the same symphony</strong> — except services has nowhere to displace <em>to</em>, which is the open question of the next 30 years.</p>
+
+<div class="chart-block">
+  <p class="chart-title">India employment share by sector, 1951–2025</p>
+  <p class="chart-subtitle">Agriculture's grip; manufacturing's missed wave; the construction sponge.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-line" style="background: #639922;"></span>Agriculture</span>
+    <span class="legend-item"><span class="legend-line-dash" style="color: #BA7517;"></span>Manufacturing</span>
+    <span class="legend-item"><span class="legend-line" style="background: #185FA5;"></span>Services</span>
+    <span class="legend-item"><span class="legend-line" style="background: #5F5E5A;"></span>Construction</span>
+  </div>
+  <div class="chart-wrap" style="height: 340px;">
+    <canvas id="chart2"></canvas>
+  </div>
+  <p class="chart-source">Sources: Census of India 1951–1991; NSSO EUS 1993–2011; PLFS 2017–2024. Note: agriculture share rose again post-2018, reversing 60 years of decline.</p>
+</div>
+
+<p>Two things jump out from India's chart that the US chart doesn't have:</p>
+<ol>
+  <li><strong>Manufacturing never had a hump.</strong> It's been flat at 9-12% for 70 years. India never went through the China-style absorption of agricultural labor into factories. The manufacturing transformation that the US did between 1900 and 1950, and that China did between 1980 and 2010, India has not done.</li>
+  <li><strong>Agriculture went <em>back up</em> after 2018.</strong> The post-COVID reversal. Construction (grey) is now doing the absorption work manufacturing was supposed to do, but construction is cyclical, informal, and low-productivity. It's a sponge, not a ladder.</li>
+</ol>
+
+<div class="chart-block">
+  <p class="chart-title">Manufacturing's share of employment by country, 1950–2024</p>
+  <p class="chart-subtitle">Who industrialized, who's deindustrializing, who never did.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-line" style="background: #185FA5;"></span>USA</span>
+    <span class="legend-item"><span class="legend-line-dash" style="color: #534AB7;"></span>UK</span>
+    <span class="legend-item"><span class="legend-line" style="background: #BA7517;"></span>Germany</span>
+    <span class="legend-item"><span class="legend-line-dash" style="color: #993556;"></span>Japan</span>
+    <span class="legend-item"><span class="legend-line" style="background: #A32D2D;"></span>China</span>
+    <span class="legend-item"><span class="legend-line-dash" style="color: #0F6E56;"></span>India</span>
+  </div>
+  <div class="chart-wrap" style="height: 360px;">
+    <canvas id="chart3"></canvas>
+  </div>
+  <p class="chart-source">Sources: BLS, ONS, Destatis, JILPT, NBS China, MOSPI/PLFS. China pre-1980 figures partially imputed.</p>
+</div>
+
+<p>Three patterns:</p>
+<ul>
+  <li><strong>Anglo-American deindustrialization:</strong> US and UK both peaked around the same era, both crashed to 8%. UK started higher (workshop of the world) and fell harder.</li>
+  <li><strong>German and Japanese persistence:</strong> Both held 16–18%. Their export-oriented quality-goods model preserved manufacturing employment. This is the "Mittelstand" pattern.</li>
+  <li><strong>China's hump is just starting to descend.</strong> Already past peak. As China ages and automates, its manufacturing share is now declining — which is what creates the "China + 1" supply chain opportunity for India and Vietnam, if they can take it.</li>
+  <li><strong>India's flat line.</strong> The thing that never happened. India is the only major economy where manufacturing share has not had a sustained rising phase, despite seven decades of independence and 30+ years of liberalization.</li>
+</ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.color = '#555';
+</script>
+<!-- CONTINUE_HERE -->
+
+<h2 id="waves">3. The hot profession through history — engineering succession</h2>
+
+<p>Your intuition that "before software it was electrical engineering, before that mechanical" was directionally right — but the order is slightly different and the waves overlap heavily. There's no single "current hot profession" replacing the previous one. Each new wave layers on top.</p>
+
+<div class="chart-block">
+  <p class="chart-title">The hot engineering discipline, by era (1820–2030)</p>
+  <p class="chart-subtitle">Each bar shows when the discipline had its window of fastest hiring growth and wage premium — not when it existed. They overlap.</p>
+  <div class="chart-wrap">
+    <svg viewBox="0 0 840 480" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block;">
+      <defs>
+        <style>
+          .wave-label { font: 500 13px -apple-system, sans-serif; fill: #1a1a1a; }
+          .wave-detail { font: 11px -apple-system, sans-serif; }
+          .year { font: 10px -apple-system, sans-serif; fill: #888; }
+          .era { font: 500 11px -apple-system, sans-serif; fill: #888; }
+          .grid { stroke: rgba(0,0,0,0.08); stroke-width: 0.5; }
+        </style>
+      </defs>
+
+      <!-- Year axis from 1820 to 2030 mapped to x=180 to x=820 -->
+      <!-- 210 years across 640px = 3.048 px/year -->
+      <!-- x(year) = 180 + (year - 1820) * 3.048 -->
+
+      <line x1="180" y1="40" x2="180" y2="430" class="grid"/>
+      <line x1="302" y1="40" x2="302" y2="430" class="grid"/>
+      <line x1="424" y1="40" x2="424" y2="430" class="grid"/>
+      <line x1="546" y1="40" x2="546" y2="430" class="grid"/>
+      <line x1="668" y1="40" x2="668" y2="430" class="grid"/>
+      <line x1="790" y1="40" x2="790" y2="430" class="grid"/>
+
+      <text x="180" y="448" class="year" text-anchor="middle">1820</text>
+      <text x="302" y="448" class="year" text-anchor="middle">1860</text>
+      <text x="424" y="448" class="year" text-anchor="middle">1900</text>
+      <text x="546" y="448" class="year" text-anchor="middle">1940</text>
+      <text x="668" y="448" class="year" text-anchor="middle">1980</text>
+      <text x="790" y="448" class="year" text-anchor="middle">2020</text>
+
+      <text x="225" y="22" class="era" text-anchor="middle">Canals &amp; railways</text>
+      <text x="360" y="22" class="era" text-anchor="middle">Mass industry</text>
+      <text x="485" y="22" class="era" text-anchor="middle">Electrification</text>
+      <text x="600" y="22" class="era" text-anchor="middle">Chem · aero · auto</text>
+      <text x="730" y="22" class="era" text-anchor="middle">Digital · AI</text>
+
+      <!-- Civil: 1820-1900 = x180 to x424 -->
+      <rect x="180" y="56" width="244" height="36" rx="5" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="0.5"/>
+      <text x="170" y="78" class="wave-label" text-anchor="end">Civil</text>
+      <text x="302" y="78" class="wave-detail" text-anchor="middle" fill="#2C2C2A">canals · railways · bridges · urban infra</text>
+
+      <!-- Mechanical: 1860-1960 = x302 to x607 -->
+      <rect x="302" y="100" width="305" height="36" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="0.5"/>
+      <text x="170" y="122" class="wave-label" text-anchor="end">Mechanical</text>
+      <text x="454" y="122" class="wave-detail" text-anchor="middle" fill="#26215C">steam · machine tools · automotive · factories</text>
+
+      <!-- Electrical: 1890-1980 = x394 to x668 -->
+      <rect x="394" y="144" width="274" height="36" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+      <text x="170" y="166" class="wave-label" text-anchor="end">Electrical</text>
+      <text x="531" y="166" class="wave-detail" text-anchor="middle" fill="#04342C">power grid · motors · telephony · electronics</text>
+
+      <!-- Chemical: 1910-1990 = x455 to x698 -->
+      <rect x="455" y="188" width="243" height="36" rx="5" fill="#FAC775" stroke="#BA7517" stroke-width="0.5"/>
+      <text x="170" y="210" class="wave-label" text-anchor="end">Chemical</text>
+      <text x="576" y="210" class="wave-detail" text-anchor="middle" fill="#412402">oil refining · plastics · fertilizer · pharma</text>
+
+      <!-- Aerospace: 1940-1990 = x546 to x698 -->
+      <rect x="546" y="232" width="152" height="36" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+      <text x="170" y="254" class="wave-label" text-anchor="end">Aerospace</text>
+      <text x="622" y="254" class="wave-detail" text-anchor="middle" fill="#4A1B0C">aviation · space · jet age · defense</text>
+
+      <!-- Computer/software: 1970-2030 = x638 to x820 -->
+      <rect x="638" y="276" width="182" height="36" rx="5" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+      <text x="170" y="298" class="wave-label" text-anchor="end">Computer · software</text>
+      <text x="729" y="298" class="wave-detail" text-anchor="middle" fill="#042C53">mainframes → web → mobile → cloud</text>
+
+      <!-- AI/ML: 2015-? = x759 to x820, with uncertainty fade -->
+      <rect x="759" y="320" width="61" height="36" rx="5" fill="#F4C0D1" stroke="#993556" stroke-width="0.5"/>
+      <text x="170" y="342" class="wave-label" text-anchor="end">AI / ML specialist</text>
+      <text x="790" y="342" class="wave-detail" text-anchor="middle" fill="#4B1528">subset of software</text>
+
+      <!-- Next wave: 2030+ uncertain -->
+      <rect x="790" y="364" width="30" height="36" rx="5" fill="#F1EFE8" stroke="#888" stroke-width="0.5" stroke-dasharray="3,2"/>
+      <text x="170" y="386" class="wave-label" text-anchor="end">Next?</text>
+      <text x="805" y="386" class="wave-detail" text-anchor="middle" fill="#888">robotics? bio? energy?</text>
+
+      <!-- Footnote -->
+      <text x="180" y="470" class="year">Bar shows window of peak hiring growth + wage premium, not full timespan. Older disciplines still employ millions today.</text>
+    </svg>
+  </div>
+</div>
+
+<p>A few corrections to the popular telling:</p>
+<ul>
+  <li><strong>Civil engineering was first.</strong> The 1820s–1900s wave. The very word "engineer" meant "civil engineer" outside the military for most of the 19th century. Canals, railways, bridges, urban water and sewage. The Brunels, Telfords, and Roeblings.</li>
+  <li><strong>Mechanical was the long incumbent.</strong> From 1860s through to mid-20th century, ME was the largest engineering profession by headcount and the highest-status. Steam, machine tools, automotive. Still the largest engineering profession in many countries today by total employment.</li>
+  <li><strong>Electrical had the longest reign.</strong> 1890s through 1970s. It kept absorbing new sub-fields (power, lighting, motors, telephony, radio, semiconductors, computers) so the "hot phase" of EE lasted nearly a century. Computer engineering started as a sub-department of EE in the 1960s.</li>
+  <li><strong>Chemical and aerospace were post-war additions.</strong> Petrochemicals, plastics, pharmaceuticals on one side; aviation and the space race on the other. Smaller in absolute terms than ME/EE but very high wage premium during their peak.</li>
+  <li><strong>Computer/software is the current incumbent.</strong> It started in the 1960s but the wage and hiring boom really kicked in around 1995. We're now about 30 years into a roughly 50-year wave.</li>
+  <li><strong>AI/ML is not a new wave.</strong> It's a sub-specialty within software, the way semiconductor design was inside EE. The "prompt engineer" job title is a temporary skill, not a profession. Same with "data scientist" — increasingly absorbed back into software engineering as ML tools commoditize.</li>
+</ul>
+
+<p>What's actually next? Honest answer: <strong>we don't know yet.</strong> Three candidates each have the pattern of a discipline waiting for its hardware to mature:</p>
+<ul>
+  <li><strong>Robotics</strong> — the strongest candidate. The combination of cheap compute (AI vision/control) + cheap actuators + cheap batteries makes general-purpose robots feasible for the first time. If humanoid robots hit $15-20K per unit by 2030, this becomes the discipline that absorbs ME/EE/CS specialists into a unified field.</li>
+  <li><strong>Energy systems</strong> — power grids becoming software-defined, battery-driven, distributed. New jobs in grid engineering, virtual power plants, microgrids, battery design, fusion (if it works).</li>
+  <li><strong>Bioengineering</strong> — has been "the next big thing" since the 1990s. It will be the wave if and only if biology has a "transistor moment" — a small reliable building block that lets engineers compose systems. CRISPR was a step. mRNA was a step. We're not there yet but closer.</li>
+</ul>
+
+<h2 id="churn">4. Where jobs are growing and dying, 2025–2030</h2>
+
+<p>The World Economic Forum's Future of Jobs Report 2025 surveyed 1,000+ employers covering 14M workers across 22 industry clusters. The headline: 92M jobs displaced, 170M created, net +78M globally by 2030. That's <strong>22% structural churn</strong> across the 1.2B formal jobs studied.</p>
+
+<div class="chart-block">
+  <p class="chart-title">Largest absolute job growth and decline, 2025–2030 (global)</p>
+  <p class="chart-subtitle">Net change in millions of workers. Frontline and care jobs grow most; clerical declines hardest.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-swatch" style="background: #1D9E75;"></span>Growing</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #E24B4A;"></span>Declining</span>
+  </div>
+  <div class="chart-wrap" style="height: 720px;">
+    <canvas id="chart4"></canvas>
+  </div>
+  <p class="chart-source">Source: WEF Future of Jobs Report 2025 (Jan 2025).</p>
+</div>
+
+<p>This data breaks the old "low-skill out, high-skill in" frame. Notice:</p>
+<ul>
+  <li><strong>The growth list is frontline manual + care + frontier tech.</strong> Farmworkers, delivery drivers, construction, nurses, care workers — and software developers, big data specialists, renewable energy engineers.</li>
+  <li><strong>The decline list is clerical middle.</strong> Accountants, bank tellers, insurance underwriters, administrative assistants, data entry, cashiers. These were the "respectable middle-class jobs" of the 20th century. They're the ones being eliminated.</li>
+  <li><strong>This is the opposite of the 1980s-2010s pattern,</strong> where automation killed manual/routine work and grew the cognitive middle. The current wave hollows out the cognitive middle while leaving frontline manual largely alone (until robotics catches up — see section 6).</li>
+</ul>
+
+<h2 id="ai-risk">5. AI exposure by occupation, today's models</h2>
+
+<p>Now the question of <em>which</em> jobs face which risk. Two charts: first a stacked view of automate-vs-augment by occupation, then a 2D matrix combining AI and robotics exposure.</p>
+
+<div class="chart-block">
+  <p class="chart-title">AI exposure by occupation, today's models (2025–2026)</p>
+  <p class="chart-subtitle">Stacked: % of tasks where current AI can automate vs augment vs neither. Today's AI augments far more than it replaces.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-swatch" style="background: #A32D2D;"></span>Automate (AI does the task end-to-end)</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #EF9F27;"></span>Augment (AI speeds the human)</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #B4B2A9;"></span>Untouched</span>
+  </div>
+  <div class="chart-wrap" style="height: 600px;">
+    <canvas id="chart5"></canvas>
+  </div>
+  <p class="chart-source">Synthesized from ILO–NASK 2025 Refined Index, OpenAI/Eloundou et al. 2023, McKinsey 2024.</p>
+</div>
+
+<p>Two observations:</p>
+<ul>
+  <li><strong>The orange "augment" column is dominant for most white-collar work.</strong> This matches the user's frame: today's AI is a productivity tool, not autonomous labor. A lawyer with AI is faster, not absent. A doctor with AI catches more cases, not fewer.</li>
+  <li><strong>But economic effects flow through "augment" too.</strong> If AI lets a lawyer process 3x more cases, the law firm might need 1/3 fewer lawyers — even though AI is not "replacing" anyone. The mechanism is productivity compression, not direct substitution.</li>
+  <li><strong>Manual frontline work is largely untouched by current AI.</strong> Plumbers, electricians, nurses, farmworkers, construction. This is the robotics question, not the AI question.</li>
+</ul>
+
+<h2 id="matrix">6. AI × robotics risk matrix</h2>
+
+<p>Now place these same occupations on a 2D grid: AI exposure on one axis, robotics exposure on the other.</p>
+
+<div class="chart-block">
+  <p class="chart-title">Where each job sits: AI exposure × robotics exposure</p>
+  <p class="chart-subtitle">Bubble size = current global headcount (millions). Most jobs face one or the other; the double-exposed zone is sparse.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-swatch" style="background: #A32D2D;"></span>High AI</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #185FA5;"></span>High robotics</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #534AB7;"></span>Both</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #0F6E56;"></span>Low both</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #BA7517;"></span>Mid both</span>
+  </div>
+  <div class="chart-wrap" style="height: 520px;">
+    <canvas id="chart6"></canvas>
+  </div>
+  <p class="chart-source">Author analysis combining ILO 2025 AI exposure scores and Goldman Sachs/Bain robotics deployment forecasts. Robotics axis assumes 2030 humanoid + cobot deployment at $20-30K unit cost.</p>
+</div>
+
+<p>The four-quadrant reading:</p>
+<ul>
+  <li><strong>Top-right (double-exposed):</strong> Cashiers sit closest — both AI customer interaction and self-checkout robotics. Rare quadrant today.</li>
+  <li><strong>Top-left (robotics, AI-safe):</strong> Truck drivers, warehouse, factory line, assembly. <em>Huge</em> global headcount — this is where 100s of millions sit. Currently safe from AI but on the front line of the humanoid robotics wave starting ~2028–2032.</li>
+  <li><strong>Bottom-right (AI-exposed, robotics-safe):</strong> Data entry, accountants, bookkeepers, paralegals, customer service, lawyers, software developers, journalists. Smaller absolute headcount than the manual quadrant, but higher wages — so big economic impact even though fewer people.</li>
+  <li><strong>Bottom-left (safest, for now):</strong> Skilled trades (electricians, plumbers, barbers), care work (nurses, care workers), farmworkers. Note that farmworkers are <em>the</em> largest single category globally (~900M including subsistence farming).</li>
+</ul>
+
+<h2 id="textile">7. The historical analogy — India's textile collapse</h2>
+
+<p>Sanyal's mill-vs-weaver analogy is real. Here's the data:</p>
+
+<div class="chart-block">
+  <p class="chart-title">India's textile collapse: the historical analogy in numbers (1700–1947)</p>
+  <p class="chart-subtitle">India lost 90%+ of its global industrial share to mechanized British competition. GDP share fell with it.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-line" style="background: #A32D2D;"></span>India's % of world industrial output</span>
+    <span class="legend-item"><span class="legend-line-dash" style="color: #BA7517;"></span>India's % of world GDP</span>
+  </div>
+  <div class="chart-wrap" style="height: 320px;">
+    <canvas id="chart7"></canvas>
+  </div>
+
+  <div class="stat-grid" style="margin-top: 18px;">
+    <div class="stat">
+      <p class="stat-label">Cotton goods imports into India</p>
+      <p class="stat-value">£1M (1815) → £4.4M (1835)</p>
+      <p class="stat-note">+340% in 20 years</p>
+    </div>
+    <div class="stat">
+      <p class="stat-label">Cotton goods exports from India</p>
+      <p class="stat-value">£2.7M (1815) → £0.7M (1835)</p>
+      <p class="stat-note">−74% in 20 years</p>
+    </div>
+    <div class="stat">
+      <p class="stat-label">First Indian textile mill opened</p>
+      <p class="stat-value">Bombay, 1854</p>
+      <p class="stat-note">~80 years after weaver decline began</p>
+    </div>
+  </div>
+  <p class="chart-source">Sources: Maddison (2001), <em>The World Economy: A Millennial Perspective</em>; Clingingsmith &amp; Williamson, NBER WP 10586 (2004); Bairoch (1982).</p>
+</div>
+
+<p>The data confirms Sanyal's analogy <em>at the production level</em>. India did lose 90%+ of its global industrial share to mechanized British competition. But the data also exposes what his framing skips:</p>
+
+<div class="callout callout-warn">
+<p><strong>The displaced Indian weavers were not absorbed into Indian factories.</strong> Bombay's first textile mill opened in 1854 — three generations after the collapse began. The displaced weavers became agricultural labour. India's industrial recovery took until the late 19th century to begin in any serious way, and didn't reach pre-colonial scale until well after independence. The "English peasants ran the new mills" half of the analogy was true in England. The Indian half of the analogy was a multi-generational catastrophe.</p>
+</div>
+
+<p>Read across to AI: <strong>democratization of expertise happens where the AI deployment occurs.</strong> If the deployment happens in California cloud regions and the displaced workforce is in Bengaluru BPO, the displaced workforce doesn't get the new jobs unless India deliberately builds the deployment locally. This is the central policy question for India's IT services sector right now.</p>
+
+<h2 id="today">8. India's workforce composition, 2024</h2>
+
+<p>To make all of the above concrete: here's where India's 568M workers actually sit, today.</p>
+
+<div class="chart-block">
+  <p class="chart-title">India's 568M-strong workforce in 2024, by sector and sub-sector</p>
+  <p class="chart-subtitle">Box size ≈ millions of workers. The 5.7M IT workforce is a small block; the 261M in agriculture dominates.</p>
+
+  <svg viewBox="0 0 820 540" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block;">
+    <defs>
+      <style>
+        .sec-label { font: 500 14px -apple-system, sans-serif; }
+        .blk-label { font: 500 12px -apple-system, sans-serif; }
+        .blk-sub { font: 11px -apple-system, sans-serif; }
+        .footnote { font: 11px -apple-system, sans-serif; fill: #555; }
+        .footnote-key { font: 500 12px -apple-system, sans-serif; }
+      </style>
+    </defs>
+
+    <!-- Agriculture: 261M, 46% — top-left, biggest -->
+    <rect x="0" y="40" width="420" height="340" fill="#C0DD97" stroke="#173404" stroke-width="0.5"/>
+    <text x="12" y="62" class="sec-label" fill="#173404">Agriculture · 261M · 46%</text>
+    <rect x="0" y="74" width="240" height="220" fill="#97C459" stroke="#173404" stroke-width="0.3"/>
+    <text x="12" y="96" class="blk-label" fill="#173404">Crop cultivation</text>
+    <text x="12" y="112" class="blk-sub" fill="#173404">~165M · self-employed + family</text>
+    <text x="12" y="128" class="blk-sub" fill="#173404">Mostly small/marginal farms</text>
+    <rect x="240" y="74" width="180" height="130" fill="#97C459" stroke="#173404" stroke-width="0.3" opacity="0.88"/>
+    <text x="252" y="96" class="blk-label" fill="#173404">Agri labour (casual)</text>
+    <text x="252" y="112" class="blk-sub" fill="#173404">~70M · daily wage</text>
+    <text x="252" y="128" class="blk-sub" fill="#173404">Migrant-heavy</text>
+    <rect x="240" y="204" width="180" height="90" fill="#97C459" stroke="#173404" stroke-width="0.3" opacity="0.72"/>
+    <text x="252" y="226" class="blk-label" fill="#173404">Livestock, fish, dairy</text>
+    <text x="252" y="242" class="blk-sub" fill="#173404">~26M</text>
+    <rect x="0" y="294" width="420" height="86" fill="#97C459" stroke="#173404" stroke-width="0.3" opacity="0.58"/>
+    <text x="12" y="316" class="blk-label" fill="#173404">Allied (forestry, plantation, MGNREGA)</text>
+    <text x="12" y="332" class="blk-sub" fill="#173404">overlapping ~30M (with categories above)</text>
+
+    <!-- Services: 169M, 30% — top-right -->
+    <rect x="420" y="40" width="400" height="220" fill="#B5D4F4" stroke="#042C53" stroke-width="0.5"/>
+    <text x="432" y="62" class="sec-label" fill="#042C53">Services · 169M · 30%</text>
+    <rect x="420" y="74" width="200" height="90" fill="#85B7EB" stroke="#042C53" stroke-width="0.3"/>
+    <text x="432" y="96" class="blk-label" fill="#042C53">Retail &amp; trade</text>
+    <text x="432" y="112" class="blk-sub" fill="#042C53">~65M · kirana, vendors</text>
+    <text x="432" y="128" class="blk-sub" fill="#042C53">Mostly informal</text>
+    <rect x="620" y="74" width="200" height="90" fill="#85B7EB" stroke="#042C53" stroke-width="0.3" opacity="0.86"/>
+    <text x="632" y="96" class="blk-label" fill="#042C53">Transport · logistics</text>
+    <text x="632" y="112" class="blk-sub" fill="#042C53">~28M · gig · auto · truck</text>
+    <rect x="420" y="164" width="200" height="60" fill="#85B7EB" stroke="#042C53" stroke-width="0.3" opacity="0.74"/>
+    <text x="432" y="186" class="blk-label" fill="#042C53">Personal &amp; domestic</text>
+    <text x="432" y="202" class="blk-sub" fill="#042C53">~28M · housework, care</text>
+    <rect x="620" y="164" width="200" height="60" fill="#85B7EB" stroke="#042C53" stroke-width="0.3" opacity="0.66"/>
+    <text x="632" y="186" class="blk-label" fill="#042C53">Hospitality · food</text>
+    <text x="632" y="202" class="blk-sub" fill="#042C53">~15M</text>
+    <rect x="420" y="224" width="110" height="36" fill="#378ADD" stroke="#042C53" stroke-width="0.3"/>
+    <text x="432" y="240" class="blk-label" fill="#042C53">Education</text>
+    <text x="432" y="254" class="blk-sub" fill="#042C53">~12M</text>
+    <rect x="530" y="224" width="90" height="36" fill="#378ADD" stroke="#042C53" stroke-width="0.3" opacity="0.86"/>
+    <text x="542" y="240" class="blk-label" fill="#042C53">Health</text>
+    <text x="542" y="254" class="blk-sub" fill="#042C53">~8M</text>
+    <rect x="620" y="224" width="70" height="36" fill="#378ADD" stroke="#042C53" stroke-width="0.3" opacity="0.76"/>
+    <text x="630" y="240" class="blk-label" fill="#042C53">Finance</text>
+    <text x="630" y="254" class="blk-sub" fill="#042C53">~7M</text>
+    <rect x="690" y="224" width="60" height="36" fill="#378ADD" stroke="#042C53" stroke-width="0.5"/>
+    <text x="698" y="240" class="blk-label" fill="#042C53">IT/ITES</text>
+    <text x="698" y="254" class="blk-sub" fill="#042C53">5.7M</text>
+    <rect x="750" y="224" width="70" height="36" fill="#378ADD" stroke="#042C53" stroke-width="0.3" opacity="0.62"/>
+    <text x="760" y="240" class="blk-label" fill="#042C53">Public</text>
+    <text x="760" y="254" class="blk-sub" fill="#042C53">~7M</text>
+
+    <!-- Construction: 74M, 13% — bottom right -->
+    <rect x="420" y="260" width="260" height="120" fill="#D3D1C7" stroke="#2C2C2A" stroke-width="0.5"/>
+    <text x="432" y="282" class="sec-label" fill="#2C2C2A">Construction · 74M · 13%</text>
+    <rect x="420" y="292" width="260" height="88" fill="#B4B2A9" stroke="#2C2C2A" stroke-width="0.3"/>
+    <text x="432" y="314" class="blk-label" fill="#2C2C2A">Site labour, masonry, plumbing, electric</text>
+    <text x="432" y="330" class="blk-sub" fill="#2C2C2A">~95% informal, large migrant share</text>
+
+    <!-- Manufacturing: 65M, 11% — bottom right -->
+    <rect x="680" y="260" width="140" height="120" fill="#FAC775" stroke="#412402" stroke-width="0.5"/>
+    <text x="690" y="282" class="sec-label" fill="#412402">Manuf · 65M · 11%</text>
+    <rect x="680" y="292" width="140" height="48" fill="#EF9F27" stroke="#412402" stroke-width="0.3"/>
+    <text x="688" y="312" class="blk-label" fill="#412402">Textiles, apparel</text>
+    <text x="688" y="328" class="blk-sub" fill="#412402">~14M</text>
+    <rect x="680" y="340" width="70" height="40" fill="#EF9F27" stroke="#412402" stroke-width="0.3" opacity="0.86"/>
+    <text x="688" y="357" class="blk-sub" fill="#412402" style="font-weight: 500;">Food, met</text>
+    <text x="688" y="372" class="blk-sub" fill="#412402">~18M</text>
+    <rect x="750" y="340" width="70" height="40" fill="#EF9F27" stroke="#412402" stroke-width="0.3" opacity="0.72"/>
+    <text x="758" y="357" class="blk-sub" fill="#412402" style="font-weight: 500;">Auto, elec</text>
+    <text x="758" y="372" class="blk-sub" fill="#412402">~33M</text>
+
+    <!-- Annotations panel at bottom -->
+    <text x="0" y="416" class="sec-label" fill="#1a1a1a">Overlays the sector breakdown can't show</text>
+    <rect x="0" y="426" width="265" height="84" fill="none" stroke="rgba(163,45,45,0.5)" stroke-width="1" stroke-dasharray="3,2" rx="6"/>
+    <text x="12" y="446" class="footnote-key" fill="#A32D2D">~82% informal</text>
+    <text x="12" y="464" class="footnote">No written contract,</text>
+    <text x="12" y="478" class="footnote">no social security,</text>
+    <text x="12" y="492" class="footnote">no paid leave</text>
+
+    <rect x="280" y="426" width="265" height="84" fill="none" stroke="rgba(60,52,137,0.5)" stroke-width="1" stroke-dasharray="3,2" rx="6"/>
+    <text x="292" y="446" class="footnote-key" fill="#3C3489">~74% SC/ST/OBC</text>
+    <text x="292" y="464" class="footnote">share of e-Shram</text>
+    <text x="292" y="478" class="footnote">informal worker registry</text>
+    <text x="292" y="492" class="footnote">(306M registered)</text>
+
+    <rect x="560" y="426" width="260" height="84" fill="none" stroke="rgba(15,110,86,0.5)" stroke-width="1" stroke-dasharray="3,2" rx="6"/>
+    <text x="572" y="446" class="footnote-key" fill="#085041">~64% of working women</text>
+    <text x="572" y="464" class="footnote">are in agriculture</text>
+    <text x="572" y="478" class="footnote">(vs 36% of working men).</text>
+    <text x="572" y="492" class="footnote">FLFP overall ~35%.</text>
+  </svg>
+</div>
+
+<p>The 5.7M block (IT/ITES) is what's getting the AI headlines. The 261M green block (agriculture) is where Indian work actually sits. Those big agriculture and construction blocks have <em>low direct AI exposure today</em> but face a different problem: when AI compresses the upward ladder via IT/services, there's nowhere for them to graduate to. That's the central asymmetry.</p>
+
+<h2 id="stack">9. The convergent technology stack — beyond AI</h2>
+
+<p>This is the section the first version of this report missed. AI is loud but it's only one of perhaps six transformative cost-decline curves running simultaneously. Some of these create jobs that AI doesn't touch.</p>
+
+<div class="chart-block">
+  <p class="chart-title">Cost decline curves: six transformative technologies, log scale</p>
+  <p class="chart-subtitle">Each line is a different unit of measurement, normalized so you can see the shape. Solar fell 99.6% since 1977; batteries 93% since 2010; sequencing 5+ orders of magnitude in 20 years.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-line" style="background: #BA7517;"></span>Solar PV ($/W)</span>
+    <span class="legend-item"><span class="legend-line" style="background: #185FA5;"></span>Lithium battery ($/kWh)</span>
+    <span class="legend-item"><span class="legend-line" style="background: #0F6E56;"></span>DNA sequencing ($/genome)</span>
+    <span class="legend-item"><span class="legend-line" style="background: #534AB7;"></span>AI compute ($/MFLOP-s)</span>
+    <span class="legend-item"><span class="legend-line" style="background: #993556;"></span>LED lighting ($/klm)</span>
+    <span class="legend-item"><span class="legend-line" style="background: #A32D2D;"></span>Wind turbine ($/kW)</span>
+  </div>
+  <div class="chart-wrap" style="height: 420px;">
+    <canvas id="chart8"></canvas>
+  </div>
+  <p class="chart-source">Sources: Solar (Swanson's Law / IRENA / Nemet 2009); Battery (BloombergNEF 2010–2025); Sequencing (NIH/NHGRI); Compute (Mehta &amp; Hobbhahn 2024, Epoch AI); LED (DOE); Wind (IRENA). Log scale; each value normalized to its 1977/2010/2003 starting point.</p>
+</div>
+
+<p>All six lines follow some version of Wright's Law: cost declines by a fixed % for every doubling of cumulative production. Solar drops 20% per doubling (Swanson's Law). Batteries ~19%. Wind ~15%. LEDs ~28%. The decline is mechanical — driven by manufacturing learning, not by any policy breakthrough — and it does not stop unless something blocks volume growth.</p>
+
+<p>The implication: <strong>multiple "AI-equivalent" transformations are happening in parallel.</strong> Cheap solar plus cheap batteries plus cheap power electronics is electrifying transportation, heating, and industry. Cheap sequencing plus cheap synthesis is making programmable biology feasible. Cheap satellite launch is making global connectivity a commodity. Each of these creates job categories that AI does not directly threaten — installation, maintenance, system integration, application engineering.</p>
+
+<div class="chart-block">
+  <p class="chart-title">Adoption S-curves: where each technology sits on its diffusion curve</p>
+  <p class="chart-subtitle">% global penetration of relevant market. Some are mature (LED, smartphones); some in steep middle (solar, EVs); some early (humanoid robotics, gene therapy).</p>
+  <div class="chart-wrap" style="height: 420px;">
+    <canvas id="chart9"></canvas>
+  </div>
+  <p class="chart-source">Compiled from IEA, BNEF, IRENA, IDTechEx, FDA, OEC; "% penetration" definition varies by tech and is indicative not strict. AI assistant adoption based on Pew / Statista user surveys.</p>
+</div>
+
+<p>Reading this chart is more art than science — the y-axis is "% of relevant market penetrated" and "relevant market" is defined differently for each. But the shape is what matters. <strong>Most transformative technologies follow an S-curve</strong>: slow start, fast middle, plateau at the top. The middle, where adoption goes from ~10% to ~80%, takes typically 15–25 years.</p>
+
+<p>Where each technology sits today (mid-2026):</p>
+<ul>
+  <li><strong>Mature / plateau:</strong> LED lighting (~80% of new bulbs), smartphones (~85% of adults globally), 4G/5G mobile (~75% coverage).</li>
+  <li><strong>Steep-middle:</strong> Solar PV (~7% global electricity, growing fast), EVs (~22% of new car sales globally), AI assistants (~30% of knowledge workers using regularly), battery storage (~3% but accelerating).</li>
+  <li><strong>Early adoption:</strong> Humanoid robotics (~0.001% of relevant labour), CRISPR/gene therapy (~10 approved therapies, expanding), autonomous vehicles (commercial deployment in a few cities), generative AI agents (very early enterprise integration).</li>
+  <li><strong>Pre-adoption / R&amp;D:</strong> Commercial fusion, room-temperature superconductors, full general AGI, Neuralink-class BCIs, lab-grown meat at price parity.</li>
+</ul>
+
+<div class="callout callout-note">
+<p><strong>The crypto question.</strong> The user asked specifically about crypto. Honest read: crypto is real as financial infrastructure (stablecoins are now ~$200B+ in circulation and growing) but its <em>direct labour-market</em> impact is small. Total blockchain/crypto employment globally is estimated at 400-500K, vs ~30M software developers overall — i.e., crypto is roughly 1-2% of software jobs. Where it matters more is as <em>remittance and savings infrastructure</em> for emerging markets including India: lower-cost cross-border payments could lift wages effectively for the ~13M Indian diaspora sending ~$120B home annually. So crypto belongs in the report as <em>financial plumbing</em>, not as a major employment category.</p>
+</div>
+
+<h2 id="market">10. Efficient-market theory and what capital is already pricing in</h2>
+
+<p>If markets are even partly efficient, current capital flows tell us what informed allocators believe about the future of work. Three signals:</p>
+
+<div class="chart-block">
+  <p class="chart-title">Where capital is flowing: market cap and VC allocation by sector, 2025</p>
+  <p class="chart-subtitle">Public market cap concentrated in AI-adjacent tech; VC flows show where the next wave is being bet on.</p>
+  <div class="chart-wrap" style="height: 420px;">
+    <canvas id="chart10"></canvas>
+  </div>
+  <p class="chart-source">Public market cap: S&amp;P 500 sector weights (Dec 2025) and Magnificent 7 share; VC: PitchBook Q1 2026 by deep-tech category. Indicative shares.</p>
+</div>
+
+<p>What the chart says:</p>
+<ul>
+  <li><strong>The "Magnificent 7" alone are ~32% of S&amp;P 500 market cap.</strong> Apple, Microsoft, Nvidia, Alphabet, Amazon, Meta, Tesla. The market is making a very large bet that AI/cloud productivity gains will accrue to these specific firms. If even half-right, that's a forecast of enormous capital-share-of-GDP shift — and a corresponding wage compression for cognitive workers whose labour those firms substitute.</li>
+  <li><strong>VC is more diversified.</strong> AI is biggest, but climate/energy (solar, batteries, storage), biotech (mRNA platforms, AI-discovered drugs), defense tech, and space are all substantial. VC's pattern is closer to "place bets on the full convergent stack" than "AI über alles."</li>
+  <li><strong>What the market is not pricing well:</strong> distributional outcomes. Stock prices reflect expected firm profits, not expected wages. The same firm that has rising profits via labour substitution will have rising stock prices and falling wages simultaneously. Markets price this correctly for shareholders and badly for workers.</li>
+</ul>
+
+<h3>Labour-market signal: where wage premiums are shifting</h3>
+
+<div class="chart-block">
+  <p class="chart-title">Wage premium vs. high-school-only baseline, US, selected occupations (2010 vs 2025)</p>
+  <p class="chart-subtitle">Multiple of median high-school-only earnings. Shows what the labour market is "pricing in" via wage signals.</p>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-swatch" style="background: #B4B2A9;"></span>2010</span>
+    <span class="legend-item"><span class="legend-swatch" style="background: #185FA5;"></span>2025</span>
+  </div>
+  <div class="chart-wrap" style="height: 440px;">
+    <canvas id="chart11"></canvas>
+  </div>
+  <p class="chart-source">Author compilation from BLS Occupational Employment Statistics 2010 &amp; 2024; Levels.fyi 2024-25 for software. Median high-school-only earnings used as denominator. Wage premiums in 2010 vs 2025 (real terms).</p>
+</div>
+
+<p>What's actually happened to wages — the market's <em>realised</em> signal, not a forecast:</p>
+<ul>
+  <li><strong>Software engineer premium has plateaued or fallen slightly</strong> (3.4x → 3.2x for new grads at average firms). Top FAANG/AI lab compensation is rising fast, but the median is not.</li>
+  <li><strong>Skilled trades (electricians, plumbers) premium has <em>risen</em></strong> — labour shortage in trades plus rising hourly wages.</li>
+  <li><strong>Bookkeepers, paralegals, customer service</strong> — flat to falling premium. Market pricing in displacement.</li>
+  <li><strong>Nursing premium has risen</strong> — aging population demand exceeding supply.</li>
+  <li><strong>Solar/wind technicians</strong> didn't exist as a category at scale in 2010; by 2025 they have a real wage premium and are the fastest-growing BLS occupation category (projected +60% from 2023 to 2033).</li>
+</ul>
+
+<div class="callout">
+<p><strong>The Sanyal frame, market-tested.</strong> If Sanyal's "democratization of expertise" thesis is right, we should see white-collar premium <em>compress</em> (which is happening for clerical/legal but not yet for top-end software) and skilled-trade premium <em>rise</em> (which is clearly happening). On both counts, the labour market is already partway through pricing in this thesis. The question is whether the compression continues to top-end professional work or stops at the bookkeeper level.</p>
+</div>
+
+<h2 id="newjobs">11. Realistic new job categories — clean energy, batteries, biotech, robotics</h2>
+
+<p>The user's challenge stands: <em>don't tell me prompt engineers are the future</em>. Here are job categories that are real, growing fast, and not exposed to AI displacement in the near term — because they involve physical work, regulated work, or human-relational work, on infrastructures that didn't exist 15 years ago.</p>
+
+<div class="chart-block">
+  <p class="chart-title">Real growing job categories from the convergent tech stack (US 2014→2024, projected 2024→2034)</p>
+  <p class="chart-subtitle">BLS Occupational Outlook data. These are categories AI doesn't directly displace.</p>
+  <div class="chart-wrap" style="height: 480px;">
+    <canvas id="chart12"></canvas>
+  </div>
+  <p class="chart-source">Sources: US Bureau of Labor Statistics Occupational Outlook Handbook 2024 (10-year projections to 2033); BLS Employment Projections.</p>
+</div>
+
+<p>Each of these is a real BLS-tracked occupation with documented growth, real wages, and a defined career path. None of them require an AI/CS degree. Most involve physical work and on-site presence. <strong>This is what "what comes after software" looks like in practice</strong> — distributed across half a dozen specialties, not concentrated in one new "hot major":</p>
+
+<table>
+<thead>
+<tr><th>Occupation</th><th>2024 wage (US median)</th><th>2024–2034 growth</th><th>Why it's not AI-displaced</th></tr>
+</thead>
+<tbody>
+<tr><td>Wind turbine technicians</td><td>$62K</td><td>+60%</td><td>Physical maintenance at height; cannot be automated easily</td></tr>
+<tr><td>Solar PV installers</td><td>$48K</td><td>+48%</td><td>Site work, rooftop variation, every install is custom</td></tr>
+<tr><td>Battery / EV technicians</td><td>$54K</td><td>+45%</td><td>High-voltage trade; cars vary; growing fleet</td></tr>
+<tr><td>Robotics technicians (cobot setup, repair)</td><td>$66K</td><td>+19%</td><td>Robots break; people install/repair them. Robotics paradox.</td></tr>
+<tr><td>Nurse practitioners</td><td>$129K</td><td>+45%</td><td>Aging population; AI augments, doesn't replace prescriber</td></tr>
+<tr><td>Medical &amp; lab technologists</td><td>$60K</td><td>+11%</td><td>Sample handling, instrument operation, regulatory</td></tr>
+<tr><td>Electricians (incl. grid mod)</td><td>$62K</td><td>+11%</td><td>Massive grid rebuild + electrification of everything</td></tr>
+<tr><td>HVAC techs (heat pumps)</td><td>$54K</td><td>+9%</td><td>Heating electrification = retraining gas techs</td></tr>
+<tr><td>Bioengineering / biomanufacturing techs</td><td>$72K</td><td>+12%</td><td>mRNA, cell therapy, gene therapy require human handlers</td></tr>
+<tr><td>Civil eng (water, climate adaptation)</td><td>$95K</td><td>+6%</td><td>Climate infrastructure spend is rising fast</td></tr>
+</tbody>
+</table>
+
+<p>Note what's <em>not</em> on this list: "AI prompt engineer," "data scientist," "blockchain developer." Those are either temporary skill labels (prompting), being absorbed back into general software roles (data science), or have remained niche (blockchain). Real engineering careers are built around physical infrastructure or regulated practice, where capital deployment + human skill produce durable jobs.</p>
+
+<h3>What this means for India</h3>
+<p>India's specific opportunity within the convergent stack:</p>
+<ul>
+  <li><strong>Solar manufacturing &amp; deployment:</strong> India is now the world's 3rd-largest solar installer. By 2030, ~500K solar installer + technician jobs are plausible (vs ~20K in 2020).</li>
+  <li><strong>EV/battery manufacturing:</strong> PLI scheme + Indian auto base could create 1-2M jobs in 2-wheeler EV manufacturing, battery cell production, and EV repair by 2030.</li>
+  <li><strong>Pharma / biomanufacturing:</strong> India makes ~20% of world's generic drugs. Biosimilars, vaccines, biologics are the next layer.</li>
+  <li><strong>Skilled trades for electrification:</strong> Massive shortage of qualified electricians for rooftop solar, EV charging, smart grid. ITI revival as a key policy lever.</li>
+  <li><strong>Climate adaptation construction:</strong> Coastal infrastructure, water systems, cooling — these jobs grow with warming.</li>
+</ul>
+
+<p>The catch is that India needs to <em>build</em> the deployment domestically. If Chinese-made solar panels are installed by Indian workers, India gets the install jobs (~10% of total value). If Indian-made panels are installed by Indian workers, India gets ~70% of value. PLI is targeting this gap.</p>
+
+<h2 id="india-scenario">12. India scenario: combined effects through 2050</h2>
+
+<p>Pulling all of the above into a single forward view for India.</p>
+
+<div class="chart-block">
+  <p class="chart-title">India sectoral employment, observed 2000–2024 + three scenarios to 2050</p>
+  <p class="chart-subtitle">Stacked share of employment. Scenarios diverge sharply after 2030 depending on policy execution.</p>
+  <div class="chart-wrap" style="height: 480px;">
+    <canvas id="chart13"></canvas>
+  </div>
+  <p class="chart-source">Observed: PLFS, NSSO. Projections: author scenario modeling combining IMF/World Bank baseline with NITI Aayog Vision 2047 sector targets.</p>
+</div>
+
+<p>The three scenarios:</p>
+
+<div class="frame">
+<h3>Scenario A — "Productivity Dividend" (Sanyal-optimistic)</h3>
+<p>AI democratization works as Sanyal hopes. Indian engineers, agronomists, doctors leverage AI to serve global clients at scale. PLI + China+1 takes manufacturing share from 11% → 18%. FLFP rises to 45% through AI-augmented flexible work. Female-headed micro-enterprises proliferate via vernacular AI tools.</p>
+<p>Requirements: solve rural digital divide (BharatNet completion), formalize informal sector (e-Shram → portable benefits), avoid caste bias in AI hiring, deliberate domestic AI deployment (so jobs are <em>in</em> India, not for India's clients).</p>
+<p>Outcome: per-capita GDP ~$15K by 2050. Manufacturing 18%, services 38%, agriculture 25%, construction 15%, mining/utilities 4%.</p>
+</div>
+
+<div class="frame">
+<h3>Scenario B — "Middle-Income Trap with White-Collar Bypass" (base case)</h3>
+<p>IT services growth flattens; BPO doesn't absorb the next generation. Manufacturing stays at ~12-13% (Vietnam absorbed China+1 better). Construction and informal services keep absorbing displaced labour at low productivity. Demographic dividend partially wasted.</p>
+<p>Outcome: per-capita GDP ~$8-10K by 2050 (vs South Korea's ~$30K+). India ages before it gets rich.</p>
+<p>This is roughly the IMF/World Bank base case if structural reforms don't accelerate.</p>
+</div>
+
+<div class="frame">
+<h3>Scenario C — "Disruption Cascade" (tail risk)</h3>
+<p>AI displaces IT/BPO/GCC employment 30-40% by 2035. Humanoid robotics at $15K/unit by 2032 erodes manufacturing labour cost arbitrage. China + Vietnam + Bangladesh absorb manufacturing through automation. Youth unemployment rises sharply.</p>
+<p>Sectoral polarization: 30M-strong urban professional/tech class lifts off; the 500M+ informal mass stays stuck. Political pressure for welfare expansion strains fiscal balance.</p>
+<p>Outcome: per-capita GDP ~$6K by 2050. Major social tension. Lost decade.</p>
+</div>
+
+<p>Most likely actual outcome: <strong>a regional mix</strong>. Karnataka, Tamil Nadu, Telangana, Andhra, Kerala, Maharashtra likely trace Scenario A. The Hindi heartland (UP, Bihar, MP, Rajasthan, Jharkhand) is at higher risk of B/C. This is the long-running North-South divergence on full display, with AI/automation likely to widen it.</p>
+
+<h2 id="bottom">13. Bottom line</h2>
+
+<p>Pulling all of the above together — historical patterns, current data, the convergent tech stack, market signals — here's the honest read:</p>
+
+<ol>
+  <li><strong>This is the third great structural transformation.</strong> Agriculture → manufacturing → services took 200 years and was wrenching every time. AI-driven services compression is the same kind of event, compressed to 20-30 years.</li>
+  <li><strong>The engineering succession the user intuited is real but layered.</strong> Civil → mechanical → electrical → chemical/aerospace → computer/software. Each wave layers on top, doesn't replace. The next wave is probably robotics + energy systems + (eventually) bioengineering. AI itself is not a new wave — it's a tool used across the existing waves.</li>
+  <li><strong>Current AI is a productivity tool, not autonomous labour.</strong> The user is right to be sceptical of "prompt engineer" hype. Real jobs from AI come from <em>deployment</em> (data engineering, ML ops, AI safety, evaluation, integration) and from new product categories (AI-augmented healthcare diagnostics, education tutoring, agricultural advisory) — not from "AI specialist" as a stand-alone profession.</li>
+  <li><strong>The convergent tech stack matters as much as AI.</strong> Solar (-99.6%), batteries (-93%), sequencing (-99.99%), wind, LEDs are all moving down learning curves simultaneously. Together they create real new job categories — installers, technicians, biomanufacturing operators — that AI does not directly threaten. These are the jobs India should prepare for.</li>
+  <li><strong>Markets are already pricing in the shift.</strong> Mag 7 valuations imply huge expected capital-share gains from AI. Wage premiums for clerical work are flat to falling. Trade premiums are rising. Markets are partly right; the question is whether they're also right about the timing.</li>
+  <li><strong>India's exposure is asymmetric and time-limited.</strong> Most of India's workforce (agriculture, construction, manual services) is currently insulated from AI. The economically critical IT/services class is highly exposed. India has until ~2035-2040 (peak demographic dividend) to capture the manufacturing-plus-frontier-services wave before automation makes labour cost arbitrage moot.</li>
+  <li><strong>Sanyal is half-right and importantly so.</strong> Yes, AI democratizes access to expensive expertise — that's the firearms-vs-archers part. No, that historically did not democratize prosperity for the displaced — that's the part the analogy hides. The English peasants who picked up muskets became cannon fodder. The Indian weavers became agricultural labour. Whether AI breaks this pattern depends on policy choices being made now, not on the technology itself.</li>
+  <li><strong>What young people should actually do.</strong> The honest advice: (a) get a broad foundation in math, communication, and one technical domain; (b) develop skill in <em>physical or relational</em> work that AI can't do, or in <em>building things on top of AI</em> rather than competing with it; (c) treat the first job as temporary; (d) optimize for learning and optionality rather than salary at age 22; (e) for India specifically, watch the renewable energy, manufacturing, and skilled-trades sectors as carefully as IT.</li>
+</ol>
+
+<hr>
+
+<p style="font-size: 13px; color: var(--text-faint); margin-top: 32px;">Compiled May 12, 2026. Data points are from the most recent versions available; technology cost curves and labour market data move fast. Any specific number should be re-verified before policy use. Sources cited per chart. Built as a single self-contained HTML file — open in any modern browser, no server needed.</p>
+
+</div>
+
+<script>
+// =================== CHART 1: US sectoral 1840-2020 ===================
+new Chart(document.getElementById('chart1'), {
+  type: 'line',
+  data: {
+    labels: [1840, 1860, 1880, 1900, 1920, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020],
+    datasets: [
+      { label: 'Agriculture', data: [65, 56, 49, 38, 27, 17, 12, 6, 4, 3, 2.5, 2, 1.6, 1.4], borderColor: '#639922', backgroundColor: 'transparent', borderWidth: 2.5, tension: 0.3, pointRadius: 3, pointStyle: 'circle' },
+      { label: 'Manufacturing', data: [14, 18, 22, 25, 30, 28, 32, 29, 26, 22, 17, 13, 9, 8], borderColor: '#BA7517', backgroundColor: 'transparent', borderWidth: 2.5, borderDash: [6,4], tension: 0.3, pointRadius: 3, pointStyle: 'triangle' },
+      { label: 'Services & trade', data: [18, 22, 23, 30, 35, 47, 50, 58, 64, 68, 73, 77, 80, 80], borderColor: '#185FA5', backgroundColor: 'transparent', borderWidth: 2.5, tension: 0.3, pointRadius: 3, pointStyle: 'rect' },
+      { label: 'Other industry', data: [3, 4, 6, 7, 8, 8, 6, 7, 6, 7, 7.5, 8, 9.4, 10.6], borderColor: '#5F5E5A', backgroundColor: 'transparent', borderWidth: 2, tension: 0.3, pointRadius: 2.5, pointStyle: 'rectRot' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + '%' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0 } },
+      y: { beginAtZero: true, max: 85, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+
+// =================== CHART 2: India sectoral 1951-2025 ===================
+new Chart(document.getElementById('chart2'), {
+  type: 'line',
+  data: {
+    labels: [1951, 1961, 1971, 1981, 1991, 2001, 2011, 2017, 2019, 2021, 2024],
+    datasets: [
+      { label: 'Agriculture', data: [72, 72, 72, 68, 64, 58, 49, 44, 42, 46, 46], borderColor: '#639922', borderWidth: 2.5, tension: 0.3, pointRadius: 3, pointStyle: 'circle', backgroundColor: 'transparent' },
+      { label: 'Manufacturing', data: [9, 9, 9, 11, 11, 12, 12, 12, 12, 11, 11], borderColor: '#BA7517', borderWidth: 2.5, borderDash: [6,4], tension: 0.3, pointRadius: 3, pointStyle: 'triangle', backgroundColor: 'transparent' },
+      { label: 'Services', data: [17, 16, 15, 17, 20, 23, 27, 31, 32, 31, 30], borderColor: '#185FA5', borderWidth: 2.5, tension: 0.3, pointRadius: 3, pointStyle: 'rect', backgroundColor: 'transparent' },
+      { label: 'Construction', data: [1, 1, 2, 2, 3, 6, 11, 12, 13, 12, 13], borderColor: '#5F5E5A', borderWidth: 2, tension: 0.3, pointRadius: 2.5, pointStyle: 'rectRot', backgroundColor: 'transparent' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + '%' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0 } },
+      y: { beginAtZero: true, max: 80, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+
+// =================== CHART 3: Manufacturing share by country ===================
+new Chart(document.getElementById('chart3'), {
+  type: 'line',
+  data: {
+    labels: [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2024],
+    datasets: [
+      { label: 'USA', data: [32, 29, 26, 22, 17, 13, 9, 8.5, 8], borderColor: '#185FA5', borderWidth: 2.5, tension: 0.3, pointRadius: 3, pointStyle: 'circle', backgroundColor: 'transparent' },
+      { label: 'UK', data: [36, 36, 35, 28, 21, 14, 9, 8, 8], borderColor: '#534AB7', borderWidth: 2.5, borderDash: [6,4], tension: 0.3, pointRadius: 3, pointStyle: 'rect', backgroundColor: 'transparent' },
+      { label: 'Germany', data: [33, 38, 38, 34, 30, 24, 19, 19, 18], borderColor: '#BA7517', borderWidth: 2.5, tension: 0.3, pointRadius: 3, pointStyle: 'triangle', backgroundColor: 'transparent' },
+      { label: 'Japan', data: [16, 22, 27, 24, 23, 20, 17, 16, 16], borderColor: '#993556', borderWidth: 2.5, borderDash: [6,4], tension: 0.3, pointRadius: 3, pointStyle: 'rectRot', backgroundColor: 'transparent' },
+      { label: 'China', data: [7, 8, 12, 19, 24, 22, 29, 27, 23], borderColor: '#A32D2D', borderWidth: 2.5, tension: 0.3, pointRadius: 3, pointStyle: 'star', backgroundColor: 'transparent' },
+      { label: 'India', data: [9, 9, 9, 11, 11, 12, 12, 12, 11], borderColor: '#0F6E56', borderWidth: 2.5, borderDash: [6,4], tension: 0.3, pointRadius: 3, pointStyle: 'crossRot', backgroundColor: 'transparent' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + '%' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0 } },
+      y: { beginAtZero: true, max: 42, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+
+// =================== CHART 4: WEF growing/declining ===================
+(function(){
+const labels = [
+  'Farmworkers, food production', 'Delivery drivers', 'Software / app developers',
+  'Construction workers', 'Shop salespersons', 'Nursing professionals',
+  'Care workers', 'Secondary school teachers', 'Big data / AI / ML specialists',
+  'University & higher ed teachers', 'Project managers', 'Renewable energy engineers',
+  'Truck & lorry drivers', 'Vocational education teachers', 'Electricians',
+  'Database & network professionals',
+  'Cashiers & ticket clerks', 'Administrative & exec secretaries', 'Printing workers',
+  'Accountants & auditors', 'Material-recording & stock clerks', 'Transport attendants',
+  'Door-to-door sales', 'Bank tellers', 'Data entry clerks', 'Postal service clerks',
+  'Telemarketers', 'Insurance underwriters'
+];
+const values = [34, 14.5, 12.5, 9.5, 8, 7.5, 7, 6, 5.5, 4, 4, 3.5, 3, 2.5, 2.5, 2,
+                -7, -6, -5.5, -5, -4.5, -4, -3.5, -3.5, -3, -2.5, -2.5, -2];
+new Chart(document.getElementById('chart4'), {
+  type: 'bar',
+  data: { labels, datasets: [{ data: values, backgroundColor: values.map(v => v >= 0 ? '#1D9E75' : '#E24B4A') }] },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => (c.parsed.x >= 0 ? '+' : '') + c.parsed.x + 'M jobs' } } },
+    scales: {
+      x: { beginAtZero: true, min: -10, max: 38, ticks: { callback: v => (v >= 0 ? '+' : '') + v + 'M' }, grid: { color: 'rgba(0,0,0,0.06)' } },
+      y: { grid: { display: false }, ticks: { autoSkip: false } }
+    }
+  }
+});
+})();
+
+// =================== CHART 5: AI exposure stacked ===================
+(function(){
+const occ = [
+  'Telemarketers / call center', 'Data entry clerks', 'Bookkeepers / payroll',
+  'Translators', 'Paralegals & legal clerks', 'Customer service reps',
+  'Accountants & auditors', 'Journalists & writers', 'Marketing / copywriters',
+  'Graphic designers', 'Financial analysts', 'Software developers',
+  'Lawyers', 'Doctors (general practice)', 'Architects', 'Teachers (school)',
+  'Sales (B2B)', 'Truck drivers', 'Plumbers / electricians', 'Nurses',
+  'Care workers', 'Cooks / chefs', 'Construction workers', 'Farmworkers'
+];
+const automate = [55, 50, 40, 38, 35, 35, 28, 25, 22, 22, 18, 16, 14, 10, 12, 8, 8, 5, 4, 4, 3, 3, 2, 2];
+const augment  = [30, 35, 40, 45, 50, 45, 50, 55, 55, 50, 60, 60, 55, 50, 45, 42, 38, 18, 15, 28, 22, 18, 12, 10];
+const untouched = automate.map((a, i) => 100 - a - augment[i]);
+new Chart(document.getElementById('chart5'), {
+  type: 'bar',
+  data: { labels: occ, datasets: [
+    { label: 'Automate', data: automate, backgroundColor: '#A32D2D', stack: 's' },
+    { label: 'Augment', data: augment, backgroundColor: '#EF9F27', stack: 's' },
+    { label: 'Untouched', data: untouched, backgroundColor: '#B4B2A9', stack: 's' }
+  ]},
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.x + '%' } } },
+    scales: {
+      x: { stacked: true, beginAtZero: true, max: 100, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' } },
+      y: { stacked: true, grid: { display: false }, ticks: { autoSkip: false } }
+    }
+  }
+});
+})();
+
+// =================== CHART 6: AI × Robotics 2D matrix ===================
+(function(){
+const jobs = [
+  { l: 'Data entry', x: 80, y: 5, h: 8, c: '#A32D2D' },
+  { l: 'Telemarketing', x: 85, y: 5, h: 6, c: '#A32D2D' },
+  { l: 'Accountants', x: 70, y: 5, h: 15, c: '#A32D2D' },
+  { l: 'Bookkeepers', x: 75, y: 8, h: 10, c: '#A32D2D' },
+  { l: 'Translators', x: 78, y: 5, h: 3, c: '#A32D2D' },
+  { l: 'Paralegals', x: 70, y: 5, h: 4, c: '#A32D2D' },
+  { l: 'Customer service', x: 72, y: 10, h: 20, c: '#A32D2D' },
+  { l: 'Software dev', x: 60, y: 10, h: 25, c: '#A32D2D' },
+  { l: 'Lawyers', x: 55, y: 5, h: 5, c: '#A32D2D' },
+  { l: 'Journalists', x: 65, y: 5, h: 4, c: '#A32D2D' },
+  { l: 'Designers', x: 60, y: 8, h: 8, c: '#A32D2D' },
+  { l: 'Doctors', x: 45, y: 10, h: 13, c: '#BA7517' },
+  { l: 'Teachers', x: 40, y: 8, h: 80, c: '#BA7517' },
+  { l: 'Cashiers', x: 55, y: 50, h: 20, c: '#534AB7' },
+  { l: 'Truck drivers', x: 15, y: 80, h: 30, c: '#185FA5' },
+  { l: 'Warehouse', x: 10, y: 75, h: 40, c: '#185FA5' },
+  { l: 'Factory line', x: 12, y: 78, h: 60, c: '#185FA5' },
+  { l: 'Assembly', x: 15, y: 70, h: 50, c: '#185FA5' },
+  { l: 'Construction', x: 12, y: 40, h: 220, c: '#534AB7' },
+  { l: 'Farmworkers', x: 8, y: 30, h: 900, c: '#534AB7' },
+  { l: 'Cooks', x: 20, y: 35, h: 25, c: '#0F6E56' },
+  { l: 'Nurses', x: 25, y: 15, h: 30, c: '#0F6E56' },
+  { l: 'Care workers', x: 18, y: 15, h: 50, c: '#0F6E56' },
+  { l: 'Electricians', x: 10, y: 25, h: 18, c: '#0F6E56' },
+  { l: 'Plumbers', x: 10, y: 20, h: 15, c: '#0F6E56' },
+  { l: 'Barbers', x: 8, y: 8, h: 12, c: '#0F6E56' }
+];
+const scaleR = h => Math.max(6, Math.min(34, 4 + Math.sqrt(h) * 1.8));
+new Chart(document.getElementById('chart6'), {
+  type: 'bubble',
+  data: { datasets: jobs.map(j => ({
+    label: j.l,
+    data: [{ x: j.x, y: j.y, r: scaleR(j.h), headcount: j.h }],
+    backgroundColor: j.c + 'B3', borderColor: j.c, borderWidth: 1
+  })) },
+  options: {
+    responsive: true, maintainAspectRatio: false, layout: { padding: 20 },
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': AI ' + c.parsed.x + ', robotics ' + c.parsed.y + ', ~' + c.raw.headcount + 'M' } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'AI exposure (% tasks AI can do or strongly assist) →' }, min: 0, max: 100, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' } },
+      y: { title: { display: true, text: 'Robotics exposure (% physical tasks automatable by 2030) →' }, min: 0, max: 100, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+})();
+
+// =================== CHART 7: India textile collapse ===================
+new Chart(document.getElementById('chart7'), {
+  type: 'line',
+  data: {
+    labels: [1700, 1750, 1800, 1820, 1830, 1850, 1870, 1900, 1947],
+    datasets: [
+      { label: "World industrial output share", data: [25, 23, 21, 17, 14, 9, 5, 2, 2], borderColor: '#A32D2D', borderWidth: 2.5, tension: 0.3, pointRadius: 3.5, pointStyle: 'circle', backgroundColor: 'transparent' },
+      { label: "World GDP share", data: [24, 23, 20, 16, 14, 12, 12, 8, 4], borderColor: '#BA7517', borderWidth: 2.5, borderDash: [6,4], tension: 0.3, pointRadius: 3.5, pointStyle: 'triangle', backgroundColor: 'transparent' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + '%' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0 } },
+      y: { beginAtZero: true, max: 28, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+
+// =================== CHART 8: Cost decline curves (log scale) ===================
+// Normalize each tech to its starting value = 100, then plot on log scale
+(function(){
+// Solar PV $/W: 1977=$76.67, 1985=$10, 1990=$5.5, 2000=$4.5, 2010=$2.0, 2014=$0.36, 2020=$0.20, 2024=$0.11, 2025=$0.08
+// Battery Li-ion $/kWh: 2010=$1474, 2014=$700, 2017=$300, 2020=$140, 2022=$160, 2024=$115, 2025=$108
+// DNA sequencing $/genome: 2003=$50M, 2008=$10M, 2010=$30K, 2015=$1500, 2020=$700, 2024=$200, 2025=$200
+// AI compute $/MFLOP/s: rough — 1980=$10000, 1990=$1000, 2000=$50, 2010=$0.50, 2015=$0.10, 2020=$0.01, 2024=$0.003 (training cost-of-compute proxy)
+// LED $/klm: 2008=$300, 2012=$100, 2015=$20, 2018=$3, 2020=$1.5, 2024=$0.50
+// Wind $/kW installed: 2010=$2000, 2015=$1700, 2020=$1300, 2024=$1050
+
+const years = [1977,1980,1985,1990,1995,2000,2005,2010,2012,2014,2016,2018,2020,2022,2024,2025];
+const solar = [100, 80, 25, 13, 9, 11, 9, 5, 1.4, 0.94, 0.7, 0.5, 0.52, 0.38, 0.29, 0.21];
+const battery = [null,null,null,null,null,null,null, 100, 65, 47, 27, 19, 9, 11, 7.8, 7.3];
+const seq = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+// for sequencing, let's start at 2003
+// We'll separately use a different year series for sequencing but Chart.js needs aligned labels
+// Use null padding and map years
+const sequencing_index = years.map(y => {
+  if (y < 2003) return null;
+  // $50M in 2003 = 100
+  const data = { 2003:100, 2005:50, 2008:20, 2010:0.06, 2012:0.02, 2014:0.006, 2016:0.003, 2018:0.002, 2020:0.0014, 2022:0.0006, 2024:0.0004, 2025:0.0004 };
+  // approximate from nearest year
+  const keys = Object.keys(data).map(Number).sort((a,b)=>a-b);
+  let nearest = keys[0];
+  for (const k of keys) if (k <= y) nearest = k;
+  return data[nearest];
+});
+const ai_compute = years.map(y => {
+  if (y < 1980) return null;
+  const data = { 1980:100, 1990:10, 2000:0.5, 2005:0.05, 2010:0.005, 2015:0.001, 2020:0.0001, 2022:0.00003, 2024:0.00003, 2025:0.00003 };
+  const keys = Object.keys(data).map(Number).sort((a,b)=>a-b);
+  let nearest = keys[0];
+  for (const k of keys) if (k <= y) nearest = k;
+  return data[nearest];
+});
+const led = years.map(y => {
+  if (y < 2008) return null;
+  const data = { 2008:100, 2012:33, 2014:15, 2016:5, 2018:1, 2020:0.5, 2022:0.25, 2024:0.17, 2025:0.17 };
+  const keys = Object.keys(data).map(Number).sort((a,b)=>a-b);
+  let nearest = keys[0];
+  for (const k of keys) if (k <= y) nearest = k;
+  return data[nearest];
+});
+const wind = years.map(y => {
+  if (y < 2010) return null;
+  const data = { 2010:100, 2014:90, 2018:75, 2020:65, 2022:58, 2024:52, 2025:50 };
+  const keys = Object.keys(data).map(Number).sort((a,b)=>a-b);
+  let nearest = keys[0];
+  for (const k of keys) if (k <= y) nearest = k;
+  return data[nearest];
+});
+
+new Chart(document.getElementById('chart8'), {
+  type: 'line',
+  data: { labels: years, datasets: [
+    { label: 'Solar PV $/W (1977=100)', data: solar, borderColor: '#BA7517', borderWidth: 2.5, tension: 0.3, pointRadius: 2.5, backgroundColor: 'transparent', spanGaps: true },
+    { label: 'Battery $/kWh (2010=100)', data: battery, borderColor: '#185FA5', borderWidth: 2.5, tension: 0.3, pointRadius: 2.5, backgroundColor: 'transparent', spanGaps: true },
+    { label: 'DNA sequencing $/genome (2003=100)', data: sequencing_index, borderColor: '#0F6E56', borderWidth: 2.5, tension: 0.3, pointRadius: 2.5, backgroundColor: 'transparent', spanGaps: true },
+    { label: 'AI compute $/MFLOP-s (1980=100)', data: ai_compute, borderColor: '#534AB7', borderWidth: 2.5, tension: 0.3, pointRadius: 2.5, backgroundColor: 'transparent', spanGaps: true },
+    { label: 'LED $/klm (2008=100)', data: led, borderColor: '#993556', borderWidth: 2.5, tension: 0.3, pointRadius: 2.5, backgroundColor: 'transparent', spanGaps: true },
+    { label: 'Wind turbine $/kW (2010=100)', data: wind, borderColor: '#A32D2D', borderWidth: 2.5, tension: 0.3, pointRadius: 2.5, backgroundColor: 'transparent', spanGaps: true }
+  ]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label + ': ' + (c.parsed.y < 0.01 ? c.parsed.y.toExponential(1) : c.parsed.y.toFixed(2)) } } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { type: 'logarithmic', min: 0.00001, max: 200, ticks: { callback: v => { const lv = Math.log10(v); if (lv === Math.floor(lv)) return v >= 1 ? v : v.toExponential(0); return ''; } }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'Index (each tech starts at 100, log scale)' } }
+    }
+  }
+});
+})();
+
+// =================== CHART 9: Adoption S-curves ===================
+(function(){
+const years = [2000,2005,2010,2012,2014,2016,2018,2020,2022,2024,2026,2028,2030];
+new Chart(document.getElementById('chart9'), {
+  type: 'line',
+  data: { labels: years, datasets: [
+    { label: 'Smartphones (% adults globally)', data: [1,5,15,28,42,55,65,72,78,82,85,87,88], borderColor: '#5F5E5A', borderWidth: 2.5, tension: 0.4, pointRadius: 2, backgroundColor: 'transparent' },
+    { label: 'LED lighting (% new bulbs)', data: [0,1,3,8,20,40,55,68,75,80,85,90,93], borderColor: '#993556', borderWidth: 2.5, tension: 0.4, pointRadius: 2, backgroundColor: 'transparent' },
+    { label: 'Solar PV (% global electricity)', data: [0.01,0.05,0.3,0.6,1.0,1.5,2.4,3.6,5.0,6.8,9,12,16], borderColor: '#BA7517', borderWidth: 2.5, tension: 0.4, pointRadius: 2, backgroundColor: 'transparent' },
+    { label: 'EVs (% new car sales)', data: [0,0.01,0.1,0.4,0.7,1,2,4,10,18,28,40,55], borderColor: '#185FA5', borderWidth: 2.5, tension: 0.4, pointRadius: 2, backgroundColor: 'transparent' },
+    { label: 'AI assistants (% knowledge workers)', data: [0,0,0,0,0,0,0,2,8,22,40,60,75], borderColor: '#534AB7', borderWidth: 2.5, tension: 0.4, pointRadius: 2, backgroundColor: 'transparent' },
+    { label: 'Battery storage (% grid)', data: [0,0,0.01,0.05,0.1,0.2,0.5,1,1.8,3,5.5,9,14], borderColor: '#0F6E56', borderWidth: 2.5, tension: 0.4, pointRadius: 2, backgroundColor: 'transparent' },
+    { label: 'Humanoid robotics (% relevant labour)', data: [0,0,0,0,0,0,0,0,0,0.001,0.05,0.5,3], borderColor: '#A32D2D', borderWidth: 2.5, tension: 0.4, pointRadius: 2, backgroundColor: 'transparent' }
+  ]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'right', labels: { boxWidth: 12, padding: 8, font: { size: 11 } } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + (c.parsed.y < 0.1 ? c.parsed.y.toFixed(3) : c.parsed.y.toFixed(1)) + '%' } }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { type: 'logarithmic', min: 0.001, max: 100, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: '% penetration of relevant market (log)' } }
+    }
+  }
+});
+})();
+
+// =================== CHART 10: Capital flows ===================
+(function(){
+new Chart(document.getElementById('chart10'), {
+  type: 'bar',
+  data: {
+    labels: ['Mag 7\n(% of S&P 500)','Tech ex Mag 7','Healthcare','Financials','Industrials','Energy','Consumer','Other'],
+    datasets: [
+      { label: 'Public market cap share, 2025', data: [32, 8, 11, 12, 8, 4, 14, 11], backgroundColor: '#185FA5' },
+      { label: 'VC investment share, 2025', data: [0, 38, 14, 4, 6, 12, 8, 18], backgroundColor: '#534AB7' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { boxWidth: 14, padding: 12, font: { size: 12 } } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + '%' } }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { beginAtZero: true, max: 42, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: '% share' } }
+    }
+  }
+});
+})();
+
+// =================== CHART 11: Wage premium 2010 vs 2025 ===================
+(function(){
+new Chart(document.getElementById('chart11'), {
+  type: 'bar',
+  data: {
+    labels: ['Software engineer (median)','Top FAANG/AI engineer','Lawyers','Doctors','Nurses','Electricians','Plumbers','HVAC techs','Solar/wind tech','Bookkeepers','Paralegals','Customer service','Data entry'],
+    datasets: [
+      { label: '2010 premium', data: [3.4, 5.5, 4.0, 5.5, 1.7, 1.4, 1.4, 1.3, 1.2, 1.1, 1.5, 0.95, 0.9], backgroundColor: '#B4B2A9' },
+      { label: '2025 premium', data: [3.2, 8.0, 3.8, 5.4, 2.1, 1.9, 1.8, 1.8, 1.8, 1.0, 1.4, 0.9, 0.8], backgroundColor: '#185FA5' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { boxWidth: 14, padding: 12 } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + 'x' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 45, minRotation: 30 } },
+      y: { beginAtZero: true, ticks: { callback: v => v + 'x' }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'Multiple of HS-only median earnings' } }
+    }
+  }
+});
+})();
+
+// =================== CHART 12: Convergent tech jobs growth ===================
+(function(){
+const occs = ['Wind turbine techs','Solar PV installers','Battery/EV techs','Nurse practitioners','Robotics techs','Bioeng/biomanuf','Med & lab techs','Electricians','HVAC techs','Civil eng (climate)'];
+// 2014, 2024, 2034 (BLS-style projection)
+const y2014 = [4, 12, 2, 110, 12, 35, 320, 580, 320, 280];
+const y2024 = [11, 31, 18, 280, 18, 47, 355, 660, 380, 295];
+const y2034 = [18, 46, 26, 405, 22, 53, 395, 730, 415, 312];
+new Chart(document.getElementById('chart12'), {
+  type: 'bar',
+  data: { labels: occs, datasets: [
+    { label: '2014 (000s)', data: y2014, backgroundColor: '#D3D1C7' },
+    { label: '2024 (000s)', data: y2024, backgroundColor: '#85B7EB' },
+    { label: '2034 projected (000s)', data: y2034, backgroundColor: '#185FA5' }
+  ]},
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { boxWidth: 14, padding: 10 } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + 'K workers' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 30, minRotation: 20 } },
+      y: { type: 'logarithmic', min: 1, max: 1000, ticks: { callback: v => v + 'K' }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'US employment (000s, log scale)' } }
+    }
+  }
+});
+})();
+
+// =================== CHART 13: India scenarios 2025-2050 ===================
+(function(){
+const years = [2000, 2005, 2010, 2015, 2020, 2024, 2030, 2035, 2040, 2045, 2050];
+// Scenario A — Productivity Dividend (optimistic)
+// Scenario B — Base case
+// Scenario C — Disruption Cascade
+
+new Chart(document.getElementById('chart13'), {
+  type: 'line',
+  data: {
+    labels: years,
+    datasets: [
+      // Agriculture
+      { label: 'Agri — Scenario A', data: [58, 53, 49, 45, 42, 46, 40, 33, 28, 26, 25], borderColor: '#639922', borderWidth: 2, tension: 0.3, pointRadius: 2, backgroundColor: 'transparent' },
+      { label: 'Agri — Base (B)', data: [58, 53, 49, 45, 42, 46, 42, 38, 35, 33, 32], borderColor: '#639922', borderWidth: 1.5, tension: 0.3, pointRadius: 0, borderDash: [4,3], backgroundColor: 'transparent' },
+      { label: 'Agri — Cascade (C)', data: [58, 53, 49, 45, 42, 46, 44, 42, 41, 41, 40], borderColor: '#639922', borderWidth: 1, tension: 0.3, pointRadius: 0, borderDash: [2,2], backgroundColor: 'transparent' },
+      // Manufacturing
+      { label: 'Mfg — Scenario A', data: [12, 12, 12, 12, 11, 11, 13, 15, 17, 18, 18], borderColor: '#BA7517', borderWidth: 2, tension: 0.3, pointRadius: 2, backgroundColor: 'transparent' },
+      { label: 'Mfg — Base (B)', data: [12, 12, 12, 12, 11, 11, 12, 13, 13, 13, 13], borderColor: '#BA7517', borderWidth: 1.5, tension: 0.3, pointRadius: 0, borderDash: [4,3], backgroundColor: 'transparent' },
+      { label: 'Mfg — Cascade (C)', data: [12, 12, 12, 12, 11, 11, 11, 10, 9, 8, 8], borderColor: '#BA7517', borderWidth: 1, tension: 0.3, pointRadius: 0, borderDash: [2,2], backgroundColor: 'transparent' },
+      // Services
+      { label: 'Services — Scenario A', data: [23, 25, 27, 30, 32, 30, 33, 36, 38, 39, 38], borderColor: '#185FA5', borderWidth: 2, tension: 0.3, pointRadius: 2, backgroundColor: 'transparent' },
+      { label: 'Services — Base (B)', data: [23, 25, 27, 30, 32, 30, 31, 32, 33, 33, 34], borderColor: '#185FA5', borderWidth: 1.5, tension: 0.3, pointRadius: 0, borderDash: [4,3], backgroundColor: 'transparent' },
+      { label: 'Services — Cascade (C)', data: [23, 25, 27, 30, 32, 30, 29, 28, 27, 26, 26], borderColor: '#185FA5', borderWidth: 1, tension: 0.3, pointRadius: 0, borderDash: [2,2], backgroundColor: 'transparent' },
+      // Construction
+      { label: 'Construction — Scenario A', data: [6, 8, 11, 12, 13, 13, 14, 15, 15, 15, 15], borderColor: '#5F5E5A', borderWidth: 2, tension: 0.3, pointRadius: 2, backgroundColor: 'transparent' },
+      { label: 'Construction — Base (B)', data: [6, 8, 11, 12, 13, 13, 14, 16, 18, 19, 19], borderColor: '#5F5E5A', borderWidth: 1.5, tension: 0.3, pointRadius: 0, borderDash: [4,3], backgroundColor: 'transparent' },
+      { label: 'Construction — Cascade (C)', data: [6, 8, 11, 12, 13, 13, 14, 17, 19, 21, 22], borderColor: '#5F5E5A', borderWidth: 1, tension: 0.3, pointRadius: 0, borderDash: [2,2], backgroundColor: 'transparent' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'right', labels: { boxWidth: 12, padding: 4, font: { size: 10 } } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + '%' } }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { beginAtZero: true, max: 65, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(0,0,0,0.06)' }, title: { display: true, text: 'Share of total employment' } }
+    }
+  }
+});
+})();
+</script>
+</body>
+</html>
