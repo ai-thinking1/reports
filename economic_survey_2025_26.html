@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Economic Survey of India 2025–26 — A Reader's Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --ink:#1a1410;
+    --paper:#f6efe2;
+    --paper-soft:#efe6d3;
+    --rule:#1a1410;
+    --saffron:#d97706;
+    --saffron-deep:#b45309;
+    --indigo:#1e3a5f;
+    --indigo-deep:#0f1e33;
+    --green:#2f6f4e;
+    --rust:#a33b1f;
+    --muted:#6b5e4d;
+    --gold:#a07a2c;
+    --highlight:#fef3c7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:17px;
+    overflow-x:hidden;
+  }
+  /* Paper grain texture */
+  body::before{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:radial-gradient(circle at 20% 30%, rgba(26,20,16,0.025) 1px, transparent 1.5px),
+                     radial-gradient(circle at 70% 80%, rgba(26,20,16,0.02) 1px, transparent 1.5px);
+    background-size:5px 5px, 7px 7px;
+    opacity:0.6;
+  }
+
+  /* Top masthead bar */
+  .masthead-bar{
+    background:var(--ink);
+    color:var(--paper);
+    padding:8px 0;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--saffron);
+    position:relative;z-index:50;
+  }
+  .masthead-bar .wrap{
+    max-width:1400px;margin:0 auto;padding:0 32px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .masthead-bar .pill{
+    background:var(--saffron);color:var(--ink);padding:3px 10px;font-weight:600;
+  }
+
+  /* Sticky navigation */
+  nav.toc{
+    position:sticky;top:0;z-index:40;
+    background:var(--paper);
+    border-bottom:1px solid var(--ink);
+    backdrop-filter:blur(6px);
+  }
+  nav.toc .wrap{
+    max-width:1400px;margin:0 auto;padding:14px 32px;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;
+  }
+  nav.toc .brand{
+    font-family:'Fraunces',serif;font-weight:700;font-size:18px;letter-spacing:-0.01em;
+    display:flex;align-items:center;gap:10px;
+  }
+  nav.toc .brand .dot{width:10px;height:10px;background:var(--saffron);border-radius:50%}
+  nav.toc .links{display:flex;gap:18px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;flex-wrap:wrap;}
+  nav.toc .links a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
+  nav.toc .links a:hover{border-color:var(--saffron)}
+
+  /* Hero */
+  header.hero{
+    padding:80px 32px 60px;
+    max-width:1400px;margin:0 auto;
+    position:relative;
+  }
+  .kicker{
+    font-size:11px;letter-spacing:0.25em;text-transform:uppercase;
+    color:var(--saffron-deep);font-weight:700;
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    padding:8px 0;margin-bottom:32px;display:inline-block;
+    padding-left:14px;padding-right:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(48px,7vw,104px);
+    line-height:0.95;letter-spacing:-0.025em;
+    margin-bottom:24px;
+    font-variation-settings:"opsz" 144;
+  }
+  h1.title .accent{color:var(--saffron-deep);font-style:italic;font-weight:500;}
+  .deck{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(20px,2.4vw,28px);
+    color:var(--muted);max-width:880px;line-height:1.35;
+    margin-bottom:40px;
+  }
+  .byline{
+    display:flex;gap:32px;flex-wrap:wrap;padding-top:24px;
+    border-top:2px solid var(--ink);font-size:13px;
+  }
+  .byline div{display:flex;flex-direction:column;gap:4px;}
+  .byline .label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .byline .val{font-weight:600;font-family:'Fraunces',serif;font-size:16px;}
+
+  /* Section structural */
+  section{padding:64px 32px;max-width:1400px;margin:0 auto;position:relative;z-index:2;}
+  section.tight{padding:48px 32px;}
+  .chapter-tag{
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+  }
+  .chapter-tag .num{
+    font-family:'Fraunces',serif;font-weight:900;font-size:72px;line-height:1;
+    color:var(--saffron-deep);font-style:italic;
+  }
+  .chapter-tag .meta{
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;
+  }
+  h2.section-title{
+    font-family:'Fraunces',serif;font-weight:700;
+    font-size:clamp(36px,4.8vw,60px);line-height:1.05;
+    letter-spacing:-0.02em;margin-bottom:16px;
+    font-variation-settings:"opsz" 144;
+  }
+  h2.section-title em{font-style:italic;color:var(--saffron-deep);font-weight:400;}
+  .lede{
+    font-family:'Fraunces',serif;font-size:22px;line-height:1.45;
+    max-width:920px;color:#3a2f24;margin-bottom:40px;font-weight:400;
+  }
+  .lede::first-letter{
+    font-size:64px;line-height:0.85;float:left;
+    font-weight:700;padding-right:10px;padding-top:6px;color:var(--saffron-deep);
+  }
+
+  /* Stat tiles */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:0;border:2px solid var(--ink);
+    background:var(--paper-soft);margin:32px 0;
+  }
+  .stat{
+    padding:24px 22px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    display:flex;flex-direction:column;gap:6px;background:var(--paper);
+    position:relative;
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Fraunces',serif;font-weight:700;font-size:44px;line-height:1;
+    color:var(--ink);letter-spacing:-0.02em;
+  }
+  .stat .num .small{font-size:24px;color:var(--muted);}
+  .stat .num.green{color:var(--green);}
+  .stat .num.saffron{color:var(--saffron-deep);}
+  .stat .num.indigo{color:var(--indigo);}
+  .stat .num.rust{color:var(--rust);}
+  .stat .label{
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;
+  }
+  .stat .sub{font-size:13px;color:var(--ink);font-weight:500;}
+  .stat .delta{
+    display:inline-block;margin-top:4px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;
+    padding:2px 6px;border-radius:2px;
+  }
+  .stat .delta.up{background:#dcfce7;color:#166534;}
+  .stat .delta.down{background:#fee2e2;color:#991b1b;}
+  .stat .delta.neutral{background:#fef3c7;color:#854d0e;}
+
+  /* Two-column body */
+  .twocol{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:32px;
+  }
+  .twocol p{margin-bottom:18px;}
+  @media(max-width:880px){
+    .twocol{grid-template-columns:1fr;gap:24px;}
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(2n){border-right:none;}
+    section{padding:48px 20px;}
+    header.hero{padding:60px 20px 40px;}
+  }
+  p{margin-bottom:18px;}
+
+  /* Chart container */
+  .chart-card{
+    background:var(--paper);
+    border:2px solid var(--ink);
+    padding:24px;margin:24px 0;
+    position:relative;
+  }
+  .chart-card .head{
+    margin-bottom:16px;border-bottom:1px solid var(--ink);padding-bottom:12px;
+  }
+  .chart-card .head h3{
+    font-family:'Fraunces',serif;font-weight:700;font-size:22px;
+    margin-bottom:4px;letter-spacing:-0.01em;
+  }
+  .chart-card .head .src{
+    font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;
+    font-weight:500;
+  }
+  .chart-wrap{position:relative;height:340px;width:100%;}
+  .chart-wrap.tall{height:420px;}
+  .chart-wrap.short{height:260px;}
+
+  /* Chart row */
+  .chart-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0;
+  }
+  @media(max-width:880px){.chart-row{grid-template-columns:1fr;}}
+
+  /* Callout box */
+  .callout{
+    background:var(--ink);color:var(--paper);
+    padding:32px;margin:32px 0;
+    border-left:6px solid var(--saffron);
+  }
+  .callout .callout-label{
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--saffron);font-weight:700;margin-bottom:12px;display:block;
+  }
+  .callout h4{
+    font-family:'Fraunces',serif;font-size:28px;font-weight:600;
+    margin-bottom:12px;line-height:1.2;
+  }
+  .callout p{color:#d4cab6;margin:0;font-size:16px;}
+
+  /* History timeline */
+  .history{
+    background:var(--paper-soft);
+    border:2px solid var(--ink);
+    padding:32px;margin:32px 0;position:relative;
+  }
+  .history h3{
+    font-family:'Fraunces',serif;font-size:24px;font-weight:700;
+    margin-bottom:20px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .history h3::before{
+    content:'';width:32px;height:2px;background:var(--saffron);
+  }
+  .timeline-items{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;
+  }
+  .timeline-item{
+    padding:14px 0;border-top:1px solid var(--ink);
+    padding-right:16px;position:relative;
+  }
+  .timeline-item .year{
+    font-family:'Fraunces',serif;font-weight:700;font-size:24px;
+    color:var(--saffron-deep);letter-spacing:-0.02em;line-height:1;
+    margin-bottom:6px;
+  }
+  .timeline-item .event{font-size:13px;line-height:1.4;color:var(--ink);}
+
+  /* Plain-language box */
+  .plain-lang{
+    background:var(--highlight);
+    border:1px solid var(--ink);
+    border-left:6px solid var(--ink);
+    padding:20px 24px;margin:24px 0;
+    border-radius:0;
+  }
+  .plain-lang .tag{
+    display:inline-block;background:var(--ink);color:var(--highlight);
+    font-size:10px;letter-spacing:0.2em;font-weight:700;padding:3px 8px;
+    text-transform:uppercase;margin-bottom:10px;
+  }
+  .plain-lang h4{
+    font-family:'Fraunces',serif;font-size:18px;font-weight:700;margin-bottom:8px;
+  }
+  .plain-lang p{margin:0;font-size:15px;line-height:1.55;}
+
+  /* Quote */
+  blockquote{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:24px;line-height:1.4;
+    border-left:4px solid var(--saffron);
+    padding:8px 24px;margin:32px 0;
+    color:#3a2f24;
+  }
+  blockquote cite{
+    display:block;font-style:normal;font-size:13px;font-weight:600;
+    color:var(--muted);margin-top:12px;letter-spacing:0.08em;text-transform:uppercase;
+    font-family:'DM Sans',sans-serif;
+  }
+
+  /* Section divider */
+  .divider{
+    max-width:1400px;margin:0 auto;padding:0 32px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .divider .line{flex:1;height:1px;background:var(--ink);}
+  .divider .ornament{
+    font-family:'Fraunces',serif;font-size:20px;color:var(--saffron-deep);
+    letter-spacing:0.3em;
+  }
+
+  /* Table */
+  table.data{
+    width:100%;border-collapse:collapse;margin:24px 0;
+    font-size:14px;border:2px solid var(--ink);background:var(--paper);
+  }
+  table.data th, table.data td{
+    padding:10px 14px;text-align:left;border-bottom:1px solid var(--paper-soft);
+  }
+  table.data thead{background:var(--ink);color:var(--paper);}
+  table.data thead th{
+    font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+  }
+  table.data tbody tr:hover{background:var(--paper-soft);}
+  table.data td.num{font-family:'JetBrains Mono',monospace;text-align:right;font-weight:600;}
+
+  /* Risk/scenario tiles */
+  .scenarios{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border:2px solid var(--ink);margin:32px 0;
+  }
+  .scenario{
+    padding:28px;border-right:1px solid var(--ink);
+    background:var(--paper);
+  }
+  .scenario:last-child{border-right:none;}
+  .scenario .prob{
+    font-family:'Fraunces',serif;font-weight:900;font-size:48px;
+    line-height:1;letter-spacing:-0.02em;margin-bottom:8px;
+  }
+  .scenario.a .prob{color:var(--green);}
+  .scenario.b .prob{color:var(--saffron-deep);}
+  .scenario.c .prob{color:var(--rust);}
+  .scenario .name{
+    font-family:'Fraunces',serif;font-weight:700;font-size:20px;
+    margin-bottom:12px;line-height:1.2;
+  }
+  .scenario .desc{font-size:14px;line-height:1.5;color:#3a2f24;}
+  @media(max-width:880px){.scenarios{grid-template-columns:1fr;}.scenario{border-right:none;border-bottom:1px solid var(--ink);}}
+
+  /* Sector chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+  .chip{
+    background:var(--paper-soft);border:1px solid var(--ink);
+    padding:6px 12px;font-size:12px;font-weight:600;
+    letter-spacing:0.05em;
+  }
+  .chip.green{background:var(--green);color:var(--paper);border-color:var(--green);}
+  .chip.saffron{background:var(--saffron);color:var(--ink);border-color:var(--saffron);}
+  .chip.indigo{background:var(--indigo);color:var(--paper);border-color:var(--indigo);}
+
+  /* Footer */
+  footer{
+    background:var(--ink);color:var(--paper);
+    padding:60px 32px 40px;
+    margin-top:80px;position:relative;z-index:2;
+  }
+  footer .wrap{max-width:1400px;margin:0 auto;}
+  footer h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:32px;
+    margin-bottom:16px;color:var(--paper);
+  }
+  footer p{font-size:14px;color:#a09684;margin-bottom:10px;}
+  footer .footnote{
+    margin-top:32px;padding-top:24px;border-top:1px solid #3a2f24;
+    font-size:12px;color:#7a6f5e;
+  }
+
+  /* Highlight numbers in paragraphs */
+  .hi{
+    background:var(--highlight);padding:0 4px;font-weight:600;
+    font-family:'JetBrains Mono',monospace;font-size:0.92em;
+  }
+
+  /* Chapter spacers */
+  .chapter-section{position:relative;}
+  .chapter-section + .chapter-section{margin-top:24px;}
+  .chapter-section::before{
+    content:'';display:block;height:2px;background:var(--ink);
+    max-width:1336px;margin:0 auto;
+  }
+
+  /* Bullet list */
+  ul.clean{list-style:none;padding-left:0;margin:16px 0;}
+  ul.clean li{
+    padding-left:28px;position:relative;margin-bottom:10px;line-height:1.55;
+  }
+  ul.clean li::before{
+    content:'';width:14px;height:2px;background:var(--saffron);
+    position:absolute;left:0;top:12px;
+  }
+
+  /* Strong text for important data */
+  strong{font-weight:700;color:var(--ink);}
+  em{font-style:italic;}
+
+  /* Reading time */
+  .reading-time{
+    display:inline-block;background:var(--paper-soft);
+    padding:3px 8px;font-size:11px;letter-spacing:0.1em;
+    color:var(--muted);font-weight:600;text-transform:uppercase;
+    border:1px solid var(--ink);margin-right:8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP MASTHEAD -->
+<div class="masthead-bar">
+  <div class="wrap">
+    <span>Ministry of Finance · Department of Economic Affairs · Government of India</span>
+    <span><span class="pill">Published</span> January 2026 · 740 pages · 17 chapters</span>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="toc">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Economic Survey 2025–26</div>
+    <div class="links">
+      <a href="#snapshot">Snapshot</a>
+      <a href="#economy">Economy</a>
+      <a href="#fiscal">Fiscal</a>
+      <a href="#money">Money</a>
+      <a href="#external">External</a>
+      <a href="#inflation">Inflation</a>
+      <a href="#agri">Agri</a>
+      <a href="#services">Services</a>
+      <a href="#industry">Industry</a>
+      <a href="#infra">Infra</a>
+      <a href="#climate">Climate</a>
+      <a href="#human">Human Capital</a>
+      <a href="#jobs">Jobs</a>
+      <a href="#rural">Rural</a>
+      <a href="#ai">AI</a>
+      <a href="#cities">Cities</a>
+      <a href="#strategy">Strategy</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="kicker">A Reader's Edition · Visualised &amp; Contextualised</span>
+  <h1 class="title">India's <span class="accent">marathon</span><br/>run as a <span class="accent">sprint</span>.</h1>
+  <p class="deck">
+    The Economic Survey 2025–26 reports a paradox: India has just turned in its strongest macroeconomic performance in decades — and walked straight into a global system that no longer rewards macroeconomic success with currency stability or capital inflows. This is what it says, in plain English, with charts.
+  </p>
+  <div class="byline">
+    <div><span class="label">Real GDP Growth FY26</span><span class="val">7.4%</span></div>
+    <div><span class="label">CPI Inflation FY26 (Apr–Dec)</span><span class="val">1.7%</span></div>
+    <div><span class="label">Fiscal Deficit FY25</span><span class="val">4.8% of GDP</span></div>
+    <div><span class="label">FY27 Growth Projection</span><span class="val">6.8 – 7.2%</span></div>
+    <div><span class="label">Chief Economic Adviser</span><span class="val">V. Anantha Nageswaran</span></div>
+  </div>
+</header>
+
+<div class="divider"><span class="line"></span><span class="ornament">❦</span><span class="line"></span></div>
+
+<!-- KEY SNAPSHOT -->
+<section id="snapshot">
+  <div class="chapter-tag">
+    <span class="num">00</span>
+    <div class="meta"><span class="reading-time">3 min read</span>Executive Snapshot</div>
+  </div>
+  <h2 class="section-title">The big picture — <em>in nine numbers</em>.</h2>
+  <p class="lede">Strip away the 740 pages and the Survey rests on a small set of striking figures. India remains the fastest-growing major economy for the fourth year in a row. Inflation is at multi-decade lows. The fiscal deficit is shrinking faster than promised. But the rupee weakened, foreign portfolio money turned tepid, and the United States slapped a 50% combined tariff on most Indian goods. This is the year in nine numbers.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="label">Real GDP Growth FY26</span><span class="num saffron">7.4<span class="small">%</span></span><span class="sub">First Advance Estimate · MoSPI</span><span class="delta up">↑ vs 6.5% in FY25</span></div>
+    <div class="stat"><span class="label">Nominal GDP FY26</span><span class="num">₹357<span class="small"> lakh cr</span></span><span class="sub">≈ USD 4.1 trillion</span><span class="delta neutral">~10% nominal growth</span></div>
+    <div class="stat"><span class="label">CPI Inflation (Apr–Dec)</span><span class="num green">1.7<span class="small">%</span></span><span class="sub">Lowest in current CPI series</span><span class="delta down">↓ from 4.6% in FY25</span></div>
+    <div class="stat"><span class="label">Centre's Fiscal Deficit FY25</span><span class="num indigo">4.8<span class="small">%</span></span><span class="sub">Provisional · vs 4.9% budgeted</span><span class="delta down">↓ from 9.2% in FY21</span></div>
+    <div class="stat"><span class="label">RBI Repo Rate</span><span class="num">5.25<span class="small">%</span></span><span class="sub">After 125 bps cuts in 2025</span><span class="delta down">↓ cumulative easing cycle</span></div>
+    <div class="stat"><span class="label">Total Exports FY25</span><span class="num saffron">USD 825<span class="small">B</span></span><span class="sub">Record · goods + services</span><span class="delta up">↑ services led</span></div>
+    <div class="stat"><span class="label">Forex Reserves Cover</span><span class="num">11<span class="small"> months</span></span><span class="sub">94% of external debt</span><span class="delta neutral">Comfortable buffer</span></div>
+    <div class="stat"><span class="label">Rupee vs USD (Apr–Jan)</span><span class="num rust">−6.5<span class="small">%</span></span><span class="sub">"Punching below its weight"</span><span class="delta down">Depreciation pressure</span></div>
+    <div class="stat"><span class="label">Workforce Employed</span><span class="num">56.2<span class="small"> cr</span></span><span class="sub">Q2 FY26 · 8.7 lakh new jobs Q-o-Q</span><span class="delta up">↑ formalising</span></div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">The core paradox of 2025</span>
+    <h4>"India's strongest macroeconomic performance in decades has collided with a global system that no longer rewards macroeconomic success with currency stability, capital inflows, or strategic insulation."</h4>
+    <p>— V. Anantha Nageswaran, Chief Economic Adviser, in the Preface to the Survey</p>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;margin:48px 0 16px;letter-spacing:-0.01em;">Why this matters to ordinary Indians</h3>
+  <div class="twocol">
+    <div>
+      <p><strong>For households.</strong> Inflation at 1.7% means your monthly grocery bill rose almost nothing. Vegetable prices actually fell. The February 2025 budget raised the no-tax income threshold to ₹12 lakh — a family with two earners can now make up to roughly ₹26.7 lakh tax-free. In September, GST slabs were collapsed from many tiers down to two, with most items moving to the lower slab.</p>
+      <p><strong>For workers.</strong> Four labour codes — compressing 29 central laws — were finally notified in November 2025. Gig and platform workers are now formally recognised, with provisions to bring them under social security. Unemployment fell to 4.7% in Q2 FY26 (CWS basis).</p>
+    </div>
+    <div>
+      <p><strong>For business.</strong> Capacity utilisation in manufacturing is above its long-run average. The repo rate is down 125 basis points. A cash reserve ratio cut released roughly <span class="hi">₹2.5 lakh crore</span> in fresh liquidity. The insurance sector opened to 100% foreign direct investment. Nuclear power generation opened to private players.</p>
+      <p><strong>For India's standing.</strong> S&amp;P upgraded India's sovereign rating from BBB– to BBB in August 2025 — the country's first upgrade from a major agency in nearly two decades. Morningstar DBRS and R&amp;I followed.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">§</span><span class="line"></span></div>
+
+<!-- THREE SCENARIOS FOR 2026 -->
+<section class="tight">
+  <div class="chapter-tag">
+    <span class="num">⌖</span>
+    <div class="meta">Frame · The CEA's Three Global Scenarios for 2026</div>
+  </div>
+  <h2 class="section-title">Three futures for the world. <em>India needs buffers for all of them.</em></h2>
+  <p class="lede">Rather than a single point forecast, this year's Survey opens with a scenario framework — an unusual move that reflects how uncertain the global picture has become. Each scenario has consequences for the rupee, capital flows, and India's export earnings.</p>
+
+  <div class="scenarios">
+    <div class="scenario a">
+      <div class="prob">40–45%</div>
+      <div class="name">Business as in 2025 — but more fragile</div>
+      <div class="desc">The world muddles through. Trade frictions and financial stress episodes don't trigger systemic collapse, but margins of safety are thinner. Governments intervene more often to stabilise expectations. "Managed disorder."</div>
+    </div>
+    <div class="scenario b">
+      <div class="prob">40–45%</div>
+      <div class="name">Disorderly multipolar breakdown</div>
+      <div class="desc">Strategic rivalry intensifies. Russia–Ukraine remains unresolved. Trade becomes explicitly coercive, sanctions proliferate, supply chains realign under political pressure. Sharper trade-offs between autonomy, growth, and stability.</div>
+    </div>
+    <div class="scenario c">
+      <div class="prob">10–20%</div>
+      <div class="name">Reset toward limited cooperation</div>
+      <div class="desc">An off-ramp emerges. Major powers find a framework — even if narrow — to manage rivalry. Capital flows stabilise. Inflation eases more uniformly. The smallest probability, but the only one in which a "marathon-as-sprint" effort becomes optional.</div>
+    </div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>What this means: rough seas, possibly for years, not months.</h4>
+    <p>The CEA's argument is that all three scenarios threaten capital flows into India — only the size and duration differ. Because India runs a goods trade deficit, it needs foreign capital and services exports to fund the bill. If that capital gets jittery, the rupee weakens. The policy answer he proposes: build buffers (reserves, supply diversification, payment routes), keep policy predictable, and run "a marathon as if it were a sprint."</p>
+  </div>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Gold has tripled since the start of the decade — investors are pricing in fragility</h3>
+      <span class="src">Source: World Gold Council / WEO · Calendar year-end prices, USD per troy ounce</span>
+    </div>
+    <div class="chart-wrap"><canvas id="goldChart"></canvas></div>
+  </div>
+
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">①</span><span class="line"></span></div>
+
+<!-- CHAPTER 1: STATE OF THE ECONOMY -->
+<section id="economy" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">01</span>
+    <div class="meta"><span class="reading-time">6 min read</span>State of the Economy · Pushing the growth frontier</div>
+  </div>
+  <h2 class="section-title">Growth held up. <em>The world expected less.</em></h2>
+  <p class="lede">When the United States announced reciprocal tariffs in April 2025, then an additional 25% penal tariff on most Indian merchandise in August, every major forecaster downgraded India. Growth, in reality, accelerated. The First Advance Estimates place real GDP growth for FY26 at 7.4% — the fastest among major economies, for the fourth year running.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>India's growth path — through the pandemic and beyond</h3>
+      <span class="src">Source: MoSPI · Real GDP growth (constant prices), FY16 onward · Survey forecasts for FY26 &amp; FY27</span>
+    </div>
+    <div class="chart-wrap tall"><canvas id="gdpChart"></canvas></div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">What's driving the engine</h3>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="head">
+        <h3>Demand side · who is spending</h3>
+        <span class="src">Real growth, H1 FY26 (Apr–Sep 2025), MoSPI</span>
+      </div>
+      <div class="chart-wrap"><canvas id="demandChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="head">
+        <h3>Supply side · who is producing</h3>
+        <span class="src">Real GVA growth, H1 FY26, MoSPI</span>
+      </div>
+      <div class="chart-wrap"><canvas id="supplyChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">Private consumption: the largest single force</h4>
+      <p>The share of private final consumption in GDP is now <strong>61.5%</strong> — the highest since FY12. Consumption grew <strong>7.5%</strong> in the first half of FY26, the fastest H1 reading since FY24 and well above the pre-Covid trend of 6.9%. Rural demand has stayed strong, helped by good monsoon and rising farm incomes; urban demand has picked up after the tax breaks of February and GST rationalisation in September.</p>
+      <p>The NABARD Rural Survey of November 2025 found that <strong>79.2%</strong> of rural households reported higher consumption over the year — and that the share of monthly income spent on consumption rose to about <strong>67%</strong>, the highest since the survey began.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">Investment: a private cycle starting up</h4>
+      <p>Gross fixed capital formation grew <strong>7.6%</strong> in H1, above the pre-pandemic average. Public capex rose 28% year-on-year between April and November 2025. More striking is private intent: corporate investment announcements totalled <strong>₹14.6 lakh crore</strong> in H1 FY26 versus ₹7.9 lakh crore a year earlier — and even higher than the previous decadal peak of ₹11.4 lakh crore in H1 FY24.</p>
+      <p>Capital goods imports are up double digits. Capacity utilisation in manufacturing is above its long-run average. These are the signs of a real investment cycle, not just public spending.</p>
+    </div>
+  </div>
+
+  <div class="history">
+    <h3>The Indian growth story, in fifty years</h3>
+    <div class="timeline-items">
+      <div class="timeline-item"><div class="year">1947</div><div class="event">Independence; a closed, planned economy with growth averaging 3–4% — the so-called "Hindu rate of growth."</div></div>
+      <div class="timeline-item"><div class="year">1991</div><div class="event">Balance of payments crisis. Manmohan Singh and Narasimha Rao open the economy: licence raj dismantled, rupee devalued, FDI allowed.</div></div>
+      <div class="timeline-item"><div class="year">2003–08</div><div class="event">India's first sustained 8%+ growth phase. Services and IT boom; foreign investment surges.</div></div>
+      <div class="timeline-item"><div class="year">2008</div><div class="event">Global Financial Crisis. India proves resilient — fiscal stimulus, no banking collapse, double-digit inflation for years that follows.</div></div>
+      <div class="timeline-item"><div class="year">2017</div><div class="event">Goods and Services Tax launched after a decade of debate — first true national indirect tax. Demonetisation in 2016 had been the political shock that preceded it.</div></div>
+      <div class="timeline-item"><div class="year">FY21</div><div class="event">Covid contraction of −5.8% real GDP. Fiscal deficit balloons to 9.2% of GDP. Unprecedented welfare push.</div></div>
+      <div class="timeline-item"><div class="year">2022</div><div class="event">India overtakes the UK to become the world's fifth-largest economy.</div></div>
+      <div class="timeline-item"><div class="year">2025</div><div class="event">First S&amp;P sovereign rating upgrade in nearly 20 years. Survey revises India's medium-term potential growth from 6.5% to <strong>7.0%</strong>.</div></div>
+    </div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>Why "potential growth" being raised to 7% matters</h4>
+    <p>Potential growth is the speed your economy can grow without overheating — without inflation taking off or current accounts blowing out. Three years ago the Survey set it at 6.5%. The fact that the same team has now revised it up half a percentage point is their way of saying: the reform momentum of recent years, capex by both Centre and states, the PLI schemes, the doubling of the airport network, faster freight on inland waterways, deeper financialisation — these have permanently lifted what the Indian economy can do. The Survey projects FY27 growth in the range of <strong>6.8–7.2%</strong>.</p>
+  </div>
+
+  <blockquote>
+    "The paradox of 2025 is that India's strongest macroeconomic performance in decades has collided with a global system that no longer rewards macroeconomic success with currency stability, capital inflows, or strategic insulation."
+    <cite>— Preface, Economic Survey 2025–26</cite>
+  </blockquote>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">②</span><span class="line"></span></div>
+
+<!-- CHAPTER 2: FISCAL -->
+<section id="fiscal" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">02</span>
+    <div class="meta"><span class="reading-time">5 min read</span>Fiscal Developments · Anchoring stability through credible consolidation</div>
+  </div>
+  <h2 class="section-title">A deficit cut in half. <em>And the bond market noticed.</em></h2>
+  <p class="lede">In 2021, after Covid, India's Union fiscal deficit was 9.2% of GDP — a peacetime record. The Centre promised to halve it by FY26. In FY25 it came in at 4.8% (better than the 4.9% target), with FY26 budgeted at 4.4%. Three rating agencies upgraded India in 2025: Morningstar DBRS in May, S&amp;P in August (BBB– → BBB, first major upgrade in two decades), and R&amp;I in September.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>India's fiscal deficit: from 9.2% of GDP to 4.4%, in five years</h3>
+      <span class="src">Source: Union Budget Documents, Controller General of Accounts · PA = Provisional Accounts, BE = Budget Estimates</span>
+    </div>
+    <div class="chart-wrap"><canvas id="fiscalChart"></canvas></div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">What changed the trajectory</h3>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">Revenue side: more tax, more cleanly</h4>
+      <p>Centre's revenue receipts rose from about <strong>8.5% of GDP</strong> (pre-pandemic average) to roughly <strong>9.1% of GDP</strong> (post-pandemic). Direct taxes drove the bulk of this, helped by digital compliance, formalisation, and rising corporate profits. GST collections hit multiple all-time monthly highs in FY26, even as rates were cut.</p>
+
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin:20px 0 8px;">Spending: less on revenue, more on capex</h4>
+      <p>Revenue expenditure fell from <strong>13.6% of GDP in FY22</strong> to <strong>10.9% in FY25</strong>. That created room for capital outlays. Capital expenditure rose from a pre-pandemic average of <strong>1.7% of GDP</strong> to roughly <strong>3%</strong> post-pandemic; effective capex (including grants for capital assets to states) reached <strong>4% of GDP</strong> in FY25.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">The state-level worry</h4>
+      <p>The Survey devotes unusual space to <em>state</em> finances. Many states are running rising revenue deficits, driven by an expansion of unconditional cash transfers. The CEA's argument: these cash transfers crowd out capital investments — including in human capital. Worse, with Indian government bonds now globally indexed, investors increasingly look at <em>general</em> government finances, not just the Centre. </p>
+      <p>India's 10-year bond yields <strong>6.7%</strong>; Indonesia's, with the same BBB rating, yields <strong>6.3%</strong>. The CEA suggests state-level fiscal laxity may be lifting sovereign borrowing costs.</p>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>The shift from revenue spending to capital spending</h3>
+      <span class="src">As % of total fiscal deficit · Source: Union Budget Documents</span>
+    </div>
+    <div class="chart-wrap"><canvas id="fiscalCompChart"></canvas></div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>Why "quality of expenditure" is the real story</h4>
+    <p>A government can hit a fiscal deficit target by simply not spending — that's bad. India did the opposite: it kept spending, but rebalanced sharply toward things that create future capacity (roads, ports, defence, digital public infrastructure) and away from things that simply pay current bills (subsidies, salaries). Capex worth <strong>₹11.21 lakh crore</strong> is budgeted for FY26 alone — nearly 4× the level five years ago.</p>
+  </div>
+
+  <div class="history">
+    <h3>India's debt-to-GDP, the long view</h3>
+    <div class="timeline-items">
+      <div class="timeline-item"><div class="year">FY16–FY19</div><div class="event">General government debt stable around <strong>69–70% of GDP</strong>. Fiscal Responsibility Act path being followed.</div></div>
+      <div class="timeline-item"><div class="year">FY20</div><div class="event">Pre-Covid baseline. Debt ratio creeping up due to slowdown.</div></div>
+      <div class="timeline-item"><div class="year">FY21</div><div class="event">Pandemic shock. General government debt jumps near <strong>89% of GDP</strong> — among the highest among major emerging markets.</div></div>
+      <div class="timeline-item"><div class="year">FY22–FY25</div><div class="event">Steady decline. <strong>7.1 percentage points cut</strong> off the general government debt-to-GDP ratio — even as capex stays high.</div></div>
+      <div class="timeline-item"><div class="year">Target</div><div class="event">Centre's medium-term goal: converge towards <strong>50 ± 1% debt-to-GDP</strong>. The new anchor replacing strict annual deficit targets.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">③</span><span class="line"></span></div>
+
+<!-- CHAPTER 3: MONETARY -->
+<section id="money" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">03</span>
+    <div class="meta"><span class="reading-time">4 min read</span>Monetary Management &amp; Financial Intermediation</div>
+  </div>
+  <h2 class="section-title">The RBI cut. <em>Aggressively.</em></h2>
+  <p class="lede">In a single calendar year, the Reserve Bank of India cut the repo rate by <strong>125 basis points</strong> and the cash reserve ratio by <strong>100 basis points</strong>. Few major central banks moved that decisively. The result: roughly ₹2.5 lakh crore of fresh liquidity in the banking system, and a clear pass-through to lending rates. The MPC's stance was changed from accommodative to neutral in June 2025, giving room to respond either way.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Central bank policy rates in 2025 — divergence across regions</h3>
+      <span class="src">Source: BIS / Central Bank Statistics · Year-end policy rates (%)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="rateChart"></canvas></div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="label">Repo Rate (Dec 2025)</span><span class="num saffron">5.25<span class="small">%</span></span><span class="sub">After 125 bps cuts in 2025</span><span class="delta down">↓ 100 bps in FY26 alone</span></div>
+    <div class="stat"><span class="label">Cash Reserve Ratio</span><span class="num">3.0<span class="small">%</span></span><span class="sub">100 bps cut in staggered tranches</span><span class="delta down">≈ ₹2.5 lakh cr liquidity</span></div>
+    <div class="stat"><span class="label">Bank Gross NPA Ratio</span><span class="num green">Multi-decadal low</span><span class="sub">Provisioning strong</span><span class="delta down">↓ asset quality improving</span></div>
+    <div class="stat"><span class="label">Non-Food Bank Credit</span><span class="num indigo">11.4<span class="small">%</span></span><span class="sub">YoY, Nov 2025</span><span class="delta neutral">Stable</span></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">Banks: the healthiest in a generation</h4>
+      <p>Gross non-performing assets, which once consumed an entire policy debate during the 2014–18 "twin balance sheet" crisis, have fallen to multi-decade lows. Profit after tax across scheduled commercial banks is rising. Capital adequacy is comfortably above regulatory minimums. The faster transmission of policy rate cuts to lending rates means RBI's easing is actually reaching businesses.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">A deeper structural argument: the cost of capital</h4>
+      <p>The chapter makes an unusual point: India's high cost of capital isn't just about RBI policy rates. A country that persistently runs a current account deficit has to pay a risk premium to foreign savers. Only economies that consistently generate external surpluses — Germany, Japan, Korea, China at its peak — can finance investment cheaply at home. The implication: <strong>becoming a manufacturing exporter is, in the long run, the only path to a durably low cost of capital</strong>.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">The structural insight</span>
+    <h4>"India's long-run challenge is not merely to manage liquidity or credit cycles, but to transform itself into a surplus-generating economy. Only then can its cost of capital fall durably."</h4>
+    <p>— Chapter 3, on why monetary easing alone cannot make capital cheap</p>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">④</span><span class="line"></span></div>
+
+<!-- CHAPTER 4: EXTERNAL SECTOR -->
+<section id="external" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">04</span>
+    <div class="meta"><span class="reading-time">6 min read</span>External Sector · Playing the long game</div>
+  </div>
+  <h2 class="section-title">Tariffs hit. <em>Services held.</em></h2>
+  <p class="lede">In April 2025 the US announced a 25% reciprocal tariff on Indian merchandise. In August it added a 25% penal tariff on top of that. By any rational forecast, India's exports should have buckled. They didn't — merchandise exports still grew 2.4% in the April–December period, and services exports grew 6.5%. Total exports for FY25 hit a record <strong>USD 825.3 billion</strong>.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>India's export composition — services have done the heavy lifting</h3>
+      <span class="src">Source: RBI / DGCIS · 5-year CAGR by category, FY20–FY25</span>
+    </div>
+    <div class="chart-wrap"><canvas id="exportChart"></canvas></div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">Why services exports are not enough</h3>
+  <p>India is now the <strong>world's 7th largest exporter of services</strong>. Its share of global services trade has more than doubled from 2% in 2005 to <strong>4.3% in 2024</strong>. IT and IT-enabled services, business services and the rise of Global Capability Centres are the engine. Over the five years since FY20, total exports grew at a compounded <strong>9.4%</strong> — but merchandise grew only <strong>6.4%</strong>.</p>
+
+  <p>Yet the Survey is blunt about why services are not a substitute for manufacturing: services firms can bypass weak institutions, relocate easily, and put little pressure on the state to reform. They generate forex but do not, by themselves, force the kind of state-capacity upgrade that produces a strong currency. <em>"Currency strength, in general, or currency stability during crises, has always eluded countries that could not become successful and significant exporters of manufactured goods."</em></p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>India's balance of payments components — services and remittances offset goods deficit</h3>
+      <span class="src">Source: RBI Handbook of Statistics · Quarterly, USD billion</span>
+    </div>
+    <div class="chart-wrap"><canvas id="bopChart"></canvas></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">The rupee question</h4>
+      <p>Between 1 April 2025 and 22 January 2026 the rupee depreciated about <strong>6.5%</strong> against the dollar. The Survey calls the rupee "punching below its weight" — it does not reflect India's strong macro fundamentals. Why? A wider balance-of-payments deficit in H1 FY26 (USD 6.4 billion versus a surplus of USD 23.8 billion a year earlier), tepid foreign portfolio flows, and global capital being sucked into AI investments in the US, Taiwan, and Korea.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">India's new trade diplomacy</h4>
+      <p>2025 saw a slew of trade agreements: with the <strong>UK, Oman, New Zealand</strong>, and a comprehensive <strong>FTA with the European Union</strong> after three years of negotiation (pending EU Parliament ratification). The EU FTA is the largest: it widens market access for India's labour-intensive manufacturing — textiles, leather, marine products — and enables deeper technology integration. Trade talks with the US continue.</p>
+    </div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>Why "11 months of import cover" should reassure you</h4>
+    <p>Forex reserves are India's insurance policy. As of January 16, 2026, India's reserves can cover 11 months of imports and around 94% of all external debt. For comparison: the textbook adequate threshold is 3 months. India has built a war chest. When the rupee did weaken in 2025, the depreciation was orderly precisely because of this cushion.</p>
+  </div>
+
+  <div class="history">
+    <h3>India's external sector through the cycles</h3>
+    <div class="timeline-items">
+      <div class="timeline-item"><div class="year">1991</div><div class="event">BoP crisis. Forex reserves down to two weeks of imports. India airlifts gold to London as collateral. The trigger for liberalisation.</div></div>
+      <div class="timeline-item"><div class="year">1995–2000</div><div class="event">IT services exports begin. The Y2K phenomenon puts Indian engineers on the global map.</div></div>
+      <div class="timeline-item"><div class="year">2008</div><div class="event">Global Financial Crisis. India's external position holds up — current account deficit widens but reserves stay strong.</div></div>
+      <div class="timeline-item"><div class="year">2013</div><div class="event">"Taper tantrum." Fed signals tapering of QE. Rupee crashes from ~54 to ~68 in months. Capital outflows from emerging markets.</div></div>
+      <div class="timeline-item"><div class="year">2020</div><div class="event">Covid shock. Services exports (especially IT/BPO) prove resilient. India runs a brief current account surplus.</div></div>
+      <div class="timeline-item"><div class="year">2025</div><div class="event">Record total exports of <strong>USD 825 billion</strong>. Services 4.3% of global trade. But rupee weakens 6.5% under capital flow pressure.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑤</span><span class="line"></span></div>
+
+<!-- CHAPTER 5: INFLATION -->
+<section id="inflation" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">05</span>
+    <div class="meta"><span class="reading-time">5 min read</span>Inflation · Tamed and Anchored</div>
+  </div>
+  <h2 class="section-title">Inflation at <em>1.7%</em>. Vegetable prices actually fell.</h2>
+  <p class="lede">The Consumer Price Index averaged 1.7% in April–December 2025 — the lowest in the current series. October 2025's reading of 0.3% was the lowest monthly print on record. Food inflation went outright negative from June 2025. This happened alongside 8% real GDP growth in H1 — disinflation without contraction, an unusual combination.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>CPI inflation: from 6.7% in FY23 to 1.7% in FY26</h3>
+      <span class="src">Source: MoSPI, DPIIT · CPI = retail inflation, WPI = wholesale (factory-gate)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="cpiChart"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Where the disinflation came from — food, especially vegetables</h3>
+      <span class="src">Source: MoSPI · Monthly CPI inflation by category, FY26</span>
+    </div>
+    <div class="chart-wrap"><canvas id="cpiCompChart"></canvas></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The "sticky core" mirage</h4>
+      <p>Headline inflation collapsed but core inflation (excluding food and fuel) appeared stuck around 4.6%. The Survey shows this is misleading: core ex-gold-and-silver decelerated from 3.4% to 2.3% between June and December. The "wedge" — about 235 basis points — is almost entirely the surge in precious metals prices driven by global safe-haven demand, not by underlying domestic pressure. Strip gold and silver and core inflation is also falling.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">An echo from 2008–14</h4>
+      <p>It's worth remembering the contrast: between 2008 and 2014, India's CPI hit double digits repeatedly. The S&amp;P rating action explicitly noted: <em>"In the past three years, despite volatility in global energy prices and supply-side shocks, CPI growth averaged 5.5 per cent. In recent months, it stayed at the lower bound of the RBI's target range of 2–6 per cent."</em> Inflation targeting, introduced in 2016, has delivered.</p>
+    </div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>The growth–inflation chart in one image</h4>
+    <p>Among the world's major emerging economies, India is the only one that combines <strong>~8% real growth in H1 FY26</strong> with <strong>~2.8% inflation</strong> (calendar 2025 IMF basis). Brazil grew slowly and inflated. Russia grew slowly under sanctions and inflated harder. China grew faster but slipped into outright deflation. India hit the rare quadrant: fast growth, contained prices.</p>
+  </div>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Growth-inflation map of major emerging economies, 2025</h3>
+      <span class="src">Source: IMF World Economic Outlook · % real GDP growth vs % inflation, calendar 2025</span>
+    </div>
+    <div class="chart-wrap tall"><canvas id="phillipsChart"></canvas></div>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑥</span><span class="line"></span></div>
+
+<!-- CHAPTER 6: AGRICULTURE -->
+<section id="agri" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">06</span>
+    <div class="meta"><span class="reading-time">4 min read</span>Agriculture &amp; Food Management · Raising productivity, securing income, ensuring food security</div>
+  </div>
+  <h2 class="section-title">Allied sectors are doing the work. <em>Crops are stuck.</em></h2>
+  <p class="lede">Agriculture and allied sectors contribute about a fifth of national income — and employ <strong>46.1%</strong> of India's workforce. Over the decade FY16–FY25, the sector's average growth of <strong>4.45%</strong> is the highest of any decade in 50 years. But the headline hides the real story: livestock grew 7.1% annually, fisheries 8.8%, while the crop sector managed just 3.5%.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Agricultural growth by decade — the best ten years in fifty</h3>
+      <span class="src">Source: Ramesh Chand presidential address, 24th IASSI Annual Conference, October 2025 · Decadal averages</span>
+    </div>
+    <div class="chart-wrap"><canvas id="agriDecadeChart"></canvas></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The structural shift</h4>
+      <p>Livestock GVA grew nearly <strong>195% between FY15 and FY24</strong> — a compound annual growth rate of <strong>12.77%</strong>. Fisheries production rose more than <strong>140%</strong> between 2014 and 2025. India is now the world's third-largest fish producer.</p>
+      <p>Crops, by contrast, remain locked in volatility tied to monsoons and stuck around 3.5% trend growth. Fragmented landholdings, limited mechanisation, water stress in key cropping zones, and modest productivity gains continue to bind.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The policy stack</h4>
+      <ul class="clean">
+        <li><strong>PM-KISAN</strong> direct income support to farmers</li>
+        <li><strong>MSP at 1.5× cost of production</strong> for major crops since 2018–19</li>
+        <li><strong>Pradhan Mantri Krishi Sinchai Yojana</strong> for irrigation expansion</li>
+        <li><strong>e-NAM</strong> electronic agricultural marketplace</li>
+        <li><strong>Agriculture Infrastructure Fund</strong> for post-harvest infrastructure</li>
+        <li><strong>FPOs (Farmer Producer Organisations)</strong> for collective bargaining</li>
+        <li><strong>Digital Agriculture Mission</strong> for tech adoption</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>Why this still matters for everyone, not just farmers</h4>
+    <p>Half of India still works in agriculture. When rural incomes go up, FMCG sales go up, two-wheeler sales go up, the demand for everything from cement to consumer electronics goes up. The NABARD survey of November 2025 reported 79% of rural households consumed more — that one statistic alone is the most reliable signal of broad-based growth.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑦</span><span class="line"></span></div>
+
+<!-- CHAPTER 7: SERVICES -->
+<section id="services" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">07</span>
+    <div class="meta"><span class="reading-time">4 min read</span>Services · From stability to new frontiers</div>
+  </div>
+  <h2 class="section-title">Half the economy. <em>Largest single FDI recipient.</em></h2>
+  <p class="lede">Services contribute more than half of India's Gross Value Added and grew <strong>9.1%</strong> in FY26 — up from 7.2% in FY25. India is unusual among developing economies in having grown via services at a relatively low income level. The sector has averaged 7–8% growth annually for years, with a standard deviation lower than industry, manufacturing or even overall GDP — the closest thing the Indian economy has to a stable backbone.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>India's services share of GDP has risen above pre-Covid levels — more than peers</h3>
+      <span class="src">Source: World Bank WDI · Services as % of GDP, pre-Covid average (2015–19) vs 2024</span>
+    </div>
+    <div class="chart-wrap"><canvas id="servicesShareChart"></canvas></div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="label">Services GVA share</span><span class="num indigo">53.6<span class="small">%</span></span><span class="sub">H1 FY26 · nominal GDP</span></div>
+    <div class="stat"><span class="label">Services growth H1 FY26</span><span class="num green">9.3<span class="small">%</span></span><span class="sub">vs 7.0% in H1 FY25</span></div>
+    <div class="stat"><span class="label">Global services trade share</span><span class="num saffron">4.3<span class="small">%</span></span><span class="sub">India · up from 2% in 2005</span></div>
+    <div class="stat"><span class="label">PMI Services</span><span class="num">58.9</span><span class="sub">Q3 FY26 · long-term avg 51.4</span></div>
+  </div>
+
+  <p>The Survey highlights newer frontiers: <strong>tourism</strong>, with marina and hiking trail development; the <strong>Orange Economy</strong> (creative industries — film, music, design, gaming); <strong>space services</strong>, where India's private launch ecosystem is scaling; <strong>Global Capability Centres</strong>, where India hosts the largest concentration in the world. Real estate, telecom, and IT/ITeS remain mainstays.</p>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑧</span><span class="line"></span></div>
+
+<!-- CHAPTER 8: INDUSTRY -->
+<section id="industry" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">08</span>
+    <div class="meta"><span class="reading-time">5 min read</span>Industry's Next Leap · Structural transformation and global integration</div>
+  </div>
+  <h2 class="section-title">Manufacturing snapped back. <em>And went high-tech.</em></h2>
+  <p class="lede">Manufacturing GVA grew <strong>8.4%</strong> in H1 FY26 — up from 4.8% a year earlier. Real industry GVA growth picked up to 7% (versus 5.9% in FY25). But the more interesting number is composition: <strong>medium- and high-technology activities now account for 46.3% of India's total manufacturing value added</strong>. This is a different economy from the textiles-and-steel India of a decade ago.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>India is among the fastest-growing industrial economies in Q3 2025</h3>
+      <span class="src">Source: UNIDO World Manufacturing Production and Trade Quarterly · QoQ manufacturing growth, Q3 2025</span>
+    </div>
+    <div class="chart-wrap"><canvas id="manufChart"></canvas></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">PLI: the policy that's working</h4>
+      <p>The Production Linked Incentive scheme — rolled out across 14 sectors since 2020 — has tied government incentives to actual production. Electronics has been the most dramatic case: smartphone exports rose from negligible levels to becoming one of India's top export categories. iPhone manufacturing has moved meaningfully to Tamil Nadu and Karnataka.</p>
+      <p>India's <strong>Competitive Industrial Performance ranking improved to 37th in 2023, up from 40th in 2022</strong> (UNIDO).</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The CEA's warning on upstream protection</h4>
+      <p>The chapter argues that protection for upstream industries — textile fibres, steel, aluminium — has gone too far. Tariff walls in upstream sectors function as a <em>tax on downstream exporters</em>. The East Asian lesson, the Survey reminds: upstream industrialisation succeeds only when disciplined by global competition. <em>"Decisions about what not to protect can be as important as decisions about what to support."</em></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Five pillars for Viksit Bharat @2047</span>
+    <h4>Ease of Doing Business · R&amp;D and Innovation · Skilling · Infrastructure &amp; Logistics · Scaling MSMEs</h4>
+    <p>The Survey lists these as the policy pillars for India's industrial leap — with the launch of the Anusandhan National Research Foundation (ANRF) and the new Research, Development &amp; Innovation Fund as concrete steps to crowd in private R&amp;D.</p>
+  </div>
+
+  <div class="chips">
+    <span class="chip saffron">PLI Schemes</span>
+    <span class="chip">India Semiconductor Mission</span>
+    <span class="chip">National Manufacturing Mission</span>
+    <span class="chip">PM GatiShakti</span>
+    <span class="chip indigo">Labour Codes notified Nov 2025</span>
+    <span class="chip green">Quality Control Orders relaxed</span>
+    <span class="chip">National Industrial Corridor Programme</span>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑨</span><span class="line"></span></div>
+
+<!-- CHAPTER 9: INFRASTRUCTURE -->
+<section id="infra" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">09</span>
+    <div class="meta"><span class="reading-time">4 min read</span>Investment &amp; Infrastructure · Strengthening connectivity, capacity, competitiveness</div>
+  </div>
+  <h2 class="section-title">Capex up <em>nearly 89%</em> in four years.</h2>
+  <p class="lede">The Centre's capital outlay rose from <strong>₹5.92 lakh crore in FY22 to ₹11.21 lakh crore budgeted for FY26</strong> — a 89% jump in four years. Studies put the multiplier of public infrastructure spend at 2.5 to 3.5× GDP over the medium term. That means every rupee spent on roads, ports, railways, airports, and digital infrastructure has produced ₹2.5–₹3.5 of additional output. It is the single largest reason FY26 growth surprised to the upside.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Centre's capital expenditure has nearly doubled in five years</h3>
+      <span class="src">Source: Union Budget Documents · ₹ lakh crore, BE = Budget Estimates</span>
+    </div>
+    <div class="chart-wrap"><canvas id="capexChart"></canvas></div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">The headline numbers behind the chart</h3>
+  <ul class="clean">
+    <li><strong>Airport network has doubled</strong> over the past decade, easing logistics and tourism constraints.</li>
+    <li><strong>Inland waterways freight</strong> growing rapidly — a cheaper, lower-emission alternative to road and rail for bulk goods.</li>
+    <li><strong>BharatNet, 5G rollout, UPI, Aadhaar, FASTag, DigiYatra, ULIP</strong> — the Digital Public Infrastructure stack underpinning everything from payments to logistics planning.</li>
+    <li><strong>RBI Project Finance Directions 2025</strong> (effective 1 October 2025) — unified framework for infrastructure lending across all financial institutions.</li>
+    <li><strong>SEBI's SM REIT framework</strong> reduces minimum asset size from ₹500 crore to ₹50 crore — opens up smaller real estate assets to retail-accessible structures.</li>
+    <li><strong>InvITs and REITs</strong> raised ₹13,893 crore between April and November 2025 alone — long-term institutional capital flowing into infrastructure assets.</li>
+  </ul>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>Why "PM GatiShakti" became the quiet revolution</h4>
+    <p>Launched in 2021, PM GatiShakti is essentially a single, GIS-enabled platform on which every ministry, every state, and now even private developers can see infrastructure plans and existing assets. It sounds bureaucratic; in practice it has meant fewer roads being dug up by the gas pipeline contractor a month after they were paved. Multimodal coordination — once an Indian punchline — is becoming routine. The chapter argues this is what is now turning capex into growth multiplier rather than waste.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑩</span><span class="line"></span></div>
+
+<!-- CHAPTER 10: CLIMATE -->
+<section id="climate" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">10</span>
+    <div class="meta"><span class="reading-time">5 min read</span>Environment &amp; Climate Change · Building a resilient, competitive, development-driven India</div>
+  </div>
+  <h2 class="section-title">"Development is itself a form of <em>adaptation</em>."</h2>
+  <p class="lede">This year's climate chapter is unusually candid. It takes a hard look at Europe's transition — the Netherlands' grid congestion, Spain's April 2025 blackout — and draws a lesson: transitions that outpace institutional capacity become fragile, not green. The Survey makes the case for <em>sequencing</em>: building grid, storage, and balancing capacity <em>before</em> compressing the renewables timeline. It is one of the most policy-substantive chapters in the document.</p>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">India's actual energy mix challenge</h4>
+      <p>Achieving sustained growth requires substantial expansion of affordable, reliable electricity. Renewables will play a growing role, but capacity additions don't automatically translate into dependable supply during non-solar peak hours. As renewable penetration rises, the cost of maintaining dispatchable thermal capacity rises too — even as that thermal utilisation declines. Grid stability becomes the binding constraint, not capacity.</p>
+
+      <p>The Survey's recommendation: <strong>maintain sufficient dispatchable thermal capacity</strong> alongside renewables expansion, and treat climate strategy as an energy system strategy rather than a standalone target.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">CBAM is the new tariff</h4>
+      <p>The EU's Carbon Border Adjustment Mechanism, fully effective from 2026, levies tariffs on imports of carbon-intensive goods like steel and cement. India is a target. The chapter argues for capacity-building in carbon measurement, accounting standards, and bilateral mutual recognition — not for capitulating to one country's methodology applied unilaterally.</p>
+
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin:24px 0 10px;">India's climate strategy pillars</h4>
+      <ul class="clean">
+        <li><strong>Adaptation</strong> — climate-resilient agriculture, water security, urban resilience</li>
+        <li><strong>Mitigation</strong> — renewables, battery storage, nuclear expansion</li>
+        <li><strong>Mission LiFE</strong> — behavioural change at citizen level</li>
+        <li><strong>Climate finance</strong> — pushing for multilateral institution reform</li>
+      </ul>
+    </div>
+  </div>
+
+  <blockquote>
+    "Development is, in itself, a form of adaptation. While emissions mitigation is important, effective climate action depends on improving societal capacity to withstand shocks through stronger health systems, climate-resilient infrastructure, enhanced agricultural productivity, and access to affordable and reliable energy."
+    <cite>— Chapter 10, on the philosophy of India's climate strategy</cite>
+  </blockquote>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑪</span><span class="line"></span></div>
+
+<!-- CHAPTER 11: EDUCATION AND HEALTH -->
+<section id="human" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">11</span>
+    <div class="meta"><span class="reading-time">5 min read</span>Education &amp; Health · What works and what's next</div>
+  </div>
+  <h2 class="section-title">24.7 crore students. <em>Now the harder problem: quality.</em></h2>
+  <p class="lede">India runs one of the largest school systems in the world: <strong>24.69 crore students across 14.71 lakh schools, supported by 1.01 crore teachers</strong>. Gross Enrolment Ratio is 95.4% at preparatory level. The job of getting children <em>into</em> school is largely done. The job of making sure they learn — which the NEP 2020 calls Foundational Literacy and Numeracy — is the unfinished agenda.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>India's education gap: Expected Years of Schooling vs peers</h3>
+      <span class="src">Source: UNDP Human Development Report 2025</span>
+    </div>
+    <div class="chart-wrap"><canvas id="eduChart"></canvas></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">Health: new frontiers, old foundations</h4>
+      <p>Life expectancy is up. Infant and maternal mortality continue to fall. Ayushman Bharat-PMJAY covers more than 50 crore people for hospitalisation up to ₹5 lakh per family per year. But the next health battles are different.</p>
+      <p>The chapter spotlights <strong>obesity, non-communicable diseases (cardiovascular, diabetes), and the psychological effects of digital addiction</strong> — particularly in productive age groups. These are middle-class diseases of plenty, and they are arriving fast. Prevention, not treatment, is the policy question.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">A flagship school programme</h4>
+      <p>The <strong>PM SHRI scheme</strong> has established 13,076 model schools across 33 states and UTs, with NEP-aligned features — ICT classrooms, integrated science labs, sports infrastructure, eco-clubs, and "Bagless Days" for experiential learning.</p>
+      <p>Anganwadi co-location: 2,99,544 schools (32.9%) now host Anganwadi Centres on premises, bringing 3+ year olds into the educational ecosystem.</p>
+      <p>The APAAR (Automated Permanent Academic Account Registry) system uses Aadhaar to track student progress digitally across school, higher and skill education.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑫</span><span class="line"></span></div>
+
+<!-- CHAPTER 12: EMPLOYMENT -->
+<section id="jobs" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">12</span>
+    <div class="meta"><span class="reading-time">5 min read</span>Employment &amp; Skill Development · Getting skilling right</div>
+  </div>
+  <h2 class="section-title">56.2 crore working. <em>And four labour codes — finally — in force.</em></h2>
+  <p class="lede">A total of <strong>56.2 crore people</strong> aged 15+ were employed in Q2 FY26 (July–September). The quarter added <strong>8.7 lakh new jobs</strong> over Q1. Unemployment in Q2 FY26 (current weekly status basis) was <strong>4.7%</strong>. India's demographic dividend will peak around 2030, when nearly 65% of the population will be in the 15–59 age group.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Labour Force Participation Rate has trended up; unemployment trended down</h3>
+      <span class="src">Source: PLFS Monthly &amp; Quarterly Bulletin, MoSPI · CWS basis, age 15+</span>
+    </div>
+    <div class="chart-wrap"><canvas id="laborChart"></canvas></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The Labour Codes, decoded</h4>
+      <p>In November 2025, the central government notified the four Labour Codes — a reform that had been on paper since 2019. These consolidate <strong>29 central labour laws into four codes</strong> covering wages, industrial relations, social security, and occupational safety. Critically, gig and platform workers are now formally recognised and can be registered for social security schemes.</p>
+      <p>For employers, the codes simplify compliance and offer more flexibility. For workers, they extend social security to a vastly broader section of the workforce. This is the most significant labour market reform since the 1990s.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The female participation puzzle</h4>
+      <p>A 2024 Time Use Survey by MoSPI revealed: women aged 15–59 spend on average <strong>363 minutes a day on unpaid activities</strong>, men only 123. Women's participation in regular wage jobs in rural areas is just 10.8%. The majority of working women are own-account workers (37.5%) or helpers in household enterprises (34.2%) — flexible work that fits the caregiving burden.</p>
+      <p>Policy responses being scaled: safe affordable accommodation for women workers, flexible/hybrid work arrangements, and creches near workplaces.</p>
+    </div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>The gig worker question, settled (for now)</h4>
+    <p>By some estimates, India will have 23.5 million gig workers by 2029–30. The Code on Social Security 2020 (now operational) requires platforms like Zomato, Swiggy, Ola and Uber to contribute toward a social security fund for gig workers — for benefits like accident cover, maternity benefits, and old-age protection. Implementation rules are expected to be in place over the next few months. India is among the few countries to legally bring platform workers under a national social security architecture.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑬</span><span class="line"></span></div>
+
+<!-- CHAPTER 13: RURAL DEVELOPMENT -->
+<section id="rural" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">13</span>
+    <div class="meta"><span class="reading-time">4 min read</span>Rural Development &amp; Social Progress · From participation to partnership</div>
+  </div>
+  <h2 class="section-title">Poverty cut <em>by three-quarters</em> in two decades.</h2>
+  <p class="lede">In June 2025, the World Bank revised its International Poverty Line from USD 2.15 to USD 3.00 per day (PPP 2021 prices). On the new line, India's extreme poverty rate for 2022–23 stands at <strong>5.3%</strong>, with lower-middle-income poverty at <strong>23.9%</strong>. The Multidimensional Poverty Index — measuring education, health and living standards — has collapsed from 55.3% in 2005–06 to <strong>11.28% in 2022–23</strong>.</p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Multidimensional poverty: from 55% to 11% in 17 years</h3>
+      <span class="src">Source: NITI Aayog Multidimensional Poverty Index · NFHS-3 (2005–06), NFHS-5 (2019–21), HCES (2022–23)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="povertyChart"></canvas></div>
+  </div>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The state-led innovations</h4>
+      <p><strong>Bihar's Satat Jeevikoparjan Yojana (SJY)</strong> uses a "graduation approach" for ultra-poor women — asset transfers, training, mentoring over 24 months. A J-PAL study found beneficiaries had stable income even when casual labour collapsed during Covid.</p>
+      <p><strong>Kerala's poverty eradication model</strong> identifies vulnerable households through community participation led by local governments, ASHA workers, and the Kudumbashree network. Individualised micro-plans are tracked digitally.</p>
+      <p>The Union's response: <strong>Samaveshi Aajeevika Yojana</strong> under DAY-NRLM, scaling the graduation approach nationally.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">Rural infrastructure as a poverty exit</h4>
+      <p>The decade saw an extraordinary rural infrastructure build-out:</p>
+      <ul class="clean">
+        <li><strong>Jal Jeevan Mission</strong> — taking piped drinking water to every rural household</li>
+        <li><strong>PM Awas Yojana — Grameen</strong> — pucca houses for the rural poor</li>
+        <li><strong>PMGSY</strong> — rural connectivity with all-weather roads</li>
+        <li><strong>Swachh Bharat Mission</strong> — household toilet construction at unprecedented scale</li>
+        <li><strong>Saubhagya</strong> — household electrification</li>
+        <li><strong>Pradhan Mantri Ujjwala Yojana</strong> — LPG connections for rural women</li>
+      </ul>
+      <p>This is the infrastructure that turned poverty reduction from a transfer-payment story to a service-delivery story.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑭</span><span class="line"></span></div>
+
+<!-- CHAPTER 14: AI -->
+<section id="ai" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">14</span>
+    <div class="meta"><span class="reading-time">6 min read</span>Evolution of the AI Ecosystem in India · The way forward</div>
+  </div>
+  <h2 class="section-title">India's AI bet: <em>not scale. Sectors.</em></h2>
+  <p class="lede">McKinsey's 2025 State of AI survey: <strong>88% of organisations</strong> globally use AI in at least one business function, up from 50% in 2022. 31% are scaling it. 7% have fully deployed. The Survey's view is that India should not try to compete head-on with US hyperscalers on foundation model scale. Instead: <strong>sector-specific AI applications, open and interoperable systems, data sovereignty for Indian users.</strong></p>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>AI adoption has nearly doubled in three years</h3>
+      <span class="src">Source: McKinsey State of AI Report 2025 · % of surveyed organisations using AI in at least one function</span>
+    </div>
+    <div class="chart-wrap"><canvas id="aiChart"></canvas></div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">The strategic logic</h3>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">Why not chase the frontier</h4>
+      <p>Training cutting-edge foundation models requires extraordinary capital, compute, energy, and specialised hardware. Power-hungry data centres are concentrated in a handful of locations globally. Of the top 10 highest-value greenfield projects in 2024, four were in semiconductors and three of those in the US. The Survey is realistic: India will not out-spend the US, China, or even Korea on the foundation-model layer.</p>
+      <p>But the <em>application</em> layer is wide open — and India has structural advantages: large diverse datasets across languages, deep IT services bench, public digital infrastructure (Aadhaar, UPI, ONDC), and a young labour force.</p>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">The labour question</h4>
+      <p>Early evidence from a Yale Budget Lab study and from Brynjolfsson, Chandar &amp; Chen (2025) suggests AI has not produced large-scale labour displacement in the US so far. But the Survey's own analysis of US Professional, Business and Information Services data finds something subtle: while employment levels are not falling, <strong>the marginal responsiveness of employment to output growth has weakened</strong> in the post-GenAI era. In plain terms, output is growing faster than jobs.</p>
+      <p>The policy implication for India: monitor closely, prepare for adaptive reskilling, but don't panic. The biggest near-term opportunity for AI in India is in <em>complementing</em> labour at scale — across agriculture, health diagnostics, education, government service delivery.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">India's AI architecture in three principles</span>
+    <h4>1. Bottom-up, sector-specific over top-down scale.<br/>2. Open, interoperable systems over closed proprietary stacks.<br/>3. Sequencing — enable experimentation first, scale next, regulate the bindingly risky last.</h4>
+    <p>The chapter explicitly rejects "unsustainable models adopted in advanced economies" as templates. Data governance is built around the principle that value from Indian data must accrue to Indians.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑮</span><span class="line"></span></div>
+
+<!-- CHAPTER 15: URBANISATION -->
+<section id="cities" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">15</span>
+    <div class="meta"><span class="reading-time">5 min read</span>Urbanisation · Making India's cities work for its citizens</div>
+  </div>
+  <h2 class="section-title">Cities aren't habitats. <em>They're economic infrastructure.</em></h2>
+  <p class="lede">A meta-analysis by Grover, Lall &amp; Timmis (World Bank, 2021) found that <strong>doubling city size in India typically boosts productivity by 12%</strong>. Yet India's urbanisation has paradoxically <em>slowed</em>. The proportion of Indians living in urban areas is now marginally <em>below</em> the average for lower-middle-income countries. The chapter argues this isn't a feature; it's a bug — a result of fragmented metropolitan governance, restrictive zoning, and broken transit, not citizen preference.</p>
+
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The four binding constraints</h4>
+      <ul class="clean">
+        <li><strong>Land</strong> — restricted density, unclear titles, limited land recycling. Floor space indices in Indian metros are a fraction of comparable Asian cities.</li>
+        <li><strong>Housing</strong> — affordable housing is artificially scarce because density is artificially restricted</li>
+        <li><strong>Mobility</strong> — transit systems overly reliant on private vehicles; metros are coming but urban buses have stagnated</li>
+        <li><strong>Sanitation, waste, water</strong> — vast expansion in recent years; now the bar is reliability, circularity, and efficiency</li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:10px;">The deeper institutional problem</h4>
+      <p>Beneath these is a deeper issue: <strong>fragmented metropolitan governance and limited fiscal autonomy for cities</strong>. Mumbai cannot plan as Mumbai; it must coordinate across a half-dozen bodies. Bengaluru's Bruhat Bengaluru Mahanagara Palike controls a fraction of what city-level governments do elsewhere. The Survey points to <strong>Elinor Ostrom's work on commons</strong> and Indian economist <strong>D. R. Gadgil</strong>: development outcomes depend on institutions and social organisation, not investment alone.</p>
+      <p>The intangible dimension — civic norms, respect for public space, collective behaviour — gets equal billing with infrastructure. Cities can be funded and still feel ungovernable.</p>
+    </div>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>Why this chapter matters even if you live in a village</h4>
+    <p>Over 70% of India's urban population lives in Class I cities (over 100,000 people). 52 metropolitan cities (over 1 million) account for 42.3% of all urban residents. The economic argument the Survey is making — cities are a form of critical economic infrastructure that drives national productivity — implies that fixing Mumbai, Bengaluru, Chennai, Delhi and a dozen others is, in effect, a national growth strategy. Bad cities are not just a Mumbai problem; they are an India productivity problem.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">⑯</span><span class="line"></span></div>
+
+<!-- CHAPTER 16: STRATEGIC RESILIENCE -->
+<section id="strategy" class="chapter-section">
+  <div class="chapter-tag">
+    <span class="num">16</span>
+    <div class="meta"><span class="reading-time">7 min read</span>From Import Substitution to Strategic Resilience &amp; Strategic Indispensability</div>
+  </div>
+  <h2 class="section-title">The state must become <em>entrepreneurial</em>.</h2>
+  <p class="lede">The final chapter (in two parts) is the Survey's intellectual peak. It frames India's transition in three steps: from <em>import substitution</em> (the old model — protect industry from imports) → to <em>strategic resilience</em> (absorb shocks, preserve stability) → to <em>strategic indispensability</em> (become so critical to global value chains that coercion becomes impossible). The vehicle for all three: a fundamentally upgraded state capacity.</p>
+
+  <blockquote>
+    "The foundation of well-being is dharma. The foundation of dharma is economic strength. And the foundation of economic strength is the state."
+    <cite>— Chanakya Sutras, epigraph to Chapter 16</cite>
+  </blockquote>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">The three transitions, in one sentence each</h3>
+
+  <div class="chart-card">
+    <div class="head">
+      <h3>Three strategic stances for India in a fragmenting world</h3>
+      <span class="src">Adapted from Chapter 16, Economic Survey 2025–26</span>
+    </div>
+    <div style="padding:16px 0;">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding:20px 0;border-bottom:1px solid var(--paper-soft);">
+        <div style="font-family:'Fraunces',serif;font-weight:900;font-size:48px;color:var(--muted);line-height:1;letter-spacing:-0.02em;">01</div>
+        <div>
+          <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;">Import Substitution <span style="color:var(--muted);">— the old default</span></h4>
+          <p style="margin:0;">Build domestic capacity behind tariff walls. Works for some upstream sectors briefly. Fails because protected firms grow lazy and pass costs to downstream exporters. The 20th-century model India is leaving behind.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding:20px 0;border-bottom:1px solid var(--paper-soft);">
+        <div style="font-family:'Fraunces',serif;font-weight:900;font-size:48px;color:var(--indigo);line-height:1;letter-spacing:-0.02em;">02</div>
+        <div>
+          <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;">Strategic Resilience <span style="color:var(--muted);">— where India is now</span></h4>
+          <p style="margin:0;">Absorb shocks. Preserve stability. Diversify trade partners, build reserves, secure essential supplies (semiconductors, critical minerals, defence inputs). The current state of play. Necessary but not sufficient.</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding:20px 0;">
+        <div style="font-family:'Fraunces',serif;font-weight:900;font-size:48px;color:var(--saffron-deep);line-height:1;letter-spacing:-0.02em;">03</div>
+        <div>
+          <h4 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin-bottom:6px;">Strategic Indispensability <span style="color:var(--muted);">— the destination</span></h4>
+          <p style="margin:0;">Become a source of reliability, capability, and value others cannot easily replace. UPI exported as DPI. Semiconductors and rare earth processing built at scale. Pharmaceutical capability deepened. Indian standards adopted in emerging tech. The point at which coercion becomes too costly to attempt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">Part II · The entrepreneurial state</h3>
+  <p>Borrowing from <strong>Mariana Mazzucato's</strong> framing, the Survey argues India's state needs to evolve from compliance-based administration to <em>capability-based execution under uncertainty</em>. Concretely:</p>
+
+  <ul class="clean">
+    <li><strong>Act before certainty emerges</strong> — mission-mode platforms in semiconductors and green hydrogen are early examples</li>
+    <li><strong>Structure risk rather than avoid it</strong> — public procurement reformed to enable first-of-a-kind domestic innovation</li>
+    <li><strong>Learn systematically from experimentation</strong> — state-level deregulation compacts replacing inspection-based control with trust-based compliance</li>
+    <li><strong>Correct course without paralysis</strong> — Quality Control Orders that harmed downstream industries put on hold; not defended out of inertia</li>
+  </ul>
+
+  <p>The Survey is unflinching about the diagnosis: <strong>bureaucratic risk aversion, fragmented accountability, and proceduralism weaken the State's ability to act decisively</strong>. The way out is not deregulation as withdrawal — but deregulation as <em>institutional reorientation</em>: shifting administrative effort from low-value policing toward coordination, facilitation, and problem-solving.</p>
+
+  <div class="callout">
+    <span class="callout-label">The "Catch-22" warning</span>
+    <h4>"Joseph Heller's metaphor captured how systems, once built to ensure safety and order, can end up entrapping those they are meant to serve — where every rule is followed, yet the outcome grows steadily more irrational."</h4>
+    <p>The CEA invokes Heller to make a specific point: India's challenge is not to design better policies, but to ensure that rules, incentives, and administrative reflexes serve national resilience rather than procedural self-preservation. <strong>Policy reforms matter. Process reforms matter arguably more.</strong></p>
+  </div>
+
+  <div class="plain-lang">
+    <span class="tag">In plain English</span>
+    <h4>What this chapter is really saying</h4>
+    <p>India has proven it can grow at 7%+. It has proven its banks are sound, its inflation is anchored, its fiscal house is in order. What it has not yet proven is that its <em>state apparatus</em> — its bureaucracy, its courts, its regulators, its state governments — can move fast enough, take risks intelligently enough, and learn from failure quickly enough to handle a world where geopolitics drives economics. The final 100 pages of the Survey are, in effect, a memo to the Indian state about the Indian state. That this kind of self-examination appears in an official government publication is itself a sign of the maturity of the policy conversation.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="line"></span><span class="ornament">∎</span><span class="line"></span></div>
+
+<!-- OUTLOOK -->
+<section>
+  <div class="chapter-tag">
+    <span class="num">∞</span>
+    <div class="meta">Outlook</div>
+  </div>
+  <h2 class="section-title">Where this leaves <em>India in 2026</em>.</h2>
+  <p class="lede">If 2025 was the year of paradox — strong fundamentals against a hostile world — 2026 is the year the test gets harder. The Survey projects FY27 real GDP growth at 6.8–7.2%. Inflation will likely firm modestly from its lows. The rupee may stay under pressure. Trade negotiations with the US will likely conclude. The four labour codes will move from notification to ground-level implementation. The next phase of the GST reform agenda will play out. The reform agenda is now broader than at any time since the early 1990s.</p>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="label">FY27 GDP Growth Forecast</span><span class="num saffron">6.8 – 7.2<span class="small">%</span></span><span class="sub">Economic Survey 2025–26</span><span class="delta neutral">Marathon-pace</span></div>
+    <div class="stat"><span class="label">Medium-term Potential Growth</span><span class="num indigo">7.0<span class="small">%</span></span><span class="sub">Revised up from 6.5%</span><span class="delta up">↑ 50 bps</span></div>
+    <div class="stat"><span class="label">FY26 Fiscal Deficit Target</span><span class="num green">4.4<span class="small">%</span></span><span class="sub">vs 4.8% in FY25 PA</span><span class="delta down">↓ on track</span></div>
+    <div class="stat"><span class="label">Debt-to-GDP Anchor</span><span class="num">50 ± 1<span class="small">%</span></span><span class="sub">Medium-term Centre target</span><span class="delta neutral">New regime</span></div>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:30px;font-weight:600;margin:48px 0 12px;letter-spacing:-0.01em;">What to watch in 2026</h3>
+  <div class="twocol">
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">Macroeconomic</h4>
+      <ul class="clean">
+        <li>Outcome of trade talks with the US</li>
+        <li>CPI rebasing (the new series will recalibrate inflation perceptions)</li>
+        <li>RBI policy stance evolution as base effects fade</li>
+        <li>Rupee trajectory and forex reserve management</li>
+        <li>Private capex cycle — does it sustain?</li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px;">Structural</h4>
+      <ul class="clean">
+        <li>Labour Codes implementation on the ground</li>
+        <li>GST 2.0 — settlement of the new two-slab structure</li>
+        <li>State-level deregulation compacts</li>
+        <li>EU FTA ratification &amp; market opening</li>
+        <li>Semiconductor mission execution &amp; first fab output</li>
+      </ul>
+    </div>
+  </div>
+
+  <blockquote>
+    "The mature mind chooses Śreya — the enduring good — over Preya — the fleeting comfort. The country stands to gain immensely when all of us embrace delayed gratification."
+    <cite>— V. Anantha Nageswaran, citing the Katha Upanishad in the closing of the Preface</cite>
+  </blockquote>
+
+  <div class="callout">
+    <span class="callout-label">The one-line takeaway</span>
+    <h4>India has the strongest macroeconomic hand it has held in three decades. The question is whether its state, its private sector, and its citizens can play it as boldly as the moment demands.</h4>
+    <p>That is the question this entire Economic Survey is, in the end, written to ask.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <h3>Economic Survey of India 2025–26 · A Reader's Edition</h3>
+    <p>A visualised and contextualised reading of the Economic Survey 2025–26, prepared by the Ministry of Finance, Department of Economic Affairs, Economic Division, Government of India, and released in January 2026.</p>
+    <p>The original Economic Survey runs to 740 pages across 17 chapters. This document distils the principal findings, places key data in historical context, and renders the central charts in interactive form. It is intended as an introduction and reference, not a substitute, for the official document.</p>
+    <p>All figures, projections, and quotations are drawn from the Economic Survey 2025–26 unless otherwise noted. Where historical context is added, it draws on public statistics from MoSPI, RBI, the Ministry of Finance, the IMF, the World Bank, and the IMF World Economic Outlook database.</p>
+    <div class="footnote">
+      Original source: <em>Economic Survey 2025–26, Government of India, Ministry of Finance, Department of Economic Affairs.</em> Page references and chart numbers in this document correspond to chapters and approximate locations in the official PDF. This rendering is for educational and explanatory purposes.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Chart.js global config — typography
+  Chart.defaults.font.family = "'DM Sans', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = '#1a1410';
+
+  // Palette
+  const C = {
+    ink:'#1a1410',
+    saffron:'#d97706',
+    saffronDeep:'#b45309',
+    indigo:'#1e3a5f',
+    indigoLight:'#3b5d8a',
+    green:'#2f6f4e',
+    greenLight:'#5fa37e',
+    rust:'#a33b1f',
+    gold:'#a07a2c',
+    muted:'#6b5e4d',
+    paper:'#f6efe2',
+    paperSoft:'#efe6d3'
+  };
+
+  // Common options
+  const baseOpts = {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{labels:{font:{size:12,weight:'500'},boxWidth:14,padding:14},position:'bottom'},
+      tooltip:{
+        backgroundColor:C.ink, titleColor:C.paper, bodyColor:C.paper,
+        borderColor:C.saffron, borderWidth:1, padding:10, displayColors:true,
+        titleFont:{family:"'Fraunces', serif",size:14,weight:'700'},
+        bodyFont:{family:"'DM Sans', sans-serif",size:13}
+      }
+    },
+    scales:{
+      x:{grid:{color:'rgba(26,20,16,0.06)',lineWidth:1},ticks:{color:C.muted,font:{size:11}},border:{color:C.ink,width:1}},
+      y:{grid:{color:'rgba(26,20,16,0.06)',lineWidth:1},ticks:{color:C.muted,font:{size:11}},border:{color:C.ink,width:1}}
+    }
+  };
+
+  // ---- 1. Gold price chart
+  new Chart(document.getElementById('goldChart'),{
+    type:'line',
+    data:{
+      labels:['2020','2021','2022','2023','2024','2025','Jan 2026'],
+      datasets:[{
+        label:'Gold price (USD/oz, year-end)',
+        data:[1898, 1820, 1824, 2063, 2607, 4315, 5101],
+        borderColor:C.saffronDeep, backgroundColor:'rgba(217,119,6,0.15)',
+        fill:true, tension:0.35, borderWidth:3, pointRadius:5, pointBackgroundColor:C.saffronDeep,
+        pointBorderColor:C.paper, pointBorderWidth:2
+      }]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>'$'+v.toLocaleString()}}}
+    }
+  });
+
+  // ---- 2. GDP chart
+  new Chart(document.getElementById('gdpChart'),{
+    type:'bar',
+    data:{
+      labels:['FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25','FY26 (FAE)','FY27 (proj.)'],
+      datasets:[{
+        label:'Real GDP growth, %',
+        data:[8.0, 8.3, 6.8, 6.5, 3.9, -5.8, 9.7, 7.0, 8.2, 6.5, 7.4, 7.0],
+        backgroundColor:(ctx)=>{
+          const v = ctx.parsed?.y ?? 0;
+          if(ctx.dataIndex >= 10) return C.saffron;
+          if(v < 0) return C.rust;
+          return C.indigo;
+        },
+        borderColor:C.ink, borderWidth:1,
+        barPercentage:0.85, categoryPercentage:0.85
+      }]
+    },
+    options:{...baseOpts,
+      plugins:{...baseOpts.plugins, legend:{display:false},
+        tooltip:{...baseOpts.plugins.tooltip, callbacks:{label:c=>`${c.parsed.y}% real growth`}}
+      },
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 3. Demand-side chart
+  new Chart(document.getElementById('demandChart'),{
+    type:'bar',
+    data:{
+      labels:['Private Consumption','Govt Consumption','Capital Formation','Exports'],
+      datasets:[
+        {label:'H1 FY25', data:[7.3, 1.9, 6.7, 5.5], backgroundColor:C.muted, borderColor:C.ink, borderWidth:1},
+        {label:'H1 FY26', data:[7.5, 2.5, 7.6, 5.9], backgroundColor:C.saffron, borderColor:C.ink, borderWidth:1}
+      ]
+    },
+    options:{...baseOpts, indexAxis:'y',
+      scales:{...baseOpts.scales, x:{...baseOpts.scales.x, ticks:{...baseOpts.scales.x.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 4. Supply-side chart
+  new Chart(document.getElementById('supplyChart'),{
+    type:'bar',
+    data:{
+      labels:['Agriculture','Mining','Manufacturing','Construction','Trade & Transport','Finance & RE','Public Admin'],
+      datasets:[
+        {label:'H1 FY25', data:[2.7, 3.6, 4.8, 9.3, 5.8, 6.9, 8.9], backgroundColor:C.muted, borderColor:C.ink, borderWidth:1},
+        {label:'H1 FY26', data:[3.6, -1.8, 8.4, 7.4, 8.0, 9.9, 9.7], backgroundColor:C.green, borderColor:C.ink, borderWidth:1}
+      ]
+    },
+    options:{...baseOpts, indexAxis:'y',
+      scales:{...baseOpts.scales, x:{...baseOpts.scales.x, ticks:{...baseOpts.scales.x.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 5. Fiscal deficit chart
+  new Chart(document.getElementById('fiscalChart'),{
+    type:'line',
+    data:{
+      labels:['FY20','FY21','FY22','FY23','FY24','FY25 PA','FY26 BE'],
+      datasets:[
+        {label:'Fiscal Deficit (% GDP)', data:[4.7, 9.2, 6.7, 6.4, 5.6, 4.8, 4.4], borderColor:C.rust, backgroundColor:'rgba(163,59,31,0.1)', fill:false, borderWidth:3, tension:0.3, pointRadius:5, pointBackgroundColor:C.rust},
+        {label:'Revenue Deficit (% GDP)', data:[2.4, 7.3, 4.4, 4.0, 2.8, 1.7, 1.5], borderColor:C.saffron, backgroundColor:'rgba(217,119,6,0.1)', fill:false, borderWidth:3, tension:0.3, pointRadius:5, pointBackgroundColor:C.saffron},
+        {label:'Primary Deficit (% GDP)', data:[1.6, 5.7, 3.3, 3.0, 2.2, 1.3, 0.8], borderColor:C.indigo, backgroundColor:'rgba(30,58,95,0.1)', fill:false, borderWidth:3, tension:0.3, pointRadius:5, pointBackgroundColor:C.indigo}
+      ]
+    },
+    options:{...baseOpts,
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}, title:{display:true, text:'% of GDP', color:C.muted}}}
+    }
+  });
+
+  // ---- 6. Fiscal composition chart
+  new Chart(document.getElementById('fiscalCompChart'),{
+    type:'bar',
+    data:{
+      labels:['FY20','FY21','FY22','FY23','FY24','FY25 PA','FY26 BE'],
+      datasets:[
+        {label:'Capital Expenditure', data:[36.0, 23.4, 37.4, 42.6, 57.4, 66.7, 71.5], backgroundColor:C.green, stack:'a', borderColor:C.ink, borderWidth:1},
+        {label:'Revenue Deficit', data:[71.4, 79.7, 65.1, 61.6, 46.2, 36.0, 33.4], backgroundColor:C.rust, stack:'a', borderColor:C.ink, borderWidth:1}
+      ]
+    },
+    options:{...baseOpts,
+      scales:{...baseOpts.scales, x:{...baseOpts.scales.x, stacked:true}, y:{...baseOpts.scales.y, stacked:true, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}, title:{display:true,text:'% of fiscal deficit',color:C.muted}}}
+    }
+  });
+
+  // ---- 7. Policy rate chart
+  new Chart(document.getElementById('rateChart'),{
+    type:'bar',
+    data:{
+      labels:['Japan','Euro Area','China','US','UK','India','Korea','Indonesia','Mexico'],
+      datasets:[
+        {label:'Policy rate (Dec 2025), %', data:[0.75, 2.0, 3.0, 3.625, 3.75, 5.25, 2.5, 4.75, 7.0],
+         backgroundColor:[C.indigoLight,C.indigoLight,C.green,C.indigoLight,C.indigoLight,C.saffron,C.green,C.green,C.green],
+         borderColor:C.ink, borderWidth:1}
+      ]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 8. Export growth chart
+  new Chart(document.getElementById('exportChart'),{
+    type:'bar',
+    data:{
+      labels:['Total Exports (goods+services)', 'Merchandise Exports', 'Services Exports'],
+      datasets:[{
+        label:'5-year CAGR, FY20–FY25', data:[9.4, 6.4, 13.0],
+        backgroundColor:[C.indigo, C.rust, C.green], borderColor:C.ink, borderWidth:1
+      }]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 9. BoP chart
+  new Chart(document.getElementById('bopChart'),{
+    type:'bar',
+    data:{
+      labels:['Q1 FY24','Q2 FY24','Q3 FY24','Q4 FY24','Q1 FY25','Q2 FY25','Q3 FY25','Q4 FY25','Q1 FY26','Q2 FY26'],
+      datasets:[
+        {label:'Merchandise trade balance', data:[-62, -64, -71, -50, -57, -75, -78, -59, -68, -75], backgroundColor:C.rust, borderColor:C.ink, borderWidth:1, stack:'a'},
+        {label:'Services trade balance', data:[34, 39, 45, 42, 39, 44, 51, 53, 48, 52], backgroundColor:C.green, borderColor:C.ink, borderWidth:1, stack:'a'},
+        {label:'Net private transfers (remittances)', data:[25, 25, 30, 27, 28, 31, 33, 30, 30, 31], backgroundColor:C.saffron, borderColor:C.ink, borderWidth:1, stack:'a'}
+      ]
+    },
+    options:{...baseOpts,
+      scales:{...baseOpts.scales, x:{...baseOpts.scales.x, stacked:true}, y:{...baseOpts.scales.y, stacked:true, ticks:{...baseOpts.scales.y.ticks, callback:v=>'$'+v+'B'}}}
+    }
+  });
+
+  // ---- 10. CPI chart
+  new Chart(document.getElementById('cpiChart'),{
+    type:'line',
+    data:{
+      labels:['FY22','FY23','FY24','FY25','FY26 (Apr–Dec)'],
+      datasets:[
+        {label:'CPI (Retail) Inflation', data:[5.5, 6.65, 5.36, 4.63, 1.71], borderColor:C.rust, backgroundColor:'rgba(163,59,31,0.12)', fill:true, borderWidth:3, tension:0.35, pointRadius:6, pointBackgroundColor:C.rust, pointBorderColor:C.paper, pointBorderWidth:2},
+        {label:'WPI (Wholesale) Inflation', data:[13.0, 9.41, -0.73, 2.27, 0.04], borderColor:C.indigo, backgroundColor:'rgba(30,58,95,0.08)', fill:true, borderWidth:3, tension:0.35, pointRadius:6, pointBackgroundColor:C.indigo, pointBorderColor:C.paper, pointBorderWidth:2}
+      ]
+    },
+    options:{...baseOpts,
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 11. CPI components chart
+  new Chart(document.getElementById('cpiCompChart'),{
+    type:'line',
+    data:{
+      labels:['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25'],
+      datasets:[
+        {label:'Headline CPI', data:[3.2, 2.8, 2.1, 1.5, 1.4, 1.4, 0.3, 1.1, 1.3], borderColor:C.ink, backgroundColor:'transparent', borderWidth:3, tension:0.35, pointRadius:5, pointBackgroundColor:C.ink},
+        {label:'Food inflation', data:[1.9, 0.9, -1.2, -2.4, -3.0, -3.5, -5.02, -3.8, -2.71], borderColor:C.green, backgroundColor:'transparent', borderWidth:3, tension:0.35, pointRadius:5, pointBackgroundColor:C.green},
+        {label:'Core inflation', data:[4.2, 4.3, 4.4, 4.4, 4.5, 4.5, 4.6, 4.6, 4.62], borderColor:C.saffronDeep, backgroundColor:'transparent', borderWidth:3, tension:0.35, pointRadius:5, pointBackgroundColor:C.saffronDeep}
+      ]
+    },
+    options:{...baseOpts,
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 12. Phillips/scatter chart growth-inflation
+  new Chart(document.getElementById('phillipsChart'),{
+    type:'scatter',
+    data:{
+      datasets:[
+        {label:'Emerging Markets', data:[
+          {x:8.0,y:2.8,name:'India'},
+          {x:5.2,y:5.2,name:'Vietnam'},
+          {x:5.1,y:2.6,name:'Indonesia'},
+          {x:4.9,y:0.0,name:'China'},
+          {x:3.4,y:5.2,name:'Brazil'},
+          {x:2.0,y:4.0,name:'Malaysia'},
+          {x:1.5,y:8.5,name:'Russia'},
+          {x:1.2,y:4.5,name:'South Africa'},
+          {x:1.4,y:3.8,name:'Mexico'},
+          {x:5.6,y:2.5,name:'Philippines'}
+        ], backgroundColor:C.saffron, borderColor:C.ink, borderWidth:2, pointRadius:9, pointHoverRadius:12 }
+      ]
+    },
+    options:{...baseOpts,
+      plugins:{...baseOpts.plugins, legend:{display:false},
+        tooltip:{...baseOpts.plugins.tooltip, callbacks:{
+          label:c=>`${c.raw.name}: ${c.raw.x}% growth · ${c.raw.y}% inflation`
+        }}
+      },
+      scales:{
+        x:{...baseOpts.scales.x, title:{display:true,text:'Real GDP growth, % (2025)',color:C.muted}, min:-2, max:9, ticks:{...baseOpts.scales.x.ticks, callback:v=>v+'%'}},
+        y:{...baseOpts.scales.y, title:{display:true,text:'CPI inflation, % (2025)',color:C.muted}, min:-1, max:10, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}
+      }
+    }
+  });
+
+  // ---- 13. Agriculture decade chart
+  new Chart(document.getElementById('agriDecadeChart'),{
+    type:'bar',
+    data:{
+      labels:['1975–84','1985–94','1995–2004','2005–14','2015–24'],
+      datasets:[{
+        label:'Decadal CAGR, agriculture & allied sector', data:[3.56, 3.19, 2.43, 3.42, 4.45],
+        backgroundColor:[C.muted, C.muted, C.muted, C.indigoLight, C.green],
+        borderColor:C.ink, borderWidth:1
+      }]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 14. Services share chart
+  new Chart(document.getElementById('servicesShareChart'),{
+    type:'bar',
+    data:{
+      labels:['China','UK','India','World','EU','US'],
+      datasets:[
+        {label:'Pre-Covid avg (2015–19)', data:[53.6, 70.8, 48.3, 65.1, 65.2, 78.9], backgroundColor:C.muted, borderColor:C.ink, borderWidth:1},
+        {label:'2024', data:[56.7, 72.8, 49.9, 66.3, 66.1, 79.7], backgroundColor:C.saffron, borderColor:C.ink, borderWidth:1}
+      ]
+    },
+    options:{...baseOpts,
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}, title:{display:true,text:'Services as % of GDP',color:C.muted}}}
+    }
+  });
+
+  // ---- 15. Manufacturing Q3 chart
+  new Chart(document.getElementById('manufChart'),{
+    type:'bar',
+    data:{
+      labels:['China','India','Africa','Asia & Oceania (ex-China)','North America','Europe','Latin America'],
+      datasets:[{
+        label:'QoQ manufacturing growth Q3 2025, %', data:[1.3, 1.3, 1.3, 0.7, 0.3, 0.1, -0.6],
+        backgroundColor:(ctx)=>ctx.parsed?.y < 0 ? C.rust : (ctx.dataIndex === 1 ? C.saffron : C.indigoLight),
+        borderColor:C.ink, borderWidth:1
+      }]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 16. Capex chart
+  new Chart(document.getElementById('capexChart'),{
+    type:'bar',
+    data:{
+      labels:['FY19','FY20','FY21','FY22','FY23','FY24','FY25','FY26 BE'],
+      datasets:[{
+        label:"Centre's Capital Expenditure (₹ lakh crore)",
+        data:[3.07, 3.36, 4.26, 5.92, 7.40, 9.50, 10.50, 11.21],
+        backgroundColor:C.saffron, borderColor:C.ink, borderWidth:1
+      }]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>'₹'+v+' L cr'}}}
+    }
+  });
+
+  // ---- 17. Education EYS chart
+  new Chart(document.getElementById('eduChart'),{
+    type:'bar',
+    data:{
+      labels:['India','Russia','Indonesia','Brazil','Japan','China','USA','Germany'],
+      datasets:[{
+        label:'Expected Years of Schooling (UNDP HDR 2025)',
+        data:[13.0, 13.2, 13.3, 15.8, 15.5, 15.5, 15.9, 17.3],
+        backgroundColor:(ctx)=>ctx.dataIndex === 0 ? C.saffron : C.indigoLight,
+        borderColor:C.ink, borderWidth:1
+      }]
+    },
+    options:{...baseOpts, indexAxis:'y', plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, x:{...baseOpts.scales.x, ticks:{...baseOpts.scales.x.ticks, callback:v=>v+' yrs'}}}
+    }
+  });
+
+  // ---- 18. Labour market chart
+  new Chart(document.getElementById('laborChart'),{
+    type:'line',
+    data:{
+      labels:['Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25'],
+      datasets:[
+        {label:'Labour Force Participation Rate (%)', data:[55.6, 54.8, 54.2, 54.9, 55.0, 55.3, 55.4, 55.8, 56.1], borderColor:C.green, backgroundColor:'transparent', borderWidth:3, tension:0.35, pointRadius:5, pointBackgroundColor:C.green, yAxisID:'y'},
+        {label:'Unemployment Rate (%)', data:[5.1, 5.6, 5.6, 5.2, 5.1, 5.2, 5.2, 4.7, 4.8], borderColor:C.rust, backgroundColor:'transparent', borderWidth:3, tension:0.35, pointRadius:5, pointBackgroundColor:C.rust, yAxisID:'y1'}
+      ]
+    },
+    options:{...baseOpts,
+      scales:{
+        x:baseOpts.scales.x,
+        y:{position:'left', grid:baseOpts.scales.y.grid, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}, border:baseOpts.scales.y.border, title:{display:true,text:'LFPR (%)',color:C.green}, min:50, max:60},
+        y1:{position:'right', grid:{drawOnChartArea:false}, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}, border:baseOpts.scales.y.border, title:{display:true,text:'UR (%)',color:C.rust}, min:3, max:7}
+      }
+    }
+  });
+
+  // ---- 19. Poverty chart
+  new Chart(document.getElementById('povertyChart'),{
+    type:'bar',
+    data:{
+      labels:['2005–06\n(NFHS-3)','2015–16\n(NFHS-4)','2019–21\n(NFHS-5)','2022–23\n(HCES)'],
+      datasets:[{
+        label:'Multidimensional Poverty Headcount Ratio (%)',
+        data:[55.3, 25.0, 14.96, 11.28],
+        backgroundColor:[C.rust, C.saffron, C.gold, C.green],
+        borderColor:C.ink, borderWidth:1
+      }]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+  // ---- 20. AI adoption chart
+  new Chart(document.getElementById('aiChart'),{
+    type:'bar',
+    data:{
+      labels:['2022','2023','2024','2025'],
+      datasets:[{
+        label:'% of organisations using AI in ≥1 function',
+        data:[50, 55, 72, 88],
+        backgroundColor:[C.muted, C.indigoLight, C.saffron, C.saffronDeep],
+        borderColor:C.ink, borderWidth:1
+      }]
+    },
+    options:{...baseOpts, plugins:{...baseOpts.plugins, legend:{display:false}},
+      scales:{...baseOpts.scales, y:{...baseOpts.scales.y, min:0, max:100, ticks:{...baseOpts.scales.y.ticks, callback:v=>v+'%'}}}
+    }
+  });
+
+</script>
+
+</body>
+</html>
