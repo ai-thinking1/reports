@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharat Forward — India's Roadmap to 2047</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f4ecd8;
+    --cream-deep:#ede2c4;
+    --ink:#1a1a2e;
+    --ink-soft:#3a3a52;
+    --saffron:#d97c2b;
+    --saffron-deep:#b85a14;
+    --indigo:#1e3a5f;
+    --indigo-deep:#0f2440;
+    --gold:#c9a449;
+    --green:#3d5c3a;
+    --rule:#c4b896;
+    --paper:#faf4e4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:16px;
+    background-image:
+      radial-gradient(circle at 20% 10%,rgba(217,124,43,0.06) 0%,transparent 40%),
+      radial-gradient(circle at 80% 90%,rgba(30,58,95,0.05) 0%,transparent 40%);
+  }
+  .container{max-width:1180px;margin:0 auto;padding:0 32px}
+
+  /* ===== MASTHEAD ===== */
+  .masthead{
+    padding:60px 0 40px;
+    border-bottom:3px double var(--ink);
+    position:relative;
+  }
+  .masthead::before{
+    content:"";
+    position:absolute;top:20px;left:32px;right:32px;height:1px;background:var(--ink);
+  }
+  .kicker{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--ink-soft);
+    padding-top:20px;
+    margin-bottom:30px;
+  }
+  .kicker .left{display:flex;gap:24px;align-items:center}
+  .ashoka{
+    width:18px;height:18px;border:1.5px solid var(--saffron-deep);border-radius:50%;
+    position:relative;display:inline-block;
+  }
+  .ashoka::before,.ashoka::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(0deg,transparent 47%,var(--saffron-deep) 49%,var(--saffron-deep) 51%,transparent 53%),
+      linear-gradient(45deg,transparent 47%,var(--saffron-deep) 49%,var(--saffron-deep) 51%,transparent 53%),
+      linear-gradient(90deg,transparent 47%,var(--saffron-deep) 49%,var(--saffron-deep) 51%,transparent 53%),
+      linear-gradient(135deg,transparent 47%,var(--saffron-deep) 49%,var(--saffron-deep) 51%,transparent 53%);
+    border-radius:50%;
+  }
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:clamp(56px,9vw,128px);
+    line-height:0.92;
+    letter-spacing:-0.04em;
+    color:var(--ink);
+    margin-bottom:24px;
+  }
+  h1.title em{
+    font-style:italic;
+    color:var(--saffron-deep);
+    font-weight:400;
+  }
+  .deck{
+    font-family:'Fraunces',serif;
+    font-size:clamp(20px,2.2vw,28px);
+    font-weight:400;
+    font-style:italic;
+    color:var(--ink-soft);
+    max-width:780px;
+    line-height:1.4;
+    margin-bottom:36px;
+  }
+  .byline{
+    display:flex;gap:32px;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--ink-soft);
+    padding-top:24px;border-top:1px solid var(--rule);
+  }
+  .byline strong{color:var(--ink);font-weight:600}
+
+  /* ===== SECTIONS ===== */
+  section{padding:80px 0;border-bottom:1px solid var(--rule)}
+  .section-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--saffron-deep);
+    margin-bottom:16px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .section-label::before{
+    content:"";display:inline-block;width:32px;height:1px;background:var(--saffron-deep);
+  }
+  h2{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:clamp(36px,5vw,64px);
+    line-height:1;
+    letter-spacing:-0.025em;
+    margin-bottom:24px;
+    color:var(--ink);
+  }
+  h2 em{font-style:italic;color:var(--saffron-deep);font-weight:400}
+  .lede{
+    font-family:'Fraunces',serif;
+    font-size:21px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:760px;
+    margin-bottom:48px;
+  }
+  .lede::first-letter{
+    font-size:64px;
+    float:left;
+    font-weight:700;
+    line-height:0.85;
+    padding:6px 12px 0 0;
+    color:var(--saffron-deep);
+  }
+  p{margin-bottom:16px;color:var(--ink-soft)}
+  p strong{color:var(--ink);font-weight:600}
+
+  /* ===== WHERE TO TRACK — portals grid ===== */
+  .portals{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:0;
+    border-top:2px solid var(--ink);
+    border-left:2px solid var(--ink);
+  }
+  .portal{
+    background:var(--paper);
+    padding:28px;
+    border-right:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    transition:all 0.3s;
+    position:relative;
+  }
+  .portal:hover{
+    background:var(--saffron);
+    color:var(--ink);
+  }
+  .portal:hover .portal-name,.portal:hover .portal-desc,.portal:hover .portal-url,.portal:hover .portal-num{color:var(--ink)}
+  .portal-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--saffron-deep);
+    letter-spacing:0.1em;
+    margin-bottom:12px;
+  }
+  .portal-name{
+    font-family:'Fraunces',serif;
+    font-size:22px;font-weight:700;
+    line-height:1.15;margin-bottom:10px;
+    color:var(--ink);
+  }
+  .portal-desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin-bottom:16px;
+  }
+  .portal-url{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--indigo);
+    word-break:break-all;
+    border-top:1px dashed var(--rule);
+    padding-top:12px;
+  }
+  .portal-url a{color:inherit;text-decoration:none}
+  .portal-url a:hover{text-decoration:underline}
+
+  /* ===== VISION CARD ===== */
+  .vision-card{
+    background:var(--indigo-deep);
+    color:var(--cream);
+    padding:60px 56px;
+    margin:40px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .vision-card::before{
+    content:"2047";
+    position:absolute;
+    right:-30px;bottom:-80px;
+    font-family:'Fraunces',serif;
+    font-size:340px;
+    font-weight:900;
+    color:rgba(217,124,43,0.12);
+    line-height:1;
+    letter-spacing:-0.05em;
+  }
+  .vision-card h3{
+    font-family:'Fraunces',serif;
+    font-size:42px;font-weight:700;
+    line-height:1.05;margin-bottom:20px;
+    position:relative;
+  }
+  .vision-card h3 em{color:var(--saffron);font-style:italic;font-weight:400}
+  .vision-card p{color:rgba(244,236,216,0.85);max-width:680px;position:relative;font-size:17px;line-height:1.6}
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    margin-top:40px;
+    position:relative;
+  }
+  .pillar{
+    border-top:2px solid var(--saffron);
+    padding-top:14px;
+  }
+  .pillar-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--saffron);
+    letter-spacing:0.15em;
+    margin-bottom:6px;
+  }
+  .pillar-name{
+    font-family:'Fraunces',serif;
+    font-size:20px;font-weight:600;
+    color:var(--cream);
+    margin-bottom:6px;
+  }
+  .pillar-sub{font-size:12px;color:rgba(244,236,216,0.7);letter-spacing:0.05em}
+  @media(max-width:680px){.pillars{grid-template-columns:repeat(2,1fr)}}
+
+  /* ===== SECTORS ===== */
+  .sector{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:48px;
+    padding:48px 0;
+    border-top:1px solid var(--rule);
+  }
+  .sector:first-child{border-top:2px solid var(--ink)}
+  .sector-meta{position:sticky;top:20px;align-self:start}
+  .sector-num{
+    font-family:'Fraunces',serif;
+    font-size:72px;font-weight:900;
+    line-height:1;
+    color:var(--saffron-deep);
+    letter-spacing:-0.04em;
+    margin-bottom:8px;
+  }
+  .sector-cat{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+  .sector h3{
+    font-family:'Fraunces',serif;
+    font-size:36px;font-weight:700;
+    line-height:1.05;letter-spacing:-0.02em;
+    margin-bottom:20px;
+    color:var(--ink);
+  }
+  .sector h3 em{font-style:italic;color:var(--saffron-deep);font-weight:400}
+  .sector-body p{font-size:15.5px;line-height:1.65;margin-bottom:14px}
+
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:0;
+    margin:24px 0;
+    border-top:1px solid var(--ink);
+    border-left:1px solid var(--ink);
+  }
+  .stat{
+    padding:18px 20px;
+    border-right:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    background:var(--paper);
+  }
+  .stat-num{
+    font-family:'Fraunces',serif;
+    font-size:32px;font-weight:700;
+    line-height:1;
+    color:var(--saffron-deep);
+    letter-spacing:-0.02em;
+    margin-bottom:4px;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    line-height:1.3;
+  }
+
+  .next{
+    background:var(--cream-deep);
+    padding:18px 22px;
+    margin-top:18px;
+    border-left:3px solid var(--saffron-deep);
+  }
+  .next-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--saffron-deep);
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .next ul{list-style:none;padding:0}
+  .next li{
+    padding:6px 0 6px 20px;
+    position:relative;
+    font-size:14.5px;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .next li::before{
+    content:"→";
+    position:absolute;left:0;top:6px;
+    color:var(--saffron-deep);
+    font-weight:600;
+  }
+
+  /* ===== BUDGET CALLOUT ===== */
+  .budget{
+    background:var(--paper);
+    border:2px solid var(--ink);
+    padding:48px;
+    margin:60px 0;
+    position:relative;
+  }
+  .budget::before{
+    content:"₹";
+    position:absolute;
+    top:20px;right:30px;
+    font-family:'Fraunces',serif;
+    font-size:120px;font-weight:900;
+    color:var(--saffron);opacity:0.2;
+    line-height:1;
+  }
+  .budget h3{
+    font-family:'Fraunces',serif;
+    font-size:36px;font-weight:700;
+    margin-bottom:8px;
+  }
+  .budget-sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--saffron-deep);margin-bottom:24px}
+  .budget-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:20px}
+  .budget-item{border-top:2px solid var(--ink);padding-top:12px}
+  .budget-item .amount{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.02em}
+  .budget-item .what{font-size:13px;color:var(--ink-soft);line-height:1.4;margin-top:4px}
+
+  /* ===== PARTICIPATE ===== */
+  .participate{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    margin-top:48px;
+  }
+  .p-col{
+    padding:36px;
+    border:1px solid var(--ink);
+  }
+  .p-col:first-child{border-right:none;background:var(--ink);color:var(--cream)}
+  .p-col:first-child .section-label{color:var(--saffron)}
+  .p-col:first-child .section-label::before{background:var(--saffron)}
+  .p-col h3{font-family:'Fraunces',serif;font-size:30px;font-weight:700;line-height:1.1;margin-bottom:14px}
+  .p-col p{font-size:14.5px;line-height:1.6}
+  .p-col:first-child p{color:rgba(244,236,216,0.85)}
+  .p-link{
+    display:inline-block;
+    margin-top:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--saffron);
+    text-decoration:none;
+    border-bottom:1px solid var(--saffron);
+    padding-bottom:2px;
+  }
+  .p-col:nth-child(2) .p-link{color:var(--saffron-deep);border-color:var(--saffron-deep)}
+  @media(max-width:720px){.participate{grid-template-columns:1fr}.p-col:first-child{border-right:1px solid var(--ink);border-bottom:none}}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--ink);
+    color:var(--cream);
+    padding:60px 0 40px;
+    margin-top:40px;
+  }
+  footer .container{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
+  @media(max-width:720px){footer .container{grid-template-columns:1fr}}
+  footer h4{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--saffron);
+    margin-bottom:18px;
+  }
+  footer p,footer li{font-size:13.5px;line-height:1.6;color:rgba(244,236,216,0.8)}
+  footer ul{list-style:none}
+  footer li{padding:4px 0}
+  footer .colophon{
+    grid-column:1/-1;
+    border-top:1px solid rgba(244,236,216,0.2);
+    margin-top:40px;padding-top:24px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:rgba(244,236,216,0.5);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+
+  /* ===== SECTOR-LEVEL TABLE OF CONTENTS ===== */
+  .toc{
+    background:var(--paper);
+    border:2px solid var(--ink);
+    padding:32px;
+    margin:32px 0;
+  }
+  .toc-title{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:20px;
+  }
+  .toc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:6px;
+  }
+  .toc-grid a{
+    text-decoration:none;
+    color:var(--ink);
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    padding:8px 0;
+    border-bottom:1px dashed var(--rule);
+    display:flex;justify-content:space-between;align-items:baseline;
+    transition:all 0.2s;
+  }
+  .toc-grid a:hover{color:var(--saffron-deep);padding-left:6px}
+  .toc-grid a span.num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--saffron-deep);
+    letter-spacing:0.05em;
+  }
+
+  @media(max-width:680px){
+    .sector{grid-template-columns:1fr;gap:16px}
+    .sector-meta{position:static}
+    .sector-num{font-size:48px}
+    .container{padding:0 20px}
+    .budget{padding:28px}
+    .vision-card{padding:36px 28px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="container">
+    <div class="kicker">
+      <div class="left">
+        <span class="ashoka"></span>
+        <span>Vol. I &middot; A Citizen's Atlas</span>
+      </div>
+      <span>Edition: May 2026</span>
+    </div>
+    <h1 class="title">Bharat<br><em>Forward.</em></h1>
+    <p class="deck">A citizen's reference to India's national roadmap — what is being built, where it stands, and how every sector connects to the larger destination of a developed nation by 2047.</p>
+    <div class="byline">
+      <span><strong>Scope</strong> &middot; Every major sector</span>
+      <span><strong>Horizon</strong> &middot; 2026 → 2047</span>
+      <span><strong>Sources</strong> &middot; Govt of India, NITI Aayog, PIB, Union Budget 2026-27, Economic Survey 2025-26</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== WHERE TO TRACK ===== -->
+<section id="track">
+  <div class="container">
+    <div class="section-label">Section One &middot; Official Sources</div>
+    <h2>Where to <em>see it for yourself.</em></h2>
+    <p class="lede">There is no single "India roadmap" page, but there is a working set of official portals that together show what is planned, what is funded, and what is being delivered in real time. Start here before reading anyone else's interpretation — including this one.</p>
+
+    <div class="portals">
+      <div class="portal">
+        <div class="portal-num">01 / Headline tracker</div>
+        <div class="portal-name">Transforming India Dashboard</div>
+        <div class="portal-desc">MyGov's flagship live dashboard — real-time numbers on toilets built, tap connections delivered, LED bulbs distributed, MUDRA loans sanctioned, and dozens of other flagship schemes.</div>
+        <div class="portal-url"><a href="https://transformingindia.mygov.in/" target="_blank">transformingindia.mygov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">02 / Project pipeline</div>
+        <div class="portal-name">India Investment Grid</div>
+        <div class="portal-desc">Searchable database of every National Infrastructure Pipeline (NIP) project above ₹100 crore — roads, rail, power, urban, with stage, cost, and ministry. The actual list of what is being built.</div>
+        <div class="portal-url"><a href="https://indiainvestmentgrid.gov.in/" target="_blank">indiainvestmentgrid.gov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">03 / Integrated planning</div>
+        <div class="portal-name">PM Gati Shakti Portal</div>
+        <div class="portal-desc">The GIS-based national master plan integrating 16 ministries. Use it to see how roads, rail, ports, and pipelines are being planned together rather than in silos.</div>
+        <div class="portal-url"><a href="https://pmgatishakti.gov.in/" target="_blank">pmgatishakti.gov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">04 / Policy & analysis</div>
+        <div class="portal-name">NITI Aayog</div>
+        <div class="portal-desc">India's apex policy think tank. Publishes the Viksit Bharat sectoral roadmaps, the SDG India Index, the DPI@2047 strategy, and most long-horizon planning documents.</div>
+        <div class="portal-url"><a href="https://niti.gov.in/" target="_blank">niti.gov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">05 / Energy & climate</div>
+        <div class="portal-name">India Climate & Energy Dashboard</div>
+        <div class="portal-desc">One-stop view of power generation mix, EV registrations, railway electrification, renewable capacity, and emissions — maintained by NITI Aayog.</div>
+        <div class="portal-url"><a href="https://iced.niti.gov.in/" target="_blank">iced.niti.gov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">06 / Find your scheme</div>
+        <div class="portal-name">myScheme</div>
+        <div class="portal-desc">Tell the portal your age, occupation, income, state — it returns every government scheme you are eligible for, with how to apply. The most useful citizen-facing portal.</div>
+        <div class="portal-url"><a href="https://www.myscheme.gov.in/" target="_blank">myscheme.gov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">07 / Daily official news</div>
+        <div class="portal-name">Press Information Bureau</div>
+        <div class="portal-desc">The official news desk of the Government of India. Every ministry's announcements, launches, and progress reports land here first.</div>
+        <div class="portal-url"><a href="https://www.pib.gov.in/" target="_blank">pib.gov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">08 / The vision portal</div>
+        <div class="portal-name">Viksit Bharat 2047</div>
+        <div class="portal-desc">The umbrella vision portal. Submit ideas via MyGov, read sector plans, see the four-pillar framework (Youth, Women, Poor, Farmers) that anchors long-range planning.</div>
+        <div class="portal-url"><a href="https://viksitindia.com/" target="_blank">viksitindia.com</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">09 / Budget docs</div>
+        <div class="portal-name">Union Budget Portal</div>
+        <div class="portal-desc">The single most important annual document for what comes next: scheme-by-scheme allocations, new programmes, and revised targets. Budget 2026-27 was tabled on 1 Feb 2026.</div>
+        <div class="portal-url"><a href="https://www.indiabudget.gov.in/" target="_blank">indiabudget.gov.in</a></div>
+      </div>
+      <div class="portal">
+        <div class="portal-num">10 / The annual diagnosis</div>
+        <div class="portal-name">Economic Survey</div>
+        <div class="portal-desc">Tabled the day before the Budget by the Chief Economic Adviser. 740 pages on what's working, what isn't, and where the economy is headed. The Survey 2025-26 raised India's medium-term potential growth from 6.5% to 7.0%.</div>
+        <div class="portal-url"><a href="https://www.indiabudget.gov.in/economicsurvey/" target="_blank">indiabudget.gov.in/economicsurvey</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE VISION ===== -->
+<section id="vision">
+  <div class="container">
+    <div class="section-label">Section Two &middot; The Destination</div>
+    <h2>The frame: <em>Viksit Bharat @ 2047.</em></h2>
+    <p class="lede">Almost every scheme and target you will read about ladders up to a single anchor: making India a developed nation by 2047, the centenary of independence. Everything else — Net Zero by 2070, the $30+ trillion economy, NIP 2.0, Gati Shakti — is in service of that one date.</p>
+
+    <div class="vision-card">
+      <h3>An economy of <em>$30 trillion+,</em><br>built on four pillars.</h3>
+      <p>The framework targets per-capita income rising from roughly $2,600 today to $15,000–$18,000 by 2047, multidimensional poverty below 5%, universal high-quality healthcare and education, and net-zero emissions on a 2070 horizon. Achieving it requires sustained 7-8% growth and an investment rate near 35% of GDP.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">PILLAR I</div>
+          <div class="pillar-name">Yuva</div>
+          <div class="pillar-sub">Youth · skilling · jobs</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">PILLAR II</div>
+          <div class="pillar-name">Nari</div>
+          <div class="pillar-sub">Women-led development</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">PILLAR III</div>
+          <div class="pillar-name">Garib</div>
+          <div class="pillar-sub">Poor · welfare floor</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">PILLAR IV</div>
+          <div class="pillar-name">Annadata</div>
+          <div class="pillar-sub">Farmers · rural prosperity</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Underneath this vision sit two operating mechanisms: the <strong>National Infrastructure Pipeline (NIP)</strong>, which is the actual list of funded projects (now in its NIP 2.0 phase, with a new 3-year, ₹17 lakh crore PPP pipeline of 852 projects launched in early 2026), and <strong>PM Gati Shakti</strong>, the GIS-based digital platform that forces 16 ministries to plan rail, road, ports, power, and pipelines on the same map. Together they are what turns a 2047 slogan into a concrete construction schedule.</p>
+  </div>
+</section>
+
+<!-- ===== MACRO FRAME (from Economic Survey 2025-26) ===== -->
+<section id="macro">
+  <div class="container">
+    <div class="section-label">Section Two-and-a-Half &middot; The Numbers Underneath</div>
+    <h2>The macro frame, <em>circa 2026.</em></h2>
+    <p class="lede">The roadmap sits inside a specific moment — and the Economic Survey 2025-26 captured it bluntly. India has just turned in its strongest macroeconomic performance in decades: fastest-growing major economy for the fourth year running, multi-decade-low inflation, the fiscal deficit halved from its Covid peak, and a sovereign rating upgrade after twenty years. Then a 50% US tariff arrived. This is the year in the numbers everyone underneath the schemes is actually managing against.</p>
+
+    <div class="stat-row" style="margin:0 0 32px">
+      <div class="stat"><div class="stat-num">7.4%</div><div class="stat-label">Real GDP growth FY26 (First Advance Estimate)</div></div>
+      <div class="stat"><div class="stat-num">1.7%</div><div class="stat-label">CPI inflation Apr-Dec 2025 — lowest in series</div></div>
+      <div class="stat"><div class="stat-num">4.8%</div><div class="stat-label">Fiscal deficit FY25 (vs 9.2% at Covid peak)</div></div>
+      <div class="stat"><div class="stat-num">$4.1 trn</div><div class="stat-label">Nominal GDP FY26 (₹357 lakh cr)</div></div>
+      <div class="stat"><div class="stat-num">$825 bn</div><div class="stat-label">Total exports FY25 (record, services-led)</div></div>
+      <div class="stat"><div class="stat-num">11 months</div><div class="stat-label">Forex reserves import cover</div></div>
+      <div class="stat"><div class="stat-num">5.25%</div><div class="stat-label">RBI repo rate after 125 bps of 2025 cuts</div></div>
+      <div class="stat"><div class="stat-num">BBB</div><div class="stat-label">S&amp;P upgrade Aug 2025 — first in ~20 years</div></div>
+    </div>
+
+    <p>Three things changed structurally in 2025 that don't fit neatly inside any single sector but reshape all of them:</p>
+    <p><strong>Labour Codes notified, finally.</strong> In November 2025 the central government notified the four Labour Codes consolidating 29 central laws — on wages, industrial relations, social security, and occupational safety. Gig and platform workers (Zomato, Swiggy, Ola, Uber) are now formally recognised and brought under national social security. The single most consequential labour-market reform since 1991.</p>
+    <p><strong>GST 2.0 collapsed slabs.</strong> In September 2025 the GST Council compressed the rate structure from multiple tiers to essentially two slabs, with most items shifting to the lower one. Combined with the February 2025 budget raising the no-tax income threshold to <strong>₹12 lakh</strong>, household disposable income rose materially — and showed up almost immediately in consumption.</p>
+    <p><strong>Two big sectors opened.</strong> Insurance was opened to 100% foreign direct investment. Nuclear power generation was opened to private players for the first time. Both were long-pending unlocks. Together with three trade deals signed in 2025 — with the <strong>UK, Oman, New Zealand</strong> — and a comprehensive <strong>India-EU FTA</strong> awaiting EU Parliament ratification, India's external posture shifted from defensive to active in a single year.</p>
+
+    <p style="margin-top:24px;font-style:italic;color:var(--ink-soft)">The Survey raised India's medium-term <em>potential</em> growth rate from 6.5% to 7.0% — the policy team's way of saying these reforms have permanently lifted what the Indian economy can do. FY27 growth is projected at 6.8–7.2%.</p>
+  </div>
+</section>
+
+<!-- ===== TABLE OF SECTORS ===== -->
+<section id="toc-section" style="padding:48px 0 24px;border-bottom:none">
+  <div class="container">
+    <div class="section-label">Section Three &middot; Sector by Sector</div>
+    <h2>What's <em>actually being built.</em></h2>
+    <p class="lede">What follows is a sector-by-sector snapshot — current scale, the next milestones, and where to verify. The point is not to celebrate; it is to give you a working map of the public works you are paying for.</p>
+    <div class="toc">
+      <div class="toc-title">Jump to a sector</div>
+      <div class="toc-grid">
+        <a href="#power"><span>Power & Electricity</span><span class="num">01</span></a>
+        <a href="#roads"><span>Roads & Highways</span><span class="num">02</span></a>
+        <a href="#rail"><span>Railways & Metro</span><span class="num">03</span></a>
+        <a href="#aviation"><span>Aviation</span><span class="num">04</span></a>
+        <a href="#ports"><span>Ports & Waterways</span><span class="num">05</span></a>
+        <a href="#digital"><span>Digital & Connectivity</span><span class="num">06</span></a>
+        <a href="#water"><span>Water & Sanitation</span><span class="num">07</span></a>
+        <a href="#health"><span>Healthcare</span><span class="num">08</span></a>
+        <a href="#housing"><span>Housing & Urban</span><span class="num">09</span></a>
+        <a href="#education"><span>Education & Skills</span><span class="num">10</span></a>
+        <a href="#manufacturing"><span>Manufacturing</span><span class="num">11</span></a>
+        <a href="#agri"><span>Agriculture & Rural</span><span class="num">12</span></a>
+        <a href="#regulation"><span>Regulation & Governance</span><span class="num">13</span></a>
+        <a href="#climate"><span>Climate & Sustainability</span><span class="num">14</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTORS ===== -->
+<section style="padding-top:0">
+<div class="container">
+
+<!-- 01 POWER -->
+<div class="sector" id="power">
+  <div class="sector-meta">
+    <div class="sector-num">01</div>
+    <div class="sector-cat">Power<br>&amp; Electricity</div>
+  </div>
+  <div class="sector-body">
+    <h3>The grid is going <em>green and bigger.</em></h3>
+    <p>India's total installed power capacity crossed 505 GW in late 2025, and for the first time over 50% of installed capacity is non-fossil — five years ahead of the Paris pledge. The next phase is not whether to expand renewables but how fast and how to firm up the grid as variable solar and wind dominate.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">505 GW</div><div class="stat-label">Total installed capacity (Oct 2025)</div></div>
+      <div class="stat"><div class="stat-num">~234 GW</div><div class="stat-label">Renewable energy installed</div></div>
+      <div class="stat"><div class="stat-num">500 GW</div><div class="stat-label">Non-fossil target by 2030</div></div>
+      <div class="stat"><div class="stat-num">~50 GW</div><div class="stat-label">Annual addition planned</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>PM Surya Ghar Muft Bijli Yojana</strong> — rooftop solar for 1 crore homes; ₹22,000 crore allocated in Budget 2026-27</li>
+        <li><strong>National Green Hydrogen Mission</strong> — 5 million tonnes/year of green hydrogen production by 2030</li>
+        <li><strong>Battery storage</strong> — viability gap funding for 43+ GWh of battery storage; 10 pumped storage projects (11,870 MW) under construction</li>
+        <li><strong>Reform-linked Distribution Scheme (RDSS)</strong> — smart meters and DISCOM modernisation; ₹18,000 crore in FY27</li>
+        <li><strong>Nuclear push</strong> — restructuring being explored to allow private participation in small modular reactors</li>
+        <li><strong>Rare earth corridors</strong> — new in Budget 2026-27, integrated mining-to-magnet ecosystems in Odisha, AP, TN, Kerala</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 02 ROADS -->
+<div class="sector" id="roads">
+  <div class="sector-meta">
+    <div class="sector-num">02</div>
+    <div class="sector-cat">Roads<br>&amp; Highways</div>
+  </div>
+  <div class="sector-body">
+    <h3>From <em>building more</em> to building smarter.</h3>
+    <p>The National Highway network has grown from 91,287 km in 2014 to roughly 146,560 km in late 2025 — a 60%+ expansion. Construction pace touched 37 km/day at peak. The Budget 2026-27 allocation to the Ministry of Road Transport & Highways is around ₹2.87 lakh crore, with a target of ₹35,000 crore in private investment.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">1.46 lakh km</div><div class="stat-label">National highways (Dec 2025)</div></div>
+      <div class="stat"><div class="stat-num">43,510+ km</div><div class="stat-label">4-lane and above NHs</div></div>
+      <div class="stat"><div class="stat-num">7.55 lakh km</div><div class="stat-label">Rural roads (PMGSY)</div></div>
+      <div class="stat"><div class="stat-num">99%+</div><div class="stat-label">Rural habitations connected</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Bharatmala completion focus</strong> — pivot from "build more" to completion-centric metrics on the 34,800 km Bharatmala backbone</li>
+        <li><strong>High-speed expressway corridors</strong> — Delhi-Mumbai (largely complete), Bengaluru-Chennai, Mumbai-Nagpur, Surat-Chennai under construction</li>
+        <li><strong>Stop-free tolling</strong> — Multi-Lane Free Flow (MLFF) tolling launched on NH-48 Gujarat in May 2026, to be rolled out nationally</li>
+        <li><strong>NIP 2.0 PPP pipeline</strong> — 852 projects, ₹17 lakh crore, weighted heavily to roads, launched Jan 2026</li>
+        <li><strong>Construction & Infrastructure Equipment scheme</strong> — Budget 2026-27 introduces a PLI-style scheme for domestic manufacturing of road construction equipment</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 03 RAIL -->
+<div class="sector" id="rail">
+  <div class="sector-meta">
+    <div class="sector-num">03</div>
+    <div class="sector-cat">Railways<br>&amp; Metro</div>
+  </div>
+  <div class="sector-body">
+    <h3>The largest <em>rail makeover</em> in a century.</h3>
+    <p>Railways received a record capex of ₹2.65 lakh crore in Budget 2025-26 and remains a top recipient in 2026-27. Indian Railways is targeting Net Zero by 2030 — full electrification, renewable-powered operations, and pilots on hydrogen and battery locomotives are already running.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">31,000+ km</div><div class="stat-label">New tracks since 2014</div></div>
+      <div class="stat"><div class="stat-num">45,000 km</div><div class="stat-label">Route electrified</div></div>
+      <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Vande Bharat trains in service</div></div>
+      <div class="stat"><div class="stat-num">21 cities</div><div class="stat-label">With operational metro</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Mumbai-Ahmedabad Bullet Train</strong> — India's first high-speed rail (508 km, 350 km/h); 56% physically complete as of Nov 2025; Gujarat section trial 2026, full corridor 2028-29</li>
+        <li><strong>Vande Bharat expansion</strong> — sleeper and metro versions launching; goal to reach every major intercity pair</li>
+        <li><strong>Amrit Bharat Station scheme</strong> — modernisation of 1,000+ stations underway</li>
+        <li><strong>Dedicated Freight Corridors</strong> — Eastern and Western DFCs 90%+ operational; new corridors (East Coast, North-South, East-West) in planning</li>
+        <li><strong>Metro & RRTS</strong> — 919 km of metro under construction across 26 additional cities; Namo Bharat (RRTS) network expanding from Delhi-Meerut</li>
+        <li><strong>Mission 100% electrification</strong> — broad-gauge route electrification near completion; green railway target by 2030</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 04 AVIATION -->
+<div class="sector" id="aviation">
+  <div class="sector-meta">
+    <div class="sector-num">04</div>
+    <div class="sector-cat">Aviation</div>
+  </div>
+  <div class="sector-body">
+    <h3>UDAN-ing the <em>last mile.</em></h3>
+    <p>Under the UDAN regional connectivity scheme, India is targeting 220 destinations — airports, heliports, and water aerodromes — covered by 1,000 routes by 2026, bringing air travel to towns that have never had scheduled flights before.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">157+</div><div class="stat-label">Operational airports</div></div>
+      <div class="stat"><div class="stat-num">220</div><div class="stat-label">UDAN target destinations by 2026</div></div>
+      <div class="stat"><div class="stat-num">1,000</div><div class="stat-label">UDAN routes targeted</div></div>
+      <div class="stat"><div class="stat-num">2x</div><div class="stat-label">Airport count since 2014</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Greenfield airports</strong> — Noida (Jewar), Navi Mumbai near completion; new airports in Tier-II/III cities continuing</li>
+        <li><strong>Drone ecosystem</strong> — Drone PLI, certification simplification, and the Digital Sky platform expansion</li>
+        <li><strong>SAF & green aviation</strong> — sustainable aviation fuel blending mandates being formulated</li>
+        <li><strong>MRO hub strategy</strong> — tax and customs reforms to make India a global maintenance, repair, overhaul base</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 05 PORTS -->
+<div class="sector" id="ports">
+  <div class="sector-meta">
+    <div class="sector-num">05</div>
+    <div class="sector-cat">Ports<br>&amp; Waterways</div>
+  </div>
+  <div class="sector-body">
+    <h3>Sagarmala, and the <em>rivers reopen.</em></h3>
+    <p>India's 12 major ports posted ~7% YoY traffic growth recently, and the inland waterways programme is trying to lift India's near-zero cargo share on rivers (currently ~0.5%, against 8%+ in the US and China) — 111 national waterways have been designated.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Major ports</div></div>
+      <div class="stat"><div class="stat-num">111</div><div class="stat-label">National Waterways notified</div></div>
+      <div class="stat"><div class="stat-num">14,500 km</div><div class="stat-label">Navigable inland waterways</div></div>
+      <div class="stat"><div class="stat-num">0.5% → 5%</div><div class="stat-label">Cargo modal share target (waterways)</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Sagarmala Phase II</strong> — port-led development; new mega ports (Vadhavan in Maharashtra approved; Galathea Bay in A&N planned)</li>
+        <li><strong>Coastal shipping push</strong> — Budget 2026-27 adds dedicated freight corridor support and inland waterways expansion</li>
+        <li><strong>Eastern Waterways Grid</strong> — linking Kolkata with Myanmar via Bangladesh</li>
+        <li><strong>Multimodal Logistics Parks (MMLPs)</strong> — first at Jogighopa (Assam); network being built under Gati Shakti</li>
+        <li><strong>Cruise tourism circuit</strong> — river and coastal cruise infrastructure</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 06 DIGITAL -->
+<div class="sector" id="digital">
+  <div class="sector-meta">
+    <div class="sector-num">06</div>
+    <div class="sector-cat">Digital &amp;<br>Connectivity</div>
+  </div>
+  <div class="sector-body">
+    <h3>The world's fastest <em>internet rollout.</em></h3>
+    <p>Broadband subscribers crossed 100 crore in late 2025. Data costs have collapsed from ₹269/GB in 2014 to about ₹8-10/GB, among the lowest globally. India built the world's fastest 5G rollout (4,62,000+ towers across 779 districts) and BharatNet has reached over 2.15 lakh gram panchayats.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">100+ crore</div><div class="stat-label">Broadband subscribers</div></div>
+      <div class="stat"><div class="stat-num">2.15 lakh</div><div class="stat-label">Gram panchayats connected via BharatNet</div></div>
+      <div class="stat"><div class="stat-num">4.6 lakh</div><div class="stat-label">5G BTS deployed</div></div>
+      <div class="stat"><div class="stat-num">4-5x</div><div class="stat-label">Data centre capacity growth target by 2030</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Amended BharatNet Programme</strong> — optical fibre to 2.64 lakh GPs in ring topology, plus on-demand connectivity to non-GP villages</li>
+        <li><strong>National Broadband Mission 2.0</strong> — launched Jan 2025; centralised Right-of-Way portal (GatiShakti Sanchar)</li>
+        <li><strong>IndiaAI Mission</strong> — shared GPU compute, foundation models, AI safety institute. The Economic Survey is explicit: India won't outspend the US/China on the foundation-model layer. The strategic bet is sector-specific applications, open interoperable systems, and data sovereignty for Indian users</li>
+        <li><strong>DPI@2047</strong> — NITI Aayog's strategic roadmap to extend Digital Public Infrastructure into health, agri, education, credit, and beyond UPI</li>
+        <li><strong>Data centre policy</strong> — Budget 2026-27 tax holidays for hyperscalers through 2047 to position India as global data/AI hub</li>
+        <li><strong>Semiconductor mission</strong> — fabs sanctioned in Gujarat (Tata-PSMC), Assam (Tata OSAT), Sanand (Kaynes, CG Power); next round of approvals expected</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 07 WATER -->
+<div class="sector" id="water">
+  <div class="sector-meta">
+    <div class="sector-num">07</div>
+    <div class="sector-cat">Water &amp;<br>Sanitation</div>
+  </div>
+  <div class="sector-body">
+    <h3>A tap in <em>every rural home.</em></h3>
+    <p>Rural tap-water coverage has risen from 16.7% of households in 2019 to roughly 81.8% by 2026 under Jal Jeevan Mission. The mission was extended to December 2028 (JJM 2.0) to close the gap. WHO estimates nearly 400,000 diarrheal deaths a year are being prevented as a result.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">81.8%</div><div class="stat-label">Rural homes with tap water (2026)</div></div>
+      <div class="stat"><div class="stat-num">16.7%</div><div class="stat-label">Coverage in 2019</div></div>
+      <div class="stat"><div class="stat-num">5.5 crore</div><div class="stat-label">Hours/day saved on water fetching</div></div>
+      <div class="stat"><div class="stat-num">Dec 2028</div><div class="stat-label">Universal coverage deadline (JJM 2.0)</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Jal Jeevan Mission 2.0</strong> — approved Mar 2026, focus on functionality, water quality, and arsenic/fluoride-affected districts</li>
+        <li><strong>Nal Jal Mitras</strong> — local technicians trained in every village for operation and maintenance</li>
+        <li><strong>Swachh Bharat 2.0</strong> — ODF Plus villages; faecal sludge management; solid waste in 4,500+ urban bodies</li>
+        <li><strong>Atal Bhujal Yojana</strong> — community-led groundwater management in 7 water-stressed states</li>
+        <li><strong>Namami Gange Phase II</strong> — rejuvenation of Ganga and tributaries; sewage treatment infrastructure being added across the basin</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 08 HEALTHCARE -->
+<div class="sector" id="health">
+  <div class="sector-meta">
+    <div class="sector-num">08</div>
+    <div class="sector-cat">Healthcare</div>
+  </div>
+  <div class="sector-body">
+    <h3>Universal coverage, <em>digital first.</em></h3>
+    <p>Ayushman Bharat PM-JAY offers ₹5 lakh/year of secondary and tertiary care to the bottom 40% of households and all senior citizens above 70. Over 43.4 crore Ayushman cards have been issued and over 84.79 crore digital health IDs (ABHA) created. The next leap is AI-augmented diagnostics across the public network.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">₹5 lakh</div><div class="stat-label">Annual coverage per family (PM-JAY)</div></div>
+      <div class="stat"><div class="stat-num">43.4 crore</div><div class="stat-label">Ayushman cards issued</div></div>
+      <div class="stat"><div class="stat-num">84.79 crore</div><div class="stat-label">ABHA digital health IDs</div></div>
+      <div class="stat"><div class="stat-num">~1.7 lakh</div><div class="stat-label">Ayushman Arogya Mandirs (primary care)</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>5 integrated medical hubs</strong> — Budget 2026-27 announces these for medical tourism and tertiary care</li>
+        <li><strong>3 new NIPERs, 7 upgrades</strong> — pharma education expansion for biopharma talent</li>
+        <li><strong>eSanjeevani</strong> — world's largest govt telemedicine platform; AI triage being deployed</li>
+        <li><strong>AI in screening</strong> — cervical, breast, and TB screening tools being rolled out to district hospitals; SAHI framework being scaled</li>
+        <li><strong>Out-of-pocket expenditure goal</strong> — bring OOP from ~40-45% to below 30%</li>
+        <li><strong>The next disease burden</strong> — Economic Survey flags obesity, cardiovascular disease, diabetes, and digital-addiction-driven mental health as the rising frontiers, particularly in productive age groups. Prevention, not treatment, becomes the central policy lever</li>
+        <li><strong>National Digital Health Mission</strong> — FHIR-compliant interoperability mandates for hospitals from 2026</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 09 HOUSING -->
+<div class="sector" id="housing">
+  <div class="sector-meta">
+    <div class="sector-num">09</div>
+    <div class="sector-cat">Housing &amp;<br>Urban</div>
+  </div>
+  <div class="sector-body">
+    <h3>Pucca homes and <em>livable cities.</em></h3>
+    <p>Pradhan Mantri Awas Yojana (Gramin + Urban) has crossed 4 crore houses sanctioned. But the Economic Survey 2025-26 makes a sharper argument: India's urbanisation has paradoxically slowed and is now below the average for lower-middle-income countries. Doubling a city's size raises productivity ~12% (World Bank). Fixing the cities — Mumbai, Bengaluru, Chennai, Delhi and a dozen more — is therefore not a Mumbai problem but a national productivity strategy.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">4 crore+</div><div class="stat-label">PMAY houses sanctioned</div></div>
+      <div class="stat"><div class="stat-num">52</div><div class="stat-label">Metropolitan cities (over 1 million)</div></div>
+      <div class="stat"><div class="stat-num">100</div><div class="stat-label">Smart Cities funded</div></div>
+      <div class="stat"><div class="stat-num">₹12.2 lakh cr</div><div class="stat-label">Capex outlay FY27</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>PMAY 2.0</strong> — additional 3 crore houses sanctioned (rural + urban) for the next phase</li>
+        <li><strong>AMRUT 2.0</strong> — universal water and sewerage coverage in 4,800+ urban bodies</li>
+        <li><strong>The four binding constraints</strong> — Economic Survey identifies <em>land</em> (restricted density, FSI limits), <em>housing</em> (affordable shortage from density rules), <em>mobility</em> (transit), and <em>sanitation/waste/water</em> as the binding constraints to unlock</li>
+        <li><strong>Metropolitan governance reform</strong> — Survey argues fragmented metro governance and limited fiscal autonomy are the deeper issue; NITI Aayog's 2026 framework on empowered city governments is the response</li>
+        <li><strong>Tier-II/Tier-III focus</strong> — new financing instruments (REITs, InvITs) being deepened; SEBI's SM REIT framework lowered minimum asset size from ₹500 cr to ₹50 cr</li>
+        <li><strong>Urban transport</strong> — metro and RRTS expansion; EV bus deployment under PM e-Bus Sewa</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 10 EDUCATION -->
+<div class="sector" id="education">
+  <div class="sector-meta">
+    <div class="sector-num">10</div>
+    <div class="sector-cat">Education<br>&amp; Skills</div>
+  </div>
+  <div class="sector-body">
+    <h3>NEP, <em>upgraded.</em></h3>
+    <p>The National Education Policy 2020 is now in mid-implementation. The focus is shifting to outcomes — foundational literacy and numeracy (NIPUN Bharat), skill-aligned higher education, and integrating Indian Knowledge Systems. The Skill India mission targets 40 crore people skilled by 2030.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">24.69 cr</div><div class="stat-label">Students across 14.71 lakh schools</div></div>
+      <div class="stat"><div class="stat-num">13,076</div><div class="stat-label">PM SHRI model schools (across 33 states/UTs)</div></div>
+      <div class="stat"><div class="stat-num">32.9%</div><div class="stat-label">Schools with co-located Anganwadi centres</div></div>
+      <div class="stat"><div class="stat-num">23</div><div class="stat-label">IITs (from 16 in 2014)</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Education-to-Employment Standing Committee</strong> — proposed in Budget 2026-27 to push services-sector employability</li>
+        <li><strong>PM SHRI scaling</strong> — 13,076 NEP-aligned model schools already operational; ICT classrooms, science labs, "Bagless Days"</li>
+        <li><strong>APAAR</strong> — Aadhaar-linked Automated Permanent Academic Account Registry tracking student progress across school, higher, and skill education</li>
+        <li><strong>Apprenticeship expansion</strong> — internship scheme in top 500 companies for 1 crore youth</li>
+        <li><strong>Multilingual DPI</strong> — Bhashini-led translation/voice infrastructure into education</li>
+        <li><strong>Anusandhan National Research Foundation (ANRF)</strong> — operational, with a new Research, Development & Innovation Fund crowding in private R&D</li>
+        <li><strong>Foundational Literacy & Numeracy (NIPUN Bharat)</strong> — the unfinished agenda; getting children into school is done, making sure they learn is not</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 11 MANUFACTURING -->
+<div class="sector" id="manufacturing">
+  <div class="sector-meta">
+    <div class="sector-num">11</div>
+    <div class="sector-cat">Manufacturing<br>&amp; Industry</div>
+  </div>
+  <div class="sector-body">
+    <h3>From <em>assembly</em> to design.</h3>
+    <p>The Production Linked Incentive (PLI) regime now spans 14 sectors with outlays approaching ₹2 lakh crore. Manufacturing GVA grew 8.4% in H1 FY26 — but the more interesting number is composition. <strong>Medium- and high-technology activities now account for 46.3% of India's total manufacturing value added.</strong> India's UNIDO Competitive Industrial Performance ranking improved to 37th in 2023, up from 40th. This is a different economy from the textiles-and-steel India of a decade ago.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">14</div><div class="stat-label">PLI sectors</div></div>
+      <div class="stat"><div class="stat-num">46.3%</div><div class="stat-label">Medium/high-tech share of manufacturing VA</div></div>
+      <div class="stat"><div class="stat-num">37th</div><div class="stat-label">UNIDO Competitive Industrial Performance rank</div></div>
+      <div class="stat"><div class="stat-num">$30 trn</div><div class="stat-label">GDP target by 2047</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Semiconductor Mission Phase II</strong> — Tata-PSMC fab in Gujarat, Tata OSAT in Assam, Sanand projects (Kaynes, CG Power) progressing; next round of approvals expected</li>
+        <li><strong>Rare earth corridors</strong> — Odisha, AP, TN, Kerala — integrated mining-to-magnet ecosystems (Budget 2026-27)</li>
+        <li><strong>EV battery localisation</strong> — customs duty exemptions on lithium cells extended to Mar 2028</li>
+        <li><strong>Defence indigenisation</strong> — positive indigenisation lists expanding; Defence Industrial Corridors in UP and TN</li>
+        <li><strong>MSME credit reforms</strong> — credit guarantee enhancements and revival of legacy industrial clusters</li>
+        <li><strong>Trade architecture</strong> — UK, Oman, NZ FTAs signed in 2025; India-EU FTA awaiting ratification; US trade talks continuing</li>
+        <li><strong>Anusandhan NRF + RDI Fund</strong> — operational; designed to crowd in private R&D</li>
+        <li><strong>Upstream protection rethink</strong> — Economic Survey explicitly warns that protective tariffs on textile fibres, steel, and aluminium have become a tax on downstream exporters; expect calibrated rollbacks</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 12 AGRI -->
+<div class="sector" id="agri">
+  <div class="sector-meta">
+    <div class="sector-num">12</div>
+    <div class="sector-cat">Agriculture<br>&amp; Rural</div>
+  </div>
+  <div class="sector-body">
+    <h3>Productivity, prices, and <em>predictability.</em></h3>
+    <p>Agriculture employs 46.1% of India's workforce and contributes about a fifth of national income. The decade FY16-FY25 averaged 4.45% growth — the highest in 50 years. But the headline hides the real story: <strong>livestock grew 7.1% annually and fisheries 8.8%, while the crop sector managed only 3.5%.</strong> The next decade is about pulling crops up to where the allied sectors already are.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">46.1%</div><div class="stat-label">Of workforce in agriculture & allied</div></div>
+      <div class="stat"><div class="stat-num">+195%</div><div class="stat-label">Livestock GVA growth FY15-FY24</div></div>
+      <div class="stat"><div class="stat-num">3rd</div><div class="stat-label">India's world rank in fish production</div></div>
+      <div class="stat"><div class="stat-num">11+ crore</div><div class="stat-label">PM-KISAN beneficiaries</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Agri DPI / AgriStack</strong> — farmer registry, land records, advisory at scale</li>
+        <li><strong>Natural farming mission</strong> — 1 crore farmers transitioning to natural farming methods</li>
+        <li><strong>Pulses and oilseeds self-reliance</strong> — Atmanirbharta in tur, urad, masur, mustard</li>
+        <li><strong>Digital Livestock Mission</strong> — building on the strongest-growing agri sub-sector</li>
+        <li><strong>Cooperative reform</strong> — 2 lakh new PACS (Primary Agricultural Credit Societies) computerisation</li>
+        <li><strong>Agri export hubs</strong> — 50+ horticulture clusters being developed</li>
+        <li><strong>Rural consumption signal</strong> — NABARD Rural Survey Nov 2025 found 79.2% of rural households consumed more YoY; the most reliable signal of broad-based growth</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 13 REGULATION -->
+<div class="sector" id="regulation">
+  <div class="sector-meta">
+    <div class="sector-num">13</div>
+    <div class="sector-cat">Regulation<br>&amp; Governance</div>
+  </div>
+  <div class="sector-body">
+    <h3>From rules to <em>service delivery.</em></h3>
+    <p>2025 was the biggest reform year in three decades. Four <strong>Labour Codes</strong> consolidating 29 central laws were notified in November. <strong>GST 2.0</strong> collapsed many slabs to essentially two in September. The income-tax threshold was raised to <strong>₹12 lakh</strong> in the February budget. <strong>Insurance was opened to 100% FDI</strong>; <strong>nuclear power generation was opened to private players</strong>. The Bharatiya Nyaya Sanhita replaced the IPC. The DPDP Act 2023 is being operationalised. Decriminalisation of dozens of minor offences continues under Jan Vishwas.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">4 Codes</div><div class="stat-label">Labour Codes consolidating 29 laws (Nov 2025)</div></div>
+      <div class="stat"><div class="stat-num">₹12 lakh</div><div class="stat-label">New no-tax income threshold (Feb 2025)</div></div>
+      <div class="stat"><div class="stat-num">GST 2.0</div><div class="stat-label">Slabs collapsed to ~2 (Sept 2025)</div></div>
+      <div class="stat"><div class="stat-num">100% FDI</div><div class="stat-label">Insurance sector fully opened</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>Labour Codes implementation</strong> — moving from notification to ground-level execution; gig and platform workers brought under social security (~2.35 crore expected by 2029-30)</li>
+        <li><strong>DPDP Rules</strong> — finalisation and phased implementation of India's data protection regime</li>
+        <li><strong>Jan Vishwas 2.0</strong> — further decriminalisation of minor business offences</li>
+        <li><strong>FDA / drug regulation</strong> — CDSCO reforms, new clinical trial rules, biosimilars guidelines, NIPER expansion</li>
+        <li><strong>Banking reform</strong> — High-Level Committee on Banking for Viksit Bharat; PSU NBFC restructuring</li>
+        <li><strong>State-level deregulation compacts</strong> — replacing inspection-based control with trust-based compliance; rolled out via NITI Aayog</li>
+        <li><strong>Mission Karmayogi</strong> — capacity building for civil services; role-based competency framework</li>
+        <li><strong>National Single Window System</strong> — expansion to all states for one-stop business clearance</li>
+        <li><strong>Nuclear sector liberalisation</strong> — private participation rules being finalised; small modular reactors in focus</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 14 CLIMATE -->
+<div class="sector" id="climate">
+  <div class="sector-meta">
+    <div class="sector-num">14</div>
+    <div class="sector-cat">Climate &amp;<br>Sustainability</div>
+  </div>
+  <div class="sector-body">
+    <h3>Net Zero <em>by 2070.</em></h3>
+    <p>India has committed under Paris to reduce emissions intensity by 45% (vs 2005) and hit 50% non-fossil installed capacity by 2030 — the latter has already been crossed, five years early. The next phase is firming renewables, decarbonising hard industries, and scaling green hydrogen.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">50.07%</div><div class="stat-label">Non-fossil installed capacity (already hit)</div></div>
+      <div class="stat"><div class="stat-num">−45%</div><div class="stat-label">Emissions intensity target by 2030</div></div>
+      <div class="stat"><div class="stat-num">2070</div><div class="stat-label">Net Zero target year</div></div>
+      <div class="stat"><div class="stat-num">5 MMT</div><div class="stat-label">Green hydrogen target by 2030</div></div>
+    </div>
+    <div class="next">
+      <div class="next-label">What's next</div>
+      <ul>
+        <li><strong>CCUS Roadmap</strong> — released Dec 2025; ₹20,000 crore allocated in Budget 2026-27 for carbon capture</li>
+        <li><strong>CBAM response</strong> — the EU's Carbon Border Adjustment Mechanism is fully effective from 2026, levying tariffs on Indian steel and cement exports; India is building domestic carbon-accounting capacity and pushing for mutual recognition rather than capitulation</li>
+        <li><strong>Grid firming, not just expansion</strong> — Economic Survey explicitly warns against compressing the renewables timeline ahead of grid, storage, and balancing capacity (citing the Spain April 2025 blackout). Dispatchable thermal stays in the mix longer than headlines suggest</li>
+        <li><strong>Green Credit Programme</strong> — voluntary market-based credits for tree plantation, water, agroforestry</li>
+        <li><strong>National Adaptation Plan</strong> — being prepared with state-level vulnerability assessments</li>
+        <li><strong>EV transition</strong> — FAME III in pipeline; PM e-Drive scheme operational; 30% EV penetration target by 2030</li>
+        <li><strong>Mission LiFE</strong> — lifestyle-for-environment behavioural change campaign linked to UN COP outcomes</li>
+        <li><strong>International Solar Alliance "1000"</strong> — mobilise $1 trillion, 1,000 GW, 1 billion people access by 2030</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- ===== BUDGET CALLOUT ===== -->
+<section style="padding:60px 0">
+  <div class="container">
+    <div class="section-label">Section Four &middot; The Money</div>
+    <h2>Budget 2026-27 in <em>one screen.</em></h2>
+    <p class="lede">A budget is the only document that puts numbers next to ambitions. The FY27 Union Budget, tabled 1 February 2026 by Finance Minister Nirmala Sitharaman, reads as policy continuity: a heavier capex cheque, deeper Tier-II/III focus, and new schemes that quietly reposition India as an AI/data hub and a clean-tech manufacturing base.</p>
+    <div class="budget">
+      <div class="budget-sub">Union Budget 2026-27 &middot; key allocations</div>
+      <h3>₹12.2 lakh crore.</h3>
+      <p style="font-size:15.5px;margin-bottom:10px">That is the headline capital expenditure outlay for FY27 — around 3.1% of GDP — a continued bet that public capex will keep crowding in private investment as Tier-II and Tier-III cities emerge as growth engines.</p>
+      <div class="budget-grid">
+        <div class="budget-item"><div class="amount">₹2.87 lakh cr</div><div class="what">Ministry of Road Transport & Highways (with ₹35,000 cr private investment target)</div></div>
+        <div class="budget-item"><div class="amount">₹2.65 lakh cr</div><div class="what">Railways capex (record level, continued in FY27)</div></div>
+        <div class="budget-item"><div class="amount">₹32,914 cr</div><div class="what">Renewable energy (up 30% YoY), of which ₹22,000 cr to PM Surya Ghar</div></div>
+        <div class="budget-item"><div class="amount">₹40,000 cr</div><div class="what">Electronics Components Manufacturing Scheme (expanded)</div></div>
+        <div class="budget-item"><div class="amount">₹20,000 cr</div><div class="what">Carbon Capture, Utilisation & Storage (CCUS)</div></div>
+        <div class="budget-item"><div class="amount">₹18,000 cr</div><div class="what">Reform-Linked Distribution Sector Scheme (RDSS) for DISCOMs</div></div>
+      </div>
+    </div>
+    <p style="margin-top:32px"><strong>What's quietly new in 2026:</strong> tax holidays for foreign cloud providers through 2047 to anchor data centres and AI infrastructure; rare-earth corridors in four states; a Construction & Infrastructure Equipment manufacturing scheme; a High-Level Committee on Banking for Viksit Bharat; an Infrastructure Risk Guarantee Fund; and an "Education to Employment and Enterprise" Standing Committee aimed at making services 10% of global trade by 2047.</p>
+  </div>
+</section>
+
+<!-- ===== STRATEGIC STANCE ===== -->
+<section id="strategy">
+  <div class="container">
+    <div class="section-label">Section Five &middot; The Strategic Frame</div>
+    <h2>The arc from <em>protection</em> to <em>indispensability.</em></h2>
+    <p class="lede">If the sectors above are the trees, the Economic Survey 2025-26 offers a frame for the forest. Chief Economic Adviser V. Anantha Nageswaran lays out a three-stage transition that organises everything else: from old-style <em>import substitution</em>, through the present-day posture of <em>strategic resilience</em>, towards the destination of <em>strategic indispensability</em> — becoming so critical to global value chains that coercion against India becomes too costly to attempt.</p>
+
+    <div class="vision-card" style="margin-top:8px">
+      <h3>Three stances, <em>one direction.</em></h3>
+      <p>This is the CEA's mental model for why a 2026 budget that looks "mostly continuity" is actually carrying a tighter logic underneath. The schemes you see in each sector are not random — they are levers in a sequence.</p>
+      <div class="pillars" style="grid-template-columns:repeat(3,1fr)">
+        <div class="pillar">
+          <div class="pillar-num">STAGE I</div>
+          <div class="pillar-name">Import Substitution</div>
+          <div class="pillar-sub">The old default · being phased out</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">STAGE II</div>
+          <div class="pillar-name">Strategic Resilience</div>
+          <div class="pillar-sub">Where India is today</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">STAGE III</div>
+          <div class="pillar-name">Strategic Indispensability</div>
+          <div class="pillar-sub">The 2047 destination</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sector" style="border-top:1px solid var(--rule);padding:48px 0 0;grid-template-columns:1fr 1fr 1fr;gap:32px">
+      <div>
+        <h3 style="font-size:24px">01 &middot; <em>Outgoing.</em></h3>
+        <p style="font-size:15px">Build domestic capacity behind tariff walls. Worked briefly for upstream sectors. Fails because protected firms grow lazy and pass costs to downstream exporters. The Survey is unusually candid: <em>"decisions about what NOT to protect can be as important as decisions about what to support."</em> Expect calibrated rollbacks of upstream tariffs on fibres, steel, aluminium.</p>
+      </div>
+      <div>
+        <h3 style="font-size:24px">02 &middot; <em>Current.</em></h3>
+        <p style="font-size:15px">Absorb shocks, preserve stability. Diversify trade partners (UK, Oman, NZ, EU FTAs in 2025). Build reserves (11 months import cover). Secure critical inputs (semiconductors, rare earths, defence). Necessary but not sufficient — resilience prevents collapse, it doesn't generate leverage.</p>
+      </div>
+      <div>
+        <h3 style="font-size:24px">03 &middot; <em>Destination.</em></h3>
+        <p style="font-size:15px">Become a source of reliability others cannot easily replace. UPI exported as DPI to other countries. Semiconductors and rare-earth processing at scale. Pharmaceutical capability deepened. India's standards adopted in emerging tech. The point at which coercion becomes too costly to attempt against you.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:80px;font-size:42px">The deeper bet: <em>an entrepreneurial state.</em></h2>
+    <p>The Survey's final chapters argue that India's binding constraint is no longer policy design — it is execution capacity. Borrowing from Mariana Mazzucato's framework, it pushes for a state that <strong>acts before certainty emerges</strong> (the semiconductor mission, green hydrogen are early examples), <strong>structures risk rather than avoids it</strong>, <strong>learns systematically from experimentation</strong> (state-level deregulation compacts replacing inspection-based control with trust-based compliance), and <strong>course-corrects without paralysis</strong> (Quality Control Orders that harmed downstream industries put on hold, not defended out of inertia).</p>
+    <p>The diagnosis is unflinching: <em>"bureaucratic risk aversion, fragmented accountability, and proceduralism weaken the State's ability to act decisively."</em> The way out is not deregulation as withdrawal but deregulation as institutional reorientation — shifting administrative effort from low-value policing toward coordination, facilitation, and problem-solving. <strong>Policy reforms matter. Process reforms matter arguably more.</strong></p>
+    <p style="margin-top:24px;font-style:italic;color:var(--ink-soft);border-left:3px solid var(--saffron-deep);padding-left:20px;font-family:'Fraunces',serif;font-size:18px">"The mature mind chooses Śreya — the enduring good — over Preya — the fleeting comfort. The country stands to gain immensely when all of us embrace delayed gratification." — V. Anantha Nageswaran, citing the Katha Upanishad in the closing of the Economic Survey 2025-26.</p>
+  </div>
+</section>
+
+<!-- ===== HOW TO PARTICIPATE ===== -->
+<section>
+  <div class="container">
+    <div class="section-label">Section Six &middot; Your Move</div>
+    <h2>You can <em>read it. You can also shape it.</em></h2>
+    <p class="lede">A national roadmap is only as legitimate as the citizens who can interrogate, contribute to, and benefit from it. India runs two parallel channels for civic participation — one for ideas, one for benefits. Both are underused.</p>
+    <div class="participate">
+      <div class="p-col">
+        <div class="section-label">If you have ideas</div>
+        <h3>Contribute to the plan</h3>
+        <p>The MyGov portal runs open consultations on national policy — draft bills, mission frameworks, vision documents. The Viksit Bharat 2047 portal accepts long-form submissions on every theme. NITI Aayog's "Work for Viksit Bharat" portal also collects citizen contributions. They are read by the people drafting the actual schemes.</p>
+        <a class="p-link" href="https://www.mygov.in/" target="_blank">mygov.in →</a>
+      </div>
+      <div class="p-col">
+        <div class="section-label">If you want benefits</div>
+        <h3>Find what's yours</h3>
+        <p>myScheme matches your demographics — age, income, occupation, state, social category — against every active scheme and tells you which ones you qualify for and how to apply. Most Indians are eligible for far more than they claim. Set aside 20 minutes.</p>
+        <a class="p-link" href="https://www.myscheme.gov.in/" target="_blank" style="color:var(--saffron-deep)">myscheme.gov.in →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div>
+      <h4>About this atlas</h4>
+      <p>Bharat Forward is a synthesised reference compiled from public Government of India sources. It is not an official publication. Numbers are accurate to the dates cited in the source documents; sectors evolve quickly, so verify against the linked official portals before acting on any figure.</p>
+    </div>
+    <div>
+      <h4>Primary sources</h4>
+      <ul>
+        <li>NITI Aayog publications &middot; niti.gov.in</li>
+        <li>Press Information Bureau &middot; pib.gov.in</li>
+        <li>Union Budget 2026-27 &middot; indiabudget.gov.in</li>
+        <li>India Investment Grid &middot; NIP database</li>
+        <li>India Climate & Energy Dashboard</li>
+        <li>Transforming India dashboard &middot; MyGov</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reading further</h4>
+      <ul>
+        <li>Economic Survey 2025-26 — the annual diagnostic</li>
+        <li>NITI Aayog: <em>Scenarios Towards Viksit Bharat and Net Zero</em> (sectoral vols.)</li>
+        <li>NITI Aayog: <em>DPI@2047 for Viksit Bharat</em></li>
+        <li>SDG India Index 2023-24</li>
+        <li>Union Budget 2026-27 documents</li>
+      </ul>
+    </div>
+    <div class="colophon">
+      <span>Bharat Forward &middot; Vol. I &middot; May 2026</span>
+      <span>Compiled by Claude &middot; Set in Fraunces & Plus Jakarta Sans</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
