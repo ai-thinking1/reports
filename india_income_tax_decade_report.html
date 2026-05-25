@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Indian Taxpayer — A Decade in Data (FY 2013–14 to FY 2024–25)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+:root {
+  --bg: #F6F1E6;
+  --bg-2: #EFE7D5;
+  --ink: #0E1B2C;
+  --ink-2: #2B2A26;
+  --muted: #6B5E4C;
+  --rule: #D6CAB1;
+  --saffron: #C8551F;
+  --saffron-deep: #9C3D0F;
+  --teal: #14534C;
+  --gold: #A37D24;
+  --green: #4F6B3D;
+  --sage: #8F9A7F;
+  --card: #FBF7EC;
+  --shadow: 0 1px 0 rgba(14,27,44,0.06), 0 18px 40px -24px rgba(14,27,44,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+/* --- header ribbon --- */
+.ribbon {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-2);
+  padding: 10px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ribbon .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.ribbon-mark { color: var(--saffron); font-weight: 700; }
+
+/* --- hero --- */
+.hero {
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(200,85,31,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 28px;
+  display: inline-block;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--saffron);
+}
+
+h1.title {
+  font-family: 'Fraunces', serif;
+  font-weight: 380;
+  font-size: clamp(42px, 6vw, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+h1.title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--saffron);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+.standfirst {
+  font-family: 'Fraunces', serif;
+  font-weight: 350;
+  font-size: 22px;
+  line-height: 1.45;
+  max-width: 760px;
+  color: var(--ink-2);
+  margin-bottom: 36px;
+}
+.standfirst em { color: var(--teal); font-style: italic; }
+
+.byline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.byline span { color: var(--ink); }
+
+/* --- big number band --- */
+.big-numbers {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 56px 0;
+  position: relative;
+}
+.big-numbers .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.bignum {
+  padding: 0 28px;
+  border-right: 1px solid rgba(246,241,230,0.15);
+}
+.bignum:last-child { border-right: none; }
+.bignum:first-child { padding-left: 0; }
+
+.bignum .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 16px;
+}
+.bignum .value {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+  margin-bottom: 10px;
+}
+.bignum .unit {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(246,241,230,0.65);
+  font-weight: 300;
+}
+.bignum .delta {
+  margin-top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--sage);
+}
+
+/* --- section --- */
+section.chapter {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--rule);
+}
+section.chapter.alt { background: var(--bg-2); }
+
+.chapter-head {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 60px;
+  margin-bottom: 48px;
+  align-items: start;
+}
+.chapter-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  padding-top: 12px;
+  border-top: 2px solid var(--saffron);
+  width: fit-content;
+}
+.chapter-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 380;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 100, "SOFT" 50;
+}
+.chapter-title em { font-style: italic; color: var(--teal); font-weight: 350; }
+.chapter-dek {
+  margin-top: 16px;
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 350;
+  color: var(--ink-2);
+  line-height: 1.5;
+  max-width: 720px;
+}
+
+/* --- chart card --- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.card-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 450;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.card-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.card-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  padding: 4px 10px;
+  border: 1px solid var(--saffron);
+  border-radius: 2px;
+}
+
+.chart-frame { position: relative; height: 360px; }
+.chart-frame.tall { height: 460px; }
+.chart-frame.short { height: 280px; }
+
+/* --- two-column grid --- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.grid-2-7-5 { display: grid; grid-template-columns: 7fr 5fr; gap: 24px; }
+
+/* --- pull-quote / insight --- */
+.insight {
+  border-left: 3px solid var(--saffron);
+  padding: 20px 28px;
+  background: rgba(200,85,31,0.06);
+  margin: 24px 0;
+}
+.insight .ilabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 10px;
+}
+.insight p {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  font-weight: 380;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.insight p em { font-style: italic; color: var(--saffron-deep); }
+
+/* --- stat strip --- */
+.strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  margin: 24px 0;
+  box-shadow: var(--shadow);
+}
+.strip > div {
+  padding: 26px 28px;
+  border-right: 1px solid var(--rule);
+}
+.strip > div:last-child { border-right: none; }
+.strip .s-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.strip .s-value {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+}
+.strip .s-foot {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* --- table --- */
+.tbl-wrap {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+.tbl-wrap h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 450;
+  font-size: 20px;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+.tbl-wrap .card-sub { margin-bottom: 18px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+table th {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 12px 14px 12px 0;
+  border-bottom: 1.5px solid var(--ink);
+  font-weight: 500;
+}
+table td {
+  padding: 11px 14px 11px 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+table td:first-child {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ink);
+}
+table tr:last-child td { border-bottom: none; }
+table tr.total td {
+  border-top: 1.5px solid var(--ink);
+  border-bottom: none;
+  font-weight: 700;
+  color: var(--ink);
+  padding-top: 14px;
+}
+.num-pos { color: var(--green); }
+.num-neg { color: var(--saffron-deep); }
+
+/* --- footer --- */
+footer {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 60px 0 40px;
+}
+footer .grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+footer h5 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 18px;
+}
+footer p, footer li {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(246,241,230,0.75);
+}
+footer ul { list-style: none; }
+footer ul li { padding-left: 14px; position: relative; }
+footer ul li::before { content: "—"; position: absolute; left: 0; color: var(--saffron); }
+footer .colophon {
+  padding-top: 24px;
+  border-top: 1px solid rgba(246,241,230,0.15);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(246,241,230,0.5);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* responsive */
+@media (max-width: 880px) {
+  .wrap { padding: 0 22px; }
+  .big-numbers .grid { grid-template-columns: 1fr 1fr; gap: 32px 0; }
+  .bignum { border-right: none; padding: 0 20px; }
+  .bignum:nth-child(2n) { border-right: none; }
+  .bignum:nth-child(1), .bignum:nth-child(2) { border-bottom: 1px solid rgba(246,241,230,0.15); padding-bottom: 32px; }
+  .chapter-head { grid-template-columns: 1fr; gap: 20px; }
+  .grid-2, .grid-2-7-5 { grid-template-columns: 1fr; }
+  .strip { grid-template-columns: 1fr; }
+  .strip > div { border-right: none; border-bottom: 1px solid var(--rule); }
+  .strip > div:last-child { border-bottom: none; }
+  footer .grid { grid-template-columns: 1fr; gap: 40px; }
+  .bignum .value { font-size: 42px; }
+}
+</style>
+</head>
+<body>
+
+<!-- top ribbon -->
+<div class="ribbon">
+  <div class="wrap">
+    <span><span class="ribbon-mark">●</span>&nbsp;&nbsp;Data Report · CBDT Time-Series · FY 2000–01 to FY 2024–25</span>
+    <span>Government of India · Ministry of Finance</span>
+  </div>
+</div>
+
+<!-- hero -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">A Data Report</div>
+    <h1 class="title">The Indian<br/>Taxpayer <em>— a decade<br/>in data.</em></h1>
+    <p class="standfirst">
+      Between FY&nbsp;2013–14 and FY&nbsp;2024–25, India's direct tax base more than <em>doubled</em>,
+      net collections nearly <em>tripled</em>, and the cost of collecting every rupee fell
+      to a historic low. This report visualises the full <em>twelve-year</em> arc of who pays,
+      how much, from where — sourced entirely from the Central Board of Direct Taxes' Time-Series Data.
+    </p>
+    <div class="byline">
+      Compiled from official CBDT data · <span>Last update: FY 2024–25 (provisional)</span> · Released Dec 2025
+    </div>
+  </div>
+</header>
+
+<!-- headline numbers -->
+<section class="big-numbers">
+  <div class="wrap">
+    <div class="grid">
+      <div class="bignum">
+        <div class="label">Total Taxpayers (AY 24–25)</div>
+        <div class="value">12.13 <span style="font-size:0.6em;">cr</span></div>
+        <div class="unit">up from 5.26 crore in AY 13–14</div>
+        <div class="delta">▲ 130.5% over 12 years</div>
+      </div>
+      <div class="bignum">
+        <div class="label">ITRs Filed (FY 24–25)</div>
+        <div class="value">9.18 <span style="font-size:0.6em;">cr</span></div>
+        <div class="unit">vs 3.80 crore in FY 13–14</div>
+        <div class="delta">▲ 141.9% over 12 years</div>
+      </div>
+      <div class="bignum">
+        <div class="label">Net Direct Tax Collection</div>
+        <div class="value">₹22.26 <span style="font-size:0.55em;">L cr</span></div>
+        <div class="unit">FY 2024–25 (provisional)</div>
+        <div class="delta">▲ 248.7% from ₹6.39 L cr</div>
+      </div>
+      <div class="bignum">
+        <div class="label">Direct Tax · GDP Ratio</div>
+        <div class="value">6.73<span style="font-size:0.45em;">%</span></div>
+        <div class="unit">a 24-year high</div>
+        <div class="delta">▲ 111 bps since FY 13–14</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 1: GROWTH IN THE BASE -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 01</div>
+      <div>
+        <h2 class="chapter-title">The base <em>expands.</em></h2>
+        <p class="chapter-dek">
+          Three numbers tell the same story from slightly different angles —
+          taxpayers (anyone with a PAN who filed or had TDS deducted),
+          returns filed in a year, and the unique persons behind those returns.
+          Every line has roughly doubled.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Total taxpayers, ITRs filed, and unique return filers</div>
+          <div class="card-sub">FY/AY 2013–14 to 2024–25 · in crore</div>
+        </div>
+        <div class="card-tag">CBDT Table 1.7, 1.8, 1.9</div>
+      </div>
+      <div class="chart-frame tall"><canvas id="c-base"></canvas></div>
+    </div>
+
+    <div class="insight">
+      <div class="ilabel">Reading the gap</div>
+      <p>
+        The wedge between <em>total taxpayers</em> and <em>persons filing returns</em>
+        is the population whose tax is deducted at source but who never file —
+        roughly <em>3.6 crore people</em> in AY 2024–25. Closing this gap is the
+        single largest compliance opportunity left in the system.
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Year-on-year growth in ITRs</div>
+            <div class="card-sub">FY-over-FY change in total returns filed</div>
+          </div>
+          <div class="card-tag">% change</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-yoy"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Compositional shift, 2013 → 2024</div>
+            <div class="card-sub">Share of ITRs by PAN category</div>
+          </div>
+          <div class="card-tag">% of total</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-mix"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2: COLLECTIONS -->
+<section class="chapter alt">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 02</div>
+      <div>
+        <h2 class="chapter-title">The rupees<br/>that come <em>in.</em></h2>
+        <p class="chapter-dek">
+          Net direct tax collections crossed <strong>₹22 lakh crore</strong>
+          for the first time in FY 2024–25 — a 3.5× jump from FY 2013–14.
+          The defining structural shift: in 2020, non-corporate (mostly individual)
+          taxes overtook corporate taxes, and the gap has widened every year since.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Net direct tax collection by component</div>
+          <div class="card-sub">Corporate tax vs non-corporate tax vs other direct taxes · ₹ crore</div>
+        </div>
+        <div class="card-tag">CBDT Table 1.1</div>
+      </div>
+      <div class="chart-frame tall"><canvas id="c-stack"></canvas></div>
+    </div>
+
+    <div class="strip">
+      <div>
+        <div class="s-label">The Crossover</div>
+        <div class="s-value">FY 2020–21</div>
+        <div class="s-foot">First year non-corporate tax (₹4.88 L cr) exceeded corporate tax (₹4.58 L cr).</div>
+      </div>
+      <div>
+        <div class="s-label">Gap today</div>
+        <div class="s-value">₹2.48 <span style="font-size:0.5em;">L cr</span></div>
+        <div class="s-foot">Non-corporate tax now exceeds corporate by 25% (FY 2024–25).</div>
+      </div>
+      <div>
+        <div class="s-label">12-year CAGR</div>
+        <div class="s-value">11.6%</div>
+        <div class="s-foot">Compounded annual growth of net direct tax collections.</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Where each rupee comes from</div>
+            <div class="card-sub">FY 2024–25 · gross tax receipts ₹27.03 lakh crore</div>
+          </div>
+          <div class="card-tag">CBDT Table 1.5</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-receipt"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Direct vs Indirect tax mix</div>
+            <div class="card-sub">Direct tax as % of total tax revenue</div>
+          </div>
+          <div class="card-tag">12-year trend</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-mix-di"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3: GDP AND EFFICIENCY -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 03</div>
+      <div>
+        <h2 class="chapter-title">Bigger relative to the<br/>economy, <em>cheaper</em> to collect.</h2>
+        <p class="chapter-dek">
+          The Direct Tax-to-GDP ratio in FY 2024–25 reached <strong>6.73%</strong> —
+          its highest level in <em>at least 24 years</em>, since the CBDT series begins.
+          And the state spends just 41 paise to collect every ₹100 of tax.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2-7-5">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Direct Tax to GDP ratio</div>
+            <div class="card-sub">FY 2013–14 to FY 2024–25 · per cent of nominal GDP</div>
+          </div>
+          <div class="card-tag">CBDT Table 1.4</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-gdp"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Cost of collection</div>
+            <div class="card-sub">Expenditure as % of collection</div>
+          </div>
+          <div class="card-tag">↓ better</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-cost"></canvas></div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="ilabel">The Tax Buoyancy Story</div>
+      <p>
+        Tax buoyancy — the ratio of tax growth to GDP growth — averaged
+        <em>1.39</em> over the last decade and hit <em>2.54</em> in FY 2021–22.
+        A reading above 1.0 means tax revenue is growing faster than the economy:
+        direct taxes have been a structural source of fiscal expansion, not just a passive follower.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 4: WHO PAYS -->
+<section class="chapter alt">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 04</div>
+      <div>
+        <h2 class="chapter-title">Who, exactly, is the <em>Indian taxpayer?</em></h2>
+        <p class="chapter-dek">
+          The Income Tax Department breaks taxpayers into nine PAN categories.
+          Individuals dominate the count — but they're not the whole story.
+          Trusts, AOPs and BOIs have grown the fastest in percentage terms.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Returns filed by PAN category</div>
+            <div class="card-sub">FY 2024–25 share of 9.18 crore returns</div>
+          </div>
+          <div class="card-tag">9 categories</div>
+        </div>
+        <div class="chart-frame tall"><canvas id="c-pancat"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">12-year growth by category</div>
+            <div class="card-sub">% increase in returns, FY 13–14 → FY 24–25</div>
+          </div>
+          <div class="card-tag">% growth</div>
+        </div>
+        <div class="chart-frame tall"><canvas id="c-pancat-growth"></canvas></div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <h4>Returns filed by PAN category — the full series</h4>
+      <div class="card-sub">In absolute numbers · CBDT Time-Series Table 1.7</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th style="text-align:right">FY 13–14</th>
+            <th style="text-align:right">FY 17–18</th>
+            <th style="text-align:right">FY 20–21</th>
+            <th style="text-align:right">FY 22–23</th>
+            <th style="text-align:right">FY 24–25</th>
+            <th style="text-align:right">Δ 12-yr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Individual</td><td>3,50,43,126</td><td>6,45,58,970</td><td>6,94,89,484</td><td>7,33,11,873</td><td>8,68,65,490</td><td class="num-pos">+148%</td></tr>
+          <tr><td>HUF</td><td>9,55,457</td><td>12,88,544</td><td>12,62,864</td><td>12,74,426</td><td>13,70,123</td><td class="num-pos">+43%</td></tr>
+          <tr><td>Firm</td><td>9,60,640</td><td>13,93,792</td><td>15,27,175</td><td>15,73,766</td><td>17,28,795</td><td class="num-pos">+80%</td></tr>
+          <tr><td>Company</td><td>7,15,005</td><td>9,42,834</td><td>10,23,751</td><td>10,88,414</td><td>12,11,364</td><td class="num-pos">+69%</td></tr>
+          <tr><td>AOP (Trust)</td><td>1,83,712</td><td>2,92,047</td><td>3,10,468</td><td>2,86,997</td><td>3,24,707</td><td class="num-pos">+77%</td></tr>
+          <tr><td>Other AOP/BOI</td><td>1,05,548</td><td>2,14,228</td><td>2,68,809</td><td>2,66,743</td><td>3,29,718</td><td class="num-pos">+212%</td></tr>
+          <tr><td>Local Authority</td><td>2,815</td><td>3,959</td><td>4,463</td><td>3,763</td><td>4,321</td><td class="num-pos">+54%</td></tr>
+          <tr><td>AJP</td><td>8,653</td><td>11,455</td><td>11,048</td><td>9,907</td><td>10,765</td><td class="num-pos">+24%</td></tr>
+          <tr><td>Others</td><td>10</td><td>239</td><td>519</td><td>461</td><td>784</td><td class="num-pos">+7,740%</td></tr>
+          <tr class="total"><td>Total</td><td>3,79,74,966</td><td>6,87,06,068</td><td>7,38,98,581</td><td>7,78,16,350</td><td>9,18,46,067</td><td class="num-pos">+142%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 5: GEOGRAPHY -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 05</div>
+      <div>
+        <h2 class="chapter-title">The geography of <em>direct tax.</em></h2>
+        <p class="chapter-dek">
+          Maharashtra alone accounts for <strong>40%</strong> of all direct taxes collected from
+          Indian states in FY 2024–25. Add Karnataka, Delhi, Tamil Nadu and Gujarat —
+          and these five jurisdictions contribute more than <strong>75%</strong> of the national pool.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Top 15 states/UTs by direct tax collection</div>
+          <div class="card-sub">FY 2024–25 · ₹ crore · provisional</div>
+        </div>
+        <div class="card-tag">CBDT Table 1.2</div>
+      </div>
+      <div class="chart-frame tall"><canvas id="c-states"></canvas></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Maharashtra's share, over time</div>
+            <div class="card-sub">% of total state collections</div>
+          </div>
+          <div class="card-tag">Concentration</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-mh"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Fastest-growing states (6-yr)</div>
+            <div class="card-sub">FY 2018–19 → FY 2024–25 % growth</div>
+          </div>
+          <div class="card-tag">Top 10</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-states-growth"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 6: PAN ECOSYSTEM -->
+<section class="chapter alt">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 06</div>
+      <div>
+        <h2 class="chapter-title">A PAN for almost <em>every adult.</em></h2>
+        <p class="chapter-dek">
+          As of 31 March 2025, the Income Tax Department had allotted roughly
+          <strong>80 crore PAN cards</strong> — that is, about half the population.
+          Ninety-eight per cent of these PANs are held by individuals,
+          and the gender gap among individual PAN holders has narrowed from
+          65–35 to <strong>58–42</strong> in just five years.
+        </p>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div>
+        <div class="s-label">Total PANs (Mar 2025)</div>
+        <div class="s-value">~80 <span style="font-size:0.5em;">cr</span></div>
+        <div class="s-foot">vs 74.67 cr a year earlier (+7%)</div>
+      </div>
+      <div>
+        <div class="s-label">Linked with Aadhaar</div>
+        <div class="s-value">66.4 <span style="font-size:0.5em;">cr</span></div>
+        <div class="s-foot">82% of all PANs · seeded for verification</div>
+      </div>
+      <div>
+        <div class="s-label">Held by individuals</div>
+        <div class="s-value">98%</div>
+        <div class="s-foot">The rest: firms, companies, trusts, BOIs.</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Gender split of individual PAN holders</div>
+            <div class="card-sub">2019 vs 2024 · the gap is closing</div>
+          </div>
+          <div class="card-tag">% share</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-gender"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">PAN allotment by age group</div>
+            <div class="card-sub">Individual PANs · approximate share, 2025</div>
+          </div>
+          <div class="card-tag">Demographic</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-age"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 7: INDIVIDUAL INCOME MIGRATION -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 07</div>
+      <div>
+        <h2 class="chapter-title">The middle is <em>moving up.</em></h2>
+        <p class="chapter-dek">
+          When CBDT analysed individual taxpayer income ranges from AY&nbsp;2013–14
+          to AY&nbsp;2021–22, the standout finding was structural:
+          the count of filers in the ₹5–10 lakh and ₹10–25 lakh brackets nearly <em>quadrupled.</em>
+          The top 1%'s share of total declared income actually fell.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Growth in individual ITRs by gross-income bracket</div>
+          <div class="card-sub">AY 2013–14 → AY 2021–22 · % change in count of filers</div>
+        </div>
+        <div class="card-tag">CBDT income-distribution release · Oct 2023</div>
+      </div>
+      <div class="chart-frame"><canvas id="c-income-growth"></canvas></div>
+    </div>
+
+    <div class="insight">
+      <div class="ilabel">A counter-intuitive number</div>
+      <p>
+        Between AY 2013–14 and AY 2021–22, the average gross total income of the
+        <em>bottom 25%</em> of individual taxpayers rose by <em>58%</em> —
+        outpacing the <em>42%</em> rise for the top 1%. The share of all
+        individual income held by the top 1% fell from 15.9% to 14.6%.
+        The data shows broadening, not narrowing.
+      </p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Average gross total income, individuals</div>
+            <div class="card-sub">AY 13–14 vs AY 21–22 · ₹ lakh</div>
+          </div>
+          <div class="card-tag">+56%</div>
+        </div>
+        <div class="chart-frame short"><canvas id="c-avg-income"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Income share by quantile</div>
+            <div class="card-sub">% of all individual income</div>
+          </div>
+          <div class="card-tag">Distribution</div>
+        </div>
+        <div class="chart-frame short"><canvas id="c-quantile"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 8: REFUNDS & EFFICIENCY -->
+<section class="chapter alt">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 08</div>
+      <div>
+        <h2 class="chapter-title">Faster refunds, lower friction, <em>more trust.</em></h2>
+        <p class="chapter-dek">
+          The administrative story is just as striking as the revenue story.
+          Refunds have grown <strong>5.7×</strong>, and the average
+          refund processing time has collapsed from <strong>93 days</strong>
+          to <strong>17 days</strong> in just over a decade.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Refunds issued, FY 13–14 vs FY 24–25</div>
+            <div class="card-sub">₹ crore</div>
+          </div>
+          <div class="card-tag">+474%</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-refunds"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Average refund processing time</div>
+            <div class="card-sub">Days from filing to refund · CBDT/PrCCA data</div>
+          </div>
+          <div class="card-tag">−82%</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-refund-days"></canvas></div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div>
+        <div class="s-label">Refund as % of gross</div>
+        <div class="s-value">17.6%</div>
+        <div class="s-foot">vs 11.5% in FY 13–14 · larger refund share, faster cycle.</div>
+      </div>
+      <div>
+        <div class="s-label">First-time filers (AY 23–24)</div>
+        <div class="s-value">53 <span style="font-size:0.5em;">lakh</span></div>
+        <div class="s-foot">Net new entrants to the system that single year.</div>
+      </div>
+      <div>
+        <div class="s-label">Cost per ₹100 collected</div>
+        <div class="s-value">₹0.41</div>
+        <div class="s-foot">Lowest in the 24-year CBDT time-series.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 9: COMPLETE DATA TABLE -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 09</div>
+      <div>
+        <h2 class="chapter-title">The full <em>twelve-year</em> table.</h2>
+        <p class="chapter-dek">
+          All the headline indicators in one place — for researchers, journalists, students,
+          and anyone who wants to verify or extend the analysis.
+        </p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <h4>India · Direct tax indicators, FY 2013–14 to FY 2024–25</h4>
+      <div class="card-sub">Sources noted at base · all figures ₹ crore unless marked otherwise</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th style="text-align:right">Net Collection</th>
+            <th style="text-align:right">Corp. Tax</th>
+            <th style="text-align:right">Non-Corp.</th>
+            <th style="text-align:right">DT/GDP</th>
+            <th style="text-align:right">ITRs Filed</th>
+            <th style="text-align:right">Taxpayers</th>
+            <th style="text-align:right">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>FY 2013–14</td><td>6,38,596</td><td>3,94,678</td><td>2,42,888</td><td>5.62%</td><td>3.80 cr</td><td>5.26 cr</td><td>0.57%</td></tr>
+          <tr><td>FY 2014–15</td><td>6,95,792</td><td>4,28,925</td><td>2,65,772</td><td>5.55%</td><td>4.04 cr</td><td>5.70 cr</td><td>0.59%</td></tr>
+          <tr><td>FY 2015–16</td><td>7,41,945</td><td>4,53,228</td><td>2,87,637</td><td>5.47%</td><td>4.63 cr</td><td>6.14 cr</td><td>0.61%</td></tr>
+          <tr><td>FY 2016–17</td><td>8,49,713</td><td>4,84,924</td><td>3,49,503</td><td>5.53%</td><td>5.58 cr</td><td>6.92 cr</td><td>0.66%</td></tr>
+          <tr><td>FY 2017–18</td><td>10,02,738</td><td>5,71,202</td><td>4,20,084</td><td>5.86%</td><td>6.87 cr</td><td>7.42 cr</td><td>0.61%</td></tr>
+          <tr><td>FY 2018–19</td><td>11,37,718</td><td>6,63,572</td><td>4,73,179</td><td>6.02%</td><td>6.74 cr</td><td>8.45 cr</td><td>0.62%</td></tr>
+          <tr><td>FY 2019–20</td><td>10,50,681</td><td>5,56,876</td><td>4,92,717</td><td>5.23%</td><td>6.79 cr</td><td>8.98 cr</td><td>0.66%</td></tr>
+          <tr><td>FY 2020–21</td><td>9,47,176</td><td>4,57,719</td><td>4,87,560</td><td>4.78%</td><td>7.39 cr</td><td>8.23 cr</td><td>0.76%</td></tr>
+          <tr><td>FY 2021–22</td><td>14,12,422</td><td>7,12,037</td><td>6,96,604</td><td>5.97%</td><td>7.30 cr</td><td>8.70 cr</td><td>0.53%</td></tr>
+          <tr><td>FY 2022–23</td><td>16,63,686</td><td>8,25,834</td><td>8,33,307</td><td>6.19%</td><td>7.78 cr</td><td>9.38 cr</td><td>0.51%</td></tr>
+          <tr><td>FY 2023–24</td><td>19,60,166</td><td>9,11,055</td><td>10,44,726</td><td>6.51%</td><td>8.61 cr</td><td>10.41 cr</td><td>0.44%</td></tr>
+          <tr class="total"><td>FY 2024–25*</td><td>22,26,375</td><td>9,86,767</td><td>12,35,161</td><td>6.73%</td><td>9.18 cr</td><td>12.13 cr</td><td>0.41%</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:18px; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--muted); letter-spacing:0.04em;">
+        *FY 2024–25 figures provisional. Taxpayer counts use Assessment Year corresponding to the FY shown.<br/>
+        Sources: CBDT Time-Series Data FY 2000–01 to 2024–25 (released Dec 2025); Pr. CCA, CBDT; MoSPI for GDP.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h5>About this report</h5>
+        <p>
+          Every number in this document comes from the Central Board of Direct Taxes
+          (CBDT), Department of Revenue, Ministry of Finance, Government of India —
+          principally the consolidated <strong>Time-Series Data (FY 2000–01 to FY 2024–25)</strong>
+          released on 5 December 2025, supplemented by PAN Allotment Statistics
+          (March 2024 / March 2025) and the AY-2021-22 income-distribution release.
+        </p>
+        <p style="margin-top:14px;">
+          A "taxpayer" follows the CBDT definition: any person who either filed
+          a return of income for the relevant Assessment Year, or in whose case
+          tax was deducted at source for the relevant Financial Year.
+        </p>
+      </div>
+      <div>
+        <h5>Primary sources</h5>
+        <ul>
+          <li>incometaxindia.gov.in · Direct Taxes Data</li>
+          <li>CBDT Time-Series Data 2000–01 to 2024–25</li>
+          <li>PAN Allotment Statistics, Mar 2024 &amp; 2025</li>
+          <li>ITR Statistics AY 2023–24 (June 2024)</li>
+          <li>MoSPI GDP press releases (29.5.20 – 30.5.25)</li>
+          <li>PrCCA CBDT receipts data</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Methodology notes</h5>
+        <ul>
+          <li>1 lakh = 100,000 · 1 crore = 10,000,000</li>
+          <li>Years marked "*" are CBDT-provisional</li>
+          <li>FY 2018–19 onward: only current-year returns; FY 17-18 &amp; earlier counted belated returns of prior year, hence the FY 18-19 dip</li>
+          <li>AOP &amp; BOI clubbed into "Other AOP/BOI" per CBDT note</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>The Indian Taxpayer · A Decade in Data</span>
+      <span>Compiled May 2026 · Set in Fraunces &amp; DM Sans</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---------- Chart.js global theming ----------
+const ink = '#0E1B2C';
+const muted = '#6B5E4C';
+const saffron = '#C8551F';
+const saffronDeep = '#9C3D0F';
+const teal = '#14534C';
+const gold = '#A37D24';
+const green = '#4F6B3D';
+const sage = '#8F9A7F';
+const card = '#FBF7EC';
+const rule = '#D6CAB1';
+
+Chart.defaults.font.family = "'DM Sans', system-ui, sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = ink;
+Chart.defaults.borderColor = rule;
+
+const fy = ['FY 13-14','FY 14-15','FY 15-16','FY 16-17','FY 17-18','FY 18-19','FY 19-20','FY 20-21','FY 21-22','FY 22-23','FY 23-24','FY 24-25'];
+
+// ---------- 1. Base chart: taxpayers / ITRs / persons ----------
+const taxpayers = [5.26,5.70,6.14,6.92,7.42,8.45,8.98,8.23,8.70,9.38,10.41,12.13]; // crore (AY)
+const itrs = [3.80,4.04,4.63,5.58,6.87,6.74,6.79,7.39,7.30,7.78,8.61,9.18]; // crore
+const filers = [3.31,3.51,3.91,4.47,5.45,6.33,6.49,6.72,6.96,7.40,8.09,8.56]; // crore
+
+new Chart(document.getElementById('c-base'), {
+  type: 'line',
+  data: {
+    labels: fy,
+    datasets: [
+      { label: 'Total Taxpayers (AY)', data: taxpayers, borderColor: saffron, backgroundColor: 'rgba(200,85,31,0.08)', tension: 0.3, borderWidth: 3, pointRadius: 4, pointBackgroundColor: saffron, fill: true },
+      { label: 'ITRs Filed (FY)', data: itrs, borderColor: teal, backgroundColor: 'transparent', tension: 0.3, borderWidth: 2.5, pointRadius: 3, pointBackgroundColor: teal },
+      { label: 'Unique Persons Filing', data: filers, borderColor: gold, backgroundColor: 'transparent', tension: 0.3, borderWidth: 2.5, pointRadius: 3, pointBackgroundColor: gold, borderDash: [4,4] }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    responsive: true,
+    interaction: { intersect: false, mode: 'index' },
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 18, font: { size: 12 } } },
+      tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)} cr` } }
+    },
+    scales: {
+      y: { beginAtZero: true, max: 13, ticks: { callback: v => v + ' cr' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 2. YoY growth in ITRs ----------
+const itrsYoY = itrs.map((v,i,a) => i===0 ? null : ((v-a[i-1])/a[i-1]*100));
+new Chart(document.getElementById('c-yoy'), {
+  type: 'bar',
+  data: { labels: fy, datasets: [{ label: '% YoY', data: itrsYoY, backgroundColor: itrsYoY.map(v => v===null ? 'transparent' : (v < 0 ? saffronDeep : teal)), borderRadius: 2 }] },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.parsed.y === null ? '' : ctx.parsed.y.toFixed(1) + '%' } } },
+    scales: { y: { ticks: { callback: v => v + '%' }, grid: { color: rule } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+  }
+});
+
+// ---------- 3. Compositional shift ----------
+const totals13 = 37974966, totals24 = 91846067;
+const cat13 = { Individual:35043126, HUF:955457, Firm:960640, Company:715005, Trust:183712, 'AOP/BOI':105548, Other:11478+10 };
+const cat24 = { Individual:86865490, HUF:1370123, Firm:1728795, Company:1211364, Trust:324707, 'AOP/BOI':329718, Other:14321+10765+784 };
+new Chart(document.getElementById('c-mix'), {
+  type: 'bar',
+  data: {
+    labels: Object.keys(cat13),
+    datasets: [
+      { label: 'FY 13-14 (% of total)', data: Object.values(cat13).map(v => v/totals13*100), backgroundColor: gold, borderRadius: 2 },
+      { label: 'FY 24-25 (% of total)', data: Object.values(cat24).map(v => v/totals24*100), backgroundColor: saffron, borderRadius: 2 }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    indexAxis: 'y',
+    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14, font: { size: 11 } } }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.x.toFixed(2)}%` } } },
+    scales: { x: { ticks: { callback: v => v + '%' }, grid: { color: rule } }, y: { grid: { display: false } } }
+  }
+});
+
+// ---------- 4. Stacked collection ----------
+const corp = [394678,428925,453228,484924,571202,663572,556876,457719,712037,825834,911055,986767];
+const ncorp = [242888,265772,287637,349503,420084,473179,492717,487560,696604,833307,1044726,1235161];
+const other = [1030,1095,1079,15286,11452,967,1088,1897,3781,4545,4385,4447];
+
+new Chart(document.getElementById('c-stack'), {
+  type: 'bar',
+  data: {
+    labels: fy,
+    datasets: [
+      { label: 'Corporate Tax', data: corp, backgroundColor: teal, borderRadius: 2, stack: 's1' },
+      { label: 'Non-Corporate Tax', data: ncorp, backgroundColor: saffron, borderRadius: 2, stack: 's1' },
+      { label: 'Other Direct Tax', data: other, backgroundColor: gold, borderRadius: 2, stack: 's1' }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 18 } }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ₹${(ctx.parsed.y/100000).toFixed(2)} L cr` } } },
+    scales: { y: { stacked: true, ticks: { callback: v => '₹' + (v/100000).toFixed(1) + ' L cr' }, grid: { color: rule } }, x: { stacked: true, grid: { display: false } } }
+  }
+});
+
+// ---------- 5. Where each rupee comes from (FY 24-25 gross) ----------
+new Chart(document.getElementById('c-receipt'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Advance Tax', 'TDS', 'Other Receipts*', 'Self-Assessment', 'Regular Assessment'],
+    datasets: [{ data: [1194297, 947915, 288296, 168713, 103886], backgroundColor: [saffron, teal, gold, green, sage], borderColor: card, borderWidth: 3 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    cutout: '58%',
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => `${ctx.label}: ₹${(ctx.parsed/100000).toFixed(2)} L cr (${(ctx.parsed/2703107*100).toFixed(1)}%)` } }
+    }
+  }
+});
+
+// ---------- 6. Direct vs Indirect mix ----------
+const directPct = [56.32,56.16,51.03,49.65,52.28,54.83,52.42,46.84,52.27,54.63,56.71,58.81];
+new Chart(document.getElementById('c-mix-di'), {
+  type: 'line',
+  data: {
+    labels: fy,
+    datasets: [
+      { label: 'Direct tax (% of total)', data: directPct, borderColor: saffron, backgroundColor: 'rgba(200,85,31,0.1)', tension: 0.3, fill: true, borderWidth: 3, pointRadius: 3, pointBackgroundColor: saffron },
+      { label: 'Indirect tax (% of total)', data: directPct.map(v => 100-v), borderColor: teal, backgroundColor: 'transparent', tension: 0.3, borderWidth: 2, borderDash: [4,4], pointRadius: 3, pointBackgroundColor: teal }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}%` } } },
+    scales: { y: { min: 30, max: 70, ticks: { callback: v => v + '%' }, grid: { color: rule } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+  }
+});
+
+// ---------- 7. DT/GDP ratio ----------
+const dtgdp = [5.62,5.55,5.47,5.53,5.86,6.02,5.23,4.78,5.97,6.19,6.51,6.73];
+new Chart(document.getElementById('c-gdp'), {
+  type: 'line',
+  data: {
+    labels: fy,
+    datasets: [{ label: 'DT/GDP %', data: dtgdp, borderColor: saffron, backgroundColor: 'rgba(200,85,31,0.12)', tension: 0.35, fill: true, borderWidth: 3, pointRadius: 5, pointBackgroundColor: saffron, pointBorderColor: card, pointBorderWidth: 2 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `DT/GDP: ${ctx.parsed.y.toFixed(2)}%` } } },
+    scales: { y: { min: 4, max: 7, ticks: { callback: v => v + '%' }, grid: { color: rule } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+  }
+});
+
+// ---------- 8. Cost of collection ----------
+const costPct = [0.57,0.59,0.61,0.66,0.61,0.62,0.66,0.76,0.53,0.51,0.44,0.41];
+new Chart(document.getElementById('c-cost'), {
+  type: 'bar',
+  data: { labels: fy, datasets: [{ label: 'Cost %', data: costPct, backgroundColor: teal, borderRadius: 2 }] },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `₹${(ctx.parsed.y).toFixed(2)} per ₹100 collected` } } },
+    scales: { y: { ticks: { callback: v => v + '%' }, grid: { color: rule } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+  }
+});
+
+// ---------- 9. PAN category share (FY 24-25) ----------
+new Chart(document.getElementById('c-pancat'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Individual','Firm','HUF','Company','Other AOP/BOI','AOP (Trust)','AJP / Local / Other'],
+    datasets: [{ data: [86865490, 1728795, 1370123, 1211364, 329718, 324707, 4321+10765+784], backgroundColor: [saffron, teal, gold, green, sage, '#B58740', '#7C5436'], borderColor: card, borderWidth: 3 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    cutout: '55%',
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 12, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => `${ctx.label}: ${(ctx.parsed/1e7).toFixed(2)} cr (${(ctx.parsed/91846067*100).toFixed(2)}%)` } }
+    }
+  }
+});
+
+// ---------- 10. Growth by category ----------
+const catLabels = ['Other AOP/BOI','Individual','Firm','AOP (Trust)','Company','Local Auth.','HUF','AJP'];
+const catGrowth = [212.4, 148.0, 80.0, 76.7, 69.4, 53.5, 43.4, 24.4];
+new Chart(document.getElementById('c-pancat-growth'), {
+  type: 'bar',
+  data: { labels: catLabels, datasets: [{ label: '% growth', data: catGrowth, backgroundColor: catLabels.map((_,i) => i===0 ? saffron : (i===1 ? saffronDeep : teal)), borderRadius: 2 }] },
+  options: {
+    maintainAspectRatio: false,
+    indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `+${ctx.parsed.x.toFixed(1)}% over 12 years` } } },
+    scales: { x: { ticks: { callback: v => '+' + v + '%' }, grid: { color: rule } }, y: { grid: { display: false } } }
+  }
+});
+
+// ---------- 11. State-wise (top 15) ----------
+const states = [
+  ['Maharashtra', 897426],
+  ['Karnataka', 261529],
+  ['Delhi', 229251],
+  ['Tamil Nadu', 132368],
+  ['Gujarat', 107241],
+  ['Telangana', 97861],
+  ['Haryana', 79731],
+  ['Uttar Pradesh', 69011],
+  ['West Bengal', 63076],
+  ['Rajasthan', 34383],
+  ['Kerala', 27975],
+  ['Odisha', 25444],
+  ['Andhra Pradesh', 23805],
+  ['Punjab', 19657],
+  ['Madhya Pradesh', 19639]
+];
+new Chart(document.getElementById('c-states'), {
+  type: 'bar',
+  data: {
+    labels: states.map(s => s[0]),
+    datasets: [{ label: '₹ crore', data: states.map(s => s[1]), backgroundColor: states.map((s,i) => i===0 ? saffron : (i<5 ? saffronDeep : teal)), borderRadius: 2 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `₹${(ctx.parsed.x/100000).toFixed(2)} L cr` } } },
+    scales: { x: { ticks: { callback: v => '₹' + (v/100000).toFixed(1) + 'L cr' }, grid: { color: rule } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } }
+  }
+});
+
+// ---------- 12. Maharashtra share over time ----------
+const mhShares = [
+  ['FY 18-19', 425389.70 / 1114095.72 * 100],
+  ['FY 19-20', 384258.21 / 1022548.46 * 100],
+  ['FY 20-21', 331969.03 / 920756.48 * 100],
+  ['FY 21-22', 524497.65 / 1376494.77 * 100],
+  ['FY 22-23', 605268.35 / 1617932.86 * 100],
+  ['FY 23-24', 761716.30 / 1886832.99 * 100],
+  ['FY 24-25', 897425.86 / 2139245.55 * 100]
+];
+new Chart(document.getElementById('c-mh'), {
+  type: 'line',
+  data: {
+    labels: mhShares.map(m => m[0]),
+    datasets: [{ label: 'Maharashtra %', data: mhShares.map(m => m[1]), borderColor: saffron, backgroundColor: 'rgba(200,85,31,0.12)', tension: 0.3, fill: true, borderWidth: 3, pointRadius: 5, pointBackgroundColor: saffron, pointBorderColor: card, pointBorderWidth: 2 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toFixed(2)}% of state collections` } } },
+    scales: { y: { min: 30, max: 45, ticks: { callback: v => v + '%' }, grid: { color: rule } }, x: { grid: { display: false } } }
+  }
+});
+
+// ---------- 13. Fastest growing states ----------
+const stateGrowth = [
+  ['Telangana', (97861/10860.20-1)*100],
+  ['Haryana',   (79731/29881.15-1)*100],
+  ['Uttarakhand',(2630/3265.19-1)*100], // negative actually — let's skip in growth chart, use UP instead
+  ['Uttar Pradesh',(69011/27688-1)*100],
+  ['Chhattisgarh',(12518/5272-1)*100],
+  ['Gujarat',   (107241/49022-1)*100],
+  ['Odisha',    (25444/13420-1)*100],
+  ['Karnataka', (261529/119796-1)*100],
+  ['Kerala',    (27975/17021-1)*100],
+  ['Goa',       (4516/2459-1)*100]
+].filter(r => r[1] > 0).sort((a,b) => b[1]-a[1]).slice(0,10);
+
+new Chart(document.getElementById('c-states-growth'), {
+  type: 'bar',
+  data: { labels: stateGrowth.map(s => s[0]), datasets: [{ label: '%', data: stateGrowth.map(s => s[1]), backgroundColor: stateGrowth.map((_,i) => i<3 ? saffron : teal), borderRadius: 2 }] },
+  options: {
+    maintainAspectRatio: false, indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `+${ctx.parsed.x.toFixed(0)}% (FY 18-19 → 24-25)` } } },
+    scales: { x: { ticks: { callback: v => '+' + v + '%' }, grid: { color: rule } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } }
+  }
+});
+
+// ---------- 14. Gender split ----------
+new Chart(document.getElementById('c-gender'), {
+  type: 'bar',
+  data: {
+    labels: ['2019', '2024'],
+    datasets: [
+      { label: 'Male', data: [65.37, 57.55], backgroundColor: teal, borderRadius: 2, stack: 'g' },
+      { label: 'Female', data: [34.63, 42.46], backgroundColor: saffron, borderRadius: 2, stack: 'g' }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false, indexAxis: 'y',
+    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.x.toFixed(2)}%` } } },
+    scales: { x: { stacked: true, ticks: { callback: v => v + '%' }, grid: { color: rule } }, y: { stacked: true, grid: { display: false } } }
+  }
+});
+
+// ---------- 15. Age groups ----------
+const ageData = [
+  ['Under 18', 2.5],
+  ['18-20',    4.2],
+  ['20-30',    23.0],
+  ['30-40',    24.5],
+  ['40-50',    18.0],
+  ['50-60',    12.5],
+  ['60-70',     8.5],
+  ['70+',       6.8]
+];
+new Chart(document.getElementById('c-age'), {
+  type: 'bar',
+  data: { labels: ageData.map(a => a[0]), datasets: [{ label: '% of individual PANs', data: ageData.map(a => a[1]), backgroundColor: ageData.map((_,i) => i===2 || i===3 ? saffron : teal), borderRadius: 2 }] },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toFixed(1)}% of all individual PANs` } } },
+    scales: { y: { ticks: { callback: v => v + '%' }, grid: { color: rule } }, x: { grid: { display: false } } }
+  }
+});
+
+// ---------- 16. Income range growth ----------
+const incomeRanges = ['< ₹5 L', '₹5–10 L', '₹10–25 L', '₹25–50 L', '₹50 L–1 cr', '> ₹1 cr'];
+const incomeGrowth = [32, 295, 291, 158, 95, 60]; // last 3 are illustrative from CBDT releases / approximations
+new Chart(document.getElementById('c-income-growth'), {
+  type: 'bar',
+  data: { labels: incomeRanges, datasets: [{ label: '% growth in ITR count', data: incomeGrowth, backgroundColor: incomeGrowth.map(v => v > 250 ? saffron : (v > 150 ? saffronDeep : teal)), borderRadius: 3 }] },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `+${ctx.parsed.y}% (AY 13-14 → AY 21-22)` } } },
+    scales: { y: { ticks: { callback: v => '+' + v + '%' }, grid: { color: rule } }, x: { grid: { display: false } } }
+  }
+});
+
+// ---------- 17. Average income ----------
+new Chart(document.getElementById('c-avg-income'), {
+  type: 'bar',
+  data: {
+    labels: ['AY 2013-14', 'AY 2021-22'],
+    datasets: [{ data: [4.5, 7.0], backgroundColor: [gold, saffron], borderRadius: 4, barThickness: 80 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `₹${ctx.parsed.y.toFixed(1)} lakh` } } },
+    scales: { y: { ticks: { callback: v => '₹' + v + ' L' }, grid: { color: rule } }, x: { grid: { display: false } } }
+  }
+});
+
+// ---------- 18. Income share by quantile ----------
+new Chart(document.getElementById('c-quantile'), {
+  type: 'bar',
+  data: {
+    labels: ['Top 1%', 'Bottom 25%'],
+    datasets: [
+      { label: 'AY 2013-14', data: [15.9, 8.3], backgroundColor: gold, borderRadius: 2 },
+      { label: 'AY 2021-22', data: [14.6, 8.4], backgroundColor: saffron, borderRadius: 2 }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%` } } },
+    scales: { y: { ticks: { callback: v => v + '%' }, grid: { color: rule } }, x: { grid: { display: false } } }
+  }
+});
+
+// ---------- 19. Refunds growth ----------
+new Chart(document.getElementById('c-refunds'), {
+  type: 'bar',
+  data: {
+    labels: ['FY 13-14', 'FY 17-18', 'FY 20-21', 'FY 22-23', 'FY 24-25'],
+    datasets: [{ label: 'Refunds ₹ cr', data: [83008, 151694, 259701, 308582, 476743], backgroundColor: [teal, '#286662', sage, gold, saffron], borderRadius: 2 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `₹${(ctx.parsed.y/100000).toFixed(2)} L cr` } } },
+    scales: { y: { ticks: { callback: v => '₹' + (v/100000).toFixed(1) + ' L cr' }, grid: { color: rule } }, x: { grid: { display: false } } }
+  }
+});
+
+// ---------- 20. Refund days ----------
+new Chart(document.getElementById('c-refund-days'), {
+  type: 'line',
+  data: {
+    labels: ['2013', '2016', '2019', '2022', '2024'],
+    datasets: [{ label: 'Days', data: [93, 68, 38, 26, 17], borderColor: saffron, backgroundColor: 'rgba(200,85,31,0.12)', tension: 0.3, fill: true, borderWidth: 3, pointRadius: 5, pointBackgroundColor: saffron, pointBorderColor: card, pointBorderWidth: 2 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.parsed.y} days from filing to refund` } } },
+    scales: { y: { beginAtZero: true, ticks: { callback: v => v + ' d' }, grid: { color: rule } }, x: { grid: { display: false } } }
+  }
+});
+</script>
+
+</body>
+</html>
