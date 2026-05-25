@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>India · Taxpayers by Slab & Category — Individuals, Salaried, Freelancers, Companies</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+:root {
+  --bg: #F6F1E6;
+  --bg-2: #EFE7D5;
+  --bg-3: #ECE2CB;
+  --ink: #0E1B2C;
+  --ink-2: #2B2A26;
+  --muted: #6B5E4C;
+  --rule: #D6CAB1;
+  --saffron: #C8551F;
+  --saffron-deep: #9C3D0F;
+  --teal: #14534C;
+  --teal-deep: #0A3934;
+  --gold: #A37D24;
+  --green: #4F6B3D;
+  --sage: #8F9A7F;
+  --plum: #6B3A4E;
+  --card: #FBF7EC;
+  --shadow: 0 1px 0 rgba(14,27,44,0.06), 0 18px 40px -24px rgba(14,27,44,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg); color: var(--ink); line-height: 1.55;
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+/* ribbon */
+.ribbon {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-2); padding: 10px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.ribbon .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.ribbon-mark { color: var(--saffron); font-weight: 700; }
+
+/* hero */
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; top: 0; right: 0;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(20,83,76,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--saffron); margin-bottom: 28px;
+  display: inline-block; padding-bottom: 6px; border-bottom: 2px solid var(--saffron);
+}
+h1.title {
+  font-family: 'Fraunces', serif; font-weight: 380;
+  font-size: clamp(40px, 5.8vw, 78px);
+  line-height: 0.98; letter-spacing: -0.022em; color: var(--ink);
+  margin-bottom: 28px; font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+h1.title em { font-style: italic; font-weight: 300; color: var(--teal); font-variation-settings: "opsz" 144, "SOFT" 100; }
+.standfirst {
+  font-family: 'Fraunces', serif; font-weight: 350;
+  font-size: 22px; line-height: 1.45; max-width: 780px; color: var(--ink-2); margin-bottom: 36px;
+}
+.standfirst em { color: var(--saffron-deep); font-style: italic; }
+.byline {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.byline span { color: var(--ink); }
+
+/* TOC */
+.toc {
+  background: var(--bg-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  padding: 28px 0;
+}
+.toc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 32px; }
+.toc a {
+  display: flex; align-items: baseline; gap: 14px;
+  color: var(--ink); text-decoration: none; padding: 6px 0;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  transition: color 0.2s;
+}
+.toc a:hover { color: var(--saffron); }
+.toc a .num {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--saffron); letter-spacing: 0.08em; min-width: 24px;
+}
+
+/* big numbers strip */
+.big-numbers {
+  background: var(--ink); color: var(--bg); padding: 50px 0;
+}
+.big-numbers .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.bignum { padding: 0 28px; border-right: 1px solid rgba(246,241,230,0.15); }
+.bignum:last-child { border-right: none; }
+.bignum:first-child { padding-left: 0; }
+.bignum .label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--saffron); margin-bottom: 14px;
+}
+.bignum .value {
+  font-family: 'Fraunces', serif; font-weight: 400; font-size: 50px;
+  line-height: 1; letter-spacing: -0.02em; font-variation-settings: "opsz" 144; margin-bottom: 8px;
+}
+.bignum .unit {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 16px;
+  color: rgba(246,241,230,0.65); font-weight: 300;
+}
+.bignum .delta {
+  margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--sage);
+}
+
+/* chapter */
+section.chapter { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+section.chapter.alt { background: var(--bg-2); }
+section.chapter.deep { background: var(--bg-3); }
+
+.chapter-head {
+  display: grid; grid-template-columns: 220px 1fr; gap: 60px;
+  margin-bottom: 48px; align-items: start;
+}
+.chapter-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--saffron);
+  padding-top: 12px; border-top: 2px solid var(--saffron); width: fit-content;
+}
+.chapter-num.teal { color: var(--teal); border-top-color: var(--teal); }
+.chapter-title {
+  font-family: 'Fraunces', serif; font-weight: 380;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05; letter-spacing: -0.018em; color: var(--ink);
+  font-variation-settings: "opsz" 100, "SOFT" 50;
+}
+.chapter-title em { font-style: italic; color: var(--teal); font-weight: 350; }
+.chapter-title em.saf { color: var(--saffron); }
+.chapter-title em.plm { color: var(--plum); }
+.chapter-dek {
+  margin-top: 16px; font-family: 'Fraunces', serif;
+  font-size: 18px; font-weight: 350; color: var(--ink-2); line-height: 1.5; max-width: 720px;
+}
+
+/* card */
+.card {
+  background: var(--card); border: 1px solid var(--rule);
+  padding: 32px; margin-bottom: 24px; box-shadow: var(--shadow); position: relative;
+}
+.card-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 28px; border-bottom: 1px solid var(--rule); padding-bottom: 16px;
+  flex-wrap: wrap; gap: 12px;
+}
+.card-title {
+  font-family: 'Fraunces', serif; font-weight: 450; font-size: 22px;
+  line-height: 1.2; color: var(--ink); letter-spacing: -0.01em;
+}
+.card-sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 6px;
+}
+.card-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--saffron);
+  padding: 4px 10px; border: 1px solid var(--saffron); border-radius: 2px;
+}
+.card-tag.teal { color: var(--teal); border-color: var(--teal); }
+.card-tag.plum { color: var(--plum); border-color: var(--plum); }
+.chart-frame { position: relative; height: 360px; }
+.chart-frame.tall { height: 460px; }
+.chart-frame.xtall { height: 540px; }
+.chart-frame.short { height: 280px; }
+
+/* grids */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-2-7-5 { display: grid; grid-template-columns: 7fr 5fr; gap: 24px; }
+.grid-2-5-7 { display: grid; grid-template-columns: 5fr 7fr; gap: 24px; }
+
+/* slab visual */
+.slab-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px;
+}
+.slab-card {
+  background: var(--card); border: 1px solid var(--rule); padding: 28px;
+  box-shadow: var(--shadow); position: relative;
+}
+.slab-card.new { border-top: 4px solid var(--saffron); }
+.slab-card.old { border-top: 4px solid var(--teal); }
+.slab-card h3 {
+  font-family: 'Fraunces', serif; font-weight: 450; font-size: 22px;
+  margin-bottom: 6px; letter-spacing: -0.01em;
+}
+.slab-card .sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+}
+.slab-row {
+  display: grid; grid-template-columns: 1fr auto; gap: 16px;
+  padding: 12px 0; border-bottom: 1px dashed var(--rule);
+  align-items: baseline;
+}
+.slab-row:last-child { border-bottom: none; }
+.slab-range {
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+}
+.slab-rate {
+  font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.slab-rate.zero { color: var(--green); }
+.slab-rate.low { color: var(--gold); }
+.slab-rate.mid { color: var(--saffron); }
+.slab-rate.high { color: var(--saffron-deep); }
+.slab-foot {
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule);
+  font-size: 13px; color: var(--muted); line-height: 1.55;
+}
+.slab-foot strong { color: var(--ink); font-weight: 500; }
+
+/* insight */
+.insight {
+  border-left: 3px solid var(--saffron); padding: 20px 28px;
+  background: rgba(200,85,31,0.06); margin: 24px 0;
+}
+.insight.teal { border-left-color: var(--teal); background: rgba(20,83,76,0.06); }
+.insight.plum { border-left-color: var(--plum); background: rgba(107,58,78,0.06); }
+.insight .ilabel {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--saffron); margin-bottom: 10px;
+}
+.insight.teal .ilabel { color: var(--teal); }
+.insight.plum .ilabel { color: var(--plum); }
+.insight p {
+  font-family: 'Fraunces', serif; font-size: 19px; font-weight: 380;
+  color: var(--ink); line-height: 1.5;
+}
+.insight p em { font-style: italic; color: var(--saffron-deep); }
+.insight.teal p em { color: var(--teal-deep); }
+.insight.plum p em { color: var(--plum); }
+
+/* strip */
+.strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  background: var(--card); border: 1px solid var(--rule);
+  margin: 24px 0; box-shadow: var(--shadow);
+}
+.strip.four { grid-template-columns: repeat(4, 1fr); }
+.strip > div { padding: 26px 28px; border-right: 1px solid var(--rule); }
+.strip > div:last-child { border-right: none; }
+.strip .s-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+}
+.strip .s-value {
+  font-family: 'Fraunces', serif; font-weight: 400; font-size: 34px;
+  line-height: 1; color: var(--ink); letter-spacing: -0.015em;
+}
+.strip .s-foot {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); margin-top: 8px;
+}
+
+/* table */
+.tbl-wrap {
+  background: var(--card); border: 1px solid var(--rule); padding: 28px;
+  box-shadow: var(--shadow); margin-bottom: 24px; overflow-x: auto;
+}
+.tbl-wrap h4 {
+  font-family: 'Fraunces', serif; font-weight: 450; font-size: 20px;
+  margin-bottom: 4px; color: var(--ink);
+}
+.tbl-wrap .card-sub { margin-bottom: 18px; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table th {
+  text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  padding: 12px 14px 12px 0; border-bottom: 1.5px solid var(--ink); font-weight: 500;
+}
+table td {
+  padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-2);
+}
+table td:first-child {
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px; color: var(--ink);
+}
+table tr:last-child td { border-bottom: none; }
+table tr.total td {
+  border-top: 1.5px solid var(--ink); border-bottom: none;
+  font-weight: 700; color: var(--ink); padding-top: 14px;
+}
+.num-pos { color: var(--green); }
+.num-neg { color: var(--saffron-deep); }
+.num-hi { color: var(--saffron); font-weight: 700; }
+
+/* category divider */
+.cat-divider {
+  background: var(--ink); color: var(--bg); padding: 24px 0;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.cat-divider .wrap { display: flex; align-items: center; gap: 32px; }
+.cat-divider .cat-num {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 60px;
+  line-height: 1; color: var(--saffron); font-weight: 300;
+}
+.cat-divider .cat-text h2 {
+  font-family: 'Fraunces', serif; font-weight: 380; font-size: 28px;
+  letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 6px;
+}
+.cat-divider .cat-text p {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: rgba(246,241,230,0.65);
+}
+
+/* footer */
+footer { background: var(--ink); color: var(--bg); padding: 60px 0 40px; }
+footer .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 40px; }
+footer h5 {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--saffron); margin-bottom: 18px;
+}
+footer p, footer li {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; line-height: 1.7;
+  color: rgba(246,241,230,0.75);
+}
+footer ul { list-style: none; }
+footer ul li { padding-left: 14px; position: relative; }
+footer ul li::before { content: "—"; position: absolute; left: 0; color: var(--saffron); }
+footer .colophon {
+  padding-top: 24px; border-top: 1px solid rgba(246,241,230,0.15);
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(246,241,230,0.5);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+
+/* responsive */
+@media (max-width: 880px) {
+  .wrap { padding: 0 22px; }
+  .big-numbers .grid { grid-template-columns: 1fr 1fr; gap: 32px 0; }
+  .bignum { border-right: none; padding: 0 20px; }
+  .bignum:nth-child(1), .bignum:nth-child(2) { border-bottom: 1px solid rgba(246,241,230,0.15); padding-bottom: 32px; }
+  .chapter-head { grid-template-columns: 1fr; gap: 20px; }
+  .grid-2, .grid-2-7-5, .grid-2-5-7, .slab-grid { grid-template-columns: 1fr; }
+  .strip, .strip.four { grid-template-columns: 1fr; }
+  .strip > div { border-right: none; border-bottom: 1px solid var(--rule); }
+  .strip > div:last-child { border-bottom: none; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .cat-divider .wrap { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cat-divider .cat-num { font-size: 42px; }
+  footer .grid { grid-template-columns: 1fr; gap: 40px; }
+  .bignum .value { font-size: 38px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ribbon -->
+<div class="ribbon">
+  <div class="wrap">
+    <span><span class="ribbon-mark">●</span>&nbsp;&nbsp;Report II · Taxpayers by Slab &amp; Category · Companion to Report I</span>
+    <span>Source: CBDT · Income Tax Department · GoI</span>
+  </div>
+</div>
+
+<!-- hero -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Report II of II</div>
+    <h1 class="title">By the slab,<br/>by the <em>category</em>.</h1>
+    <p class="standfirst">
+      Where the first report counted India's taxpayers in aggregate, this one
+      cuts them open — by <em>income bracket</em>, by <em>tax regime</em>,
+      by <em>ITR form</em>. Salaried, freelancer, business owner, company.
+      Who sits in which slab, how that has changed, and what share of all filers
+      each group represents.
+    </p>
+    <div class="byline">
+      Built on CBDT Income-Tax Return Statistics, e-filing portal disclosures, and Finance Act 2024/2025 slab structures · <span>FY 2024-25 / AY 2025-26</span>
+    </div>
+  </div>
+</header>
+
+<!-- TOC -->
+<nav class="toc">
+  <div class="wrap">
+    <div class="toc-grid">
+      <a href="#slabs"><span class="num">01</span> The slab structure (old vs new)</a>
+      <a href="#individuals"><span class="num">02</span> Individuals — by income bracket</a>
+      <a href="#bracket-growth"><span class="num">03</span> Bracket-wise growth over time</a>
+      <a href="#salaried"><span class="num">04</span> Salaried vs non-salaried</a>
+      <a href="#itr-forms"><span class="num">05</span> By ITR form (freelancer / business)</a>
+      <a href="#regime"><span class="num">06</span> Old vs new regime adoption</a>
+      <a href="#topcrore"><span class="num">07</span> The crorepati taxpayer</a>
+      <a href="#companies"><span class="num">08</span> Companies — separate cut</a>
+      <a href="#others"><span class="num">09</span> HUF, Firms, AOP, Trust</a>
+      <a href="#share"><span class="num">10</span> Master share table</a>
+    </div>
+  </div>
+</nav>
+
+<!-- big numbers -->
+<section class="big-numbers">
+  <div class="wrap">
+    <div class="grid">
+      <div class="bignum">
+        <div class="label">Total ITRs (AY 24-25)</div>
+        <div class="value">7.28 <span style="font-size:0.55em;">cr</span></div>
+        <div class="unit">filed by due date · 31 Jul 2024</div>
+        <div class="delta">▲ +7.5% over AY 23-24</div>
+      </div>
+      <div class="bignum">
+        <div class="label">Individual share</div>
+        <div class="value">94<span style="font-size:0.5em;">%</span></div>
+        <div class="unit">of all returns are by individuals</div>
+        <div class="delta">8.69 cr individual ITRs (FY 24-25)</div>
+      </div>
+      <div class="bignum">
+        <div class="label">New regime adoption</div>
+        <div class="value">72<span style="font-size:0.5em;">%</span></div>
+        <div class="unit">opted for new regime · AY 24-25</div>
+        <div class="delta">Up from default introduction</div>
+      </div>
+      <div class="bignum">
+        <div class="label">Above ₹1 crore</div>
+        <div class="value">~3.3 <span style="font-size:0.5em;">lakh</span></div>
+        <div class="unit">individuals · AY 24-25</div>
+        <div class="delta">▲ 7.4× since AY 13-14</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 1: THE SLAB STRUCTURE -->
+<section class="chapter" id="slabs">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 01</div>
+      <div>
+        <h2 class="chapter-title">The structure: <em class="saf">six</em> brackets, <em>two</em> regimes.</h2>
+        <p class="chapter-dek">
+          Since FY 2023-24 the <strong>new tax regime</strong> has been the default for individuals,
+          HUFs, AOPs and BOIs. Taxpayers can opt out and pay under the older slab structure,
+          which trades higher rates for the right to claim deductions. Here are the actual rates
+          a taxpayer faces in each regime — for the most recent two financial years.
+        </p>
+      </div>
+    </div>
+
+    <div class="slab-grid">
+      <!-- new regime FY 2024-25 -->
+      <div class="slab-card new">
+        <h3>New Regime <span style="color:var(--saffron);">·</span> FY 2024–25</h3>
+        <div class="sub">AY 2025–26 · default regime · §115BAC</div>
+        <div class="slab-row"><span class="slab-range">Up to ₹3,00,000</span><span class="slab-rate zero">NIL</span></div>
+        <div class="slab-row"><span class="slab-range">₹3,00,001 – ₹7,00,000</span><span class="slab-rate low">5%</span></div>
+        <div class="slab-row"><span class="slab-range">₹7,00,001 – ₹10,00,000</span><span class="slab-rate low">10%</span></div>
+        <div class="slab-row"><span class="slab-range">₹10,00,001 – ₹12,00,000</span><span class="slab-rate mid">15%</span></div>
+        <div class="slab-row"><span class="slab-range">₹12,00,001 – ₹15,00,000</span><span class="slab-rate mid">20%</span></div>
+        <div class="slab-row"><span class="slab-range">Above ₹15,00,000</span><span class="slab-rate high">30%</span></div>
+        <div class="slab-foot">
+          <strong>Section 87A rebate:</strong> Effective zero tax up to ₹7 lakh (rebate of ₹25,000). <strong>Standard deduction:</strong> ₹75,000 for salaried &amp; pensioners. <strong>Same slab</strong> for all ages — no senior-citizen relief.
+        </div>
+      </div>
+
+      <!-- old regime FY 2024-25 -->
+      <div class="slab-card old">
+        <h3>Old Regime <span style="color:var(--teal);">·</span> FY 2024–25</h3>
+        <div class="sub">AY 2025–26 · opt-out · Form 10-IEA needed</div>
+        <div class="slab-row"><span class="slab-range">Up to ₹2,50,000</span><span class="slab-rate zero">NIL</span></div>
+        <div class="slab-row"><span class="slab-range">₹2,50,001 – ₹5,00,000</span><span class="slab-rate low">5%</span></div>
+        <div class="slab-row"><span class="slab-range">₹5,00,001 – ₹10,00,000</span><span class="slab-rate mid">20%</span></div>
+        <div class="slab-row"><span class="slab-range">Above ₹10,00,000</span><span class="slab-rate high">30%</span></div>
+        <div class="slab-foot">
+          <strong>Section 87A rebate:</strong> Up to ₹12,500 if income ≤ ₹5 lakh. <strong>Standard deduction:</strong> ₹50,000. <strong>Age-based exemption:</strong> ₹3L for 60-80 yrs, ₹5L for 80+. Deductions under 80C, 80D, HRA, home-loan interest etc. all permitted.
+        </div>
+      </div>
+
+      <!-- new regime FY 2025-26 -->
+      <div class="slab-card new" style="border-top-color: var(--saffron-deep);">
+        <h3>New Regime <span style="color:var(--saffron);">·</span> FY 2025–26 <span style="font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;color:var(--saffron-deep);background:rgba(200,85,31,0.1);padding:3px 8px;border-radius:2px;margin-left:6px;vertical-align:middle;">CURRENT</span></h3>
+        <div class="sub">AY 2026–27 · Budget 2025 · zero tax up to ₹12 L</div>
+        <div class="slab-row"><span class="slab-range">Up to ₹4,00,000</span><span class="slab-rate zero">NIL</span></div>
+        <div class="slab-row"><span class="slab-range">₹4,00,001 – ₹8,00,000</span><span class="slab-rate low">5%</span></div>
+        <div class="slab-row"><span class="slab-range">₹8,00,001 – ₹12,00,000</span><span class="slab-rate low">10%</span></div>
+        <div class="slab-row"><span class="slab-range">₹12,00,001 – ₹16,00,000</span><span class="slab-rate mid">15%</span></div>
+        <div class="slab-row"><span class="slab-range">₹16,00,001 – ₹20,00,000</span><span class="slab-rate mid">20%</span></div>
+        <div class="slab-row"><span class="slab-range">₹20,00,001 – ₹24,00,000</span><span class="slab-rate mid">25%</span></div>
+        <div class="slab-row"><span class="slab-range">Above ₹24,00,000</span><span class="slab-rate high">30%</span></div>
+        <div class="slab-foot">
+          <strong>§87A rebate:</strong> Zero tax up to ₹12 lakh (rebate ₹60,000). <strong>Effective tax-free:</strong> ₹12.75 lakh for salaried (with ₹75K std deduction). ~1 crore taxpayers benefit.
+        </div>
+      </div>
+
+      <!-- surcharge -->
+      <div class="slab-card" style="border-top: 4px solid var(--plum);">
+        <h3>Surcharge &amp; Cess <span style="color:var(--plum);">·</span> on top of slab tax</h3>
+        <div class="sub">Both regimes · 4% Health &amp; Education Cess on tax+surcharge</div>
+        <div class="slab-row"><span class="slab-range">Total income ₹50 L – ₹1 cr</span><span class="slab-rate low">10%</span></div>
+        <div class="slab-row"><span class="slab-range">Total income ₹1 cr – ₹2 cr</span><span class="slab-rate mid">15%</span></div>
+        <div class="slab-row"><span class="slab-range">Total income ₹2 cr – ₹5 cr</span><span class="slab-rate mid">25%</span></div>
+        <div class="slab-row"><span class="slab-range">Above ₹5 cr (new regime)</span><span class="slab-rate high">25%</span></div>
+        <div class="slab-row"><span class="slab-range">Above ₹5 cr (old regime)</span><span class="slab-rate high">37%</span></div>
+        <div class="slab-foot">
+          <strong>Health &amp; Education Cess:</strong> 4% on (income tax + surcharge), applies to all taxpayers. Marginal relief ensures incremental tax never exceeds incremental income at threshold crossings.
+        </div>
+      </div>
+    </div>
+
+    <div class="insight teal">
+      <div class="ilabel">The structural difference</div>
+      <p>
+        Under the <em>old regime</em>, a salaried person earning ₹12 lakh paid roughly
+        ₹1.72 lakh in tax (before 80C). Under the <em>new regime</em> at FY 25-26 rates,
+        the same person pays <em>zero</em> — provided they don't need to claim large
+        deductions. The reform is essentially a swap: lower rates in exchange for giving up shelter.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY DIVIDER: INDIVIDUALS -->
+<div class="cat-divider" id="individuals">
+  <div class="wrap">
+    <div class="cat-num">i.</div>
+    <div class="cat-text">
+      <h2>The Individual Taxpayer</h2>
+      <p>Chapters 02 through 07 — the 8.69 crore individuals who file</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 2: INDIVIDUALS BY INCOME BRACKET -->
+<section class="chapter alt">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 02</div>
+      <div>
+        <h2 class="chapter-title">Where individuals <em>sit</em> in the slab.</h2>
+        <p class="chapter-dek">
+          Of every 100 individual returns filed, roughly <strong>54</strong> declare gross
+          total income under ₹5 lakh (many below the taxable limit but filing for refunds
+          or documentation), <strong>24</strong> in the ₹5–10 lakh bracket, <strong>13</strong>
+          in ₹10–25 lakh, and the rest spread across the higher brackets.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Distribution of individual returns by gross-total-income bracket</div>
+          <div class="card-sub">AY 2021–22 · CBDT release · 6.37 crore individual returns</div>
+        </div>
+        <div class="card-tag">Individuals only</div>
+      </div>
+      <div class="chart-frame tall"><canvas id="c-ind-bracket"></canvas></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">% of individuals in each bracket</div>
+            <div class="card-sub">Share of all individual ITRs · AY 21-22</div>
+          </div>
+          <div class="card-tag">Pie cut</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-ind-pie"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Avg gross total income, by bracket</div>
+            <div class="card-sub">₹ lakh per filer in each bracket</div>
+          </div>
+          <div class="card-tag">Avg</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-ind-avg"></canvas></div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="ilabel">Reading the bottom rung</div>
+      <p>
+        About <em>3.47 crore</em> of the 6.37 crore individual filers
+        in AY 2021-22 reported gross income under ₹5 lakh. A large fraction
+        sit below the taxable threshold entirely — they file to claim
+        TDS refunds, to show income for visas or loans, or because they
+        run small businesses where filing is a compliance habit.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3: BRACKET-WISE GROWTH -->
+<section class="chapter" id="bracket-growth">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 03</div>
+      <div>
+        <h2 class="chapter-title">The <em>middle</em> brackets quadrupled.</h2>
+        <p class="chapter-dek">
+          CBDT's longitudinal cut from AY 2013-14 to AY 2021-22 reveals the most striking
+          shift in Indian taxpayer composition: filers in the ₹5–10 lakh and ₹10–25 lakh
+          brackets grew nearly <strong>4×</strong>. The bottom bracket grew only 32%.
+          The shape of the pyramid is changing.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Individual ITRs in each bracket — AY 2013-14 vs AY 2021-22</div>
+          <div class="card-sub">Number of returns · CBDT longitudinal release</div>
+        </div>
+        <div class="card-tag">Side-by-side</div>
+      </div>
+      <div class="chart-frame tall"><canvas id="c-growth-bars"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Percentage growth in filer count, by bracket</div>
+          <div class="card-sub">8-year change · AY 13-14 → AY 21-22</div>
+        </div>
+        <div class="card-tag">% growth</div>
+      </div>
+      <div class="chart-frame"><canvas id="c-growth-pct"></canvas></div>
+    </div>
+
+    <div class="strip four">
+      <div>
+        <div class="s-label">&lt; ₹5 lakh</div>
+        <div class="s-value">+32<span style="font-size:0.55em;">%</span></div>
+        <div class="s-foot">2.62 cr → 3.47 cr filers</div>
+      </div>
+      <div>
+        <div class="s-label">₹5 – 10 lakh</div>
+        <div class="s-value" style="color:var(--saffron-deep);">+295<span style="font-size:0.55em;">%</span></div>
+        <div class="s-foot">~38 L → ~1.50 cr filers</div>
+      </div>
+      <div>
+        <div class="s-label">₹10 – 25 lakh</div>
+        <div class="s-value" style="color:var(--saffron-deep);">+291<span style="font-size:0.55em;">%</span></div>
+        <div class="s-foot">~22 L → ~85 L filers</div>
+      </div>
+      <div>
+        <div class="s-label">Above ₹1 crore</div>
+        <div class="s-value" style="color:var(--saffron);">+159<span style="font-size:0.55em;">%</span></div>
+        <div class="s-foot">44,078 → 1,14,446 filers</div>
+      </div>
+    </div>
+
+    <div class="insight teal">
+      <div class="ilabel">A counter-intuitive distribution finding</div>
+      <p>
+        The average gross income of the <em>bottom 25%</em> of individual taxpayers grew
+        58% — versus 42% for the top 1%. The share of all individual income held by
+        the top 1% actually fell from 15.9% to <em>14.6%</em>. The middle 74% saw
+        their share rise from 75.8% to 77%.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 4: SALARIED VS NON-SALARIED -->
+<section class="chapter alt" id="salaried">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 04</div>
+      <div>
+        <h2 class="chapter-title">Salaried vs <em>self-earned</em>.</h2>
+        <p class="chapter-dek">
+          Of all individual taxpayers, the CBDT splits them into two streams:
+          those reporting income primarily from <strong>salary</strong>
+          and those whose income comes from <strong>business, profession, or other sources</strong> —
+          which includes freelancers and contractors. The salaried side grew faster.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Salaried vs Non-salaried filers</div>
+            <div class="card-sub">Count · individual taxpayers · ₹ crore</div>
+          </div>
+          <div class="card-tag teal">CBDT release</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-sal-count"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Average income declared</div>
+            <div class="card-sub">By taxpayer type · ₹ lakh</div>
+          </div>
+          <div class="card-tag teal">Avg GTI</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-sal-avg"></canvas></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Average tax actually paid · per individual taxpayer</div>
+          <div class="card-sub">Includes salaried, non-salaried &amp; all income brackets · ₹</div>
+        </div>
+        <div class="card-tag">CBDT release</div>
+      </div>
+      <div class="chart-frame short"><canvas id="c-avg-tax"></canvas></div>
+    </div>
+
+    <div class="strip">
+      <div>
+        <div class="s-label">Salaried filers (AY 17-18)</div>
+        <div class="s-value">2.33 <span style="font-size:0.5em;">cr</span></div>
+        <div class="s-foot">From 1.70 cr in AY 14-15 (+37%)</div>
+      </div>
+      <div>
+        <div class="s-label">Non-salaried (AY 17-18)</div>
+        <div class="s-value">2.33 <span style="font-size:0.5em;">cr</span></div>
+        <div class="s-foot">From 1.95 cr in AY 14-15 (+19%)</div>
+      </div>
+      <div>
+        <div class="s-label">Avg income gap</div>
+        <div class="s-value">₹1.61 <span style="font-size:0.5em;">L</span></div>
+        <div class="s-foot">Salaried ₹6.84 L vs non-salaried ₹5.23 L</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 5: ITR FORMS -->
+<section class="chapter" id="itr-forms">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 05</div>
+      <div>
+        <h2 class="chapter-title">By the <em>form</em> they file.</h2>
+        <p class="chapter-dek">
+          The ITR form chosen is the cleanest signal of who a taxpayer is.
+          <strong>ITR-1 (Sahaj)</strong> is for salaried with income ≤ ₹50 lakh.
+          <strong>ITR-2</strong> covers individuals with capital gains or multiple
+          house properties. <strong>ITR-3</strong> is for business and professional
+          income (full books). <strong>ITR-4 (Sugam)</strong> is the presumptive scheme —
+          where most <strong>freelancers, contractors and small businesses</strong> sit.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2-5-7">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">ITR form mix · AY 2024-25</div>
+            <div class="card-sub">7.28 crore returns by 31 Jul 2024</div>
+          </div>
+          <div class="card-tag">e-filing portal</div>
+        </div>
+        <div class="chart-frame tall"><canvas id="c-itr-pie"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">What each form means · and who files it</div>
+            <div class="card-sub">Form scope per CBDT notification</div>
+          </div>
+          <div class="card-tag">Reference</div>
+        </div>
+        <div style="padding-top:6px;">
+          <div style="padding:14px 0; border-bottom:1px solid var(--rule);">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <span style="font-family:'Fraunces',serif;font-weight:500;font-size:17px;">ITR-1 · Sahaj</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">3.34 cr · 45.77%</span>
+            </div>
+            <div style="font-size:13px;color:var(--muted);">Resident salaried · income ≤ ₹50 L · one house property · interest income. <strong style="color:var(--ink);">Most salaried Indians file this.</strong></div>
+          </div>
+          <div style="padding:14px 0; border-bottom:1px solid var(--rule);">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <span style="font-family:'Fraunces',serif;font-weight:500;font-size:17px;">ITR-2</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">1.09 cr · 14.93%</span>
+            </div>
+            <div style="font-size:13px;color:var(--muted);">Individuals/HUFs with capital gains, multiple house properties, or foreign assets — <strong style="color:var(--ink);">no business income</strong>.</div>
+          </div>
+          <div style="padding:14px 0; border-bottom:1px solid var(--rule);">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <span style="font-family:'Fraunces',serif;font-weight:500;font-size:17px;">ITR-3</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">91.10 L · 12.50%</span>
+            </div>
+            <div style="font-size:13px;color:var(--muted);">Individuals/HUFs with full <strong style="color:var(--ink);">business or professional income</strong> · maintain books · includes F&amp;O traders, doctors, lawyers above turnover threshold.</div>
+          </div>
+          <div style="padding:14px 0; border-bottom:1px solid var(--rule);">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <span style="font-family:'Fraunces',serif;font-weight:500;font-size:17px;">ITR-4 · Sugam</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">1.88 cr · 25.77%</span>
+            </div>
+            <div style="font-size:13px;color:var(--muted);"><strong style="color:var(--ink);">Presumptive scheme</strong> · §44AD/44ADA/44AE · freelancers, contractors, professionals, small businesses · turnover ≤ ₹2 cr (₹3 cr if 95% digital) / professionals ≤ ₹50 L (₹75 L if digital).</div>
+          </div>
+          <div style="padding:14px 0;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <span style="font-family:'Fraunces',serif;font-weight:500;font-size:17px;">ITR-5 to 7</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">7.48 L · 1.03%</span>
+            </div>
+            <div style="font-size:13px;color:var(--muted);">Firms (incl. LLP), companies, trusts &amp; political parties.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight plum">
+      <div class="ilabel">The freelancer / contractor signal</div>
+      <p>
+        <em>1.88 crore</em> taxpayers filed ITR-4 (Sugam) in AY 2024-25 — over
+        a <em>quarter</em> of all returns. This is the cleanest proxy India has for
+        its freelancer, gig worker, contractor and small-business population that
+        opts into the presumptive scheme. Add ITR-3 (91 lakh non-presumptive
+        business filers) and the entrepreneurial cohort approaches <em>2.8 crore</em>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 6: REGIME ADOPTION -->
+<section class="chapter alt" id="regime">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 06</div>
+      <div>
+        <h2 class="chapter-title">Old regime to <em class="saf">new</em>, in two years.</h2>
+        <p class="chapter-dek">
+          When the new regime became default for AY 2024-25 via the Finance Act 2023,
+          the migration was swift. Of the 7.28 crore returns filed by 31 July 2024,
+          <strong>5.27 crore (72%)</strong> were under the new regime —
+          and the CBDT chairman has said this should reach <strong>over 90%</strong>
+          once the FY 2025-26 ₹12-lakh zero-tax threshold filters through.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Regime split · AY 2024-25</div>
+            <div class="card-sub">7.28 crore ITRs filed by 31 Jul 2024</div>
+          </div>
+          <div class="card-tag">Press release</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-regime-pie"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Tax payable comparison · salaried ₹12 L</div>
+            <div class="card-sub">Pre-rebate calculation · old vs new (FY 24-25 &amp; 25-26)</div>
+          </div>
+          <div class="card-tag plum">Illustrative</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-tax-compare"></canvas></div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <div>
+        <div class="s-label">AY 24-25 · new regime</div>
+        <div class="s-value">5.27 <span style="font-size:0.5em;">cr</span></div>
+        <div class="s-foot">72% of all returns · default in effect</div>
+      </div>
+      <div>
+        <div class="s-label">AY 24-25 · old regime</div>
+        <div class="s-value">2.01 <span style="font-size:0.5em;">cr</span></div>
+        <div class="s-foot">28% · those claiming substantial 80C/HRA</div>
+      </div>
+      <div>
+        <div class="s-label">Projected AY 26-27</div>
+        <div class="s-value">90<span style="font-size:0.5em;">%+</span></div>
+        <div class="s-foot">CBDT chairman after Budget 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 7: CROREPATI -->
+<section class="chapter" id="topcrore">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 07</div>
+      <div>
+        <h2 class="chapter-title">At the top: the <em class="saf">crorepati</em> taxpayer.</h2>
+        <p class="chapter-dek">
+          One of the cleanest signals of Indian formalisation is the count of individuals
+          declaring annual gross total income above <strong>₹1 crore</strong>.
+          That number was just <em>44,078</em> in AY 2013-14. By AY 2024-25 it had
+          crossed <strong>3.3 lakh</strong> — a <em>7.4× expansion</em> in twelve years.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Individuals declaring income above ₹1 crore</div>
+          <div class="card-sub">By Assessment Year · CBDT ITR statistics &amp; press releases</div>
+        </div>
+        <div class="card-tag">12-year arc</div>
+      </div>
+      <div class="chart-frame tall"><canvas id="c-crore"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Above ₹1 crore — split by entity type · AY 2022-23</div>
+          <div class="card-sub">Total: 2.69 lakh entities above ₹1 cr</div>
+        </div>
+        <div class="card-tag teal">All categories</div>
+      </div>
+      <div class="chart-frame short"><canvas id="c-crore-mix"></canvas></div>
+    </div>
+
+    <div class="insight">
+      <div class="ilabel">A telling tail</div>
+      <p>
+        Within the crorepati category, in AY 2022-23, just <em>1,798 individuals</em>
+        declared income above ₹25 crore — down marginally from 1,812 a year earlier.
+        And only <em>1,577 salaried individuals</em> sit above ₹10 crore.
+        The ultra-tail is small and remarkably stable; the broad expansion is
+        happening in the ₹1-5 crore band.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY DIVIDER: COMPANIES -->
+<div class="cat-divider" id="companies">
+  <div class="wrap">
+    <div class="cat-num">ii.</div>
+    <div class="cat-text">
+      <h2>Companies</h2>
+      <p>Chapter 08 — corporate filers, shown separately</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 8: COMPANIES -->
+<section class="chapter deep">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num teal">Chapter 08</div>
+      <div>
+        <h2 class="chapter-title">Companies in <em>their own</em> frame.</h2>
+        <p class="chapter-dek">
+          Companies are roughly <strong>1.3% of all ITRs</strong> but punch
+          way above their weight in collections — ₹9.87 lakh crore of corporate tax
+          in FY 2024-25 (44% of all net direct tax). Their count has risen from
+          7.15 lakh (FY 13-14) to <strong>12.11 lakh</strong> (FY 24-25). Distinct universe, distinct slabs.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Company ITRs filed, by year</div>
+            <div class="card-sub">FY 13-14 → FY 24-25 · CBDT Time-Series</div>
+          </div>
+          <div class="card-tag teal">Companies only</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-co-count"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Corporate tax collected</div>
+            <div class="card-sub">FY 13-14 → FY 24-25 · ₹ lakh crore</div>
+          </div>
+          <div class="card-tag teal">Collection</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-co-collect"></canvas></div>
+      </div>
+    </div>
+
+    <div class="slab-grid">
+      <div class="slab-card" style="border-top: 4px solid var(--teal);">
+        <h3>Corporate Tax Rates · Domestic Companies</h3>
+        <div class="sub">FY 2024–25 · §115BAA / §115BAB / standard</div>
+        <div class="slab-row"><span class="slab-range">Turnover ≤ ₹400 cr (FY 22-23)</span><span class="slab-rate low">25%</span></div>
+        <div class="slab-row"><span class="slab-range">Turnover &gt; ₹400 cr</span><span class="slab-rate mid">30%</span></div>
+        <div class="slab-row"><span class="slab-range">§115BAA opt-in (no exemptions)</span><span class="slab-rate low">22%</span></div>
+        <div class="slab-row"><span class="slab-range">§115BAB new manufacturing</span><span class="slab-rate zero">15%</span></div>
+        <div class="slab-foot">
+          <strong>Surcharge:</strong> 7% (income ₹1-10 cr), 12% (above ₹10 cr) · <strong>Cess:</strong> 4% H&amp;EC on tax+surcharge. §115BAA companies pay flat 10% surcharge.
+        </div>
+      </div>
+      <div class="slab-card" style="border-top: 4px solid var(--teal-deep);">
+        <h3>Foreign Companies</h3>
+        <div class="sub">Operating in India · branch profits</div>
+        <div class="slab-row"><span class="slab-range">Royalty/Technical fees (treaty)</span><span class="slab-rate low">10–25%</span></div>
+        <div class="slab-row"><span class="slab-range">Other income (FY 24-25)</span><span class="slab-rate mid">35%</span></div>
+        <div class="slab-row"><span class="slab-range">Other income (until FY 23-24)</span><span class="slab-rate high">40%</span></div>
+        <div class="slab-foot">
+          <strong>Reduced from 40% to 35%</strong> in Budget 2024 to attract foreign investment. <strong>Surcharge:</strong> 2% (income ₹1-10 cr), 5% (above ₹10 cr).
+        </div>
+      </div>
+    </div>
+
+    <div class="strip four">
+      <div>
+        <div class="s-label">Total companies (AY 24-25)</div>
+        <div class="s-value">11.97 <span style="font-size:0.5em;">L</span></div>
+        <div class="s-foot">PAN-holding entities · taxpayer count</div>
+      </div>
+      <div>
+        <div class="s-label">Co. ITRs (FY 24-25)</div>
+        <div class="s-value">12.11 <span style="font-size:0.5em;">L</span></div>
+        <div class="s-foot">1.32% of all ITRs filed</div>
+      </div>
+      <div>
+        <div class="s-label">Above ₹1 cr (AY 22-23)</div>
+        <div class="s-value">66,397</div>
+        <div class="s-foot">~6% of all company filers</div>
+      </div>
+      <div>
+        <div class="s-label">Corp tax (FY 24-25)</div>
+        <div class="s-value">₹9.87 <span style="font-size:0.5em;">L cr</span></div>
+        <div class="s-foot">44% of net direct tax collection</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY DIVIDER: OTHER -->
+<div class="cat-divider" id="others">
+  <div class="wrap">
+    <div class="cat-num">iii.</div>
+    <div class="cat-text">
+      <h2>The Other Six Categories</h2>
+      <p>Chapter 09 — HUF, Firm, Trust, AOP/BOI, Local Authority, AJP</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 9: OTHERS -->
+<section class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num teal">Chapter 09</div>
+      <div>
+        <h2 class="chapter-title">HUF, Firm, Trust, AOP/BOI: the <em>quiet</em> categories.</h2>
+        <p class="chapter-dek">
+          Together these six categories filed about <strong>38 lakh ITRs</strong> in FY 2024-25 —
+          roughly 4% of the total — but they carry significant tax weight because their average
+          declared incomes are far higher than for individuals. Each follows different slab
+          structures.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">Other-category ITRs · FY 13-14 vs FY 24-25</div>
+          <div class="card-sub">By PAN sub-category · excluding Individual &amp; Company</div>
+        </div>
+        <div class="card-tag teal">Side-by-side</div>
+      </div>
+      <div class="chart-frame"><canvas id="c-other-cats"></canvas></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Above ₹1 cr filers in each non-individual category</div>
+            <div class="card-sub">AY 2022-23 · entities declaring &gt; ₹1 cr GTI</div>
+          </div>
+          <div class="card-tag">High-income</div>
+        </div>
+        <div class="chart-frame"><canvas id="c-other-crore"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Tax rate applicable, by category</div>
+            <div class="card-sub">FY 2024-25 · indicative rates</div>
+          </div>
+          <div class="card-tag">Reference</div>
+        </div>
+        <div style="padding-top:6px;">
+          <div style="padding:11px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns: 1fr auto; align-items:baseline; gap:12px;">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;">HUF (Hindu Undivided Family)</div>
+              <div style="font-size:12px;color:var(--muted);">Same slab as individuals under both regimes</div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--teal);font-weight:700;">Individual slab</div>
+          </div>
+          <div style="padding:11px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns: 1fr auto; align-items:baseline; gap:12px;">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;">Partnership Firm / LLP</div>
+              <div style="font-size:12px;color:var(--muted);">Flat rate · plus surcharge if income &gt; ₹1 cr</div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">30%</div>
+          </div>
+          <div style="padding:11px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns: 1fr auto; align-items:baseline; gap:12px;">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;">Trust (Charitable / Private)</div>
+              <div style="font-size:12px;color:var(--muted);">Varies · charitable trusts often exempt under §11/§12</div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--teal);font-weight:700;">Case-based</div>
+          </div>
+          <div style="padding:11px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns: 1fr auto; align-items:baseline; gap:12px;">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;">AOP / BOI</div>
+              <div style="font-size:12px;color:var(--muted);">Same slab as individuals (default new regime now applies)</div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--teal);font-weight:700;">Individual slab</div>
+          </div>
+          <div style="padding:11px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns: 1fr auto; align-items:baseline; gap:12px;">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;">Co-operative Society</div>
+              <div style="font-size:12px;color:var(--muted);">Slab 10/20/30% · or §115BAD opt-in @22%</div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">22 / 30%</div>
+          </div>
+          <div style="padding:11px 0; display:grid; grid-template-columns: 1fr auto; align-items:baseline; gap:12px;">
+            <div>
+              <div style="font-family:'Fraunces',serif;font-weight:500;font-size:15px;">Local Authority / AJP</div>
+              <div style="font-size:12px;color:var(--muted);">Local body / artificial juridical person</div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--saffron);font-weight:700;">30%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 10: MASTER SHARE TABLE -->
+<section class="chapter alt" id="share">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div class="chapter-num">Chapter 10</div>
+      <div>
+        <h2 class="chapter-title">The master <em>share</em> table.</h2>
+        <p class="chapter-dek">
+          For ready reference — every category and bracket, with its absolute count
+          and percentage share of all ITRs filed. Year used is the most recently
+          completed one for which CBDT has published the breakdown.
+        </p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <h4>By PAN category · FY 2024-25 · 9.18 cr returns filed</h4>
+      <div class="card-sub">CBDT Time-Series Table 1.7</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th style="text-align:right">ITRs filed</th>
+            <th style="text-align:right">% share</th>
+            <th>Tax rule</th>
+            <th style="text-align:right">12-yr growth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Individual</td><td>8,68,65,490</td><td class="num-hi">94.58%</td><td>Slab (old/new regime)</td><td class="num-pos">+148%</td></tr>
+          <tr><td>Firm (Partnership / LLP)</td><td>17,28,795</td><td>1.88%</td><td>Flat 30%</td><td class="num-pos">+80%</td></tr>
+          <tr><td>HUF</td><td>13,70,123</td><td>1.49%</td><td>Same as Individual</td><td class="num-pos">+43%</td></tr>
+          <tr><td>Company</td><td>12,11,364</td><td>1.32%</td><td>22 / 25 / 30% &amp; spl. rates</td><td class="num-pos">+69%</td></tr>
+          <tr><td>Other AOP / BOI</td><td>3,29,718</td><td>0.36%</td><td>Same as Individual</td><td class="num-pos">+212%</td></tr>
+          <tr><td>AOP (Trust)</td><td>3,24,707</td><td>0.35%</td><td>Case-based / exempt</td><td class="num-pos">+77%</td></tr>
+          <tr><td>AJP</td><td>10,765</td><td>0.01%</td><td>30%</td><td class="num-pos">+24%</td></tr>
+          <tr><td>Local Authority</td><td>4,321</td><td>0.00%</td><td>30%</td><td class="num-pos">+54%</td></tr>
+          <tr><td>Others</td><td>784</td><td>0.00%</td><td>Various</td><td class="num-pos">+7,740%</td></tr>
+          <tr class="total"><td>All categories</td><td>9,18,46,067</td><td>100.00%</td><td>—</td><td class="num-pos">+142%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl-wrap">
+      <h4>By individual ITR form · AY 2024-25 · 7.28 cr by due date</h4>
+      <div class="card-sub">e-filing portal release · 31 Jul 2024</div>
+      <table>
+        <thead>
+          <tr>
+            <th>ITR Form</th>
+            <th>Who files</th>
+            <th style="text-align:right">Count</th>
+            <th style="text-align:right">% share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>ITR-1 (Sahaj)</td><td>Resident salaried · ≤₹50 L</td><td>3,34,00,000</td><td class="num-hi">45.77%</td></tr>
+          <tr><td>ITR-4 (Sugam)</td><td>Presumptive · freelancers / small biz</td><td>1,88,00,000</td><td class="num-hi">25.77%</td></tr>
+          <tr><td>ITR-2</td><td>Indl/HUF · capital gains · no business</td><td>1,09,00,000</td><td>14.93%</td></tr>
+          <tr><td>ITR-3</td><td>Indl/HUF with full business / profession</td><td>91,10,000</td><td>12.50%</td></tr>
+          <tr><td>ITR-5 to ITR-7</td><td>Firms, companies, trusts, parties</td><td>7,48,000</td><td>1.03%</td></tr>
+          <tr class="total"><td>All forms</td><td>—</td><td>7,28,58,000</td><td>100.00%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl-wrap">
+      <h4>By individual gross-total-income bracket · AY 2021-22 · 6.37 cr</h4>
+      <div class="card-sub">CBDT longitudinal release · numbers in lakh</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Income bracket</th>
+            <th style="text-align:right">AY 2013-14</th>
+            <th style="text-align:right">AY 2021-22</th>
+            <th style="text-align:right">% share (21-22)</th>
+            <th style="text-align:right">8-yr growth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Up to ₹5 lakh</td><td>2,62,00,000</td><td>3,47,00,000</td><td class="num-hi">54.5%</td><td class="num-pos">+32%</td></tr>
+          <tr><td>₹5 – 10 lakh</td><td>~38,00,000</td><td>~1,50,00,000</td><td>23.5%</td><td class="num-pos">+295%</td></tr>
+          <tr><td>₹10 – 25 lakh</td><td>~22,00,000</td><td>~85,30,000</td><td>13.4%</td><td class="num-pos">+291%</td></tr>
+          <tr><td>₹25 – 50 lakh</td><td>~7,00,000</td><td>~33,00,000</td><td>5.2%</td><td class="num-pos">+371%</td></tr>
+          <tr><td>₹50 lakh – 1 cr</td><td>~2,80,000</td><td>~15,00,000</td><td>2.4%</td><td class="num-pos">+436%</td></tr>
+          <tr><td>Above ₹1 crore</td><td>44,078</td><td>1,14,446</td><td>0.18%</td><td class="num-pos">+159%</td></tr>
+          <tr class="total"><td>All individuals</td><td>3,32,00,000</td><td>6,37,00,000</td><td>100.0%</td><td class="num-pos">+92%</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--muted); letter-spacing:0.04em;">
+        Note: Mid-bracket figures (₹5-10 L, ₹10-25 L, ₹25-50 L, ₹50 L-1 cr) are derived from CBDT's percentage-growth disclosures applied to base counts. Bracket boundaries refer to gross total income, not taxable income.
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <h4>Above ₹1 crore — all entity types · AY 2022-23</h4>
+      <div class="card-sub">Latest year for which CBDT has published full entity split</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Entity type</th>
+            <th style="text-align:right">Count above ₹1 cr</th>
+            <th style="text-align:right">% of entity's total filers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Individual</td><td>1,69,890</td><td>0.23%</td></tr>
+          <tr><td>Company</td><td>66,397</td><td>6.10%</td></tr>
+          <tr><td>Firm (incl LLP)</td><td>25,262</td><td>1.61%</td></tr>
+          <tr><td>Trust</td><td>3,059</td><td>1.07%</td></tr>
+          <tr><td>AOP / BOI</td><td>2,068</td><td>0.78%</td></tr>
+          <tr class="total"><td>Total above ₹1 cr</td><td>2,69,054</td><td>0.35% of all filers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h5>About this report</h5>
+        <p>
+          Companion to Report&nbsp;I (<em>The Indian Taxpayer — A Decade in Data</em>),
+          this volume focuses on the within-base breakdown: by income slab, by tax regime,
+          by ITR form, and by entity category. Individuals are kept visually and structurally
+          separate from companies and other entities throughout.
+        </p>
+        <p style="margin-top:14px;">
+          Slab rates reflect the Finance Act 2023, Finance Act 2024 and Finance Act 2025 amendments
+          (the last raising the new-regime zero-tax threshold to ₹12 lakh effective FY 2025-26).
+        </p>
+      </div>
+      <div>
+        <h5>Primary sources</h5>
+        <ul>
+          <li>CBDT Time-Series Data 2000-01 to 2024-25 (Dec 2025)</li>
+          <li>CBDT Income-Tax Return Statistics AY 2023-24</li>
+          <li>CBDT longitudinal release on individual income distribution (Oct 2023)</li>
+          <li>PIB ITR filing portal updates (1 Aug 2024)</li>
+          <li>Press releases on regime adoption · Finance Ministry</li>
+          <li>Finance Act 2023 / 2024 / 2025 schedules</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Methodology notes</h5>
+        <ul>
+          <li>1 lakh = 100,000 · 1 crore = 10,000,000</li>
+          <li>"Gross Total Income" before §10 exemptions / Chapter VI-A deductions</li>
+          <li>ITR-form mix reflects only the AY 24-25 due-date snapshot; later filings shift small %</li>
+          <li>Bracket sub-counts for AY 2021-22 partly derived from CBDT-disclosed growth %</li>
+          <li>"Crorepati" counts use GTI &gt; ₹1 cr (not just tax payable)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>Report II · By the Slab, By the Category</span>
+      <span>Compiled May 2026 · Companion to Report I</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const ink = '#0E1B2C';
+const muted = '#6B5E4C';
+const saffron = '#C8551F';
+const saffronDeep = '#9C3D0F';
+const teal = '#14534C';
+const tealDeep = '#0A3934';
+const gold = '#A37D24';
+const green = '#4F6B3D';
+const sage = '#8F9A7F';
+const plum = '#6B3A4E';
+const card = '#FBF7EC';
+const rule = '#D6CAB1';
+
+Chart.defaults.font.family = "'DM Sans', system-ui, sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = ink;
+Chart.defaults.borderColor = rule;
+
+// ---------- 1. Individuals by bracket (AY 21-22) ----------
+const indBrackets = ['Up to ₹5 L', '₹5–10 L', '₹10–25 L', '₹25–50 L', '₹50 L–1 cr', 'Above ₹1 cr'];
+const indCounts = [347, 150, 85.3, 33, 15, 1.14]; // in lakh
+
+new Chart(document.getElementById('c-ind-bracket'), {
+  type: 'bar',
+  data: {
+    labels: indBrackets,
+    datasets: [{
+      label: 'Lakh filers',
+      data: indCounts,
+      backgroundColor: [saffron, saffronDeep, teal, gold, plum, '#5B2E1F'],
+      borderRadius: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: {
+        label: ctx => {
+          const total = 637;
+          return `${ctx.parsed.y < 10 ? ctx.parsed.y.toFixed(2) : ctx.parsed.y.toFixed(0)} lakh filers · ${(ctx.parsed.y/total*100).toFixed(2)}% of individuals`;
+        }
+      }}
+    },
+    scales: {
+      y: {
+        type: 'logarithmic',
+        ticks: { callback: v => v >= 1 ? v + ' L' : v.toFixed(1) + ' L' },
+        grid: { color: rule }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 2. Individuals pie ----------
+new Chart(document.getElementById('c-ind-pie'), {
+  type: 'doughnut',
+  data: {
+    labels: indBrackets,
+    datasets: [{
+      data: indCounts,
+      backgroundColor: [saffron, saffronDeep, teal, gold, plum, '#5B2E1F'],
+      borderColor: card, borderWidth: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false, cutout: '55%',
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 12, font: { size: 11 } } },
+      tooltip: { callbacks: {
+        label: ctx => `${ctx.label}: ${(ctx.parsed/637*100).toFixed(2)}% of individuals`
+      }}
+    }
+  }
+});
+
+// ---------- 3. Avg income by bracket ----------
+const indAvgIncome = [2.5, 7.0, 15.0, 35.0, 70.0, 250.0]; // ₹ lakh approx midpoints
+new Chart(document.getElementById('c-ind-avg'), {
+  type: 'bar',
+  data: {
+    labels: indBrackets,
+    datasets: [{
+      label: 'Avg GTI ₹ lakh',
+      data: indAvgIncome,
+      backgroundColor: gold,
+      borderRadius: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `~₹${ctx.parsed.y} lakh avg` } }
+    },
+    scales: {
+      y: { type: 'logarithmic', ticks: { callback: v => '₹' + v + ' L' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 4. Growth bars: AY 13-14 vs 21-22 ----------
+new Chart(document.getElementById('c-growth-bars'), {
+  type: 'bar',
+  data: {
+    labels: indBrackets,
+    datasets: [
+      { label: 'AY 2013-14', data: [262, 38, 22, 7, 2.8, 0.44], backgroundColor: gold, borderRadius: 2 },
+      { label: 'AY 2021-22', data: [347, 150, 85.3, 33, 15, 1.14], backgroundColor: saffron, borderRadius: 2 }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y < 10 ? ctx.parsed.y.toFixed(2) : ctx.parsed.y.toFixed(0)} lakh filers` } }
+    },
+    scales: {
+      y: { type: 'logarithmic', ticks: { callback: v => v >= 1 ? v + ' L' : v.toFixed(1) + ' L' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 5. Growth % ----------
+const growthPct = [32, 295, 291, 371, 436, 159];
+new Chart(document.getElementById('c-growth-pct'), {
+  type: 'bar',
+  data: {
+    labels: indBrackets,
+    datasets: [{
+      label: '% growth',
+      data: growthPct,
+      backgroundColor: growthPct.map(v => v > 350 ? saffronDeep : (v > 200 ? saffron : (v > 100 ? gold : teal))),
+      borderRadius: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `+${ctx.parsed.y}% over 8 years` } }
+    },
+    scales: {
+      y: { ticks: { callback: v => '+' + v + '%' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 6. Salaried vs non-salaried count ----------
+new Chart(document.getElementById('c-sal-count'), {
+  type: 'bar',
+  data: {
+    labels: ['AY 2014-15', 'AY 2017-18'],
+    datasets: [
+      { label: 'Salaried', data: [1.70, 2.33], backgroundColor: saffron, borderRadius: 3 },
+      { label: 'Non-salaried', data: [1.95, 2.33], backgroundColor: teal, borderRadius: 3 }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)} crore` } }
+    },
+    scales: {
+      y: { beginAtZero: true, max: 3, ticks: { callback: v => v + ' cr' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 7. Avg income salaried/non ----------
+new Chart(document.getElementById('c-sal-avg'), {
+  type: 'bar',
+  data: {
+    labels: ['AY 2014-15', 'AY 2017-18'],
+    datasets: [
+      { label: 'Salaried avg income', data: [5.76, 6.84], backgroundColor: saffron, borderRadius: 3 },
+      { label: 'Non-salaried avg', data: [4.11, 5.23], backgroundColor: teal, borderRadius: 3 }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ₹${ctx.parsed.y.toFixed(2)} lakh` } }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => '₹' + v + ' L' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 8. Avg tax paid ----------
+new Chart(document.getElementById('c-avg-tax'), {
+  type: 'line',
+  data: {
+    labels: ['AY 2014-15', 'AY 2015-16', 'AY 2016-17', 'AY 2017-18'],
+    datasets: [{
+      label: 'Avg tax paid · individual',
+      data: [46377, 48000, 53000, 58576],
+      borderColor: saffron,
+      backgroundColor: 'rgba(200,85,31,0.12)',
+      tension: 0.3, fill: true, borderWidth: 3, pointRadius: 5,
+      pointBackgroundColor: saffron, pointBorderColor: card, pointBorderWidth: 2
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `₹${ctx.parsed.y.toLocaleString('en-IN')}` } }
+    },
+    scales: {
+      y: { beginAtZero: false, ticks: { callback: v => '₹' + (v/1000).toFixed(0) + 'K' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 9. ITR form pie ----------
+new Chart(document.getElementById('c-itr-pie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['ITR-1 · Salaried (45.77%)', 'ITR-4 · Presumptive / Freelancer (25.77%)', 'ITR-2 · Capital gains (14.93%)', 'ITR-3 · Business / Profession (12.50%)', 'ITR-5 to 7 · Firms/Co/Trusts (1.03%)'],
+    datasets: [{
+      data: [3.34, 1.88, 1.09, 0.91, 0.075],
+      backgroundColor: [saffron, plum, gold, teal, sage],
+      borderColor: card, borderWidth: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false, cutout: '52%',
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 10, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.toFixed(2)} crore filings` } }
+    }
+  }
+});
+
+// ---------- 10. Regime pie ----------
+new Chart(document.getElementById('c-regime-pie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['New Regime (5.27 cr · 72%)', 'Old Regime (2.01 cr · 28%)'],
+    datasets: [{
+      data: [5.27, 2.01],
+      backgroundColor: [saffron, teal],
+      borderColor: card, borderWidth: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false, cutout: '60%',
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14, font: { size: 12 } } },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.toFixed(2)} crore filings` } }
+    }
+  }
+});
+
+// ---------- 11. Tax compare ₹12L ----------
+new Chart(document.getElementById('c-tax-compare'), {
+  type: 'bar',
+  data: {
+    labels: ['Old Regime\n(pre-80C)', 'New Regime\nFY 24-25', 'New Regime\nFY 25-26'],
+    datasets: [{
+      label: 'Tax payable (₹) on ₹12L salary',
+      data: [172500, 80000, 0],
+      backgroundColor: [teal, gold, green],
+      borderRadius: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `₹${ctx.parsed.y.toLocaleString('en-IN')}` } }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => '₹' + (v/1000).toFixed(0) + 'K' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 12. Crorepati line ----------
+new Chart(document.getElementById('c-crore'), {
+  type: 'line',
+  data: {
+    labels: ['AY 13-14', 'AY 14-15', 'AY 15-16', 'AY 17-18', 'AY 20-21', 'AY 21-22', 'AY 22-23', 'AY 23-24', 'AY 24-25'],
+    datasets: [{
+      label: 'Individuals > ₹1 cr',
+      data: [44078, 48417, 59830, 81344, 81653, 114446, 169890, 229792, 328500],
+      borderColor: saffron,
+      backgroundColor: 'rgba(200,85,31,0.12)',
+      tension: 0.3, fill: true, borderWidth: 3, pointRadius: 5,
+      pointBackgroundColor: saffron, pointBorderColor: card, pointBorderWidth: 2
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toLocaleString('en-IN')} individuals` } }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => (v/1000).toFixed(0) + 'K' }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 13. Crorepati mix ----------
+new Chart(document.getElementById('c-crore-mix'), {
+  type: 'bar',
+  data: {
+    labels: ['Individual', 'Company', 'Firm/LLP', 'Trust', 'AOP/BOI'],
+    datasets: [{
+      label: 'Above ₹1 cr · AY 22-23',
+      data: [169890, 66397, 25262, 3059, 2068],
+      backgroundColor: [saffron, teal, gold, plum, sage],
+      borderRadius: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: {
+        label: ctx => `${ctx.parsed.x.toLocaleString('en-IN')} entities · ${(ctx.parsed.x/269054*100).toFixed(1)}% of crorepati pool`
+      }}
+    },
+    scales: {
+      x: { ticks: { callback: v => (v/1000).toFixed(0) + 'K' }, grid: { color: rule } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// ---------- 14. Companies count over time ----------
+const coCounts = [7.15, 7.54, 7.80, 8.04, 9.43, 9.65, 9.34, 10.24, 10.59, 10.88, 11.46, 12.11]; // lakh
+new Chart(document.getElementById('c-co-count'), {
+  type: 'line',
+  data: {
+    labels: ['FY 13-14','FY 14-15','FY 15-16','FY 16-17','FY 17-18','FY 18-19','FY 19-20','FY 20-21','FY 21-22','FY 22-23','FY 23-24','FY 24-25'],
+    datasets: [{
+      label: 'Company ITRs (lakh)',
+      data: coCounts,
+      borderColor: teal,
+      backgroundColor: 'rgba(20,83,76,0.12)',
+      tension: 0.3, fill: true, borderWidth: 3, pointRadius: 4,
+      pointBackgroundColor: teal, pointBorderColor: card, pointBorderWidth: 2
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toFixed(2)} lakh company ITRs` } }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => v + ' L' }, grid: { color: rule } },
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// ---------- 15. Corporate tax over time ----------
+const corpTax = [3.95, 4.29, 4.53, 4.85, 5.71, 6.64, 5.57, 4.58, 7.12, 8.26, 9.11, 9.87]; // L crore
+new Chart(document.getElementById('c-co-collect'), {
+  type: 'bar',
+  data: {
+    labels: ['FY 13-14','FY 14-15','FY 15-16','FY 16-17','FY 17-18','FY 18-19','FY 19-20','FY 20-21','FY 21-22','FY 22-23','FY 23-24','FY 24-25'],
+    datasets: [{
+      label: '₹ L crore',
+      data: corpTax,
+      backgroundColor: corpTax.map((v,i,a) => i>0 && v < a[i-1] ? saffronDeep : teal),
+      borderRadius: 2
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `₹${ctx.parsed.y.toFixed(2)} lakh crore` } }
+    },
+    scales: {
+      y: { ticks: { callback: v => '₹' + v + ' L cr' }, grid: { color: rule } },
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// ---------- 16. Other categories ----------
+new Chart(document.getElementById('c-other-cats'), {
+  type: 'bar',
+  data: {
+    labels: ['HUF', 'Firm/LLP', 'AOP (Trust)', 'Other AOP/BOI', 'AJP', 'Local Authority'],
+    datasets: [
+      { label: 'FY 13-14', data: [9.55, 9.61, 1.84, 1.06, 0.087, 0.028], backgroundColor: gold, borderRadius: 2 },
+      { label: 'FY 24-25', data: [13.70, 17.29, 3.25, 3.30, 0.108, 0.043], backgroundColor: teal, borderRadius: 2 }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y < 1 ? (ctx.parsed.y*100).toFixed(0) + ' hundred' : ctx.parsed.y.toFixed(2) + ' lakh'}` } }
+    },
+    scales: {
+      y: { type: 'logarithmic', ticks: { callback: v => v >= 1 ? v + ' L' : (v*100).toFixed(0) + ' hd' }, grid: { color: rule } },
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ---------- 17. Other crore breakdown ----------
+new Chart(document.getElementById('c-other-crore'), {
+  type: 'bar',
+  data: {
+    labels: ['Company', 'Firm/LLP', 'Trust', 'AOP/BOI'],
+    datasets: [{
+      label: 'Filers above ₹1 cr · AY 22-23',
+      data: [66397, 25262, 3059, 2068],
+      backgroundColor: [teal, gold, plum, sage],
+      borderRadius: 3
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toLocaleString('en-IN')} entities` } }
+    },
+    scales: {
+      y: { type: 'logarithmic', ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'K' : v }, grid: { color: rule } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
