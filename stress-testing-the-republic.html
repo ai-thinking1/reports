@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stress-Testing the Republic, How Nations Fracture and Why India Is Hard to Break</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+ :root{
+ --paper:#E9ECEF;
+ --paper-2:#F5F6F8;
+ --card:#FBFBFC;
+ --ink:#121A21;
+ --ink-2:#2B3742;
+ --ink-soft:#586771;
+ --steel:#2C6788;
+ --steel-deep:#194963;
+ --rust:#AC3F24;
+ --rust-soft:#c25a3e;
+ --amber:#B9812A;
+ --line:rgba(18,26,33,0.14);
+ --line-2:rgba(18,26,33,0.08);
+ --hero-ink:#0E1519;
+ --hero-fog:#8FA3AE;
+ --maxw:1080px;
+ }
+ *{box-sizing:border-box}
+ html{scroll-behavior:smooth}
+ body{
+ margin:0;background:var(--paper);color:var(--ink);
+ font-family:"Newsreader",Georgia,serif;
+ font-size:19px;line-height:1.62;font-weight:400;
+ -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+ }
+ ::selection{background:var(--steel);color:#fff}
+ a{color:var(--steel-deep);text-underline-offset:3px;text-decoration-thickness:1px}
+
+ .mono{font-family:"IBM Plex Mono",monospace}
+ .eyebrow{
+ font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
+ letter-spacing:.22em;text-transform:uppercase;color:var(--steel);
+ display:inline-block;
+ }
+
+ /* ---------- HERO ---------- */
+ .hero{
+ background:var(--hero-ink);color:#EAEFF2;
+ padding:clamp(64px,11vw,140px) 24px clamp(52px,8vw,96px);
+ position:relative;overflow:hidden;border-bottom:1px solid #000;
+ }
+ .hero-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:2}
+ .hero .eyebrow{color:var(--rust-soft)}
+ .hero-title{
+ font-family:"Archivo",sans-serif;font-weight:900;
+ font-size:clamp(40px,8.5vw,86px);line-height:.98;letter-spacing:-.02em;
+ margin:22px 0 0;color:#fff;text-wrap:balance;
+ }
+ .hero-title .thin{font-weight:600;color:var(--hero-fog);display:block;font-size:.42em;letter-spacing:.01em;margin-top:20px;line-height:1.3;max-width:34ch}
+ .hero-dek{
+ font-size:clamp(19px,2.4vw,23px);color:#C6D1D7;max-width:60ch;margin:30px 0 0;line-height:1.55;
+ }
+ .hero-meta{
+ margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);
+ display:flex;flex-wrap:wrap;gap:10px 30px;font-family:"IBM Plex Mono",monospace;
+ font-size:12.5px;letter-spacing:.04em;color:var(--hero-fog);
+ }
+ .hero-meta b{color:#DCE4E8;font-weight:500}
+ /* faint contour lines in hero bg */
+ .hero svg.contour{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.16}
+
+ /* ---------- LAYOUT ---------- */
+ .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+ .part{padding:clamp(56px,8vw,92px) 0 4px}
+ .part + .part{border-top:none}
+ .divider{max-width:var(--maxw);margin:44px auto 0;padding:0 24px}
+ .divider svg{width:100%;height:26px;display:block;opacity:.5}
+
+ .part-head{display:flex;gap:18px;align-items:baseline;margin-bottom:8px}
+ .part-num{
+ font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;
+ color:var(--rust);letter-spacing:.08em;padding-top:6px;white-space:nowrap;
+ }
+ h2.part-title{
+ font-family:"Archivo",sans-serif;font-weight:800;
+ font-size:clamp(27px,4.6vw,44px);line-height:1.02;letter-spacing:-.015em;
+ margin:0;color:var(--ink);text-wrap:balance;
+ }
+ .lead{font-size:clamp(20px,2.5vw,23px);line-height:1.55;color:var(--ink-2);margin:22px 0 8px}
+ p{margin:0 0 20px}
+ .part p, .part ul{max-width:76ch}
+ h3{
+ font-family:"Archivo",sans-serif;font-weight:700;font-size:clamp(20px,2.7vw,26px);
+ letter-spacing:-.01em;line-height:1.15;margin:44px 0 10px;color:var(--ink);
+ }
+ h4{
+ font-family:"Archivo",sans-serif;font-weight:600;font-size:17px;letter-spacing:.01em;
+ margin:26px 0 6px;color:var(--ink-2);
+ }
+ strong{font-weight:600;color:var(--ink)}
+ em{font-style:italic}
+ ul{padding-left:0;list-style:none;margin:0 0 22px}
+ ul li{position:relative;padding-left:26px;margin-bottom:12px;max-width:74ch}
+ ul li::before{
+ content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;
+ background:var(--steel);transform:rotate(45deg);
+ }
+ ul.fault li::before{background:var(--rust)}
+
+ /* ---------- PULLQUOTE ---------- */
+ .pull{
+ margin:38px 0;padding:4px 0 4px 28px;border-left:3px solid var(--rust);
+ font-size:clamp(22px,3vw,29px);line-height:1.32;font-weight:500;color:var(--ink);
+ font-family:"Newsreader",serif;letter-spacing:-.01em;max-width:26ch;
+ }
+ .pull.wide{max-width:34ch}
+
+ /* ---------- CALLOUT ---------- */
+ .callout{
+ background:var(--paper-2);border:1px solid var(--line);border-radius:2px;
+ padding:24px 26px;margin:30px 0;
+ }
+ .callout .eyebrow{margin-bottom:10px}
+ .callout p:last-child{margin-bottom:0}
+
+ /* ---------- CASE FILES ---------- */
+ .cat-intro{margin:36px 0 18px}
+ .case{
+ background:var(--card);border:1px solid var(--line);border-radius:2px;
+ padding:22px 24px;margin:16px 0;position:relative;
+ border-left:4px solid var(--ink-soft);
+ }
+ .case.hi{border-left-color:var(--rust)}
+ .case.med{border-left-color:var(--amber)}
+ .case.ctx{border-left-color:var(--steel)}
+ .case-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:4px}
+ .case-id{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-soft);letter-spacing:.04em}
+ .case-name{font-family:"Archivo",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--ink);margin-right:auto}
+ .rel{
+ font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.1em;
+ text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;
+ }
+ .rel.hi{background:rgba(172,63,36,.12);color:var(--rust)}
+ .rel.med{background:rgba(185,129,42,.15);color:var(--amber)}
+ .rel.ctx{background:rgba(44,103,136,.12);color:var(--steel)}
+ .mechs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+ .mech{
+ font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-soft);
+ border:1px solid var(--line);border-radius:2px;padding:2px 8px;letter-spacing:.02em;
+ }
+ .case-body{font-size:17.5px;line-height:1.56;color:var(--ink-2)}
+ .case-body p{margin-bottom:12px;max-width:none}
+ .case-body p:last-child{margin-bottom:0}
+ .case.compact{padding:14px 20px;border-left-width:4px}
+ .case.compact .case-body{font-size:16px}
+
+ /* ---------- LEDGER TABLE ---------- */
+ .ledger-wrap{overflow-x:auto;margin:26px 0 8px;border:1px solid var(--line);border-radius:2px}
+ table.ledger{width:100%;border-collapse:collapse;font-size:14.5px;min-width:640px}
+ table.ledger th{
+ font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.08em;
+ text-transform:uppercase;text-align:left;color:var(--ink-soft);
+ padding:12px 14px;border-bottom:1.5px solid var(--line);background:var(--paper-2);
+ }
+ table.ledger td{padding:10px 14px;border-bottom:1px solid var(--line-2);vertical-align:top;color:var(--ink-2);font-family:"Newsreader",serif}
+ table.ledger tr:last-child td{border-bottom:none}
+ table.ledger td.yr{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+ table.ledger td.pl{font-weight:600;color:var(--ink);font-family:"Archivo",sans-serif;font-size:14px}
+ .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:2px;vertical-align:middle}
+ .dot.hi{background:var(--rust)}.dot.med{background:var(--amber)}.dot.ctx{background:var(--steel)}
+
+ /* ---------- FAULT CARDS (India) ---------- */
+ .fault{
+ background:var(--card);border:1px solid var(--line);border-radius:2px;
+ padding:22px 24px;margin:16px 0;
+ }
+ .fault-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:14px}
+ .fault-name{font-family:"Archivo",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.01em;margin-right:auto;color:var(--ink)}
+ .meter{display:flex;gap:4px;align-items:center}
+ .meter .seg{width:20px;height:8px;background:var(--line);border-radius:1px}
+ .meter .seg.on-hi{background:var(--rust)}
+ .meter .seg.on-med{background:var(--amber)}
+ .meter-label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-left:6px}
+ .fault-body{font-size:17.5px;line-height:1.56;color:var(--ink-2)}
+ .fault-body p{max-width:none;margin-bottom:12px}
+ .fault-body p:last-child{margin-bottom:0}
+
+ /* ---------- TWO-COLUMN GOV ---------- */
+ .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+ .col-card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:22px 24px}
+ .col-card.pos{border-top:3px solid var(--steel)}
+ .col-card.neg{border-top:3px solid var(--rust)}
+ .col-card h4{margin-top:0;font-size:13px;font-family:"IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
+ .col-card.pos h4{color:var(--steel)}
+ .col-card.neg h4{color:var(--rust)}
+ .col-card ul{margin-bottom:0}
+ .col-card ul li{font-size:16px;padding-left:22px;max-width:none}
+ .col-card ul li::before{width:7px;height:7px;top:.6em}
+ .col-card.neg ul li::before{background:var(--rust)}
+
+ /* ---------- CYCLE DIAGRAM ---------- */
+ .cyclebox{margin:30px 0;text-align:center}
+ .cyclebox svg{max-width:440px;width:100%;height:auto}
+
+ /* ---------- CHECKLIST ---------- */
+ .check{background:var(--hero-ink);color:#E7EDF0;border-radius:3px;padding:clamp(26px,4vw,40px);margin:32px 0}
+ .check .eyebrow{color:var(--rust-soft)}
+ .check h3{color:#fff;margin-top:10px}
+ .check ul li{color:#C6D1D7;max-width:none}
+ .check ul li::before{background:var(--rust-soft)}
+ .check strong{color:#fff}
+
+ /* ---------- FOOTER ---------- */
+ footer{background:var(--hero-ink);color:var(--hero-fog);margin-top:70px;padding:56px 24px 70px;border-top:1px solid #000}
+ footer .wrap{max-width:var(--maxw)}
+ footer h4{color:#DCE4E8;font-family:"Archivo",sans-serif;font-size:15px;letter-spacing:.02em;text-transform:none;margin:0 0 10px}
+ footer p{font-size:14.5px;line-height:1.6;color:var(--hero-fog);max-width:70ch;font-family:"IBM Plex Mono",monospace;letter-spacing:.01em}
+ footer .src{font-size:12.5px;color:#697c86;margin-top:20px;font-family:"IBM Plex Mono",monospace;line-height:1.7}
+
+ /* reveal */
+ .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+ .reveal.in{opacity:1;transform:none}
+
+ :focus-visible{outline:2.5px solid var(--steel);outline-offset:3px}
+
+ @media (max-width:680px){
+ body{font-size:18px}
+ .cols{grid-template-columns:1fr}
+ .part-head{gap:12px}
+ .case-name,.fault-name{font-size:18px}
+ .fault-head{gap:8px}
+ }
+ @media (prefers-reduced-motion:reduce){
+ .reveal{opacity:1;transform:none;transition:none}
+ html{scroll-behavior:auto}
+ }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+ <svg class="contour" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+ <g fill="none" stroke="#5c7683" stroke-width="1">
+ <path d="M0,120 C150,90 300,150 450,110 C600,70 750,140 900,100"/>
+ <path d="M0,180 C150,150 300,210 450,170 C600,130 750,200 900,160"/>
+ <path d="M0,250 C160,215 300,275 460,235 C610,198 760,265 900,225"/>
+ <path d="M0,320 C150,285 300,345 450,305 C600,265 750,335 900,295"/>
+ <path d="M0,390 C150,360 300,415 450,375 C600,335 750,405 900,365"/>
+ </g>
+ <path d="M470,0 L455,140 L510,250 L440,360 L490,500" stroke="#AC3F24" stroke-width="2" fill="none" opacity="0.9"/>
+ </svg>
+ <div class="hero-inner">
+ <span class="eyebrow">The anatomy of unrest</span>
+ <h1 class="hero-title">Stress-Testing<br>the Republic
+ <span class="thin">How nations fracture, why India is unusually hard to break, and how to read the manipulator's playbook.</span>
+ </h1>
+ <p class="hero-dek">How societies actually break, why a nation as vast and varied as India resists it, and how anyone can learn to recognise the manipulation while it is happening. The aim is not fear. It is perspective.</p>
+ <div class="hero-meta"><span>July 2026</span><span>A long read on unrest, resilience, and the Indian Union</span></div>
+ </div>
+</header>
+
+<main>
+
+<!-- ================= 00 METHOD ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">00</span><h2 class="part-title">The method: to defend it, learn to break it</h2></div>
+ <p class="lead">Charlie Munger built a career on a single instruction he borrowed from the mathematician Carl Jacobi: <em>invert, always invert</em>. Don't only ask how to make a thing succeed, ask how it would fail, then refuse to walk those roads. Applied to a country, that is a red-team exercise: think like the adversary in order to protect what they'd attack.</p>
+ <p>That is the spirit of what follows. It is the same discipline a war college uses to game a conflict, or a security engineer uses to threat-model a system: study the failure in order to prevent it. Understanding how a country could be broken is not a weapon; it is an inoculation. Naming a manipulation is most of the work of defeating it.</p>
+ <p>One truth sits underneath the entire study, and it is worth internalising before anything else:</p>
+ <div class="pull wide">Outsiders almost never create a fracture. They find one that already exists, and widen it.</div>
+ <p>No foreign service can conjure hatred between neighbours who trust each other, or manufacture a grievance where none is felt. What they can do, cheaply, at scale, and with deniability, is locate a <strong>real</strong> wound and pour salt into it until it looks like the whole body is rotten. That gives the study two layers, and they run through every case that follows: the <strong>fuel</strong> (the genuine, pre-existing grievance) and the <strong>accelerant</strong> (the technique that ignites and spreads it).</p>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#AC3F24" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 01 PHYSICS OF FRACTURE ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">01</span><h2 class="part-title">The physics of fracture</h2></div>
+ <p class="lead">Societies do not come apart at random. Across two centuries of collapse, civil war, revolution and engineered unrest, the same ingredients recur. Learn the pattern once and every case becomes legible.</p>
+
+ <h3>The fuel, what makes a society flammable</h3>
+ <p>These are the standing conditions. None guarantees unrest; stacked together, they turn a country into dry timber.</p>
+ <ul class="fault">
+ <li><strong>Corruption, the master grievance.</strong> Of all the fuels, this is the one that touches everyone and legitimises every other complaint. When people believe the system is rigged for insiders, they stop seeing the state as <em>theirs</em>. The Arab Spring did not begin with an ideology; it began when a Tunisian street vendor set himself on fire after one petty official humiliated and shook him down. Corruption is also the mechanism by which good times decay into bad, the theme we return to in Part 02.</li>
+ <li><strong>Horizontal inequality.</strong> The strongest statistical predictor of internal conflict is not poverty as such, but inequality that <em>lines up with identity</em>, when one religion, caste, region or ethnicity is systematically poorer, more excluded and more policed than another. Individual inequality irritates; group inequality mobilises.</li>
+ <li><strong>Economic shock and the youth bulge.</strong> Sudden inflation, mass unemployment, a currency crisis, especially among a large cohort of educated young people with no jobs, is the classic trigger. Idle, humiliated youth are the raw material of every uprising.</li>
+ <li><strong>Elite fragmentation and over-production.</strong> Regimes rarely fall to the street alone. They fall when elites defect, when generals, business houses or regional leaders decide their future lies elsewhere. A surplus of ambitious, credentialed people competing for too few positions of power is a reliable engine of instability.</li>
+ <li><strong>Institutional illegitimacy.</strong> When courts, elections, police and press are seen as captured, there is no shared referee left. Every dispute becomes a fight to the finish because no one trusts the whistle.</li>
+ <li><strong>Stacked vs. cross-cutting divides.</strong> The decisive structural variable. Where religion, language, class and region all sort the <em>same</em> people into the same camp, the fault line is deep and clean. A society can be snapped along it. Where identities cut across each other, no single line captures everyone, and the whole structure resists shearing. Hold this one; it is the key to why India is hard to break.</li>
+ </ul>
+
+ <h3>The accelerant, how the fuel is lit</h3>
+ <p>Given fuel, these are the levers an actor, foreign or domestic, pulls to ignite it.</p>
+ <ul>
+ <li><strong>Grievance amplification.</strong> Take one true local incident and frame it as proof of a systematic campaign against "us." The event is real; the framing is the weapon.</li>
+ <li><strong>Affective polarization.</strong> The actual goal is rarely to make you believe a specific lie. It is to make you <em>fear and despise your neighbour</em>, so the moderate middle collapses and no one is left to broker peace. When you hate the other side, the operation has already won, the content was just the delivery system.</li>
+ <li><strong>Delegitimization.</strong> Erode trust in the referee, elections, courts, journalists, the census, until no outcome is accepted as fair by all sides.</li>
+ <li><strong>Elite capture.</strong> Fund, flatter or blackmail factions into defecting. Cheaper than a coup and harder to trace.</li>
+ <li><strong>Economic pressure.</strong> Currency attacks, capital flight, sanctions, supply disruption, grievance manufactured through the wallet.</li>
+ <li><strong>Proxy and armed support.</strong> Arm or finance a separatist or militant group and let it bleed the state.</li>
+ <li><strong>The "colour revolution" template.</strong> The recognisable choreography: a contested election → claims of fraud → mass protest → security-force defection or foreign recognition of the opposition. The activist Gene Sharp's short manual on nonviolent resistance is studied by genuine democracy movements and by hostile intelligence services alike, the same script serves liberation and subversion depending on who runs it.</li>
+ <li><strong>Information warfare.</strong> The modern accelerant that makes all the others cheaper: bots, troll farms, coordinated inauthentic accounts, and now generative AI, deployed to flood the zone until truth and fabrication cost the same to produce and the same to believe.</li>
+ </ul>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#AC3F24" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 02 CYCLICAL LENS ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">02</span><h2 class="part-title">The cyclical lens: this too shall pass</h2></div>
+ <p class="lead">Before mapping threats, install the right time horizon, otherwise every crisis feels terminal. Instability is not only something done <em>to</em> a society from outside. It is, in large part, a rhythm societies move through on their own. Nature is cyclic; nations are not exempt.</p>
+
+ <p>The popular version is the meme you'll have seen: hard times forge resilient people, resilient people build good times, good times breed complacency, and complacency invites hard times again. The line is from the novelist G. Michael Hopf, but the idea is ancient and, in its serious forms, well-evidenced.</p>
+
+ <div class="cyclebox">
+ <svg viewBox="0 0 360 340" role="img" aria-label="A four-stage cycle: hard times build resilience, resilience builds prosperity, prosperity breeds complacency and corruption, which brings hard times again.">
+ <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#2C6788"/></marker></defs>
+ <circle cx="180" cy="170" r="118" fill="none" stroke="#AC3F24" stroke-width="1.5" stroke-dasharray="3 6" marker-end="url(#ah)" opacity="0"/>
+ <!-- arcs -->
+ <path d="M180,58 A112,112 0 0,1 292,170" fill="none" stroke="#2C6788" stroke-width="2" marker-end="url(#ah)"/>
+ <path d="M292,170 A112,112 0 0,1 180,282" fill="none" stroke="#2C6788" stroke-width="2" marker-end="url(#ah)"/>
+ <path d="M180,282 A112,112 0 0,1 68,170" fill="none" stroke="#B9812A" stroke-width="2" marker-end="url(#ah)"/>
+ <path d="M68,170 A112,112 0 0,1 180,58" fill="none" stroke="#AC3F24" stroke-width="2" marker-end="url(#ah)"/>
+ <!-- nodes -->
+ <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#121A21" text-anchor="middle">
+ <circle cx="180" cy="52" r="6" fill="#AC3F24"/><text x="180" y="34" font-weight="600">HARD TIMES</text>
+ <circle cx="298" cy="170" r="6" fill="#2C6788"/><text x="298" y="150" font-weight="600">RESILIENCE</text><text x="298" y="200" fill="#586771">(strong generation)</text>
+ <circle cx="180" cy="288" r="6" fill="#2C6788"/><text x="180" y="312" font-weight="600">GOOD TIMES</text>
+ <circle cx="62" cy="170" r="6" fill="#B9812A"/><text x="62" y="150" font-weight="600">COMPLACENCY</text><text x="62" y="200" fill="#586771">+ corruption</text>
+ </g>
+ <text x="180" y="167" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="700" fill="#586771">THE SÆCULUM</text>
+ <text x="180" y="184" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#8894a0">≈ 3-4 generations</text>
+ </svg>
+ </div>
+
+ <h3>Ibn Khaldun and the decay of cohesion</h3>
+ <p>Six hundred years before modern political science, the historian Ibn Khaldun watched dynasties rise and fall across North Africa and named the engine: <em>asabiyyah</em>, group solidarity, the felt sense of "we." A movement wins power on fierce cohesion forged in hardship. Then victory brings comfort; comfort brings luxury; luxury breeds infighting and corruption; solidarity thins across three or four generations until the whole edifice, hollowed out, is pushed over by a hungrier, more cohesive group. His diagnosis of <em>why</em> good times rot into bad is precise and still stands: prosperity relaxes the very bonds that produced it, and corruption is the visible symptom of that relaxation.</p>
+
+ <h3>Turchin and the data of instability</h3>
+ <p>In our own century the scientist Peter Turchin has tried to put numbers on the same intuition, in a field he calls cliodynamics. His "structural-demographic" model tracks three dials: popular immiseration (falling real living standards), elite over-production (too many aspirants for too few elite slots), and declining state finances. When all three worsen together, his data shows waves of political violence following, on recurring cycles of roughly two-to-three generations. Notably, he flagged the 2020s as a predicted peak of Western instability years in advance. The lesson is not fatalism; it is that instability has structural weather, and weather can be forecast and prepared for.</p>
+
+ <div class="callout">
+ <span class="eyebrow">Why this matters for the audit</span>
+ <p>Two things follow. First, <strong>much of what looks like a foreign plot is actually the domestic clock</strong>, a society entering the down-phase of its own cycle, which outside actors then merely accelerate. Second, and more hopefully: <strong>down-phases end.</strong> The Republic has already ridden several, Partition, the Emergency, the insurgencies of the 1980s-90s, communal spasms, and re-cohered each time. Composure is not naïveté. It is the accurate memory that this, too, shall pass, provided the load-bearing institutions are kept sound while it does.</p>
+ </div>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#AC3F24" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 03 CASE LEDGER ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">03</span><h2 class="part-title">Two centuries of fracture: the case ledger</h2></div>
+ <p class="lead">What follows is a field guide to how societies have actually broken since roughly 1825, organised not by geography but by <em>mechanism</em>, so the pattern transfers. Cases are colour-coded by how much they teach us about India: <span class="mono" style="color:var(--rust)">■ HIGH</span> relevance gets full treatment, <span class="mono" style="color:var(--amber)">■ MEDIUM</span> gets a paragraph, <span class="mono" style="color:var(--steel)">■ CONTEXT</span> is noted for completeness. A broad scannable timeline closes the section.</p>
+
+ <!-- CATEGORY A -->
+ <h3>A · The break-up of multi-ethnic federations</h3>
+ <p class="cat-intro">The most instructive family for India: prosperous, diverse unions that were deliberately snapped along identity lines by leaders who found that division paid.</p>
+
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">Yugoslavia</span><span class="case-id">1991-2001</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">grievance amplification</span><span class="mech">media propaganda</span><span class="mech">elite entrepreneurship</span><span class="mech">stacked divides</span></div>
+ <div class="case-body">
+ <p>The single most important cautionary tale. Yugoslavia was a functioning, industrialised, multi-ethnic federation with high intermarriage rates and a shared identity that had held for decades. It did not die of ancient hatreds welling up on their own. It was <em>killed</em>, by political entrepreneurs, Slobodan Milošević foremost among them, who discovered that the fastest route to power was to seize the state media, saturate it with fear ("the other group is coming for you"), and convert neighbours into enemies faster than reason could intervene.</p>
+ <p>The lesson for a diverse democracy is stark: cohesion built over generations can be dismantled in a few years <em>if</em> ambitious leaders profit from division and control the megaphone. Diversity plus economic stress plus fear-broadcasting is the formula for disintegration. India's defence against a Yugoslav path is precisely that its divides are cross-cutting rather than stacked (Part 05), but the warning about leaders who monetise division, and about who controls the megaphone, lands squarely.</p>
+ </div>
+ </div>
+
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">The Soviet Union</span><span class="case-id">1989-1991</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">economic exhaustion</span><span class="mech">elite defection</span><span class="mech">ethno-national revival</span></div>
+ <div class="case-body">
+ <p>A superpower dissolved with startling speed once three things coincided: an economy that could no longer deliver, a centre that lost the will to coerce, and republic-level elites who calculated that independence served them better than union. No invasion was required. The tell for any federation: when regional elites conclude the union is a net cost, the arithmetic of secession begins, which is why fiscal fairness and shared prosperity between regions are not bookkeeping details but structural welds.</p>
+ </div>
+ </div>
+
+ <div class="case med">
+ <div class="case-head"><span class="case-name">Czechoslovakia · Ethiopia-Eritrea · Tigray</span><span class="case-id">1993 · 1991-93 · 2020-22</span><span class="rel med">Medium</span></div>
+ <div class="case-body">
+ <p>Czechoslovakia's "Velvet Divorce" shows the counter-case, a split negotiated peacefully by elites without mass violence, because it was managed as a settlement rather than fought as a war. Ethiopia's trajectory (Eritrean secession, then the Tigray war) shows the opposite: an ethnic-federal design that hard-wired identity into the structure of the state, making every political dispute an existential ethnic one. Federal architecture matters: it can channel identity or weaponise it.</p>
+ </div>
+ </div>
+
+ <!-- CATEGORY B -->
+ <h3>B · Majoritarianism into separatism and civil war</h3>
+ <p class="cat-intro">When a majority uses the state to privilege its own identity, minorities that once sought inclusion begin to seek exit. This is the mechanism most directly relevant to how India manages its own diversity.</p>
+
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">Sri Lanka</span><span class="case-id">1956-2009</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">language politics</span><span class="mech">majoritarian discrimination</span><span class="mech">grievance → insurgency</span></div>
+ <div class="case-body">
+ <p>The most direct neighbour-lesson. A prosperous, literate island slid into a 26-year civil war that began not with guns but with a language law, the 1956 "Sinhala Only" Act that made the majority's tongue the sole official language, sidelining the Tamil minority in education and employment. Layered discrimination over two decades converted a minority's demand for equal citizenship into a demand for a separate state, and finally into one of the world's most ferocious insurgencies.</p>
+ <p>The transferable warning: majoritarian measures that feel like natural justice to the majority can read as existential threat to a minority, and the distance from "grievance" to "separatism" is shorter than it looks. India's handling of language, citizenship and minority security is where this lesson is live.</p>
+ </div>
+ </div>
+
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">Rwanda</span><span class="case-id">1994</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">dehumanising media</span><span class="mech">rumour → massacre</span><span class="mech">manufactured fear</span></div>
+ <div class="case-body">
+ <p>The definitive proof that media can turn ordinary people into killers. In roughly a hundred days, neighbours murdered neighbours, coordinated and incited in large part by a radio station that spent months dehumanising the Tutsi minority as "cockroaches," normalising the unthinkable one broadcast at a time. Swap radio for a WhatsApp forward and the mechanism is identical: repeated dehumanisation lowers the threshold for violence until a single rumour is enough to trigger it. This is why India's record of lynchings sparked by viral messages is not a minor law-and-order issue but a civilisational vulnerability in miniature.</p>
+ </div>
+ </div>
+
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">Myanmar / Rohingya</span><span class="case-id">2012-2017</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">platform-amplified hate</span><span class="mech">Facebook</span><span class="mech">ethnic cleansing</span></div>
+ <div class="case-body">
+ <p>The 21st-century update of Rwanda. In a country where Facebook was effectively the entire internet, a torrent of dehumanising posts against the Rohingya minority, much of it coordinated, helped prepare the ground for mass atrocity and expulsion. The platform later conceded it had done too little to stop it. The lesson for India, with its 800-million-plus users: a single dominant, weakly-moderated platform in a low-media-literacy environment is a national-security surface, not just a tech-policy footnote.</p>
+ </div>
+ </div>
+
+ <div class="case med">
+ <div class="case-head"><span class="case-name">Nigeria / Biafra · Sudan → South Sudan</span><span class="case-id">1967-70 · 1983-2011</span><span class="rel med">Medium</span></div>
+ <div class="case-body">
+ <p>Two post-colonial states whose fault lines (ethnic and religious, overlaid on oil geography) hardened into secession and war. Both illustrate the "stacked divide" danger: when religion, region, ethnicity <em>and</em> resource wealth all sort the same populations together, the line becomes a potential border.</p>
+ </div>
+ </div>
+
+ <!-- CATEGORY C -->
+ <h3>C · Partition and decolonisation ruptures</h3>
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">The Partition of India</span><span class="case-id">1947</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">religious mobilisation</span><span class="mech">rumour</span><span class="mech">elite bargaining failure</span></div>
+ <div class="case-body">
+ <p>India's own founding trauma and its permanent reference point. Communities that had lived intertwined for centuries were sorted, in months, into two hostile nations amid perhaps a million or more deaths and the largest mass migration in human history. Partition proved that co-existence is not self-sustaining. It can be dissolved with terrifying speed once identity is made the axis of politics, rumour outruns fact, and elites fail to hold a shared centre. Every subsequent Indian anxiety about communal fracture is, at bottom, a memory of 1947. It is also why the Indian state treats communal fire as the reddest of red lines.</p>
+ </div>
+ </div>
+ <div class="case ctx">
+ <div class="case-head"><span class="case-name">Ireland · Palestine/Israel · Cyprus</span><span class="case-id">1921 · 1948 · 1974</span><span class="rel ctx">Context</span></div>
+ <div class="case-body">
+ <p>Other partitions along religious or ethnic lines, each generating conflicts that outlived the colonial power by generations, a reminder that a border drawn through a mixed population rarely ends the dispute; it institutionalises it.</p>
+ </div>
+ </div>
+
+ <!-- CATEGORY D -->
+ <h3>D · Revolution and regime collapse <span style="font-weight:400;color:var(--ink-soft);font-family:Newsreader,serif;font-size:.7em">, for context</span></h3>
+ <div class="case ctx">
+ <div class="case-head"><span class="case-name">France 1789 · Russia 1917 · China 1949 · Iran 1979</span><span class="case-id">the great overturns</span><span class="rel ctx">Context</span></div>
+ <div class="case-body">
+ <p>The classic revolutions share the fuel mix of Part 01: fiscal crisis and hunger, a discredited elite, humiliated aspirants, and a spark. Iran 1979 is the most transferable, a fast-modernising, oil-rich, seemingly stable monarchy that hollowed out its own legitimacy through corruption, repression and cultural high-handedness, then fell to a coalition it never saw coming. The warning: visible economic growth does not buy political legitimacy if people feel unseen, policed and cheated. Delivery is necessary; it is not sufficient.</p>
+ </div>
+ </div>
+
+ <!-- CATEGORY E -->
+ <h3>E · Electoral-trigger and "colour" revolutions</h3>
+ <p class="cat-intro">The signature 21st-century regime-change choreography: a disputed vote becomes the spark for mass mobilisation, with external actors often invested on one or both sides.</p>
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">Ukraine, Orange & Maidan</span><span class="case-id">2004 · 2013-14</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">contested election</span><span class="mech">geopolitical tug-of-war</span><span class="mech">mass mobilisation</span></div>
+ <div class="case-body">
+ <p>The template in full: a fraud-tainted election (2004), then a governing pivot away from Europe (2013), each igniting sustained street protest that toppled a president, with Russia and the West both deeply invested in the outcome. Ukraine shows how a genuinely divided society (east/west, language, geopolitical orientation) becomes the arena for a great-power contest, with the internal divide as the handle each side grips. A country whose politics can be framed as "with us or with the enemy" hands outsiders a ready-made lever.</p>
+ </div>
+ </div>
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">The Arab Spring</span><span class="case-id">2010-2012</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">corruption trigger</span><span class="mech">youth unemployment</span><span class="mech">social-media coordination</span><span class="mech">divergent outcomes</span></div>
+ <div class="case-body">
+ <p>The great lesson in <em>divergence</em>. The same fuel, youth joblessness, food inflation, corruption, dignity denied, and the same spark (one man's self-immolation) rippled across the Arab world and produced wildly different endings: a democratic transition in Tunisia, a restored strongman in Egypt, state collapse in Libya, and catastrophic civil war in Syria. The variable was not the grievance, which was shared. It was the strength of institutions and the degree of outside interference. Identical fuel, different structures, opposite fates, which is the whole argument for building institutional resilience <em>before</em> the spark arrives.</p>
+ </div>
+ </div>
+ <div class="case med">
+ <div class="case-head"><span class="case-name">Serbia (Otpor) · Georgia · Kyrgyzstan · Hong Kong</span><span class="case-id">2000 · 2003 · 2005/2010 · 2019</span><span class="rel med">Medium</span></div>
+ <div class="case-body">
+ <p>Variations on the electoral-trigger model, from the youth movement that helped unseat Milošević to the pro-democracy mobilisations later crushed or absorbed. Together they show the choreography is portable, and that whether one calls a given case "democracy" or "destabilisation" often depends on which side of it you sit.</p>
+ </div>
+ </div>
+
+ <!-- CATEGORY F -->
+ <h3>F · Great-power covert regime change</h3>
+ <div class="case med">
+ <div class="case-head"><span class="case-name">Iran 1953 · Guatemala 1954 · Congo 1961 · Indonesia 1965 · Chile 1973</span><span class="case-id">the covert file</span><span class="rel med">Medium-High</span></div>
+ <div class="mechs"><span class="mech">co-opt the military</span><span class="mech">fund opposition media</span><span class="mech">economic strangulation</span><span class="mech">exploit elite fear</span></div>
+ <div class="case-body">
+ <p>The documented external-actor playbook, run repeatedly during the Cold War: cultivate the military, bankroll opposition media and strikes, choke the economy, and inflame elite fear of the left until a coup looks like salvation. These are real, and the pattern is consistent.</p>
+ <p>But notice the crucial qualifier, the one that explains why India works differently: these operations succeeded against <strong>small states with narrow elites and weak institutions</strong>, where flipping a few generals or a single palace changed everything. A continental democracy with a vast, plural, cross-cutting elite, an apolitical million-strong army, and power genuinely contested at the ballot box every few years is a categorically harder target. The covert playbook does not scale cleanly to India's size and structure, which is a defensive asset worth understanding precisely.</p>
+ </div>
+ </div>
+
+ <!-- CATEGORY G -->
+ <h3>G · Information-age destabilisation</h3>
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">United States, 2016</span><span class="case-id">the modern reference case</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">troll farm</span><span class="mech">coordinated inauthentic behaviour</span><span class="mech">platform exploitation</span></div>
+ <div class="case-body">
+ <p>Worth getting precise, because two separate stories get merged. The <strong>established</strong> one: Russia's Internet Research Agency ran a real, coordinated social-media operation to inflame existing American divisions, race, guns, immigration, religion, documented in the bipartisan Senate Intelligence Committee report and the Mueller investigation. Its method was pure Part 01: it did not invent American grievances; it amplified them from both sides at once to widen the gap.</p>
+ <p>The <strong>overhyped</strong> one: the Cambridge Analytica "psychographic superweapon that swung the election." The data misuse was real, but its actual effect on votes is doubtful and much disputed. The accurate takeaway is structural, and it is the one that matters for India: platforms like Facebook were the <em>vector</em> hostile actors exploited because amplification and data-governance were wide open, not that any single company orchestrated the interference. The vulnerability was in the architecture, not a villain.</p>
+ </div>
+ </div>
+
+ <!-- CATEGORY H -->
+ <h3>H · Economic-shock and the neighbour-cases</h3>
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">Bangladesh</span><span class="case-id">2024</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">youth unemployment</span><span class="mech">quota grievance</span><span class="mech">corruption</span><span class="mech">government collapse</span></div>
+ <div class="case-body">
+ <p>The most recent and most proximate warning, a neighbour, in 2024. What began as student protests against a public-job quota system escalated, on the back of youth joblessness, inflation and accumulated resentment of a government seen as corrupt and heavy-handed, into a movement that forced a long-entrenched prime minister to flee the country. It compresses the whole model into a single recent event: a large frustrated youth cohort + a specific grievance about fairness + a state that had lost legitimacy = rapid collapse, on India's doorstep, with direct strategic consequences for India. When it happens next door, it is not abstract.</p>
+ </div>
+ </div>
+ <div class="case hi">
+ <div class="case-head"><span class="case-name">Sri Lanka, the Aragalaya · Indonesia 1998</span><span class="case-id">2022 · 1998</span><span class="rel hi">High relevance</span></div>
+ <div class="mechs"><span class="mech">currency/debt crisis</span><span class="mech">elite corruption</span><span class="mech">mass uprising</span></div>
+ <div class="case-body">
+ <p>Two textbook cases of economic shock toppling entrenched power. In 2022 an economic collapse, no fuel, no medicine, runaway inflation, layered on years of perceived family-dynasty corruption, put ordinary Sri Lankans into the presidential palace and drove the ruling clan out. In 1998 the Asian financial crisis ended Suharto's three-decade rule in Indonesia within months, and the ensuing vacuum unleashed communal and anti-minority violence. Both underline that economic pain and visible corruption are the fastest solvents of political legitimacy, and that India's own vulnerabilities on jobs and prices are where the fuel is densest.</p>
+ </div>
+ </div>
+
+ <!-- LEDGER -->
+ <h3>The 200-year ledger, at a glance</h3>
+ <p class="cat-intro">A scannable index of major unrest episodes since c.1825, necessarily selective, since nearly every nation has its own entry. Dot indicates relevance to the India study.</p>
+ <div class="ledger-wrap">
+ <table class="ledger">
+ <thead><tr><th>Rel.</th><th>Year(s)</th><th>Place</th><th>Type</th><th>Core trigger</th></tr></thead>
+ <tbody>
+ <tr><td><span class="dot ctx"></span></td><td class="yr">1848</td><td class="pl">Europe-wide</td><td>revolutions</td><td>food crisis, liberal-national demands, elite reaction</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1857</td><td class="pl">India</td><td>rebellion</td><td>grievance vs. colonial rule; rumour (greased cartridges)</td></tr>
+ <tr><td><span class="dot ctx"></span></td><td class="yr">1861-65</td><td class="pl">United States</td><td>civil war</td><td>slavery; stacked regional-economic divide</td></tr>
+ <tr><td><span class="dot ctx"></span></td><td class="yr">1910</td><td class="pl">Mexico</td><td>revolution</td><td>land inequality, dictatorship, elite capture</td></tr>
+ <tr><td><span class="dot ctx"></span></td><td class="yr">1917</td><td class="pl">Russia</td><td>revolution</td><td>war exhaustion, hunger, discredited monarchy</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1919-21</td><td class="pl">Ireland</td><td>war of independence</td><td>national + religious divide → partition</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1933</td><td class="pl">Germany</td><td>democratic collapse</td><td>depression, humiliation, scapegoating a minority</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">1947</td><td class="pl">India / Pakistan</td><td>partition</td><td>religious mobilisation, rumour, centre failure</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">1956-2009</td><td class="pl">Sri Lanka</td><td>ethnic civil war</td><td>language law → minority exclusion → separatism</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1953</td><td class="pl">Iran</td><td>covert coup</td><td>foreign-backed removal of elected PM</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1954</td><td class="pl">Guatemala</td><td>covert coup</td><td>foreign-backed; elite/economic interests</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1965</td><td class="pl">Indonesia</td><td>mass killings</td><td>coup pretext, anti-left purge</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1967-70</td><td class="pl">Nigeria (Biafra)</td><td>secession war</td><td>ethnic-regional-oil divide</td></tr>
+ <tr><td><span class="dot ctx"></span></td><td class="yr">1973</td><td class="pl">Chile</td><td>covert-aided coup</td><td>polarisation, economic strangulation, military</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1975-90</td><td class="pl">Lebanon</td><td>sectarian civil war</td><td>confessional power-sharing under demographic strain</td></tr>
+ <tr><td><span class="dot ctx"></span></td><td class="yr">1979</td><td class="pl">Iran</td><td>revolution</td><td>corruption, repression, lost legitimacy</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1983-2011</td><td class="pl">Sudan</td><td>civil war → split</td><td>religion/region/resources stacked</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">1984 / 1990s</td><td class="pl">India (Punjab)</td><td>insurgency</td><td>separatist grievance, foreign support, then defeated</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">1989-91</td><td class="pl">Soviet Union</td><td>federation collapse</td><td>economic failure, elite defection, ethno-nationalism</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">1991-2001</td><td class="pl">Yugoslavia</td><td>federation break-up</td><td>elite fear-broadcasting, media capture</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">1994</td><td class="pl">Rwanda</td><td>genocide</td><td>radio dehumanisation → mass killing</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">1998</td><td class="pl">Indonesia</td><td>regime fall</td><td>financial crisis + dynastic corruption</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">2000-05</td><td class="pl">Serbia/Georgia/Ukraine</td><td>colour revolutions</td><td>disputed elections, youth movements</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">2010-12</td><td class="pl">Arab world</td><td>uprisings</td><td>corruption, youth unemployment, dignity</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">2012-17</td><td class="pl">Myanmar</td><td>ethnic cleansing</td><td>platform-amplified hate against a minority</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">2013-14</td><td class="pl">Ukraine (Maidan)</td><td>uprising + war</td><td>geopolitical pivot; east/west divide</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">2016</td><td class="pl">United States</td><td>information op</td><td>troll-farm amplification of existing divides</td></tr>
+ <tr><td><span class="dot med"></span></td><td class="yr">2019</td><td class="pl">Hong Kong</td><td>mass protest</td><td>autonomy/rule-of-law grievance</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">2022</td><td class="pl">Sri Lanka</td><td>mass uprising</td><td>economic collapse + dynastic corruption</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">2024</td><td class="pl">Bangladesh</td><td>government collapse</td><td>youth/quota grievance + corruption + jobs</td></tr>
+ <tr><td><span class="dot hi"></span></td><td class="yr">2023</td><td class="pl">India (Manipur)</td><td>ethnic violence</td><td>Meitei-Kuki divide, land/status disputes</td></tr>
+ </tbody>
+ </table>
+ </div>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#AC3F24" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 04 INDIA FAULT LINES ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">04</span><h2 class="part-title">India's fault lines: the vulnerability map</h2></div>
+ <p class="lead">Now the inversion applied. If the goal were to destabilise India, these are the seams one would probe. Each is rated for <em>exploitability</em>, not likelihood of collapse, but how usable the seam is as a handle. Reading them is how you guard them.</p>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">Communal division (Hindu-Muslim)</span>
+ <span class="meter" aria-label="Exploitability: 5 of 5"><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="meter-label">exploitability 5/5</span></span></div>
+ <div class="fault-body">
+ <p>The single most usable lever, for the same reason it is the oldest wound: deep history, real grievances on multiple sides, and a proven capacity for a local incident to go national in hours. This is the seam a hostile actor most wants, because it needs the least manufacturing, one recycled video, one inflammatory rumour, and existing fear does the rest. India's record of WhatsApp-triggered mob violence is the Rwanda/Myanmar mechanism operating in real time. Any manipulator's first move is here.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">Corruption &amp; the local-power spiral</span>
+ <span class="meter" aria-label="Exploitability: 5 of 5"><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="meter-label">exploitability 5/5</span></span></div>
+ <div class="fault-body">
+ <p>The master grievance, and the one most easily underestimated. There is a real distinction between <strong>grand corruption</strong> (contracts, cronyism, high politics) and <strong>petty corruption</strong>: the bribe for a land record, the police shakedown, the clerk who won't move the file, the local strongman who abuses power because no one stops him. It is the petty, local kind that ordinary people actually <em>feel</em>, daily, and it is therefore the more corrosive: it is where citizens form their lived verdict on whether the state is theirs or against them.</p>
+ <p>This produces a spiral. Even where people trust national leadership, chronic abuse at the local level teaches them the <em>system</em> is rotten, which lowers cooperation, invites more predation, and erodes the legitimacy that holds everything else together. A manipulator does not need to invent this narrative; they only need to amplify a true story of local injustice into "the whole state is against people like you." Reducing petty corruption is not a governance nicety; it is counter-destabilisation at the root, and it is largely non-partisan. The patwari, the thana and the licence-window endure across every party's states.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">Caste</span>
+ <span class="meter" aria-label="Exploitability: 3 of 5"><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg"></span><span class="seg"></span><span class="meter-label">exploitability 3/5</span></span></div>
+ <div class="fault-body">
+ <p>A deep, real inequality that also cuts <em>through</em> the Hindu majority, which is why it is double-edged. It is a genuine grievance that can be inflamed (reservation politics, atrocities, humiliation), but because it fragments rather than unifies any single bloc, it is harder to weaponise into a clean national fracture. Still a reliable seam for local escalation.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">Kashmir</span>
+ <span class="meter" aria-label="Exploitability: 4 of 5"><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg"></span><span class="meter-label">exploitability 4/5</span></span></div>
+ <div class="fault-body">
+ <p>The seam with a ready-made foreign sponsor. A live separatist grievance, an active external patron in Pakistan, and a permanent international dimension make Kashmir the classic proxy-and-narrative theatre, where a genuine local dispute is continually fed from outside and amplified into a global talking point to pressure and isolate India.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">The Northeast &amp; Manipur</span>
+ <span class="meter" aria-label="Exploitability: 3 of 5"><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg"></span><span class="seg"></span><span class="meter-label">exploitability 3/5</span></span></div>
+ <div class="fault-body">
+ <p>A mosaic of ethnicities, a sensitive China frontier, migration anxieties, and, as the 2023 Meitei-Kuki violence showed, the capacity for a single state to combust along an ethnic line. Geographically distant from the national imagination, which is itself a vulnerability: fires here burn longer before the rest of the country notices.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">Khalistan &amp; the diaspora vector</span>
+ <span class="meter" aria-label="Exploitability: 3 of 5"><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg"></span><span class="seg"></span><span class="meter-label">exploitability 3/5</span></span></div>
+ <div class="fault-body">
+ <p>Notable because the energy now lives largely <em>outside</em> India, in diaspora communities in Canada, the UK and elsewhere, which is why it keeps generating diplomatic crises rather than domestic insurgency. It is a reminder that the modern battlefield includes overseas populations and foreign capitals, where narratives about India are shaped and amplified far from Indian jurisdiction.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">North-South, language &amp; the federal bargain</span>
+ <span class="meter" aria-label="Exploitability: 3 of 5"><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg on-med"></span><span class="seg"></span><span class="seg"></span><span class="meter-label">exploitability 3/5</span></span></div>
+ <div class="fault-body">
+ <p>A slower-burning but structurally serious seam: southern resentment of perceived Hindi imposition, disputes over the sharing of central tax revenue, and the looming fight over parliamentary delimitation, where faster-growing northern states could gain seats at the south's expense, feeding a narrative that the south is "subsidising and being outvoted by" the north. This is the USSR-lesson in miniature: keep the fiscal and representational bargain visibly fair, or regional elites start doing the arithmetic of grievance.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">Jobs, prices &amp; agrarian distress</span>
+ <span class="meter" aria-label="Exploitability: 4 of 5"><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg"></span><span class="meter-label">exploitability 4/5</span></span></div>
+ <div class="fault-body">
+ <p>The densest fuel of all, per Parts 01-03 and every neighbour-case. India has an enormous youth cohort and job creation that struggles to keep pace; add food or fuel inflation and agrarian anger (the scale of the farmer protests showed the mobilising potential), and you have the universal accelerant that toppled governments in Colombo, Jakarta and Dhaka. Economic grievance is non-sectarian, which makes it the one seam capable of uniting otherwise-divided groups against the state, the most dangerous kind.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">The information ecosystem</span>
+ <span class="meter" aria-label="Exploitability: 5 of 5"><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="meter-label">exploitability 5/5</span></span></div>
+ <div class="fault-body">
+ <p>The force-multiplier that makes every other seam cheaper to exploit. Over 800 million users; WhatsApp as the dominant channel and, being end-to-end encrypted, the hardest to trace to source; uneven digital literacy, especially in rural areas where a forwarded message carries the authority of the person who sent it. The World Economic Forum's Global Risks Report has ranked India the country most at risk from mis- and disinformation for two years running, and Indian government data has attributed the majority of misinformation spread to WhatsApp. This is the terrain where the manipulator has the biggest edge, and where citizen literacy (Part 07) is the cheapest, strongest defence.</p>
+ </div>
+ </div>
+
+ <div class="fault">
+ <div class="fault-head"><span class="fault-name">External actors &amp; the hybrid front</span>
+ <span class="meter" aria-label="Exploitability: 4 of 5"><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg on-hi"></span><span class="seg"></span><span class="meter-label">exploitability 4/5</span></span></div>
+ <div class="fault-body">
+ <p>Pakistan (Kashmir, terror proxies, and support to separatist narratives) and China (a contested border, and documented disinformation about India since the 2017 Doklam standoff) are the standing external interests. The pattern is now openly visible: during the May 2025 India-Pakistan military exchange around Operation Sindoor, both state and non-state actors flooded social media with fabricated content to shape perceptions, a textbook hybrid-warfare surge. In early 2026, Indian fact-checkers debunked dozens of fabricated "incidents" aimed at India, including footage of an unrelated assault in Bangladesh passed off as an event in Uttar Pradesh. Real-looking video, real emotions, entirely false context, the mechanism in a single clip.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#2C6788" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 05 RESILIENCE ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">05</span><h2 class="part-title">Why India is hard to break</h2></div>
+ <p class="lead">The inversion has a second half. Having mapped the seams, honesty requires mapping the welds, the structural reasons India has absorbed shock after shock and re-cohered where others fractured. India's diversity is not only its vulnerability. It is, paradoxically, its deepest shield.</p>
+
+ <div class="pull">India's divides don't stack. That single fact is worth more than any firewall.</div>
+
+ <ul>
+ <li><strong>Cross-cutting divides, the master defence.</strong> This is what Yugoslavia lacked and India has in abundance. A Tamil Hindu, a Punjabi Sikh, a Bengali Muslim, a Gujarati Jain, a Dalit industrialist, a Brahmin farmer, no single line of religion, language, caste or region captures the same people. Every identity cuts across the others, so there is no clean plane along which the country can be snapped. A destabiliser who inflames one axis finds it crosswired to three others that don't cooperate.</li>
+ <li><strong>A real electoral safety valve.</strong> Power genuinely changes hands, at the state level constantly, at the centre repeatedly. Grievances that in a closed system would go to the street go, in India, to the ballot box. An angry electorate can throw out a government, which drains pressure that would otherwise build toward rupture.</li>
+ <li><strong>Federalism as a shock absorber.</strong> Discontent can be channelled into state politics and regional parties rather than into secession. The system gives grievance somewhere to <em>go</em> that is short of breaking the union.</li>
+ <li><strong>Scale, state capacity and an apolitical army.</strong> A continental state with deep administrative reach and a professional military that has never intervened in politics is simply not a small-state coup target. The covert playbook of Part 03F does not scale to this.</li>
+ <li><strong>Digital public infrastructure that delivers.</strong> Whatever the debates around it, the JAM/UPI/Aadhaar stack has measurably reduced one classic fuel, leakage and the petty gatekeeping of welfare. Direct benefit transfers exceeding tens of lakh-crore have cut out intermediaries who used to demand bribes, which is corruption-reduction at exactly the local level that matters most for legitimacy.</li>
+ <li><strong>A noisy civil society and a fact-checking ecosystem.</strong> India has vigorous independent fact-checkers, a combative press tradition, and a citizenry that argues loudly, all of which raise the cost of running a clean disinformation operation.</li>
+ <li><strong>A civilisational habit of plurality.</strong> The deepest weld of all: a very old, lived practice of many peoples, faiths and languages coexisting in one civilisational space. It is not automatic and must be renewed, but it is real, and it is the thing every manipulator is ultimately trying to overwrite.</li>
+ </ul>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#2C6788" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 06 POLITICAL TERRAIN ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">06</span><h2 class="part-title">The political terrain: government &amp; opposition as load-bearing walls</h2></div>
+ <p class="lead">A resilience audit has to assess the structures actually bearing the load, which means reading both the government and the opposition without flattery, because a destabiliser's whole craft is to attack the weak points a one-sided account would hide. In this frame, a strength and a vulnerability can be the same feature seen from two sides.</p>
+
+ <h3>The government (NDA / BJP-led)</h3>
+ <p>Returned in 2024 with a governing majority (the NDA at 293 seats) and a third consecutive term for the Prime Minister, an unusual span of continuity in a fractious democracy.</p>
+ <div class="cols">
+ <div class="col-card pos">
+ <h4>Resilience assets</h4>
+ <ul>
+ <li><strong>Decisive, continuous governance.</strong> A stable majority and clear command give the state the capacity to act, a genuine asset against the "weak centre" failure mode of Partition and Yugoslavia.</li>
+ <li><strong>Economic dynamism &amp; reform momentum.</strong> Sustained growth and a pro-investment, pro-formalisation posture that expands the pie, the surest long-run solvent of the economic grievance in Part 04.</li>
+ <li><strong>World-class digital public infrastructure.</strong> UPI processing tens of billions of transactions monthly, Aadhaar past 1.4 billion enrolments, direct transfers that cut leakage, state capacity that reduces petty corruption at the point people feel it.</li>
+ <li><strong>Firm national-security posture.</strong> A credible deterrent stance toward external actors and cross-border threats, which raises the cost of the proxy playbook.</li>
+ <li><strong>Rising global standing.</strong> G20 leadership and DPI diplomacy give India narrative weight abroad, harder to isolate.</li>
+ </ul>
+ </div>
+ <div class="col-card neg">
+ <h4>Attack surface (what a destabiliser targets)</h4>
+ <ul>
+ <li><strong>Majoritarian polarisation.</strong> The most consequential vulnerability, because it is the exact seam of Part 04. To the extent politics is framed along a Hindu-majority axis, it hands outsiders (and cynical insiders) the cleanest possible fracture line, the Yugoslav warning about leaders who profit from division.</li>
+ <li><strong>Contested institutional trust.</strong> International indices (V-Dem's "electoral autocracy" label; Freedom House's "Partly Free"; low press-freedom rankings) and domestic disputes such as the electoral-roll revision (SIR) controversy point to eroding trust in the referees. The government contests these vigorously, noting genuinely competitive high-turnout elections, court rulings against it (electoral bonds struck down, farm laws repealed), and disputed foreign methodologies. Both can be true: elections remain real <em>and</em> trust in neutral arbiters is under strain. It is that trust a manipulator most wants to corrode.</li>
+ <li><strong>Executive concentration.</strong> Power centralised in few hands is efficient, and a single point of failure that adversary narratives target.</li>
+ <li><strong>Centre-state friction.</strong> The federal/fiscal/language seam (Part 04) sharpens when the centre is seen as overriding regions.</li>
+ <li><strong>Jobs.</strong> Growth that doesn't visibly reach the youth cohort leaves the densest fuel unspent-but-present.</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3>The opposition (INDIA bloc)</h3>
+ <p>Recovered numerically in 2024, the bloc to ~234 seats, the Congress nearly doubling to 99, and a Leader of the Opposition restored, but structurally strained since.</p>
+ <div class="cols">
+ <div class="col-card pos">
+ <h4>Resilience contribution</h4>
+ <ul>
+ <li><strong>A functioning pressure valve.</strong> An opposition that can win, question and mobilise means grievances are voiced <em>electorally</em> rather than violently, itself a stabiliser.</li>
+ <li><strong>Regional depth.</strong> Strong state-level parties (in Tamil Nadu, West Bengal and elsewhere) anchor the federal bargain and give minorities and regions a stake in the system.</li>
+ <li><strong>Accountability function.</strong> Vocal scrutiny of institutional questions keeps the "captured referee" narrative from going uncontested.</li>
+ </ul>
+ </div>
+ <div class="col-card neg">
+ <h4>Weaknesses (that thin the buffer)</h4>
+ <ul>
+ <li><strong>Fragmentation.</strong> An alliance of convenience of parties with clashing regional ambitions; visible cracks and cross-voting after the 2024 high-water mark, and repeated state-election reverses (Haryana, Maharashtra, Delhi, Bihar).</li>
+ <li><strong>The Congress leadership question.</strong> A central party seen by allies as an inconsistent vote-catcher, with regional partners resisting Delhi-centric leadership.</li>
+ <li><strong>No coherent alternative narrative.</strong> Strong on critique, thin on a unifying positive programme, which weakens the electoral valve precisely when it is most needed.</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="callout">
+ <span class="eyebrow">The resilience read</span>
+ <p>A country is hardest to fracture when three things hold at once: <strong>power can change hands, grievances have electoral outlets, and no institution is seen as fully captured.</strong> That makes a capable government <em>and</em> a credible opposition <em>and</em> trusted referees complementary, not opposed, all three are load-bearing. The honest synthesis: strong, decisive governance is a real shock-resistance asset, but it converts into the country's most exploitable fault line the moment it is perceived as majoritarian or as capturing the referees. Guarding the Republic therefore runs through keeping delivery high, the opposition credible, and the umpires, courts, election machinery, a free press, visibly neutral. That is not a partisan prescription. It is structural engineering.</p>
+ </div>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#AC3F24" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 07 PLAYBOOK ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">07</span><h2 class="part-title">The manipulator's playbook, and how to read it</h2></div>
+ <p class="lead">This is the payoff: the composure that comes from recognising the move while it is being made. An influence operation runs a recognisable sequence, probe for a live grievance, craft emotional content, seed it through inauthentic accounts, wait for real people and partisan media to carry it, then escalate the framing. Once you can see the sequence, you can step out of it.</p>
+
+ <div class="check">
+ <span class="eyebrow">Field manual · the citizen's immune system</span>
+ <h3>How to spot an operation in progress</h3>
+ <ul>
+ <li><strong>Synchronised framing is the tell.</strong> Organic anger is messy; manufactured anger is uniform. When one local incident goes national with near-identical wording, pushed by many new or anonymous accounts at once, you are watching coordination, not a groundswell.</li>
+ <li><strong>Reverse-search the image, check the date.</strong> The most common trick is recycled or foreign footage relabelled, old clips, other countries' violence, staged video. A ten-second reverse image search defeats a large share of it.</li>
+ <li><strong>Read the emotional payload, not just the claim.</strong> The goal is to make you fear and hate a group. If a piece of content's real effect is "now I distrust my neighbours," treat it as suspect regardless of whether the specific fact checks out.</li>
+ <li><strong>Ask cui bono.</strong> Who gains if this narrative escalates? Follow the benefit, not the outrage.</li>
+ <li><strong>Watch for referee-attacks.</strong> Sustained campaigns to convince you the election, the court, the census or the press is rigged are attacks on the shared umpire, the precondition for every fracture.</li>
+ <li><strong>Assume deepfakes now.</strong> Generative AI means audio and video are no longer proof. Verify from independent, named sources before believing, and especially before forwarding.</li>
+        <li><strong>Louder is not truer.</strong> When the same claim is repeated across every channel at once, television, forwards, reels, comment sections, it starts to feel established through sheer repetition. This is a known trap: the mind mistakes familiarity for truth. Volume is manufactured cheaply and tells you nothing about accuracy.</li>
+        <li><strong>Loud is not large.</strong> A claim can flood your feed and still describe a tiny, unrepresentative event. Ask what the actual scale is, and where it sits against the real problems the administration is already working on. People routinely lose this sense of proportion, treating one amplified incident as if it were the whole country, and that lost sense of scale is exactly what a manipulator feeds on.</li>
+        <li><strong>The target is a majority, not everyone.</strong> An operation never needs to convince the whole population. It needs a large enough, motivated enough share to tip an outcome or set the mood. So the fact that "not everyone believes it" is no reassurance at all. A determined fraction was always the design goal.</li>
+ </ul>
+ </div>
+
+ <h3>The uncomfortable, load-bearing nuance</h3>
+ <p>An honest audit has to end here. In India, the evidence indicates the <strong>largest driver of viral political misinformation is domestic, not foreign</strong>, home-grown, partisan, and produced at scale. Foreign actors mostly <em>piggyback</em> on divisions that domestic incentives are already widening. That reframes the whole defence. The biggest structural vulnerability is not a foreign master-plan waiting to be foiled; it is the domestic political and commercial payoff for polarisation, which outsiders then merely rent.</p>
+ <p>Which means the real firewall is not counter-espionage. It is internal: trustworthy institutions, widespread media literacy, pushed hard into rural and low-literacy populations where the forwarded message is most powerful, and a personal refusal to let a stranger's framing decide how you feel about people you actually know. The cheapest, strongest counter-destabilisation measure available to any citizen is to not become the accelerant.</p>
+
+    <h3>The habit that beats all of it: actually questioning</h3>
+    <p>None of the above works without one underrated skill: the willingness to pause and ask "is this real, and is it as big as it feels?" before reacting or forwarding. Critical thinking is assumed to be common. It is not. Most people, under the pull of a story that flatters what they already believe, reach for whatever lets them cope, vent, or confirm their existing view, and pass it on, rather than test it. The manipulator is rarely betting on the lie itself. They are betting that almost no one will stop to question it. Not being that person, refusing to forward what has not been checked, and holding a cool sense of proportion, is very nearly the whole defence compressed into a single habit.</p>
+ </div>
+</section>
+
+<div class="divider" aria-hidden="true"><svg viewBox="0 0 900 26"><path d="M0,13 L360,13 L385,4 L410,20 L435,7 L460,18 L485,13 L900,13" fill="none" stroke="#2C6788" stroke-width="1.5"/></svg></div>
+
+<!-- ================= 08 LONG VIEW ================= -->
+<section class="part reveal">
+ <div class="wrap">
+ <div class="part-head"><span class="part-num">08</span><h2 class="part-title">The long view</h2></div>
+ <p class="lead">Return to where we began. The point of learning every way a country could be broken is not dread. It is the calm of the person who has already seen the trick and cannot be fooled by it twice.</p>
+ <p>India's paradox is the through-line of this whole study: the very diversity that offers a manipulator so many seams to probe is also the cross-wired structure that refuses to snap along any one of them. The country's history is a record of shocks survived, Partition, the Emergency, insurgencies north and south, communal spasms, each a down-phase of the cycle, each followed by re-cohesion. The cyclical lens of Part 02 is the source of composure: bad phases are real, and they end, provided the load-bearing walls are kept sound while they pass. Corruption is the recurring termite in those walls; cohesion and trustworthy institutions are the repair.</p>
+ <div class="pull wide">The firewall is not a border or a filter. It is a citizenry that cannot be turned against its neighbours.</div>
+ <p>Every case in the ledger, from Yugoslavia to Dhaka, ultimately turned on whether ordinary people could be convinced to fear each other. That is the hinge. Guard it, through fair institutions, honest local governance, economic hope for the young, and a population that reaches for the reverse-image-search before the pitchfork, and the whole elaborate playbook has nothing to grip. Knowing every way to break it is, in the end, simply how you keep it whole.</p>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="wrap">
+ <h4>Sources &amp; notes</h4>
+ <p class="src">
+ Selected sources referenced in the text: Senate Select Committee on Intelligence &amp; Mueller Report (2016 interference); World Economic Forum Global Risks Report (2024-25); India MeitY / Digital India reporting and IBEF (DPI, UPI, DBT figures); Freedom House "Freedom in the World 2025" and V-Dem Democracy Report 2025 (contested democracy assessments, with the government's rebuttals noted); Indian fact-checking and press reporting (2025-26 disinformation, Operation Sindoor, fabricated-incident debunks); comparative-politics scholarship on horizontal inequality, cross-cutting divides, Ibn Khaldun's <em>Muqaddimah</em>, and Peter Turchin's structural-demographic theory.<br><br>
+ Assessments of the current government and opposition reflect a range of contested public analysis and are presented as such, readers should weigh them against primary sources and their own judgement.
+ </p>
+ </div>
+</footer>
+
+<script>
+ (function(){
+ var els = document.querySelectorAll('.reveal');
+ if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+ els.forEach(function(e){e.classList.add('in')}); return;
+ }
+ var io = new IntersectionObserver(function(entries){
+ entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+ },{threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+ els.forEach(function(e){io.observe(e)});
+ })();
+</script>
+</body>
+</html>
