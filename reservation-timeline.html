@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How India Came to Reserve: a documented timeline, c.1500 BCE – 2027</title>
+<meta name="description" content="A source-by-source timeline of caste-based reservation in India, from the earliest varna texts to Census 2027. Disputed figures are marked as disputed.">
+<style>
+:root{
+  --paper:#faf8f4; --ink:#1c1a17; --ink-soft:#4a453d; --ink-faint:#7d7568;
+  --rule:#e0d9cc; --rule-strong:#c9bfad;
+  --accent:#8c3a2b; --accent-soft:#f2e6e2;
+  --warn:#8a6d1f; --warn-soft:#f6efd9;
+  --dispute:#6b4a7a; --dispute-soft:#efe6f3;
+  --max:44rem;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#161513; --ink:#eae5dc; --ink-soft:#b8b1a4; --ink-faint:#8b8375;
+    --rule:#33302b; --rule-strong:#4a453d;
+    --accent:#e08b76; --accent-soft:#33221d;
+    --warn:#d6b65c; --warn-soft:#2e2717;
+    --dispute:#c2a0d4; --dispute-soft:#271e2c;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:4.5rem}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+  font-size:1.02rem; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 1.25rem}
+h1,h2,h3,h4,nav,.meta,.badge,.tag,.legend,.kicker,figcaption,th{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+
+/* ---------- masthead ---------- */
+header.masthead{padding:4.5rem 0 2.5rem; border-bottom:1px solid var(--rule)}
+.kicker{font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:1.1rem}
+h1{font-size:2.6rem; line-height:1.12; margin:0 0 1rem; letter-spacing:-.02em; font-weight:600}
+.standfirst{font-size:1.18rem; line-height:1.6; color:var(--ink-soft); margin:0 0 1.5rem}
+.meta{font-size:.8rem; color:var(--ink-faint); line-height:1.7; border-top:1px solid var(--rule); padding-top:1rem}
+
+/* ---------- legend ---------- */
+.legend{
+  margin:2rem 0; padding:1.1rem 1.25rem; border:1px solid var(--rule);
+  border-radius:3px; background:rgba(0,0,0,.015); font-size:.86rem; line-height:1.6}
+@media (prefers-color-scheme: dark){ .legend{background:rgba(255,255,255,.02)} }
+.legend p{margin:0 0 .6rem}
+.legend p:last-child{margin-bottom:0}
+
+/* ---------- nav ---------- */
+nav.toc{position:sticky; top:0; z-index:20; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:.6rem 0; font-size:.76rem}
+nav.toc ol{list-style:none; margin:0; padding:0 1.25rem; max-width:var(--max);
+  margin-inline:auto; display:flex; gap:1.1rem; overflow-x:auto; scrollbar-width:none}
+nav.toc ol::-webkit-scrollbar{display:none}
+nav.toc a{color:var(--ink-faint); text-decoration:none; white-space:nowrap; padding:.2rem 0}
+nav.toc a:hover{color:var(--accent)}
+
+/* ---------- era ---------- */
+.era{padding:3.5rem 0 1rem}
+.era-head{border-top:2px solid var(--ink); padding-top:1rem; margin-bottom:.5rem}
+.era-num{font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:600}
+.era h2{font-size:1.85rem; line-height:1.2; margin:.4rem 0 .5rem; font-weight:600; letter-spacing:-.015em}
+.era-span{font-size:.85rem; color:var(--ink-faint); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.era-intro{color:var(--ink-soft); margin:1.2rem 0 2rem}
+
+/* ---------- timeline ---------- */
+.tl{position:relative; margin:0; padding:0 0 0 1.75rem; list-style:none}
+.tl::before{content:''; position:absolute; left:.31rem; top:.55rem; bottom:.5rem;
+  width:1px; background:var(--rule-strong)}
+.ev{position:relative; margin:0 0 2.4rem}
+.ev::before{content:''; position:absolute; left:-1.75rem; top:.5rem; width:.63rem; height:.63rem;
+  border-radius:50%; background:var(--paper); border:2px solid var(--rule-strong)}
+.ev.key::before{background:var(--accent); border-color:var(--accent); width:.75rem; height:.75rem; left:-1.81rem}
+.ev-date{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:.78rem; font-weight:600; letter-spacing:.03em; color:var(--accent);
+  text-transform:uppercase; margin-bottom:.15rem}
+.ev h3{font-size:1.08rem; margin:0 0 .5rem; line-height:1.35; font-weight:600}
+.ev p{margin:0 0 .75rem}
+.ev p:last-child{margin-bottom:0}
+
+/* ---------- badges ---------- */
+.badge{display:inline-block; font-size:.62rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; padding:.13rem .42rem; border-radius:2px; vertical-align:.1em;
+  margin-left:.3rem; white-space:nowrap}
+.badge.disputed{background:var(--dispute-soft); color:var(--dispute); border:1px solid var(--dispute)}
+.badge.unverified{background:var(--warn-soft); color:var(--warn); border:1px solid var(--warn)}
+
+/* ---------- callouts ---------- */
+.note{border-left:3px solid var(--rule-strong); padding:.15rem 0 .15rem 1rem;
+  margin:1rem 0; font-size:.94rem; color:var(--ink-soft)}
+.note.flag{border-left-color:var(--dispute)}
+.note.flag strong:first-child{color:var(--dispute)}
+blockquote{margin:1.2rem 0; padding:.2rem 0 .2rem 1.1rem; border-left:3px solid var(--accent);
+  font-style:italic; color:var(--ink-soft)}
+blockquote cite{display:block; font-style:normal; font-size:.8rem; color:var(--ink-faint);
+  margin-top:.5rem; font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+
+/* ---------- tables ---------- */
+.tbl{width:100%; border-collapse:collapse; margin:1.2rem 0; font-size:.85rem;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.tbl th{text-align:left; border-bottom:1.5px solid var(--ink); padding:.45rem .5rem .45rem 0;
+  font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint)}
+.tbl td{border-bottom:1px solid var(--rule); padding:.5rem .5rem .5rem 0; vertical-align:top}
+.tbl td:last-child, .tbl th:last-child{padding-right:0}
+.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+
+/* ---------- sources ---------- */
+.src{font-size:.76rem; color:var(--ink-faint); margin-top:.6rem;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.55}
+.src a{color:var(--ink-faint); text-decoration:underline; text-decoration-color:var(--rule-strong);
+  text-underline-offset:2px}
+.src a:hover{color:var(--accent); text-decoration-color:var(--accent)}
+a{color:var(--accent)}
+
+/* ---------- closing ---------- */
+.closing{padding:3rem 0 1rem; border-top:2px solid var(--ink); margin-top:3rem}
+.closing h2{font-size:1.6rem; margin:1rem 0 1rem; font-weight:600}
+.closing h3{font-size:1.02rem; margin:1.8rem 0 .5rem; font-weight:600}
+footer{padding:2.5rem 0 4rem; border-top:1px solid var(--rule); margin-top:3rem;
+  font-size:.78rem; color:var(--ink-faint); line-height:1.7;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+hr.thin{border:0; border-top:1px solid var(--rule); margin:2.5rem 0}
+
+@media (max-width:640px){
+  h1{font-size:1.95rem} .era h2{font-size:1.45rem} body{font-size:.98rem}
+  header.masthead{padding:2.5rem 0 2rem}
+}
+@media print{
+  nav.toc{display:none} body{background:#fff; color:#000; font-size:10.5pt}
+  .era{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="kicker">A documented timeline</div>
+    <h1>How India Came to Reserve</h1>
+    <p class="standfirst">Reservation is usually argued about as a policy. It is more usefully read as a sequence — of texts, censuses, proclamations, pacts, amendments and judgments, each responding to the one before. This is that sequence, from the earliest varna texts to the census now being taken.</p>
+    <p class="meta">
+      Compiled from a source-tagged research base of primary documents: census volumes, gazette notifications, commission reports, Constituent Assembly debates and judgment texts.<br>
+      <strong>Every figure below is either sourced or explicitly marked as unsourced.</strong> Research cutoff: August 2026.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="legend">
+    <p><strong>How to read this page.</strong> Most statements here rest on a primary document that was read directly — a census volume, a statute, a judgment. Those appear as plain text with a source line.</p>
+    <p>Two kinds of claim are marked, because in this subject the widely-repeated number is often the one nobody has checked:</p>
+    <p><span class="badge disputed">disputed</span> — reputable sources materially disagree. The range is given; no winner is picked.</p>
+    <p><span class="badge unverified">unverified</span> — the figure circulates widely but the primary source could not be located, or was located and does not contain it.</p>
+  </div>
+</div>
+
+<nav class="toc" aria-label="Timeline sections">
+  <ol>
+    <li><a href="#e0">Before counting</a></li>
+    <li><a href="#e1">Making caste countable</a></li>
+    <li><a href="#e2">The first quotas</a></li>
+    <li><a href="#e3">The representation fight</a></li>
+    <li><a href="#e4">Writing it into the Constitution</a></li>
+    <li><a href="#e5">Courts and Parliament</a></li>
+    <li><a href="#e6">Mandal</a></li>
+    <li><a href="#e7">Expansion</a></li>
+    <li><a href="#e8">Counting again</a></li>
+    <li><a href="#end">What this settles</a></li>
+  </ol>
+</nav>
+
+<!-- ══════════════════ ERA 0 ══════════════════ -->
+<section class="era" id="e0">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era One</div>
+      <h2>Before anyone counted</h2>
+      <div class="era-span">c. 1500 BCE – 1800 CE</div>
+    </div>
+    <p class="era-intro">A warning has to come first, because it governs everything in this section. <strong>There is no pre-colonial denominator for anything.</strong> No pre-1871 source tells us what share of the population belonged to any caste, or how many people any rule actually bound. Every quantitative claim about caste before 1871 in public debate is a back-projection from colonial censuses. What survives from this period is texts, inscriptions and travellers' accounts — evidence of what was prescribed and what some people observed, not of scale.</p>
+
+    <ul class="tl">
+      <li class="ev key">
+        <div class="ev-date">c. 1200–1000 BCE</div>
+        <h3>The Purusha Sukta names four varnas <span class="badge disputed">disputed</span></h3>
+        <p>Rig Veda 10.90 describes the four varnas emerging from a cosmic being. It is the earliest text to name them as an ordered set, and it is cited constantly as the origin point of caste.</p>
+        <p>The dating is contested and the dispute matters. Book 10 is later than the family books (mandalas 2–7, c. 1500–1200 BCE). Max Müller read 10.90 as an interpolation. Nagarajan reads it as an interpolation with a purpose — a passage added to lend divine sanction to an arrangement that already existed. A third school reads it as genuinely late-Rigvedic composition rather than an insertion at all. Nothing in the timeline downstream depends on which is right, but a great deal of rhetoric does.</p>
+        <div class="note"><strong>What varna is not.</strong> Three things get conflated and should not be. <em>Varna</em> is four categories, textual and pan-Indian. <em>Jati</em> is thousands of endogamous groups, local and lived. The <em>colonial administrative categories</em> are a third thing again, created from the 1870s. Most arguments about "caste in ancient India" are arguments in which each side means a different one of these.</div>
+        <p class="src">Rig Veda 10.90; dating per Müller and the late-composition school. Confidence: contested.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">c. 600–200 BCE</div>
+        <h3>The Dharmasutras set out varna duties and penalties</h3>
+        <p>Gautama, Apastamba, Baudhayana and Vasishtha — dated by Patrick Olivelle (1999) — prescribe conduct by varna, including asymmetric punishment. Gautama 12.4 is the famous one: molten metal poured into the ears of a Shudra who listens to the Veda.</p>
+        <p>Even here the text is unstable. Manuscripts give <em>iron, lead, tin</em> and <em>lac</em>. "Molten lead," the version that circulates in polemic, is one reading among four.</p>
+        <p class="src">Olivelle, <em>Dharmasūtras</em> (1999). Manuscript variants recorded in the source base.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">c. 200 BCE – 300 CE</div>
+        <h3>The Manava Dharmashastra (Manusmriti) is compiled</h3>
+        <p>Dated by Olivelle (2005). It prescribes varna duties, punishment scaled inversely to status, and restrictions on women and on the lowest groups. Manu 8.267–8.272 and 10.51–10.56 are the passages most often quoted.</p>
+        <p>Two things are true about this text simultaneously, and the argument usually collapses one into the other.</p>
+        <p><strong>First, the popular English Manusmriti is not the scholarly one.</strong> Olivelle's critical edition found that every translation before his except Jolly's reproduces the Kulluka vulgate, and that remarkably few of the fifty-plus manuscripts he collated follow the vulgate in key readings. Verse 4.204 appears as three materially different verses across manuscript families. This cuts against critics and defenders equally — both are usually quoting Bühler or Doniger.</p>
+        <p><strong>Second, whether it was enforced law is genuinely open</strong>, and there are more than two positions. Lariviere: the smritis <em>record</em> custom rather than imposing it. Donald Davis: law ran through corporate groups rather than the state, and the state-versus-custom dichotomy is a European import. Olivelle: an expert tradition, not a statute book. Against all of these: texts nobody applies do not get cited in juristic digests for a thousand years.</p>
+        <div class="note flag"><strong>The most interesting single document here</strong> is not Manu but his commentator. Medhātithi (c. 800–1100 CE), glossing 8.272, drastically narrows it — explicitly permitting a Shudra to correct a Brahmin's ritual timing "in a friendly manner," with worked examples. That cuts both ways, and is recorded as cutting both ways: the plain reading appears to have been unworkable, <em>and</em> the verse was live enough to need managing.</div>
+        <p class="src">Olivelle, <em>Manu's Code of Law</em> (2005); Medhātithi, <em>Manubhāṣya</em>, verified in Sanskrit with Ganganatha Jha's translation.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">c. 400 CE</div>
+        <h3>Faxian describes Chandalas living apart</h3>
+        <p>The Chinese Buddhist pilgrim records Chandalas living outside settlements and striking wood to announce their approach so others could avoid them.</p>
+        <p>This is the strongest single piece of evidence against the strong version of the colonial-construction thesis, and it is worth being precise about why: Faxian is a foreign Buddhist observer with no stake in Brahminical prescription, and his account matches Manu 10.51–10.56, written centuries earlier by people with opposite interests. Two independent sources, describing the same practice.</p>
+        <p>Its limits are equally precise. It is route-specific, confined to the Gangetic plain, and gives no numbers at all.</p>
+        <p class="src">Faxian, travel account, 399–412 CE.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">c. 1100–1200 CE</div>
+        <h3>Bhakti movements contest caste from inside</h3>
+        <p>Basava and the Sharana movement in Karnataka, later Kabir, Ravidas and Chokhamela. Each contested something specific — ritual authority, temple access, the necessity of Brahmin mediation — and each produced institutional results that varied enormously by region and did not survive uniformly.</p>
+        <p class="src">Vachana corpus, c. 1100–1200. Confidence: secondary.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">c. 1000–1300 CE</div>
+        <h3>Valangai / Idangai inscriptions record a different axis entirely</h3>
+        <p>South Indian inscriptions document the right-hand and left-hand caste divisions — an organising principle with no equivalent in the Gangetic plain and no place in the four-varna scheme.</p>
+        <p><strong>The absence of a uniform system is itself the finding.</strong> Bengal lacks the middle varnas almost entirely. Kerala developed distance-pollution rules found nowhere else. Tribal and northeastern regions sat outside the scheme. Anyone describing "the caste system" as a single thing operating across the subcontinent is describing something no source supports.</p>
+        <p class="src">Subbarayalu, on the Valangai/Idangai inscriptions.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">c. 1860</div>
+        <h3>Kerala distance-pollution rules recorded by missionaries <span class="badge disputed">disputed</span></h3>
+        <p>Missionary testimony records <em>theendal</em> distances — the number of feet a person of a given caste had to keep from a Brahmin. The figures reported conflict with one another and are kept in the source base as conflicting, not averaged.</p>
+        <div class="note flag"><strong>This is the most-cited caste datum in Indian public argument, and it is the extreme case, not the typical one.</strong> Kerala's distance rules were unusually elaborate. Generalising them to "India" is not supportable from any source. The source base flags this specifically because the generalisation is so common.</div>
+        <p class="src">Missionary testimony, c. 1860, per Jeffrey (1976). Confidence: secondary; figures contested.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1776–1794</div>
+        <h3>The East India Company turns a text into law</h3>
+        <p>From 1776 the Company's administration of "Hindu law" elevated dharmashastra — and Manusmriti in particular — to a status as codified personal law that it had not previously held. William Jones's translation appears 1794.</p>
+        <p>Flavia Agnes and Donald Davis both argue that Manusmriti's <em>legal force</em> was substantially manufactured in this period. If so, a good deal of what is argued about today as ancient law is roughly as old as the American republic.</p>
+        <p class="src">Jones translation, 1776–1794. Confidence: secondary.</p>
+      </li>
+    </ul>
+
+    <div class="note flag"><strong>Where the scholarship actually stands.</strong> Effectively no serious scholar defends either "an unchanging 3,000-year system" or "invented by the British" — Nicholas Dirks, routinely accused of the latter, explicitly denies it. The real dispute is over the <em>magnitude and mechanism</em> of colonial-era change. The public version of this debate badly overstates the gap. One live and load-bearing challenge: Sumit Guha argues caste-wise enumeration was already in use by Indian rulers in the late 17th century, roughly 200 years before the British census. If that holds, the census-as-colonial-technology argument loses its foundation. <span class="badge unverified">unverified</span> — the claim has not yet been checked against Guha's sources.</div>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 1 ══════════════════ -->
+<section class="era" id="e1">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Two</div>
+      <h2>Making caste countable</h2>
+      <div class="era-span">1871 – 1941</div>
+    </div>
+    <p class="era-intro">Reservation requires categories that can be counted. This is the period in which they were made — not discovered, made — by an administrative apparatus that had to decide what a caste was, how many there were, and how they ranked. The decisions taken here determined what every later policy could operate on.</p>
+
+    <ul class="tl">
+      <li class="ev">
+        <div class="ev-date">1871–72</div>
+        <h3>The first attempt, and it is a mess</h3>
+        <p>Not synchronous: intended for 15 November 1871, actually run from late 1871 to August 1872. No central Census Commissioner. Provincial governments ran it, with District Collectors responsible locally and village accountants as enumerators. The schedule recorded "caste or class" alongside religion, race and occupation.</p>
+        <p>No all-India ranking existed. Provincial reports listed hundreds of named castes with no common scheme; the Bengal report alone estimated "nearly 1,000 separate castes." Oudh, Punjab and Berar were not re-enumerated at all — some 30 million people carried on figures from 1867–69.</p>
+        <p class="src">Waterfield, <em>Memorandum on the Census of British India 1871–72</em> (1875). Population confidence: secondary.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">17 February 1881</div>
+        <h3>First synchronous census</h3>
+        <p>W.C. Plowden becomes the first Census Commissioner for India. Madras Presidency returned 3,208 castes, which the census regrouped into 309 — an early illustration of how much the count depended on the counter.</p>
+        <p>Plowden himself doubted the exercise. The sentence in which he says so is garbled across the sources available and its exact wording is <span class="badge unverified">unverified</span>, but the doubt is not in question — the man running the count did not think caste could be counted reliably.</p>
+        <p class="src">Sundar (2010); <em>Orissa Review</em> Census Special (2010). Confidence: secondary.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">1 March 1901</div>
+        <h3>Risley ranks the castes — the decision everything else runs on</h3>
+        <p>H.H. Risley, Census Commissioner from 1899, changes the tabulating principle: castes are now ordered by <strong>"social precedence as recognised by native public opinion."</strong> The operative tests included whether Brahmans would take water from the caste, and whether the caste prohibited widow remarriage.</p>
+        <p>It was backed by anthropometry — cephalic index, nasal index, orbito-nasal index — and a sevenfold racial typology. Risley's formula, in his own words: <em>"the social position of a caste varies inversely as its nasal index."</em></p>
+        <p>The count usually given is <strong>1,646 castes</strong>. <span class="badge unverified">unverified</span> — the figure is repeated across Indian media and no primary page citation for it has been traced.</p>
+        <div class="note flag"><strong>This is the hinge of the whole timeline.</strong> Ranking castes officially created something to compete over. Caste associations immediately began petitioning for higher rank in the next census — the standardisation pressure that ran through 1911, 1921 and 1931, and that turned fluid local identities into stable claimable categories. Whatever one thinks of the colonial-construction thesis in general, this specific mechanism is documented.</div>
+        <p class="src">Risley &amp; Gait, <em>Census of India 1901</em>, Vol I Part I, Ch. XI.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">10 March 1911</div>
+        <h3>Gait tries to count the untouchables</h3>
+        <p>E.A. Gait retains Risley's framework and adds ten tests to identify castes at the bottom: denial of Brahman supremacy; not receiving mantras from Brahmans; not accepting the Vedas; not worshipping the great Hindu gods; not served by good Brahmans; having no Brahman priests at all; denied entry to ordinary Hindu temples; causing pollution by touch <em>or by approach within a distance</em>; burying rather than burning the dead; eating beef and doing no reverence to the cow.</p>
+        <p>The result is reported as <strong>41.9 million</strong>. <span class="badge unverified">unverified</span> — no primary page citation traced.</p>
+        <p>The politics were immediate. A Muslim memorial to Lord Morley of 27 January 1909 had urged separate enumeration of untouchables; caste-Hindu opinion read this as an attempt to shrink the Hindu total. Gait separately cautioned that comparison with 1891 was corrupted by a "traffic in names" — Chandal to Namasudra, Koch to Rajbansi — as groups renamed themselves upward.</p>
+        <p class="src">Gait, <em>Census of India 1911</em>, Vol I Part I, Ch. XI.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">18 March 1921</div>
+        <h3>The caste question comes under political attack</h3>
+        <p>J.T. Marten retains Risley's method. A resolution was tabled in the Imperial Legislative Council in 1920 attacking the caste inquiry as undesirable and its returns as worthless. It was never discussed, and the Commissioner proceeded as usual.</p>
+        <p>Marten gives Depressed Classes "minimum numbers" totalling 52,680,000, adding that the true figure was "something between 55 and 60 millions in India proper."</p>
+        <p>Total enumerated: 318,942,480 including Burma. A figure of 305,730,288 also circulates for the same census — the difference is Burma exactly (13,212,192).</p>
+        <p class="src">Marten's figures as quoted in Hutton, <em>Census of India 1931</em>, Vol I Part I, Appendix I.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">26 February 1931</div>
+        <h3>The last caste census — and the one every later policy uses</h3>
+        <p>J.H. Hutton abandons Risley's ranking, reverting to the 1891 method of grouping by traditional occupation because it "avoids any semblance of arrangement by order of social precedence." He is blunt about his inheritance, writing of the "pestiferous deluge" of caste claims and of having cursed the day the precedence question was introduced.</p>
+        <p>"Depressed Classes" are relabelled <strong>"Exterior Castes."</strong> The operational test circulated to provinces: castes "contact with whom entails purification on the part of high caste Hindus." No all-India definition was framed — deliberately.</p>
+        <table class="tbl">
+          <tr><th>Figure</th><th>Count</th></tr>
+          <tr><td>Total, India incl. Burma</td><td class="num">352,837,778</td></tr>
+          <tr><td>British India</td><td class="num">271,526,933</td></tr>
+          <tr><td>Indian States</td><td class="num">81,310,845</td></tr>
+          <tr><td>Hindus</td><td class="num">239,195,140</td></tr>
+          <tr><td><strong>Exterior Castes</strong></td><td class="num"><strong>50,195,770</strong></td></tr>
+        </table>
+        <p>The caste count universally given is <strong>4,147</strong>. <span class="badge unverified">unverified</span> — and this one has now been chased to its source and is not there. Volume I Part II was retrieved and read; Table XVII exists but contains no total number of castes at all. Its own prefatory note states the castes shown are <em>"representative only and not a complete tabulation of the whole population,"</em> covering 220,747,267 people — 63% of India — and that provincial instructions to compile only locally important castes "made it impossible to compile figures for all castes for all India."</p>
+        <div class="note flag"><strong>Two things about 1931 that matter downstream.</strong> First, the tabulation threshold was raised from 2 to 4 per mille and provinces were told they need not tabulate castes their government did not regard as important — which makes the 1931 caste count non-comparable with 1921. Second, Congress declared 11 January 1931 "Census Boycott Sunday," and competitive registration for a prospective communal franchise contaminated returns, especially in Punjab. <strong>The OBC population figure India has legislated on since 1980 extrapolates from this census.</strong> The state surveys of 2023–25 are the first alternative estimates — and, as the last section shows, they do not all agree with it.</div>
+        <p class="src">Hutton, <em>Census of India 1931</em>, Vol I Part I, paras 177, 182, 183, 184, Appendix I; Imperial Tables Vol I Part II, Table XVII — both read directly.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1 March 1941</div>
+        <h3>Caste enumeration stops</h3>
+        <p>W.W.M. Yeatts collects caste on the individual slip but full tabulation is dropped as a wartime economy. The 1941 publications are the only ones in the series that could not be completed. The report contains no mention of anthropometry, race or ethnology — an explicit break with the Risley inheritance.</p>
+        <p>India will not enumerate caste again, beyond SC/ST, for 86 years.</p>
+        <p class="src">Yeatts, <em>Census of India 1941 Administration Report</em> (1942). Extent of surviving tabulation: contested.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 2 ══════════════════ -->
+<section class="era" id="e2">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Three</div>
+      <h2>The first quotas</h2>
+      <div class="era-span">1874 – 1936</div>
+    </div>
+    <p class="era-intro">Reservation was not invented in 1950, or in 1990. It was running in princely states and presidencies for half a century before independence — and its earliest form was not a minority protection but a majority one, aimed at Brahmin over-representation in the services.</p>
+
+    <ul class="tl">
+      <li class="ev">
+        <div class="ev-date">1874</div>
+        <h3>Mysore proposes 8 posts in 10 — and does nothing</h3>
+        <p>An order reserving eight of every ten posts for non-Brahmins, Muslims and Indian Christians. Never implemented. The order number has not been located.</p>
+        <p class="src">Singh &amp; Donald, <em>Prabuddha: Journal of Social Equality</em> 3 (2019). Confidence: scholarly secondary; no order number.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">26 July 1902</div>
+        <h3>Kolhapur: the first reservation order actually enforced</h3>
+        <p>Chhatrapati Shahu of Kolhapur proclaims, in terms worth quoting because they establish the template:</p>
+        <blockquote>"Of all the seats that go vacant from the date of this proclamation, 50% should be filled with the backward classes. In all the offices where backward class employees number less than 50%, all the next appointments should go to the backward classes."<cite>Proclamation of Chhatrapati Shahu, Kolhapur State Gazette</cite></blockquote>
+        <p>The definition is residual and negative: "all classes except Brahmin, Prabhu, Shenvi, Parsi and other advanced classes." Nearly eighty years later the Mandal Commission would reach its own headline figure by an equally residual method.</p>
+        <p>The proclamation's number has not been located. <span class="badge unverified">unverified</span> — text and the 50% figure are documented; the order number is not.</p>
+        <p class="src"><em>Rajarshi Shahu Gaurav Granth</em> (Govt of Maharashtra) p.1077.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1918–1921</div>
+        <h3>Mysore: the Miller Committee sets a target and a deadline</h3>
+        <p>Constituted 23 August 1918 by Government Order No. E.A.G. 308 under Sir Leslie Miller. Its definition of backwardness is a measured one: communities "enumerated in the Census Report of 1911, which contain less than 5 percent of literates in English."</p>
+        <p>It recommended that within not more than seven years, non-Brahmins hold "not less than one-half of the higher and two-thirds of the lower appointments in each grade," with preference to the depressed classes; and in education, not less than 50% of hostel seats.</p>
+        <p>Implemented in May 1921 in diluted form — a flat 50%, dropping the two-thirds lower-grade element. By June 1927 Mysore was running 3-in-4 appointments to backward-class candidates in departments below 50% representation.</p>
+        <p class="src">Miller Committee Report 1919, full text read directly; Mysore Government Proceedings, May 1921; Mysore Legislative Council Proceedings, June 1927.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1919</div>
+        <h3>Reserved legislative seats arrive with the Montagu–Chelmsford reforms</h3>
+        <p>Under the Government of India Act 1919, Madras Presidency reserves 28 of 65 general seats for non-Brahmins; Bombay reserves 7 of 46 for "Marathas and allied Castes" — carried forward into the Fifth Schedule of the 1935 Act.</p>
+        <div class="note">Worth noting what is <em>not</em> in the Montagu–Chelmsford Report: a full-text search confirms the word "untouchable" never appears in it. The Depressed Classes were not yet a category the constitutional reforms addressed.</div>
+        <p class="src">Simon Report Vol I (Survey) 1930; Government of India Act 1935, Fifth Schedule; Montagu–Chelmsford Report paras 155, 229–232 — all read directly.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">16 September 1921</div>
+        <h3>Madras: the Communal G.O. — and a correction</h3>
+        <p>The Justice Party ministry issues Communal G.O. No. 613, distributing provincial service appointments across six heads: Brahmins; Non-Brahmins; Indian Christians; Mohammadans; Europeans and Anglo-Indians; Others.</p>
+        <div class="note flag"><strong>The percentages everyone attaches to this order are not in it.</strong> <span class="badge disputed">disputed</span> — the "44% non-Brahmin / 16% Brahmin / 8% SC" figures universally cited for 1921 do not appear in it. They are a garbled version of the <em>1927/28</em> twelve-point rotation — a different instrument, whose actual shares were 41.67% non-Brahmin Hindus, 16.67% each to Brahmins, Mohammadans, and Anglo-Indians with Christians, and 8.33% to "Others," a residual category that included but was not confined to the Depressed Classes. G.O. 613 set no fixed percentages at all; it required distribution across communities and half-yearly community-wise returns. The Depressed Classes were not even a separate head — they fell within "Others," and had no separate Madras share until G.O. 3437 of 21 November 1947.</div>
+        <p class="src">Singh &amp; Donald, <em>Prabuddha</em> 3 (2019); Vijaya &amp; Durga R., <em>IJCRT</em> 10(1) (2022).</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1928–1933</div>
+        <h3>Bombay invents the three-fold taxonomy still in use</h3>
+        <p>The Starte Committee (1928–30), with B.R. Ambedkar as a member, creates the classification India still runs on: (1) Depressed Classes; (2) Aboriginal and Hill Tribes; (3) Other Backward Classes.</p>
+        <p>It prescribed no criterion for the third category. The Bombay Government Resolution of May 1933 supplied one — classes "approximately at the same stage of social and educational advancement as" the first two — and produced three schedules: 47 Depressed Classes, 29 Aboriginal and Hill Tribes, <strong>125 Other Backward Classes.</strong></p>
+        <p>The Starte Committee also proposed three conditions for <em>removal</em> from the list: no longer untouchable; satisfactory literacy; economic status no longer requiring assistance. No such exit mechanism was carried into the post-1950 scheme.</p>
+        <p class="src">Report of the Depressed Classes and Aboriginal Tribes Committee (Bombay 1930); Bombay Government Resolution, May 1933. Confidence: secondary via primary-citing sources; resolution number not located.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">4 July 1934</div>
+        <h3>The centre reserves for minorities — but not for the Depressed Classes</h3>
+        <p>Government of India Resolution No. F.14/17-B/33 reserves 25% of central services for Muslims. Reservation is provided "for all minorities excepting the depressed classes," for whom the state undertakes only that "all reasonable steps should be taken to secure… a fair degree of representation."</p>
+        <p>A fixed SC quota of 8.5% follows in 1942 or 1943. <span class="badge unverified">unverified</span> — the instrument creating it has not been located and the year itself is disputed.</p>
+        <p class="src">Gazette of India Part I, 7 July 1934 (instrument located; full text not retrieved).</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 3 ══════════════════ -->
+<section class="era" id="e3">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Four</div>
+      <h2>The representation fight</h2>
+      <div class="era-span">1930 – 1936</div>
+    </div>
+    <p class="era-intro">Between 1930 and 1932 the question stopped being administrative and became constitutional: not how many jobs, but who represents whom. The dispute between Ambedkar and Gandhi in these two years shaped everything after it, and is more often invoked than read.</p>
+
+    <ul class="tl">
+      <li class="ev">
+        <div class="ev-date">1930–1932</div>
+        <h3>The Round Table Conferences</h3>
+        <p>Ambedkar's position, stated at the plenary on 20 November 1930 and refined on 31 December, is a disjunction: <strong>adult suffrage or separate electorates.</strong> Either the Depressed Classes get a franchise wide enough to make them count, or they get their own electorates.</p>
+        <p>Gandhi's position, at the Minorities Committee on 13 November 1931, is that separate electorates for the Depressed Classes would divide Hinduism itself — a different objection from his position on Muslim electorates.</p>
+        <p class="src">Round Table Conference proceedings; Ambedkar's collected writings; CWMG — all read in the original.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">17 August 1932 <span class="badge disputed">disputed</span></div>
+        <h3>The Communal Award grants separate electorates — with a double vote</h3>
+        <p>Ramsay MacDonald's Award gives the Depressed Classes separate electorates for 20 years, with a mechanism that is usually omitted from summaries: <strong>a double vote.</strong> Depressed Class voters would vote in their own constituency <em>and</em> in the general one.</p>
+        <p>The seat total is <span class="badge disputed">disputed</span> — 70, 71, 78 and 80 all circulate. The per-province table in Cmd. 4147 could not be retrieved. Ambedkar's own figure, as a party to the instrument, is <strong>78</strong>, and is the best-sourced.</p>
+        <p class="src">Communal Award para 9, verbatim via Ambedkar's reproduction of the official text.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">24 September 1932</div>
+        <h3>The Poona Pact: more seats, no double vote</h3>
+        <p>Gandhi fasts unto death against separate electorates. The Pact that ends the fast replaces them with reserved seats inside joint electorates — and raises the number from 78 to <strong>148</strong>.</p>
+        <p>Ambedkar's own assessment, written later, is not the one usually quoted:</p>
+        <blockquote>"Now, if the Poona Pact increased the fixed quota of seats it also took away the right to the double vote. This increase in seats can never be deemed to be a compensation for the loss of the double vote. The second vote given by the Communal Award was a priceless privilege… The voting strength of the Untouchables in each constituency is one to ten. With this voting strength free to be used in the election of caste Hindu candidates, the Untouchables would have been in a position to determine, if not to dictate, the issue of the General Election… Today the Untouchables have a few more seats than were given to them by the Communal Award. But this is all that they have. Every other member is indifferent, if not hostile."<cite>B.R. Ambedkar, <em>What Congress and Gandhi Have Done to the Untouchables</em></cite></blockquote>
+        <div class="note flag"><strong>A transcription warning.</strong> The Poona Pact text most widely linked online gives Bombay-with-Sind as 25 seats, which sums to 158 — inconsistent with its own stated total of 148. Ambedkar's text gives 15, which sums correctly to 148 and reconciles with the 1935 Act's 151. Use Ambedkar's.</div>
+        <p>On duration, the negotiation ran the other way from how it is remembered: Ambedkar proposed ending the primary system after ten years with a referendum on seats after fifteen; Gandhi proposed a five-year referendum. The compromise was clause 5 — <strong>ten years for the primaries</strong> — and clause 6, <strong>no fixed term for the reserved seats.</strong></p>
+        <p class="src">Poona Pact, all nine clauses, from two transcriptions; Basu, <em>Proceedings of the Indian History Congress</em> 61 (2000).</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1932</div>
+        <h3>The "1932 schedule of Depressed Classes" — which does not exist</h3>
+        <p>A Government of India schedule of Depressed Classes dated 1932 is cited constantly. It was chased to the one 1932 body that could have produced it — the Indian Franchise (Lothian) Committee — and the report was read in full.</p>
+        <p>Its own action list asks that lists be considered "so as to arrive at a definite list <em>as soon as possible</em>." Para 285 states that classification "can be undertaken on detailed and scientific lines only during a census of the whole population." Para 283 records the Committee adopting even its own working definition only on 4 February 1932. None of its seven appendices is a schedule.</p>
+        <p>What existed in 1932 was a set of mutually inconsistent lists. For the United Provinces alone the range ran from a proposed nomination schedule of 6,773,814 to the same government's note that on a strict pollution definition the number "would be reduced to 459,000." <strong>The first consolidated legal list is the Order of 1936.</strong></p>
+        <p class="src">Report of the Indian Franchise Committee 1932 (Lothian), Vol I — read in full.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">1935–1936</div>
+        <h3>"Scheduled Caste" becomes a legal category</h3>
+        <p>The Government of India Act 1935 carries the Poona Pact into statute — including, at Fifth Schedule para 7, the primary-election mechanism verbatim. The Government of India (Scheduled Castes) Order 1936 then produces the first consolidated legal list.</p>
+        <p>The term "Scheduled Caste" is thus an administrative artefact of 1935–36, built on a census apparatus constructed from 1901. The category India has reserved for since 1950 is, in its legal form, younger than the Model T.</p>
+        <p class="src">Government of India Act 1935; Scheduled Castes Order 1936 — both read in full.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 4 ══════════════════ -->
+<section class="era" id="e4">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Five</div>
+      <h2>Writing it into the Constitution</h2>
+      <div class="era-span">1946 – 1950</div>
+    </div>
+    <p class="era-intro">The Constituent Assembly inherited a working colonial scheme and had to decide what to keep. It kept reserved seats and dropped separate electorates; it kept SC and ST and left OBC undefined. The famous question — did Ambedkar intend reservation to be temporary? — has an answer more complicated than either side's version.</p>
+
+    <ul class="tl">
+      <li class="ev">
+        <div class="ev-date">27 August 1947</div>
+        <h3>Separate electorates abolished</h3>
+        <p>Patel carries the three-limb settlement: joint electorates, no weightage, and reservation proportional to population. Separate electorates — the thing Ambedkar had asked for in 1930 and lost in 1932 — end for good.</p>
+        <p class="src">Constituent Assembly Debates, 27 Aug 1947, paras 5.43.11–12, from the digitised debate texts.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">30 November 1948</div>
+        <h3>Ambedkar explains what "backward" has to mean</h3>
+        <p>Defending the draft of what becomes Article 16(4), Ambedkar sets out the structural problem directly: a rule of equal opportunity that ignores existing distribution will reproduce it; a reservation so large it swallows the general category destroys the rule. The clause has to sit between the two.</p>
+        <p>This is the reasoning the Supreme Court would later convert into the 50% ceiling — a judicially invented number, but not an invention without a text behind it.</p>
+        <p class="src">Constituent Assembly Debates, 30 Nov 1948, full reply retrieved from the digitised transcripts.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">25–26 May 1949</div>
+        <h3>Religious-minority reservation dropped; Nehru welcomes the ten years</h3>
+        <p>Patel's Advisory Committee recommends ending reservation for religious minorities. Nehru, on 26 May 1949: <em>"I am glad that this reservation also will be limited to ten years."</em></p>
+        <p>Nehru's framing recasts Scheduled Caste status as a matter of <em>backwardness</em> rather than religion — a move whose consequences arrive in 1950 and are still in litigation.</p>
+        <p class="src">Constituent Assembly Debates Vol. VIII, 26 May 1949, paras 8.92.40–.47, verbatim.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">26 January 1950</div>
+        <h3>The Constitution comes into force — with two different clocks</h3>
+        <p>The scheme as enacted:</p>
+        <table class="tbl">
+          <tr><th>Provision</th><th>Effect</th><th>Time limit</th></tr>
+          <tr><td>Art. 15(4) <em>(from 1951)</em>, 16(4)</td><td>Enable reservation in education and services</td><td><strong>None</strong></td></tr>
+          <tr><td>Art. 46</td><td>Directive to promote SC/ST interests</td><td>None</td></tr>
+          <tr><td>Arts. 330, 332</td><td>Reserved seats, Lok Sabha and State Assemblies</td><td><strong>Ten years</strong> (Art. 334)</td></tr>
+          <tr><td>Art. 335</td><td>Claims consistent with administrative efficiency</td><td>None</td></tr>
+          <tr><td>Arts. 341, 342</td><td>Presidential lists of SC and ST</td><td>None</td></tr>
+          <tr><td>Art. 340</td><td>Power to appoint a backward classes commission</td><td>None</td></tr>
+        </table>
+        <div class="note flag"><strong>This is the answer to "was reservation meant to be temporary."</strong> The ten-year limit in Article 334 attached <em>only to reserved legislative seats</em>. Reservation in education and employment carried no sunset clause at all, and never has. Both sides of the popular argument are quoting real things and applying them to the wrong provision.</div>
+        <p>A further inversion: in the Poona Pact the ten years attached to the <em>primary-election mechanism</em> (clause 5), not the seats (clause 6). In the Constitution it attached to the seats — and the primaries did not survive at all.</p>
+        <p class="src">Constitution of India as enacted; Constituent Assembly Debates 25 Aug 1949.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">10 August 1950</div>
+        <h3>The lists — and a restriction that outlives the century</h3>
+        <p>The Constitution (Scheduled Castes) Order 1950 (C.O. 19, S.R.O. 385) and the Scheduled Tribes Order 1950 (C.O. 22) are notified. <strong>Paragraph 3 of the SC Order limits Scheduled Caste status to Hindus.</strong></p>
+        <p>It is amended twice — to include Sikhs (Act 63 of 1956) and Buddhists (Act 15 of 1990) — and never further. Dalit Christians and Dalit Muslims remain excluded, litigation is pending since 2004, and the Balakrishnan Commission constituted in October 2022 has published no report as of mid-2026.</p>
+        <div class="note"><strong>The ST Order has no religion restriction at all.</strong> C.O. 22 has three paragraphs and no analogue to SC para 3 — verified directly against the official text. The asymmetry is structural, not accidental, and is rarely noticed in the debate.</div>
+        <p>No census basis exists for any Dalit Christian or Dalit Muslim population figure. The 3.2 million commonly cited is one advocacy estimate. <span class="badge disputed">disputed</span></p>
+        <p class="src">C.O. 19 and C.O. 22, operative paragraphs and amendment footnotes, from the official Government of India compilation.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 5 ══════════════════ -->
+<section class="era" id="e5">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Six</div>
+      <h2>Courts and Parliament, in a loop</h2>
+      <div class="era-span">1951 – 1979</div>
+    </div>
+    <p class="era-intro">A pattern establishes itself in the first eighteen months and repeats for seventy years: the Supreme Court reads a limit into the Constitution; Parliament amends the Constitution to remove it. Almost every major amendment in this field is a targeted reversal of a specific judgment.</p>
+
+    <ul class="tl">
+      <li class="ev key">
+        <div class="ev-date">9 April 1951</div>
+        <h3>Champakam Dorairajan — and the First Amendment two months later</h3>
+        <p>A seven-judge bench strikes down the Madras Communal G.O. Article 29(2) is unqualified; Directive Principles cannot override Fundamental Rights.</p>
+        <p>Parliament responds on 18 June 1951 with the <strong>First Amendment</strong>, inserting Article 15(4) — an enabling clause for special provision for socially and educationally backward classes and for SC/ST. The loop is established within ten weeks.</p>
+        <p class="src">AIR 1951 SC 226; Constitution (First Amendment) Act 1951.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1953–1956</div>
+        <h3>Kalelkar: the first commission, repudiated by its own chairman</h3>
+        <p>The First Backward Classes Commission under Article 340 reports in March 1955, listing <strong>2,399 backward castes</strong>, of which 837 are marked "most backward."</p>
+        <p>Then Kaka Kalelkar attaches a 137-paragraph forwarding letter repudiating his own commission's approach. The stated reason — paragraphs 19–22, and almost never quoted — is that caste-based concessions had "acted as a bait and a bribe inciting Muslim and Christian society to revert to caste." His conclusion: <em>"the remedies we suggested were worse than the evil we were out to combat."</em> He filed no separate minute of dissent because the letter was the dissent.</p>
+        <p>What he proposed instead is more interesting than the repudiation: a 15-item <em>individual-level</em> deprivation index (para 66), an income test, and a ceiling — <em>"Reservations if contemplated must not exceed 49 per cent"</em> (para 31). Paragraph 90 states the elite-capture finding that the Rohini Commission would document in 2023.</p>
+        <p>Five of eleven members also dissented. The Memorandum on Action Taken was laid before Parliament on 3 September 1956 and the report was never debated. No central OBC list resulted; identification was left to the states for 34 years.</p>
+        <div class="note flag">Two of the most-circulated Kalelkar quotations — that caste-based reservations "do not help the country" and would "do more harm than good" — <span class="badge unverified">unverified</span>. Volume I was read in full and neither appears in it.</div>
+        <p class="src">Report of the Backward Classes Commission 1955, Vol I, forwarding letter — read in full from the Internet Archive scan of the printed volume.</p>
+      </li>
+      <li class="ev">
+        <div class="ev-date">28 April 1961</div>
+        <h3>Rangachari: promotions allowed, 3–2</h3>
+        <p>Gajendragadkar for the majority: "posts" in Article 16(4) includes selection posts, so reservation in promotion is permitted, subject to Article 335. Two dissents — Wanchoo J. reading "not adequately represented" as numerical sufficiency across the service as a whole, Ayyangar J. reading "posts" as posts outside the services entirely.</p>
+        <p class="src">AIR 1962 SC 36. Both dissents recorded in full in the source base.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">28 September 1962</div>
+        <h3>Balaji: the 50% ceiling is invented</h3>
+        <p>A 68% Mysore scheme is struck down. Reservation under Article 15(4), "speaking generally and in a broad way… should be less than 50%; how much less than 50% would depend upon the relevant prevailing circumstances in each case." Caste cannot be the sole test of backwardness. Sub-classification into "backward" and "more backward" is disapproved — a holding that stands for 62 years until 2024.</p>
+        <div class="note">The 50% figure is judicial, not constitutional. No provision of the Constitution contains it. And it was anticipated: Kaka Kalelkar had proposed a 49% ceiling in 1955, seven years earlier.</div>
+        <p class="src">AIR 1963 SC 649.</p>
+      </li>
+
+
+      <li class="ev">
+        <div class="ev-date">25 March 1970</div>
+        <h3>The SC/ST percentages reach their present level</h3>
+        <p>An executive order raises central service quotas from 12.5% to <strong>15% for SC</strong> and from 5% to <strong>7.5% for ST</strong>, set on 1961 Census population proportions. These are the figures still in force.</p>
+        <table class="tbl">
+          <tr><th>Date</th><th>Category</th><th class="num">%</th><th>Instrument</th></tr>
+          <tr><td>21 Sep 1947</td><td>SC</td><td class="num">12.5</td><td>Government of India instructions</td></tr>
+          <tr><td>13 Sep 1950</td><td>ST</td><td class="num">5</td><td>MHA Resolution</td></tr>
+          <tr><td>25 Mar 1970</td><td>SC / ST</td><td class="num">15 / 7.5</td><td>Executive order</td></tr>
+        </table>
+        <p class="src">DoPT <em>Brochure on Reservation</em>, read directly.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">19 September 1975</div>
+        <h3>N.M. Thomas reframes the whole question</h3>
+        <p>A seven-judge bench, 5–2: Article 16(4) is <strong>not an exception</strong> to Article 16(1) — it is "only an emphatic way of putting the extent to which equality of opportunity could be carried." Classification in favour of the backward is permissible under the equality clause itself.</p>
+        <p>This is the doctrinal move that makes everything after it possible. If reservation is an exception to equality, it must be construed narrowly. If it is an expression of equality, it need not be.</p>
+        <p class="src">(1976) 2 SCC 310.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 6 ══════════════════ -->
+<section class="era" id="e6">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Seven</div>
+      <h2>Mandal</h2>
+      <div class="era-span">1979 – 1993</div>
+    </div>
+    <p class="era-intro">The single most consequential number in Indian public policy is 52%, and almost nobody who cites it has seen how it was produced. It was produced by subtraction, from a census taken in 1931.</p>
+
+    <ul class="tl">
+      <li class="ev key">
+        <div class="ev-date">1979–1980</div>
+        <h3>The Mandal Commission and the arithmetic of 52%</h3>
+        <p>B.P. Mandal's commission surveys 405 of 407 districts between February and June 1980 — two villages and one urban block per district — applying 11 indicators on a 22-point scale, weighted social 3 / educational 2 / economic 1, with a threshold of 11.</p>
+        <p>But the headline population figure does not come from the survey. It comes from Chapter XII, and it comes from subtraction:</p>
+        <table class="tbl">
+          <tr><th>Group</th><th>Head</th><th class="num">% of population</th></tr>
+          <tr><td>A</td><td>Scheduled Castes and Scheduled Tribes</td><td class="num">22.56</td></tr>
+          <tr><td>B</td><td>Total non-Hindu communities</td><td class="num">16.16</td></tr>
+          <tr><td>C</td><td>Total forward Hindu castes</td><td class="num">17.58</td></tr>
+          <tr><td></td><td><em>A + B + C</em></td><td class="num"><em>56.30</em></td></tr>
+          <tr><td>D</td><td>Backward Hindu castes — <strong>residual</strong>, 100 − 56.30</td><td class="num"><strong>43.70</strong></td></tr>
+          <tr><td>E</td><td>Backward non-Hindu — <strong>assumed at 52% of Group B</strong> (0.52 × 16.16)</td><td class="num"><strong>8.40</strong></td></tr>
+          <tr><td>F</td><td><strong>Total OBC = D + E</strong></td><td class="num"><strong>52.10</strong></td></tr>
+        </table>
+        <p>The load-bearing assumption is stated at para 12.19: that "the inter se rate of growth of population of various castes, communities and religious groups over the last half a century has remained more or less the same." <strong>Constant relative growth rates across all castes for fifty years.</strong> It is nowhere tested in the report. Mandal's own covering letter: "We had to face enormous difficulties in the absence of caste enumeration figures after the 1931 Census."</p>
+        <div class="note flag"><strong>The number 52 appears twice, meaning two different things.</strong> <em>52%</em> is the share of the <em>non-Hindu population</em> assumed backward — the multiplier producing Group E. <em>52.10%</em> is total OBC share of the <em>whole population</em>. Conflating them drives most of the public confusion. Both the "52% of non-Hindus were assumed OBC" account and the "43.7% plus a non-Hindu increment" account are accurate; they describe the same table from opposite ends. What does fail is the disjoint-category critique — adding "52% OBC + Muslims + Christians" double-counts the 8.40 points, so there is no route from Mandal's own table to a ~92% figure.</div>
+        <p><strong>What remains genuinely open:</strong> whether the 43.70% residual is sound — every error in Groups A, B or C lands in it with the sign reversed — and whether the 0.52 multiplier is defensible at all. By the report's own presentation it is assumed, not derived. Mandal applied a separate three-criteria set to non-Hindus precisely because the caste-based indicators could not be applied to them; the 0.52 figure is a different device again.</p>
+        <p class="src">Report of the Backward Classes Commission 1980, Chs. XII and XIII — read directly.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">1980</div>
+        <h3>Why the recommendation is 27% and not 52%</h3>
+        <p>Para 13.11, in the Commission's own words:</p>
+        <blockquote>"As stated in the last Chapter (para 12.22) the population of OBCs, both Hindu and non-Hindu, is around 52 per cent of the total population of India. Accordingly, 52 per cent of all posts under the Central Government should be reserved for them. But this provision may go against the law laid down in a number of Supreme Court judgements… <strong>In view of this legal constraint, the Commission is obliged to recommend a reservation of 27 per cent only, even though their population is almost twice this figure.</strong>"</blockquote>
+        <p><strong>27% is a residual under a judicial ceiling, not a proportionality figure.</strong> Para 13.12 adds that states already exceeding 27% would be unaffected — so it was a floor for the Centre, never a national cap.</p>
+        <div class="note">Two things the report recommended that were never implemented: radical land reform, given "highest priority"; and reservation in private undertakings receiving government assistance (13.15), plus statutory enactment of the scheme (13.17). The quota was implemented; the structural recommendations were not.</div>
+        <p>Member L.R. Naik dissented, proposing that 15 of the 27 points go to "Depressed Backward Classes" (25.56% of population) as against "Intermediate Backward Classes" (26.44%). <strong>OBC sub-categorisation, with a denominator, in 1980.</strong></p>
+        <p class="src">Mandal Report Ch. XIII, paras 13.11, 13.12, 13.15, 13.17–13.18; Naik dissent.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">7–13 August 1990</div>
+        <h3>Implementation, and the reaction</h3>
+        <p>V.P. Singh announces implementation in Parliament on 7 August; DoPT Office Memorandum No. 36012/31/90 follows on 13 August. Nationwide protests follow through 1990–91. The Supreme Court stays the O.M. in October 1990.</p>
+        <p>In September 1991 the Narasimha Rao government adds a 10% quota for the economically backward among forward castes — an early EWS, struck down the following year.</p>
+        <p class="src">DoPT O.M. 36012/31/90-Estt.(SCT), 13 Aug 1990. <span class="badge unverified">unverified</span> — the O.M. text itself was not retrieved.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">16 November 1992</div>
+        <h3>Indra Sawhney: nine judges settle the framework</h3>
+        <p>The 27% OBC quota is upheld. Four holdings define the field for the next three decades:</p>
+        <table class="tbl">
+          <tr><th>Holding</th><th>Fate</th></tr>
+          <tr><td>Creamy layer must be excluded from OBC reservation</td><td>Stands; extended to SC/ST in 2018</td></tr>
+          <tr><td>50% ceiling affirmed, with an extraordinary-circumstances exception</td><td>Stands; reaffirmed 2021</td></tr>
+          <tr><td>No reservation in promotions</td><td><strong>Reversed by the 77th Amendment, 1995</strong></td></tr>
+          <tr><td>The 50% rule applies to each year (killing unlimited carry-forward)</td><td><strong>Reversed by the 81st Amendment, 2000</strong></td></tr>
+          <tr><td>Economic criteria alone are impermissible</td><td><strong>Reversed by the 103rd Amendment, 2019</strong></td></tr>
+        </table>
+        <p>Three of the five were legislatively overturned. The pattern from 1951 holds.</p>
+        <p class="src">1992 Supp (3) SCC 217.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">8 September 1993</div>
+        <h3>The creamy layer gets a definition</h3>
+        <p>Following Indra Sawhney, the Justice Ram Nandan Prasad Committee produces a three-limb test: constitutional posts; a service category (children of Group A officers); and an income test that <strong>excludes income from salary and from agricultural land</strong>. Embodied in DoPT O.M. No. 36012/22/93 — still the operative instrument.</p>
+        <p>The income ceiling has been revised upward four times: ₹1 lakh (1993) → ₹2.5 lakh (2004) → ₹4.5 lakh (2008) → ₹6 lakh (2013) → ₹8 lakh (2017). The salary and agricultural-income exclusions remain a source of continuous litigation.</p>
+        <p class="src">DoPT O.M. No. 36012/22/93-Estt.(SCT). Confidence: secondary.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 7 ══════════════════ -->
+<section class="era" id="e7">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Eight</div>
+      <h2>Expansion</h2>
+      <div class="era-span">1995 – 2023</div>
+    </div>
+    <p class="era-intro">Having been settled in 1992, the framework is then extended domain by domain — promotions, education, private institutions, economic criteria — each extension following the same route: judgment, then amendment.</p>
+
+    <ul class="tl">
+      <li class="ev">
+        <div class="ev-date">1995 – 2002</div>
+        <h3>Four amendments to restore promotion quotas</h3>
+        <table class="tbl">
+          <tr><th>Amdt</th><th>In force</th><th>What it did</th><th>Reversing</th></tr>
+          <tr><td>77th</td><td>17 Jun 1995</td><td>Art. 16(4A): reservation in promotion for SC/ST</td><td>Indra Sawhney holding (7)</td></tr>
+          <tr><td>81st</td><td>9 Jun 2000</td><td>Art. 16(4B): backlog vacancies as a separate class, outside the 50% cap</td><td>Indra Sawhney 6(c); Devadasan</td></tr>
+          <tr><td>82nd</td><td>8 Sep 2000</td><td>Proviso to Art. 335: relaxation of qualifying marks permitted</td><td>S. Vinod Kumar (1996)</td></tr>
+          <tr><td>85th</td><td>retrospective to 1995</td><td>"With consequential seniority"; abolished the catch-up rule</td><td>Virpal Singh; Ajit Singh I &amp; II</td></tr>
+        </table>
+        <p class="src">Constitution amendment texts, official Ministry of Law compilation.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">19 October 2006</div>
+        <h3>Nagaraj: promotion quotas survive, with three conditions</h3>
+        <p>The amendments are upheld as <em>enabling only</em>. Before providing promotion quotas the State must show backwardness of the class, inadequacy of representation, and that administrative efficiency is maintained — each on quantifiable data.</p>
+        <p>In <strong>Jarnail Singh (2018)</strong> the requirement to demonstrate backwardness of SCs/STs is deleted as contrary to Indra Sawhney; the creamy-layer exclusion is retained. A 2022 clarification holds that no yardstick for inadequacy can be judicially fixed and that the cadre is the unit for data collection.</p>
+        <p class="src">(2006) 8 SCC 212; (2018) 10 SCC 396; 2022 SCC OnLine SC 96.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">2005 – 2014</div>
+        <h3>Education, and the fight over private institutions</h3>
+        <p>The sequence is a clean illustration of the loop. <strong>T.M.A. Pai (2002)</strong> and <strong>P.A. Inamdar (2005)</strong> hold that the State cannot impose its reservation policy on private unaided institutions. The <strong>93rd Amendment</strong> inserts Article 15(5) to enable exactly that. The <strong>Central Educational Institutions (Reservation in Admission) Act 2006</strong> then applies SC 15% / ST 7.5% / OBC 27% to central institutions, with the OBC share phased in from 2008 to 2010 alongside capacity expansion.</p>
+        <p><strong>Ashoka Kumar Thakur (2008)</strong> upholds the Act for state-maintained and aided institutions and requires creamy-layer exclusion. <strong>Pramati (2014)</strong> upholds Article 15(5) including for private unaided non-minority institutions — while holding minority institutions outside it altogether.</p>
+        <p class="src">(2002) 8 SCC 481; (2005) 6 SCC 537; (2008) 6 SCC 1; (2014) 8 SCC 1. T.M.A. Pai split: <span class="badge disputed">disputed</span>.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">14 January 2019</div>
+        <h3>EWS: reservation without caste</h3>
+        <p>The 103rd Amendment inserts Articles 15(6) and 16(6), enabling up to <strong>10% for economically weaker sections</strong> among those <em>not</em> covered by existing reservation. The stated basis includes the Sinho Commission (2006–2010) — though the ₹8 lakh income criterion does not follow the Commission's income-tax-limit formulation.</p>
+        <p>Two structural facts: it takes total central reservation above 50%, and it is the reversal of Indra Sawhney's holding that economic criteria alone are impermissible.</p>
+        <p class="src">Constitution (103rd Amendment) Act 2019. Commencement notification date not traced.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">5 May 2021</div>
+        <h3>Maratha quota struck down; the 50% ceiling holds</h3>
+        <p>The Maharashtra SEBC Act 2018, based on the Gaikwad Commission, is struck down in full: no extraordinary circumstances shown to breach 50%. Indra Sawhney is not referred to a larger bench.</p>
+        <p>A 3–2 majority also holds that after the 102nd Amendment only the President may notify SEBCs for a State. Parliament reverses this within four months: the <strong>105th Amendment</strong>, in force 15 September 2021, restores state power over State SEBC lists.</p>
+        <div class="note">The 105th Amendment's commencement is widely reported as 15 August 2021. It is not. Assent was 18 August, gazette publication 19 August, commencement 15 September. Section 1(2) contains no deeming provision, so the 15 August date is not one this Act has.</div>
+        <p class="src">(2021) 8 SCC 1; Constitution (105th Amendment) Act 2021.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">7 November 2022</div>
+        <h3>Janhit Abhiyan upholds EWS, 3–2</h3>
+        <p>The majority (Maheshwari, Trivedi, Pardiwala JJ.): reservation on economic criteria alone does not violate the basic structure; excluding SC/ST/OBC is permissible balancing; the 50% ceiling is not inflexible and applies only to Articles 15(4)/(5) and 16(4).</p>
+        <p>The dissent of Bhat J., with Chief Justice Lalit, is the sharpest constitutional critique in the modern case law and is worth reading rather than summarising. Its core: the exclusion of SC/ST/OBC from a <em>poverty</em>-based benefit inverts the logic of the equality code — poverty is a neutral identifier, and using caste to exclude people from a poverty remedy is arbitrary in a way he characterises as Orwellian. He also grounds fraternity as part of the equality code.</p>
+        <p class="src">(2023) 5 SCC 1; 2022 INSC 1170 — all four opinions read in the original.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">2015 – 2024</div>
+        <h3>Category contestation becomes a mass phenomenon</h3>
+        <p>Gujjar, Patidar, Jat and Maratha agitations press for inclusion, with real casualties and economic damage. Death tolls are <span class="badge disputed">disputed</span> throughout — no consolidated official count exists for any of them.</p>
+        <p>In <strong>Ram Singh (2015)</strong> the Supreme Court quashes the inclusion of Jats in the central OBC list. Maharashtra legislates a 10% Maratha quota again in February 2024 on the Shukre Commission's fresh survey; it is pending before a Bombay High Court Full Bench.</p>
+        <p class="src">Ram Singh v. Union of India (2015); Maharashtra SEBC Act 2024. 2026 status: <span class="badge unverified">unverified</span>.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">28 September 2023</div>
+        <h3>Women's reservation — passed, in force, inoperative</h3>
+        <p>The 106th Amendment reserves one-third of Lok Sabha and State Assembly seats for women. Article 334A makes commencement conditional on a delimitation exercise following publication of the first census taken after the Act.</p>
+        <p>It has been in force and inoperative ever since. Three Bills introduced on 16 April 2026 would have decoupled it from the census, shifted delimitation to 2011 figures and raised the Lok Sabha ceiling from 550 to 850. <strong>The Constitution (131st Amendment) Bill was negatived on 17 April 2026</strong> and the Delimitation Bill recorded infructuous the same day.</p>
+        <p class="src">Constitution (106th Amendment) Act 2023; PRS Legislative Research bill-track pages for the 2026 Bills.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ ERA 8 ══════════════════ -->
+<section class="era" id="e8">
+  <div class="wrap">
+    <div class="era-head">
+      <div class="era-num">Era Nine</div>
+      <h2>Counting again</h2>
+      <div class="era-span">2011 – 2027</div>
+    </div>
+    <p class="era-intro">Two things are happening at once. The courts have opened the question of distribution <em>within</em> reserved categories — the question Kalelkar raised in 1955 and Naik in 1980. And for the first time since 1931, the state is about to count caste.</p>
+
+    <ul class="tl">
+      <li class="ev">
+        <div class="ev-date">2011 – 2015</div>
+        <h3>SECC 2011, and why its caste data never came out</h3>
+        <p>The Socio-Economic and Caste Census collects caste through an <strong>open text column</strong>. The result: over 46 lakh distinct caste-name strings, mixing jati, sub-caste, surname, gotra and occupational labels.</p>
+        <p>An Expert Group under Arvind Panagariya is constituted to classify them. No report has ever been made public and the existence of a final report is <span class="badge unverified">unverified</span>. The caste data have never been released.</p>
+        <div class="note">Kalelkar predicted this failure mode in 1955, at paras 67–74 of his forwarding letter, including the observation: "I do not think a secular State can insist on noting down the caste of a person."</div>
+        <p class="src">SECC 2011; Expert Group under Panagariya. Confidence: contested.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">2023 – 2025</div>
+        <h3>States start counting on their own</h3>
+        <table class="tbl">
+          <tr><th>Survey</th><th>Result</th><th>Status</th></tr>
+          <tr><td><strong>Bihar</strong> (published 2 Oct 2023)</td><td>EBC 36.01% + OBC 27.12% ≈ 63%; SC 19.65%</td><td>Survey upheld; the 65% quota law that followed struck down by the Patna HC on 20 Jun 2024, appeals pending</td></tr>
+          <tr><td><strong>Telangana</strong> (released 3 Feb 2025)</td><td>BC 56.33%; SC 17.43%; ST 10.45%; OC 15.79%</td><td>Contested on internal discrepancies and ~3% non-coverage</td></tr>
+          <tr><td><strong>Karnataka</strong> (2015 survey)</td><td>OBC ~69.6%; Lingayat 13.6% and Vokkaliga 12.2%, both below conventional estimates</td><td>Withheld a decade, leaked 2016, tabled Apr 2025, then discarded for a fresh survey</td></tr>
+        </table>
+        <p>Karnataka's re-survey completed at ~89% coverage in late 2025; its report status as of August 2026 is <span class="badge unverified">unverified</span>.</p>
+        <p class="src">Bihar Caste-Based Survey 2023; Telangana SEEEPC 2025; Karnataka surveys 2015 and 2025. Confidence: secondary throughout.</p>
+      </li>
+
+      <li class="ev">
+        <div class="ev-date">31 July 2023</div>
+        <h3>Rohini: 97% of the benefit to 25% of the castes</h3>
+        <p>The Commission on Sub-Categorisation of OBCs reports after 13 extensions against an original 12-week deadline. Its central finding: <strong>97% of OBC quota jobs and admissions went to 25% of OBC sub-castes, and 983 communities — 37% of the list — received nothing at all.</strong></p>
+        <p>This is a benefit-capture finding, not a population finding, and the distinction matters. It proposed splitting 2,633 castes into four sub-categories dividing the 27%: 2% / 6% / 9% / 10%. <span class="badge disputed">disputed</span> — the report is unpublished; these figures come from leaked and briefed accounts of the draft, and whether they match the version actually submitted is not established.</p>
+        <p>The report was submitted to the President and has <strong>not been made public, not tabled in Parliament, and not accepted.</strong> Unchanged as of August 2026 — though that last is an inference from an absence of reporting, not a confirmed status. <span class="badge unverified">unverified</span></p>
+        <p class="src">Rohini Commission, via reporting; the report itself is not public.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">1 August 2024</div>
+        <h3>Davinder Singh: sub-classification permitted, after 62 years</h3>
+        <p>A seven-judge bench, 6–1, overrules <em>E.V. Chinnaiah</em> (2004). States may sub-classify Scheduled Castes, subject to empirical data on inadequate representation traced to backwardness, and to no 100% earmark for any sub-group. Article 341(1) creates no homogeneous class.</p>
+        <p>Justice Bela Trivedi dissents. But the more consequential material is in the concurrences: <strong>four of the seven judges</strong> — Gavai, Vikram Nath, Mithal and Sharma — hold that the creamy layer principle should apply to SC/ST as well, with Mithal J. proposing a one-generation limit. That was concurring reasoning, not the holding.</p>
+        <p>It is now live. Petitions on creamy layer for SC/ST are before a bench headed by Chief Justice Surya Kant, with the Centre and States given six weeks to respond.</p>
+        <p class="src">2024 INSC 562 — all six opinions read in the original.</p>
+      </li>
+
+      <li class="ev key">
+        <div class="ev-date">30 April 2025 – 2027</div>
+        <h3>Census 2027 will count caste</h3>
+        <p>The Cabinet Committee on Political Affairs decides on 30 April 2025 to include caste enumeration. Cabinet approves Census 2027 on 12 December 2025 at ₹11,718.24 crore.</p>
+        <table class="tbl">
+          <tr><th>Phase</th><th>Dates</th></tr>
+          <tr><td>Phase 1 — houselisting</td><td>1 Apr – 30 Sep 2026</td></tr>
+          <tr><td>Phase 2 — population enumeration</td><td>Feb 2027, reference date 1 Mar 2027</td></tr>
+        </table>
+        <p>India's first digital census, first with self-enumeration, and <strong>first caste enumeration since 1931.</strong> There was no 2021 census.</p>
+        <div class="note flag"><strong>The one thing that would settle the most arguments is still undecided.</strong> As of August 2026 the caste question format has not been announced. The July 2026 exercise was a pre-test; final methodology was due September 2026. Whether caste is captured as an open text column — the design that produced 46 lakh unusable strings in 2011 — or against a pre-coded list, as Bihar used, determines whether the resulting data can be analysed at all.</div>
+        <p class="src">PIB releases PRID 2202983 (12 Dec 2025) and PRID 2246847 (RGI press conference, 30 Mar 2026) — both fetched directly.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════ CLOSING ══════════════════ -->
+<section class="closing" id="end">
+  <div class="wrap">
+    <div class="era-num">In closing</div>
+    <h2>What this record settles, and what it does not</h2>
+
+    <h3>What it settles</h3>
+    <p><strong>Reservation's factual base is weaker than either side of the argument tends to admit.</strong> The 52% rests on a residual and an undefended multiplier. The 1931 caste figures that every OBC estimate extrapolates from covered 63% of the population, and their own compilers stated that an all-India caste count was impossible. Post-1950 India has never counted OBCs. Any confident claim about how much reservation any group <em>should</em> have is running on numbers nobody has.</p>
+    <p><strong>The categories are administrative artefacts with datable origins.</strong> "Scheduled Caste" is a creature of 1935–36. The three-fold Depressed Classes / Tribes / OBC taxonomy is Bombay, 1930. The ranking apparatus that made any of it countable is Risley, 1901. This is a claim about the categories, not about whether the disadvantage they track is real.</p>
+    <p><strong>The ten-year sunset applied only to legislative seats.</strong> Reservation in education and employment never carried one. Both popular positions on "Ambedkar's intent" are quoting real provisions and applying them to the wrong one.</p>
+    <p><strong>The pattern is judgment, then amendment.</strong> First Amendment reverses Champakam. 77th, 81st, 82nd and 85th reverse Indra Sawhney and its progeny. 93rd reverses Inamdar. 103rd reverses Indra Sawhney on economic criteria. 105th reverses Jaishri Patil within four months.</p>
+
+    <h3>What it does not settle</h3>
+    <p>Whether historical injustice creates a present entitlement. Whether group remedies are the right response to group harms. How long is long enough. No document in this record answers those questions, and no census will. They are moral and political questions, and the people who have to answer them are Indians, not archives.</p>
+
+    <h3>Where the argument is actually moving</h3>
+    <p>Not toward abolition. Toward distribution <em>within</em> the reserved categories. Kalelkar flagged elite capture in 1955 at paragraph 90. Naik proposed sub-categorisation with a denominator in 1980. Rohini documented it in 2023. Four judges endorsed creamy layer for SC/ST in 2024. That question has been raised by reservation's own architects for seventy years and never resolved — and it is the one now before the Supreme Court.</p>
+
+    <h3>One thing worth noticing</h3>
+    <p>Every position in this debate — for and against, on all sides — was formed in the absence of caste data. Census 2027 will produce it for the first time in ninety-six years. It is worth asking, before the numbers arrive, which of one's own positions would survive them.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>On sources.</strong> This timeline is drawn from a research base built on primary documents wherever they could be obtained: the 1931 census volumes, the Lothian Report, the Miller Committee report, the Kalelkar and Mandal reports, Constituent Assembly transcripts, the official Constitution compilation with its amendment footnotes, and judgment texts. Where a claim rests on a secondary source it is not presented as though it rests on a primary one, and where a widely-repeated figure could not be traced it is marked rather than quietly repeated.</p>
+    <p><strong>On what is missing.</strong> Several load-bearing documents remain unobtained: Mandal Volume II, Kalelkar Volume II, the Rohini report, the Panagariya Expert Group report, the Lokur Committee report of 1965, and the per-province seat table of the Communal Award. Their absence is why several figures above carry marks.</p>
+    <p><strong>On method.</strong> Conflicting estimates are recorded as conflicting and never averaged. Competing scholarly interpretations are attributed by name rather than merged. Single incidents are not treated as evidence of scale. Research cutoff August 2026; live-status items should be rechecked, particularly the Census 2027 caste question format, the Rohini report, and the creamy-layer petitions.</p>
+    <p style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--rule)"><em>Template. Prose, structure and emphasis are editable; the underlying dataset is separate and carries per-claim sourcing and confidence tags.</em></p>
+  </div>
+</footer>
+
+</body>
+</html>
